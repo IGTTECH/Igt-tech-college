@@ -1,1 +1,1 @@
-# college
+# Igt & Tech College
