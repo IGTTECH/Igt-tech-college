@@ -2,68 +2,82 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://www.igttechcollege.com/</loc>
+    <lastmod>2025-04-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://www.igttechcollege.com/software</loc>
+    <lastmod>2025-04-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.igttechcollege.com/drivers</loc>
+    <lastmod>2025-04-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.igttechcollege.com/swahili</loc>
+    <lastmod>2025-04-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
    <url>
     <loc>https://www.igttechcollege.com/english</loc>
+     <lastmod>2025-04-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
     <url>
     <loc>https://www.igttechcollege.com/ikinyarwanda</loc>
+      <lastmod>2025-04-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
     <url>
     <loc>https://www.igttechcollege.com/contact</loc>
+      <lastmod>2025-04-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
     <url>
     <loc>https://www.igttechcollege.com/ibitabo</loc>
+      <lastmod>2025-04-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
     <url>
     <loc>https://www.igttechcollege.com/books</loc>
+      <lastmod>2025-04-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
     <url>
     <loc>https://www.igttechcollege.com/vitabu</loc>
+      <lastmod>2025-04-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
     <url>
     <loc>https://www.igttechcollege.com/certificate</loc>
+      <lastmod>2025-04-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <loc>https://www.igttechcollege.com/terms</loc>
+  <lastmod>2025-04-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <loc>https://www.igttechcollege.com/vigezo</loc>
+  <lastmod>2025-04-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <loc>https://www.igttechcollege.com/amategeko</loc>
+  <lastmod>2025-04-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
