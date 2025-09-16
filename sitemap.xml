@@ -89,5 +89,11 @@
   <loc>https://www.igttechcollege.com/computer.html</loc>
   <lastmod>2025-07-30T08:15:50+00:00</lastmod>
   <priority>0.64</priority>
-</url>    
+</url> 
+   <url>
+  <loc>https://www.igttechcollege.com/stabout.html</loc>
+  <lastmod>2025-09-15T14:30+00:00</lastmod>
+  <priority>0.64</priority>
+</url>        
 </urlset>
+
