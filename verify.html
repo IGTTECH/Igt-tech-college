@@ -1,0 +1,137 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <title>Email Verification - IGT Tech</title>
+  <!-- PayPal SDK -->
+  <script src="https://www.paypal.com/sdk/js?client-id=AVEX1YCYhqqBh1UB3qas6vKAmRDHKk5ro8z5I65vKco3B5-NsrnbYSqkYTcwUQFyuop96hhmOkvB92-k&currency=USD"></script>
+</head>
+<body class="bg-gray-50 min-h-screen flex items-center justify-center p-6">
+  <div class="max-w-md w-full bg-white rounded-2xl shadow-lg p-8 text-center">
+    <h2 class="text-xl font-bold mb-4">Verify Your Email</h2>
+    <p class="text-sm mb-4">
+      We’ve sent a verification email. Please check your inbox, then click below after verifying.
+    </p>
+
+    <button id="verify-check-btn" class="bg-green-600 text-white px-4 py-2 rounded">
+      I have verified my email
+    </button>
+    <span id="verify-spinner" style="display:none;margin-left:8px;">Checking...</span>
+
+    <!-- PayPal Section -->
+    <div id="paypal-container" style="margin-top:16px; display:none;">
+      <div id="paypal-button-container"></div>
+    </div>
+
+    <p id="msg" class="text-sm mt-3"></p>
+  </div>
+
+<script type="module">
+import { auth, db } from "./src/firebase-config.js";
+import { onAuthStateChanged, reload } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import { doc, getDoc, setDoc, updateDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const msg = document.getElementById("msg");
+const verifyBtn = document.getElementById("verify-check-btn");
+const spinner = document.getElementById("verify-spinner");
+const paypalDiv = document.getElementById("paypal-container");
+
+// Price mapping per course
+const prices = {
+  "website-development": 20,
+  "mobile-repairing": 10,
+  "kujenga-tovuti": 22,
+  "ufundi-simu": 11,
+  "kubaka-imbuga": 25,
+  "gukora-phone": 12
+};
+
+let paypalLoaded = false; // prevent duplicate renders
+let currentPlan = "website-development"; // default
+
+// Handle logged-in user
+onAuthStateChanged(auth, async (user) => {
+  if (!user) {
+    window.location.href = "login.html";
+    return;
+  }
+
+  await reload(user);
+  const ref = doc(db, "users", user.uid);
+  const snap = await getDoc(ref);
+  const data = snap.exists() ? snap.data() : {};
+  currentPlan = data.plan || currentPlan;
+
+  if (user.emailVerified) {
+    try {
+      await setDoc(ref, { verified: true }, { merge: true });
+    } catch (e) {
+      console.warn("Could not update verified flag:", e);
+    }
+
+    if (data.paid) {
+      if (data.plan) {
+        window.location.href = data.plan + "-dashboard.html";
+      } else {
+        msg.style.color = "red";
+        msg.innerText = "Paid but no plan assigned. Contact admin.";
+      }
+    } else {
+      paypalDiv.style.display = "block";
+      loadPayPalButton(currentPlan);
+    }
+  }
+});
+
+// Manual verify button
+verifyBtn.addEventListener("click", async () => {
+  spinner.style.display = "inline";
+  if (auth.currentUser) {
+    await reload(auth.currentUser);
+    if (auth.currentUser.emailVerified) {
+      spinner.style.display = "none";
+      msg.style.color = "green";
+      msg.innerText = "Email verified! Please complete payment.";
+      paypalDiv.style.display = "block";
+      loadPayPalButton(currentPlan);
+    } else {
+      spinner.style.display = "none";
+      msg.style.color = "red";
+      msg.innerText = "Email not verified yet. Please check your inbox.";
+    }
+  }
+});
+
+// Load PayPal button safely
+function loadPayPalButton(plan) {
+  if (paypalLoaded) return; // avoid multiple renders
+  paypalLoaded = true;
+
+  paypal.Buttons({
+    createOrder: (data, actions) => {
+      return actions.order.create({
+        purchase_units: [{ amount: { value: prices[plan] || 10 } }]
+      });
+    },
+    onApprove: (data, actions) => {
+      return actions.order.capture().then(async () => {
+        msg.style.color = "green";
+        msg.innerText = "Payment successful! Redirecting...";
+
+        if (auth.currentUser) {
+          const ref = doc(db, "users", auth.currentUser.uid);
+          await setDoc(ref, { paid: true, plan }, { merge: true });
+        }
+
+        setTimeout(() => {
+          window.location.href = plan + "-dashboard.html";
+        }, 1500);
+      });
+    }
+  }).render("#paypal-button-container");
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css">
+
+  <title>Login - IGT Tech</title>
+</head>
+<body class="bg-gray-50 min-h-screen flex items-center justify-center p-6">
+  <div class="max-w-md w-full bg-white rounded-2xl shadow-lg p-8">
+    <h2 class="text-2xl font-bold mb-4">Welcome back</h2>
+    <form id="loginForm" class="space-y-3">
+      <input id="l-email" name="email" type="email" placeholder="Email" required class="p-3 border rounded w-full" />
+      <input id="l-password" name="password" type="password" placeholder="Password" required class="p-3 border rounded w-full" />
+      <div id="loginMsg" class="text-sm"></div>
+      <button type="submit" class="w-full bg-green-600 text-white p-3 rounded">Login</button>
+      <div class="flex justify-between text-sm mt-3">
+        <a href="forgot.html" class="text-blue-600">Forgot password?</a>
+        <a href="register.html" class="text-blue-600">Create account</a>
+      </div>
+    </form>
+  </div>
+
+  <script type="module">
+    import { auth, db } from "./src/firebase-config.js";
+    import { signInWithEmailAndPassword, reload } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+    import { doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+    const form = document.getElementById('loginForm');
+    const msg = document.getElementById('loginMsg');
+
+    if (form) {
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        msg.style.color = 'black';
+        msg.innerText = 'Logging in...';
+
+        try {
+          const email = form.email.value.trim();
+          const password = form.password.value;
+
+          const cred = await signInWithEmailAndPassword(auth, email, password);
+          const user = cred.user;
+          const uid = user.uid;
+
+          // Refresh emailVerified status
+          await reload(user);
+
+          const snap = await getDoc(doc(db, 'users', uid));
+          if (!snap.exists()) {
+            msg.style.color = 'red';
+            msg.innerText = 'User record missing. Contact support.';
+            return;
+          }
+
+          const data = snap.data();
+
+          // === Email verification check ===
+          if (!user.emailVerified) {
+            msg.style.color = 'red';
+            msg.innerText = 'Please verify your email before logging in.';
+            window.location.href = 'verify.html';
+            return;
+          } else if (!data.verified) {
+            // Update Firestore once user verifies
+            await setDoc(doc(db, 'users', uid), { verified: true }, { merge: true });
+          }
+
+          // === Payment check ===
+          if (!data.paid) {
+            // Allow if admin has added UID manually
+            const adminSnap = await getDoc(doc(db, 'admins', uid));
+            if (!adminSnap.exists()) {
+              msg.style.color = 'red';
+              msg.innerText = 'Payment required before accessing dashboard.';
+              window.location.href = 'verify.html';
+              return;
+            }
+          }
+
+          // === Success ===
+          msg.style.color = 'green';
+          msg.innerText = 'Welcome, ' + (data.firstName || '') + ' ' + (data.lastName || '');
+          const redirectPage = (data.plan ? data.plan : 'website-development') + '-dashboard.html';
+          setTimeout(() => {
+            window.location.href = redirectPage;
+          }, 1000);
+
+        } catch (err) {
+          msg.style.color = 'red';
+          msg.innerText = (err.message || err).replace("Firebase:", "").trim();
+        }
+      });
+    }
+  </script>
+</body>
+</html>
