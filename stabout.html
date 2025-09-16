@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Seth Iradukunda — Profile</title>
+  <style>
+    :root{
+      --bg1: #87ceeb; /* skyblue */
+      --bg2: #2ecc71; /* green */
+      --card: rgba(255,255,255,0.12);
+      --muted: #1a202c;
+      --accent: #2c5282;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: linear-gradient(160deg, var(--bg1) 0%, var(--bg2) 100%);
+      color:#1e293b;
+      line-height:1.6;
+    }
+    .container{max-width:1000px;margin:20px auto;padding:16px}
+    header{margin-bottom:20px}
+    .site-header{padding:18px 0;text-align:center}
+    .site-header .name{margin:0;font-size:32px;color:#0f172a}
+    .site-header .tagline{color:#334155;font-size:16px}
+
+    /* nav bar */
+    nav{
+      background: rgba(255,255,255,0.8);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      border-radius:12px;
+      margin:12px auto;
+      max-width:1000px;
+    }
+    nav ul{display:flex;flex-wrap:wrap;list-style:none;justify-content:center;padding:10px}
+    nav li{margin:6px 12px}
+    nav a{
+      text-decoration:none;
+      color:#0f172a;
+      font-weight:500;
+      padding:6px 10px;
+      border-radius:8px;
+      transition:all 0.3s ease;
+    }
+    nav a:hover{background:#0f172a;color:white}
+
+    .card{
+      background: rgba(255,255,255,0.85);
+      border-radius:14px;padding:18px;margin-bottom:18px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    }
+    .intro{display:grid;grid-template-columns: 340px 1fr;gap:18px;align-items:stretch;}
+    .images-grid{display:grid;grid-template-columns: 1fr 1fr;gap:10px}
+    .img-holder{
+      background:rgba(0,0,0,0.05);border-radius:10px;padding:6px;
+      display:flex;align-items:center;justify-content:center;
+      min-height:110px;overflow:hidden;
+    }
+    .img-holder img{width:100%;height:100%;object-fit:cover;border-radius:8px}
+    .skills .skill-list{margin:0;padding-left:20px}
+    .muted{color:#475569}
+    .video-wrap{border-radius:10px;overflow:hidden;background:rgba(0,0,0,0.1);padding:6px}
+    .footer{text-align:center;color:#334155;font-size:14px}
+
+    @media (max-width:820px){
+      .intro{grid-template-columns: 1fr;}
+      .images-grid{grid-template-columns: 1fr 1fr;}
+      .site-header .name{font-size:24px}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="site-header">
+      <h1 class="name">Seth Iradukunda</h1>
+      <p class="tagline">Born in Africa — Passionate about technology, business & data</p>
+    </div>
+
+    <nav>
+      <ul>
+        <li><a href="software.html">Software</a></li> 
+        <li><a href="drivers.html">PC Drivers</a></li>
+        <li><a href="swahili.html">Masomo ya Swahili</a></li>
+        <li><a href="english.html">English courses</a></li>
+        <li><a href="ikinyarwanda.html">Amasomo y'ikinyarwanda</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="login.html">Login</a></li>
+        <li><a href="register.html">Register</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="intro card">
+      <div class="left">
+        <div class="images-grid">
+          <div class="img-holder"><img src="./images/profile1.jpg" alt="Seth Iradukunda photoowner of IGT & Tech college Founder & Owner of Find my family world wide (FFWW) and IGT & Tech college"></div>
+          <div class="img-holder"><img src="./images/sethiug.jpg" alt="Seth Iradukunda photoowner of IGT & Tech college "></div>
+          <div class="img-holder"><img src="./images/profile2.jpg" alt="Seth Iradukunda owner of IGT & Tech college"></div>
+          <div class="img-holder"><img src="./images/profile3.jpg" alt="Seth Iradukundaowner of IGT & Tech college "></div>
+          <div class="img-holder"><img src="./images/profile4.jpg" alt="Seth Iradukundaowner of IGT & Tech college "></div>
+        </div>
+      </div>
+      <div class="right">
+        <h2>About</h2>
+        <p><strong>Full name:</strong> Seth Iradukunda</p>
+        <p><strong>Born in:</strong> Africa</p>
+        <p><strong>Live in:</strong> Africa-Uganda</p>
+        <p><strong>Parents:</strong> Mother — Sarafina Nzitimpaye; Father — Birindabagabo Trasisi</p>
+        <p><strong>Religion:</strong> Christian</p>
+        <p><strong>Gender:</strong> Male</p>
+       <p><strong>Occupation:</strong>Tech Trainer , Business</p>
+        <p><strong>Networth:</strong> hidden ....$</p>
+        <p><strong>Website 1:</strong> www.getmyfamily.com</p>
+        <p><strong>Website 2:</strong> www.igttechcollege.com</p>
+         <p><strong>Youtube Channel:</strong> IGT & TECH COLLEGE</p>
+        <p><strong>Contact:</strong> Check Website Contact form or whatsapp</p>
+      </div>
+    </section>
+
+    <section class="skills card">
+      <h2>Skills</h2>
+      <ul class="skill-list">
+        <li>Website development — Frontend & Backend</li>
+        <li>Mobile repairing — Software & Hardware</li>
+        <li>Business management</li>
+        <li>Social media skills</li>
+        <li>Data analytics</li>
+        <li>Youtube Creator SEO skills</li>
+      </ul>
+    </section>
+
+    <section class="languages card">
+      <h2>Languages</h2>
+      <p>English · Swahili · Kinyarwanda (Kifumbira) · Lunyankole</p>
+    </section>
+
+    <section class="video card">
+  <h2>Video</h2>
+  <p class="muted">⤵️ Watch video of Seth Iradukunda about intro.</p>
+  <div class="video-wrap">
+    <video controls playsinline width="100%" preload="metadata"
+           poster="https://via.placeholder.com/800x450/374151/ffffff?text=Video+Preview">
+      <source src="./videos/igttechcollege2.mp4" type="video/mp4">
+      Your browser does not support the video element.
+    </video>
+  </div>
+</section>
+
+    <footer class="card footer">
+      <p>Profile created Since 2025.</p>
+    </footer>
+  </main>
+</body>
+</html>
