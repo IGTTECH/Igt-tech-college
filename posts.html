@@ -13,27 +13,27 @@
       margin: 0;
       padding: 2rem;
     }
-        nav ul {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-            background-color: white;
-        }
+    nav ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      background-color: white;
+    }
 
-        nav li {
-            display: inline;
-        }
+    nav li {
+      display: inline;
+    }
 
-        nav a {
-            display: inline-block;
-            padding: 10px 20px;
-            text-decoration: none;
-            color: black;
-        }
+    nav a {
+      display: inline-block;
+      padding: 10px 20px;
+      text-decoration: none;
+      color: black;
+    }
 
-        nav a:hover {
-            background-color: red;
-        }
+    nav a:hover {
+      background-color: red;
+    }
 
     .container {
       max-width: 900px;
@@ -90,41 +90,55 @@
       font-weight: bold;
       margin-left: 0.5rem;
     }
+
     footer {
-            background-color: #eee;
-            padding: 10px;
-            text-align: center; 
+      background-color: #eee;
+      padding: 10px;
+      text-align: center;
+    }
+
+    .post img {
+      width: 100%;
+      max-height: 300px;
+      object-fit: cover;
+      margin-bottom: 1rem;
     }
   </style>
 </head>
 <body>
-    <header>
-        <nav>
-            <ul>
+  <header>
+    <nav>
+      <ul>
         <li><a href="index.html">Home</a></li>
         <li><a href="software.html">Software</a></li>
         <li><a href="swahili.html">Masomo ya Swahili</a></li>
         <li><a href="english.html">English courses</a></li>
         <li><a href="ikinyarwanda.html">Amasomo y'ikinyarwanda</a></li>
         <li><a href="contact.html">Contact</a></li>
-        </ul>
-    </header> 
+      </ul>
+    </nav>
+  </header>
   <div class="container">
     <input type="text" id="searchInput" class="search-box" placeholder="Search posts..." />
 
     <div id="posts">
       <div class="post" data-title="My First Post">
         <h2>🎓 Welcome to IGT & Tech College Your Gateway to the Future of Technology! 🌐</h2>
-        <p> Looking to jumpstart your career in tech? 💻 Whether you're passionate about software development, cybersecurity, data science, or IT support, igttechcollege.com is your destination for hands-on learning and real-world skills.
-         <iframe width="560" height="315" src="https://www.youtube.com/embed/93KIs2Jcl84?si=iuw7v54N3kSRKc7g" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>   
-            <h3>Why Choose IGT & Tech College?</h3>
-            <p>🚀 Industry-Ready Programs Get trained on the latest tools and technologies used by professionals.
-            📚 Expert Instructors Learn from experienced mentors who bring real industry insights into every class.</p>
-            <p>🧑‍🏫 Flexible Learning Options Online, on-campus, or hybrid we fit your lifestyle.
-            🎯 Career Support Resume building, mock interviews, internships, and job placement assistance.
-            🌍 Global Vision Designed to prepare students for tech careers worldwide.</p>
-            
-            <p>✨ Whether you're just starting out or leveling up your skills, igttechcollege.com offers a path forward. Explore our programs, meet our community, and take the first step toward a successful future in tech!</p>
+        
+        <!-- Image Holder -->
+        <img src="https://via.placeholder.com/900x400" alt="Tech College Banner">
+        
+        <p>Looking to jumpstart your career in tech? 💻 Whether you're passionate about software development, cybersecurity, data science, or IT support, igttechcollege.com is your destination for hands-on learning and real-world skills.</p>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/93KIs2Jcl84?si=iuw7v54N3kSRKc7g" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>   
+        <h3>Why Choose IGT & Tech College?</h3>
+        <p>🚀 Industry-Ready Programs Get trained on the latest tools and technologies used by professionals.
+        📚 Expert Instructors Learn from experienced mentors who bring real industry insights into every class.</p>
+        <p>🧑‍🏫 Flexible Learning Options Online, on-campus, or hybrid we fit your lifestyle.
+        🎯 Career Support Resume building, mock interviews, internships, and job placement assistance.
+        🌍 Global Vision Designed to prepare students for tech careers worldwide.</p>
+        
+        <p>✨ Whether you're just starting out or leveling up your skills, igttechcollege.com offers a path forward. Explore our programs, meet our community, and take the first step toward a successful future in tech!</p>
+        
         <div class="actions">
           <button class="btn like-btn">Like <span class="likes">0</span></button>
           <button class="btn share-btn">Share</button>
@@ -132,20 +146,25 @@
       </div>
 
       <div class="post" data-title="JavaScript Tips">
-        <h2>What is a webste and how it works</h2>
+        <h2>Parts of feature mobile phones their value and faunctions</h2>
+        
+        <!-- Image Holder -->
+        <img src="https:.\images\books\feactures-mobile-phones-book.png" alt="Website Example">
+        
         <p>A website is a collection of related web pages that are grouped together and usually identified by a common domain name (like `example.com`). These pages are accessed through the internet using a web browser (like Chrome, Safari, or Firefox).</p>   
-     <h4>Each website can include:</h4>
-            <p>Text (like articles or descriptions)
-            Images, videos, and other media
-            Links to other pages or websites
-            Interactive features like forms, buttons, or even games</p>
-            
-            <p><b>Websites can serve many purposes—some examples include:</b>
-            Personal websites or blogs (for sharing thoughts or projects)
-            Business websites (to promote products or services)
-            E-commerce sites (like Amazon or eBay, where people can shop)
-            Social media platforms (like Instagram or Facebook)</p>
-            <b>Let me know if you want to go deeper into how they work or how to make one!</p>
+        <h4>Each website can include:</h4>
+        <p>Text (like articles or descriptions)
+        Images, videos, and other media
+        Links to other pages or websites
+        Interactive features like forms, buttons, or even games</p>
+        
+        <p><b>Websites can serve many purposes—some examples include:</b>
+        Personal websites or blogs (for sharing thoughts or projects)
+        Business websites (to promote products or services)
+        E-commerce sites (like Amazon or eBay, where people can shop)
+        Social media platforms (like Instagram or Facebook)</p>
+        <b>Let me know if you want to go deeper into how they work or how to make one!</b>
+        
         <div class="actions">
           <button class="btn like-btn">Like <span class="likes">0</span></button>
           <button class="btn share-btn">Share</button>
@@ -153,8 +172,6 @@
       </div>
 
       <!-- Add more posts here -->
-
-
     </div>
   </div>
 
@@ -188,7 +205,7 @@
     });
   </script>
 
-<footer>
+  <footer>
     <p>&copy; 2025 IGT & Tech College | Founder Seth</p>
     <a href="index.html">Home</a>|
     <a href="swahili.html">Masomo ya Swahili</a>|
@@ -199,6 +216,6 @@
     <a href="terms.html">Terms and conditions</a>|
     <a href="amategeko.html">Amategeko n'amabwiriza</a>|
     <a href="vigezo.html">Vigezo na Masharti</a>
-</footer>
+  </footer>
 </body>
 </html>
