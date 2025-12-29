@@ -3,16 +3,17 @@ service cloud.firestore {
   match /databases/{database}/documents {
 
     match /posts/{postId} {
-      // Anyone can read posts
+      // Anyone can read posts (public, SEO-friendly)
       allow read: if true;
 
       // Only specific admin UIDs can create, update, delete
       allow create, update, delete: if request.auth != null
         && request.auth.uid in [
-          "ADMIN_UID_1",
-          "ADMIN_UID_2"
+          "Imf5p91x3xSV5WVZLbf3gYV7l852", // Admin 1
+          "kNGuFR6y4nOJagw7lOe5IGXNUcY2"  // Admin 2
         ];
     }
   }
 }
+
 
