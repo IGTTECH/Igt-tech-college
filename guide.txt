@@ -1,0 +1,57 @@
+1️⃣1️⃣ STEP-BY-STEP SETUP GUIDE (IMPORTANT)
+STEP 1
+
+Go to Firebase Console → Create Project
+
+STEP 2
+
+Enable:
+
+Authentication → Email/Password
+
+Firestore Database
+
+Storage
+
+STEP 3
+
+Create 2 admin accounts, copy their UIDs
+
+STEP 4
+
+Paste UIDs in:
+
+ADMIN_UIDS = ["UID1","UID2"];
+
+STEP 5
+
+Paste Firebase config into firebase.js
+
+STEP 6
+
+Upload posts/ folder to your website
+
+STEP 7
+
+Add link to posts/posts.html
+
+✅ RESULT
+
+✔ Google can index posts
+✔ Visitors read without login
+✔ Admins are UID-locked
+✔ Free Firebase plan
+✔ Secure & scalable
+✔ Professional structure
+
+If you want next:
+
+🔐 Admin edit/delete buttons
+
+💬 Comment system
+
+🌍 Language-based posts
+
+📊 View counter
+
+🔎 Server-side search (Firestore index)
