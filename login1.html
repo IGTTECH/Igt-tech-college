@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login | IGT Tech</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="posts1.css">
+</head>
+<body>
+
+<nav class="btn-nav">
+  <ul>
+    <li><a href="posts1.html">Posts</a></li>
+    <li><a href="register1.html">Register</a></li>
+    <li><a href="software.html">Software</a></li>
+    <li><a href="drivers.html">Drivers</a></li>
+  </ul>
+</nav>
+
+<div class="admin-panel">
+  <h2>Login</h2>
+  <input type="email" id="loginEmail" placeholder="Email">
+  <input type="password" id="loginPassword" placeholder="Password">
+  <button onclick="loginUser()">Login</button>
+  <p id="loginMessage"></p>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+<script src="firebase.js"></script>
+<script src="auth1.js"></script>
+<script>
+  function loginUser() {
+    const email = document.getElementById('loginEmail').value;
+    const password = document.getElementById('loginPassword').value;
+    login(email, password);
+  }
+</script>
+</body>
+</html>
