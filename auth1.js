@@ -3,15 +3,35 @@
 // ================================
 
 // Make sure Firebase is initialized in firebase.js before this script
-// Example: const app = firebase.initializeApp(firebaseConfig);
+// auth and db are already available
 
-// Check if user is logged in
+// ================================
+// ADMIN UID LIST (matches Firestore rules)
+// ================================
+const ADMIN_UIDS = [
+  "Imf5p91x3xSV5WVZLbf3gYV7l852", // Admin 1
+  "kNGuFR6y4nOJagw7lOe5IGXNUcY2"  // Admin 2
+];
+
+// ================================
+// AUTH STATE CHANGE
+// ================================
 auth.onAuthStateChanged(user => {
-  if (user) {
-    console.log("User logged in:", user.email, user.uid);
-    // Optionally display user info in UI
+  const adminPanel = document.getElementById("adminPanel");
+  if (!adminPanel) return; // ignore pages without admin panel
+
+  if (user && ADMIN_UIDS.includes(user.uid)) {
+    // Admin logged in → show admin panel
+    adminPanel.classList.remove("hidden");
+    console.log("Admin logged in:", user.email, user.uid);
   } else {
-    console.log("No user logged in");
+    // Not admin or logged out → hide admin panel
+    adminPanel.classList.add("hidden");
+    if (user) {
+      console.log("Regular user logged in:", user.email, user.uid);
+    } else {
+      console.log("No user logged in");
+    }
   }
 });
 
@@ -21,9 +41,11 @@ auth.onAuthStateChanged(user => {
 function login(email, password) {
   auth.signInWithEmailAndPassword(email, password)
     .then(userCredential => {
-      console.log("Login successful:", userCredential.user.uid);
+      const uid = userCredential.user.uid;
+      console.log("Login successful:", uid);
       alert("Login successful!");
-      // Redirect or update UI
+      // Redirect to posts page
+      window.location.href = "posts1.html";
     })
     .catch(error => {
       console.error("Login error:", error.message);
@@ -37,9 +59,10 @@ function login(email, password) {
 function register(email, password) {
   auth.createUserWithEmailAndPassword(email, password)
     .then(userCredential => {
-      console.log("Registration successful:", userCredential.user.uid);
-      alert("Registration successful!");
-      // Redirect or update UI
+      const uid = userCredential.user.uid;
+      console.log("Registration successful:", uid);
+      alert("Registration successful! Your UID:\n" + uid +
+            "\n\nAdd this UID to ADMIN_UIDS array and Firestore rules to enable admin access.");
     })
     .catch(error => {
       console.error("Registration error:", error.message);
@@ -55,9 +78,10 @@ function logout() {
     .then(() => {
       console.log("User logged out");
       alert("Logged out successfully");
-      // Redirect or update UI
+      window.location.href = "login1.html"; // redirect to login
     })
     .catch(error => {
       console.error("Logout error:", error.message);
+      alert("Logout failed: " + error.message);
     });
 }
