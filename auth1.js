@@ -10,7 +10,7 @@
 // ================================
 const ADMIN_UIDS = [
   "bcZrjdpD3kOXLsroL9Msn865z8B2", // Admin 1
-  "kNGuFR6y4nOJagw7lOe5IGXNUcY2"  // Admin 2
+  "NmLXcfzZJBQtUfABkJUVyZgCkA02"  // Admin 2
 ];
 
 // ================================
@@ -85,4 +85,5 @@ function logout() {
       alert("Logout failed: " + error.message);
     });
 }
+
 
