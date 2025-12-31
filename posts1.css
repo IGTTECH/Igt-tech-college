@@ -11,6 +11,13 @@ body {
   background: #f2f4f7;
   color: #222;
 }
+.post-content p {
+  margin-bottom: 1em;
+}
+
+.post-content li {
+  margin-bottom: 0.5em;
+}
 
 /* ==============================
    BUTTON NAV (MATCHES HTML)
@@ -245,4 +252,5 @@ body {
     padding: 10px;
   }
 }
+
 
