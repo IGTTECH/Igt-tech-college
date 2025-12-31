@@ -26,8 +26,14 @@ auth.onAuthStateChanged(user => {
 
             ${post.image ? `<img src="${post.image}" alt="${escapeHTML(post.title)}">` : ""}
 
-            <p>${escapeHTML(post.content)}</p>
-
+            <div class="post-content">
+              ${
+                post.content
+                  .split("\n\n")                // split double line breaks
+                  .map(p => `<p>${escapeHTML(p)}</p>`) // wrap each in <p>
+                  .join('')
+              }
+            </div>
             <div class="post-actions">
 
               <button onclick="likePost('${postId}')">
@@ -124,3 +130,4 @@ function escapeHTML(text) {
     .replace(/"/g, "&quot;")
     .replace(/'/g, "&#039;");
 }
+
