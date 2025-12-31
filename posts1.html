@@ -6,6 +6,7 @@
   <meta name="description" content="Latest technology posts, tutorials and updates from IGT Tech College">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="posts1.css">
+  <script src="subscribe1.js"></script>
 </head>
 <body>
 
@@ -28,6 +29,22 @@
 <!-- SEARCH -->
 <div class="search-box">
   <input type="text" id="searchInput" placeholder="Search post by title..." aria-label="Search posts">
+</div>
+<!-- SUBSCRIBE BOX -->
+<div class="subscribe-box">
+  <h3>📬 Subscribe for New Posts</h3>
+  <p>Get notified when we publish new content. No spam.</p>
+
+  <input
+    type="email"
+    id="subscribeEmail"
+    placeholder="Enter your email"
+    aria-label="Email address"
+  >
+
+  <button onclick="subscribe()">Subscribe</button>
+
+  <p id="subscribeMsg"></p>
 </div>
 
 <!-- ADMIN PANEL (hidden for viewers) -->
@@ -57,5 +74,6 @@
 <script src="search1.js"></script>
 </body>
 </html>
+
 
 
