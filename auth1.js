@@ -45,7 +45,7 @@ function login(email, password) {
       console.log("Login successful:", uid);
       alert("Login successful!");
       // Redirect to posts page
-      window.location.href = "posts1.html";
+      window.location.href = "posts.html";
     })
     .catch(error => {
       console.error("Login error:", error.message);
@@ -85,6 +85,7 @@ function logout() {
       alert("Logout failed: " + error.message);
     });
 }
+
 
 
 
