@@ -8,7 +8,6 @@
 </head>
 <body>
 
-<!-- NAVIGATION -->
 <nav class="btn-nav">
   <ul>
     <li><a href="posts.html">Posts</a></li>
@@ -18,58 +17,24 @@
   </ul>
 </nav>
 
-<!-- LOGIN FORM -->
 <div class="admin-panel">
   <h2>Login</h2>
-
-  <input
-    type="email"
-    id="loginEmail"
-    placeholder="Email"
-    autocomplete="email"
-    required
-  >
-
-  <input
-    type="password"
-    id="loginPassword"
-    placeholder="Password"
-    autocomplete="current-password"
-    required
-  >
-
+  <input type="email" id="loginEmail" placeholder="Email">
+  <input type="password" id="loginPassword" placeholder="Password">
   <button onclick="loginUser()">Login</button>
-
   <p id="loginMessage"></p>
 </div>
 
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-check-compat.js"></script>
 <script src="firebase1.js"></script>
-
 <script src="auth1.js"></script>
-
 <script>
   function loginUser() {
-    const email = document.getElementById("loginEmail").value.trim();
-    const password = document.getElementById("loginPassword").value.trim();
-    const message = document.getElementById("loginMessage");
-
-    if (!email || !password) {
-      message.textContent = "Please enter email and password";
-      return;
-    }
-
+    const email = document.getElementById('loginEmail').value;
+    const password = document.getElementById('loginPassword').value;
     login(email, password);
   }
 </script>
-
 </body>
 </html>
-
-
-
-
-
