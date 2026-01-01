@@ -85,7 +85,3 @@ function logout() {
       alert("Logout failed: " + error.message);
     });
 }
-
-
-
-
