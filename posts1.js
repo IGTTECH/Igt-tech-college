@@ -19,6 +19,12 @@ auth.onAuthStateChanged(user => {
         const postId = doc.id;
         const isAdmin = user && ADMIN_UIDS.includes(user.uid);
 
+        // Format content with paragraphs
+        const formattedContent = post.content
+          .split(/\n+/)
+          .map(line => `<p>${escapeHTML(line)}</p>`)
+          .join("");
+
         postsContainer.innerHTML += `
           <div class="post">
 
@@ -27,16 +33,9 @@ auth.onAuthStateChanged(user => {
             ${post.image ? `<img src="${post.image}" alt="${escapeHTML(post.title)}">` : ""}
 
             <div class="post-content">
-  ${
-    post.content
-      .split(/\n+/) // split at one or more line breaks
-      .map(line => {
-        if (/^\d+\./.test(line)) return `<li>${escapeHTML(line)}</li>`; // simple numbered list
-        return `<p>${escapeHTML(line)}</p>`;
-      })
-      .join('')
-  }
-</div>
+              ${formattedContent}
+            </div>
+
             <div class="post-actions">
 
               <button onclick="likePost('${postId}')">
@@ -133,5 +132,3 @@ function escapeHTML(text) {
     .replace(/"/g, "&quot;")
     .replace(/'/g, "&#039;");
 }
-
-
