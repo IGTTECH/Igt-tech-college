@@ -8,7 +8,6 @@
 </head>
 <body>
 
-<!-- NAVIGATION -->
 <nav class="btn-nav">
   <ul>
     <li><a href="login1.html">Login</a></li>
@@ -16,61 +15,26 @@
   </ul>
 </nav>
 
-<!-- REGISTER FORM -->
 <div class="admin-panel">
   <h2>Register Admin</h2>
-
-  <input
-    type="email"
-    id="regEmail"
-    placeholder="Email"
-    autocomplete="email"
-    required
-  >
-
-  <input
-    type="password"
-    id="regPassword"
-    placeholder="Password"
-    autocomplete="new-password"
-    required
-  >
-
+  <input type="email" id="regEmail" placeholder="Email">
+  <input type="password" id="regPassword" placeholder="Password">
   <button onclick="registerAdmin()">Register</button>
-
   <p id="registerMessage"></p>
 </div>
 
-<!-- ==============================
-     FIREBASE SDKs
-============================== -->
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-check-compat.js"></script>
-
-<!-- SHARED FIREBASE -->
-<script src="firebase.js"></script>
-
-<!-- AUTH LOGIC -->
+<script src="firebase1.js"></script>
 <script src="auth1.js"></script>
-
-<!-- PAGE SCRIPT -->
 <script>
   function registerAdmin() {
-    const email = document.getElementById("regEmail").value.trim();
-    const password = document.getElementById("regPassword").value.trim();
-    const message = document.getElementById("registerMessage");
-
-    if (!email || !password) {
-      message.textContent = "Please enter email and password";
-      return;
-    }
-
+    const email = document.getElementById('regEmail').value;
+    const password = document.getElementById('regPassword').value;
     register(email, password);
   }
 </script>
-
 </body>
 </html>
+
 
