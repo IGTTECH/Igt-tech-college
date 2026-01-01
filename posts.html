@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Register | IGT Tech</title>
+  <title>Posts | IGT Tech</title>
+  <meta name="description" content="Latest technology posts, tutorials and updates from IGT Tech College">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="posts1.css">
 </head>
@@ -12,37 +13,33 @@
 <nav class="btn-nav">
   <ul>
     <li><a href="login1.html">Login</a></li>
-    <li><a href="posts1.html">Posts</a></li>
+    <li><a href="register1.html">Register</a></li>
+    <li><a href="software.html">Software</a></li>
+    <li><a href="drivers.html">Drivers</a></li>
+    <li><a href="posts.html">Posts</a></li>
   </ul>
 </nav>
 
-<!-- REGISTER FORM -->
-<div class="admin-panel">
-  <h2>Register Admin</h2>
-
-  <input
-    type="email"
-    id="regEmail"
-    placeholder="Email"
-    autocomplete="email"
-    required
-  >
-
-  <input
-    type="password"
-    id="regPassword"
-    placeholder="Password"
-    autocomplete="new-password"
-    required
-  >
-
-  <button onclick="registerAdmin()">Register</button>
-
-  <p id="registerMessage"></p>
+<!-- SEARCH BOX -->
+<div class="search-box">
+  <input type="text" id="searchInput" placeholder="Search post by title...">
 </div>
 
+<!-- ADMIN PANEL -->
+<div id="adminPanel" class="admin-panel hidden">
+  <h2>Create Post</h2>
+  <input type="text" id="postTitle" placeholder="Post Title (required)">
+  <textarea id="postContent" placeholder="Post content..."></textarea>
+  <!-- Image optional -->
+  <!-- <input type="file" id="postImage"> -->
+  <button onclick="createPost()">Publish</button>
+</div>
+
+<!-- POSTS CONTAINER -->
+<div id="postsContainer"></div>
+
 <!-- ==============================
-     FIREBASE SDKs
+     FIREBASE SDKS
 ============================== -->
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
@@ -50,26 +47,16 @@
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-check-compat.js"></script>
 
 <!-- SHARED FIREBASE -->
-<script src="firebase1.js"></script>
+<script src="sharedfirebase.js"></script>
 
 <!-- AUTH LOGIC -->
 <script src="auth1.js"></script>
 
-<!-- PAGE SCRIPT -->
-<script>
-  function registerAdmin() {
-    const email = document.getElementById("regEmail").value.trim();
-    const password = document.getElementById("regPassword").value.trim();
-    const message = document.getElementById("registerMessage");
+<!-- POSTS LOGIC -->
+<script src="posts.js"></script>
 
-    if (!email || !password) {
-      message.textContent = "Please enter email and password";
-      return;
-    }
-
-    register(email, password);
-  }
-</script>
+<!-- SEARCH LOGIC -->
+<script src="search.js"></script>
 
 </body>
 </html>
