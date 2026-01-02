@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Register | IGT Tech</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="posts1.css">
+</head>
+<body>
+
+<nav class="btn-nav">
+  <ul>
+    <li><a href="loginkinya.html">Login</a></li>
+    <li><a href="inyandiko.html">Posts</a></li>
+  </ul>
+</nav>
+
+<div class="admin-panel">
+  <h2>Iyandikishe nka Admin</h2>
+  <input type="email" id="regEmail" placeholder="Email">
+  <input type="password" id="regPassword" placeholder="Password">
+  <button onclick="registerAdmin()">Iyandikishe</button>
+  <p id="registerMessage"></p>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+<script src="firebasekinya.js"></script>
+<script src="authkinya.js"></script>
+<script>
+  function registerAdmin() {
+    const email = document.getElementById('regEmail').value;
+    const password = document.getElementById('regPassword').value;
+    register(email, password);
+  }
+</script>
+</body>
+</html>
+
+
