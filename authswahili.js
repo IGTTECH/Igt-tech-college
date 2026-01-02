@@ -9,7 +9,7 @@
 // ADMIN UID LIST (matches Firestore rules)
 // ================================
 const ADMIN_UIDS = [
-  "bcZrjdpD3kOXLsroL9Msn865z8B2", // Admin 1
+  "fONrqafUtqTHlNFSJbsnOl1NGIv1", // Admin 1
   "5hGEMDloRkeakOYwrl3SatR8Npz1"  // Admin 2
 ];
 
@@ -85,6 +85,7 @@ function logout() {
       alert("Logout failed: " + error.message);
     });
 }
+
 
 
 
