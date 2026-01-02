@@ -10,7 +10,7 @@
 // ================================
 const ADMIN_UIDS = [
   "fONrqafUtqTHlNFSJbsnOl1NGIv1", // Admin 1
-  "5hGEMDloRkeakOYwrl3SatR8Npz1"  // Admin 2
+  "fONrqafUtqTHlNFSJbsnOl1NGIv1"  // Admin 2
 ];
 
 // ================================
@@ -85,6 +85,7 @@ function logout() {
       alert("Logout failed: " + error.message);
     });
 }
+
 
 
 
