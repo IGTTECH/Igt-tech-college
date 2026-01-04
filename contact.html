@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -34,7 +34,6 @@
         nav a:hover {
             background-color: blue;
         }
-
 
         .container {
             width: 80%;
@@ -112,57 +111,71 @@
             background-color: #333;
             color: white;
         }
+
+        .welcome-text {
+            margin-bottom: 20px;
+            line-height: 1.6;
+            font-size: 1rem;
+        }
     </style>
 </head>
 <body>
 
 <nav>
-         <ul>
+    <ul>
         <li><a href="index.html">Home</a></li>
         <li><a href="software.html">Software</a></li>
         <li><a href="drivers.html">PC Drivers</a></li>
         <li><a href="swahili.html">Masomo ya Swahili</a></li>
         <li><a href="english.html">English courses</a></li>
         <li><a href="ikinyarwanda.html">Amasomo y'ikinyarwanda</a></li>
-        </ul>
-    <div class="container">
-        <div class="form-container">
-            <h2>Contact Us</h2>
-            <form action="mailto:info.igttech@gmail.com" method="post" enctype="text/plain">
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="name" required>
+    </ul>
+</nav>
 
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
-
-                <label for="message">Message:</label>
-                <textarea id="message" name="message" rows="4" required></textarea>
-
-                <button type="submit">Send Message</button>
-            </form>
-        </div>
-
-        <div class="image-container">
-            <a href="https://wa.me/message/6O35VDCIY43TE1" target="_blank"><img src=".\images\whatsapp logo.jfif"></a>
-            <a href="#" target="_blank"><img src=".\images\fb logo.jfif"></a>
-        </div>
+<div class="container">
+    <!-- Welcome / Contact Info -->
+    <div class="welcome-text">
+        <h2>Contact Us</h2>
+        <p>If you have questions about our technology courses, training programs, or learning resources, feel free to contact IGT & Tech College.</p>
+        <p>We welcome inquiries from students, partners, and anyone interested in technology education and digital skills.</p>
+        <p>Email: <a href="mailto:info.igttech@gmail.com">info.igttech@gmail.com</a><br>
+        WhatsApp: <a href="https://wa.me/256753894085" target="_blank">+256 753 894 085</a></p>
+        <p>You can also use the contact form below to send us a message. We usually respond within 24–48 hours.</p>
     </div>
 
-    <footer>
-       <p>&copy;2026 IGT & Tech College | Founder Seth. All Rights Reserved</p>
-    </footer>
-    <script>
-        // Replace with actual image paths.
-        document.querySelectorAll('.image-container img').forEach(img => {
-            img.onerror = () => {
-                img.src = 'placeholder.png'; // Or some default image.
-            };
-        });
+    <div class="form-container">
+        <form action="mailto:info.igttech@gmail.com" method="post" enctype="text/plain">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
 
-    </script>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" rows="4" required></textarea>
+
+            <button type="submit">Send Message</button>
+        </form>
+    </div>
+
+    <div class="image-container">
+        <a href="https://wa.me/message/6O35VDCIY43TE1" target="_blank"><img src=".\images\whatsapp logo.jfif"></a>
+        <a href="#" target="_blank"><img src=".\images\fb logo.jfif"></a>
+    </div>
+</div>
+
+<footer>
+   <p>&copy;2026 IGT & Tech College | Founder Seth. All Rights Reserved</p>
+</footer>
+
+<script>
+    // Replace with actual image paths.
+    document.querySelectorAll('.image-container img').forEach(img => {
+        img.onerror = () => {
+            img.src = 'placeholder.png'; // Or some default image.
+        };
+    });
+</script>
+
 </body>
 </html>
-
-
-
-
