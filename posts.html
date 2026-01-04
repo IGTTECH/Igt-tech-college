@@ -2,80 +2,163 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Posts | IGT Tech</title>
-  <meta name="description" content="Latest technology posts, tutorials and updates from IGT Tech College">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="google-adsense-account" content="ca-pub-9825129889709024">
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9825129889709024"
-     crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="posts1.css">
-  <script src="subscribe1.js"></script>
+  <title>IGT & Tech College - Posts</title>
+  <meta name="description" content="Explore technology tutorials, mobile repair guides, coding lessons, and practical learning resources at IGT & Tech College.">
+  <style>
+    /* Reset */
+    * { margin:0; padding:0; box-sizing:border-box; font-family: Arial, sans-serif; }
+    body { background-color: #f4f4f9; color: #333; line-height: 1.6; }
+
+    /* Header */
+    header { background-color: #0b3d91; color: #fff; padding: 20px 0; }
+    header h1 { text-align: center; margin-bottom: 10px; font-size: 2rem; }
+    nav { text-align: center; margin-top: 10px; }
+    nav ul { list-style: none; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+
+    nav ul li a { color: #fff; text-decoration: none; padding: 8px 12px; transition: background 0.3s, color 0.3s; border-radius: 5px; }
+    nav ul li a:hover { background-color: #fff; color: #0b3d91; }
+
+    /* Main content */
+    main { max-width: 1200px; margin: 20px auto; padding: 0 20px; }
+    main h2 { text-align: center; margin-bottom: 15px; font-size: 1.8rem; color: #0b3d91; }
+    .intro { text-align: center; margin-bottom: 30px; font-size: 1.1rem; }
+
+    /* Posts grid */
+    .posts { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+    .post { background: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); transition: transform 0.3s; }
+    .post:hover { transform: translateY(-5px); }
+    .post h3 { color: #0b3d91; margin-bottom: 10px; }
+    .post p { margin-bottom: 15px; }
+    .post a { text-decoration: none; color: #fff; background: #0b3d91; padding: 8px 12px; border-radius: 5px; transition: background 0.3s; }
+    .post a:hover { background: #06407e; }
+
+    /* Footer */
+    footer { background: #222; color: #fff; padding: 20px; text-align: center; font-size: 0.9rem; margin-top: 40px; }
+    footer a { color: #fff; text-decoration: none; margin: 0 5px; transition: color 0.3s; }
+    footer a:hover { color: #0b3d91; display: inline-block; margin-bottom:5px; }
+    @media(max-width: 600px){ nav ul { flex-direction: column; gap: 5px; } }
+  </style>
 </head>
 <body>
 
-<!-- NAVIGATION -->
-<nav class="btn-nav">
-  <ul>
-    <li><a href="index.html">Home</a></li>
-    <li><a href="software.html">Software</a></li>
-    <li><a href="drivers.html">Drivers</a></li>
-    <li><a href="swahili.html">Swahili</a></li>
-    <li><a href="english.html">English</a></li>
-    <li><a href="ikinyarwanda.html">Ikinyarwanda</a></li>
-    <li><a href="contact.html">Contact</a></li>
-    <li><a href="login.html">Login</a></li>
-    <li><a href="register.html">Register</a></li>
-    <li><a href="about-us.html">About-Us</a></li>
-    <li><a href="terms.html">Privacy and policy</a></li>
-  </ul>
-</nav>
+  <!-- Header & Navigation -->
+  <header>
+    <h1>IGT & Tech College - Articles & Tutorials</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="register.html">Register</a></li>
+        <li><a href="login.html">Login</a></li>
+        <li><a href="software.html">Software</a></li>
+        <li><a href="drivers.html">Drivers</a></li>
+        <li><a href="swahili.html">Swahili</a></li>
+        <li><a href="english.html">English</a></li>
+        <li><a href="ikinyarwanda.html">Ikinyarwanda</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+        <li><a href="about-us.html">About Us</a></li>
+        <li><a href="posts.html">Posts</a></li>
+        <li><a href="books.html">Books</a></li>
+      </ul>
+    </nav>
+  </header>
 
-<!-- SEARCH -->
-<div class="search-box">
-  <input type="text" id="searchInput" placeholder="Search post by title..." aria-label="Search posts">
-</div>
-<!-- SUBSCRIBE BOX -->
-<div class="subscribe-box">
-  <h3>📬 Subscribe for New Posts</h3>
-  <p>Get notified when we publish new content. No spam.</p>
+  <!-- Main Content -->
+  <main>
+    <section class="intro">
+      <p>Welcome to our Courses and tutorials section! Here you’ll find detailed guides, training tips, and useful resources on technology, mobile repairs, computer skills, coding, web development, and digital tools. Our posts are designed to help learners of all levels build practical skills and expand their knowledge.</p>
+    </section>
 
-  <input
-    type="email"
-    id="subscribeEmail"
-    placeholder="Enter your email"
-    aria-label="Email address"
-  >
+    <h2>Our Latest Posts</h2>
+    <section class="posts">
 
-  <button onclick="subscribe()">Subscribe</button>
+      <div class="post">
+        <h3>How to Become an Expert Mobile Technician in 2026</h3>
+        <p>The mobile technology industry is evolving faster than ever. With new smartphones, tablets, and wearable devices released each year, becoming an expert mobile technician in 2026 requires both technical skills and industry knowledge. This guide will take you step by step through mastering mobile device repair and maintenance.</p>
+        <a href="how-to-become-an-expert-mobile-technician-in-2026.html">Read full Course</a>
+      </div>
 
-  <p id="subscribeMsg"></p>
-</div>
+      <div class="post">
+        <h3>Everything You Need to Know to Keep Your Google Account Secure</h3>
+        <p>Google accounts are a prime target for hackers because they give access to emails, documents, photos, payment methods, and many connected services. A single compromised Google account can expose both personal and professional data</p>
+        <a href="keep-google-account-secure.html">Read full Course</a>
+      </div>
 
-<!-- ADMIN PANEL (hidden for viewers) -->
-<div id="adminPanel" class="admin-panel hidden">
-  <h2>Create Post</h2>
-  <input type="text" id="postTitle" placeholder="Post Title (required)">
-  <textarea id="postContent" placeholder="Post content..."></textarea>
-  <input type="file" id="postImage" accept="image/*">
-  <button onclick="createPost()">Publish</button>
-</div>
+      <div class="post">
+        <h3>New Challenges Shaping Technology in 2026</h3>
+        <p>Technology in 2026 is moving faster than ever before. Businesses and individuals are facing constant change as new tools, systems, and innovations become part of daily life. Keeping up with rapid innovation is no longer optional; it requires continuous learning, adaptation, and proactive planning.</p>
+        <a href="new-challenges-chaping-technology.html">Read full Course</a>
+      </div>
 
-<!-- POSTS -->
-<div id="postsContainer"></div>
+      <div class="post">
+        <h3>How to Recognize Phishing Links and Stay Secure</h3>
+        <p>Phishing is a type of online scam where attackers try to trick users into revealing sensitive information such as passwords, credit card numbers, or personal data. These attacks often come through emails, text messages, or social media links.In 2026, phishing is more dangerous than ever due to increased online activity and advanced techniques powered by artificial intelligence.</p>
+        <a href="recognize-phishing-links.html">Read full Course</a>
+      </div>
 
-<!-- FIREBASE SDKS -->
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
-<!-- Optional, not needed for Free plan -->
-<!-- <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-storage-compat.js"></script> -->
+      <div class="post">
+        <h3>How to Choose the Right Mobile Flashing Tool</h3>
+        <p>Mobile phone repair has become an essential skill in today’s tech-driven world. Whether you are a beginner or a professional technician, selecting the right mobile flashing tool is critical for efficiency, safety, and successful repairs. Flashing tools are software programs that allow you to update firmware, remove FRP locks, or fix software issues on smartphones. But with so many options available, it can be overwhelming to know which one to choose.</p>
+        <a href="recognize-phishing-links.html">Read full Course</a>
+      </div>
 
-<!-- PROJECT SCRIPTS -->
-<script src="firebase1.js"></script>
-<script src="auth1.js"></script>
-<script src="posts1.js"></script>
-<script src="admin1.js"></script>
-<script src="search1.js"></script>
+      <div class="post">
+        <h3>How to Stay Safe and Secure Online in 2026</h3>
+        <p>Online security is more important than ever in 2026. As technology continues to evolve, cyber threats are becoming smarter and more dangerous. From AI-powered phishing attacks to vulnerabilities in smart devices, internet users must take active steps to protect their data and privacy.Understanding common threats and applying basic security practices can greatly reduce the risk of cyber attacks. This guide explains practical steps anyone can follow to stay safe and secure online.</p>
+        <a href="stay-safe-secure-online-2026.html">Read full Course</a>
+      </div>
+
+      <div class="post">
+        <h3>Top Tips for Becoming a Successful Website Developer in 2026</h3>
+        <p>ebsite development continues to be one of the most in-demand technology careers in 2026. Businesses, schools, governments, and individuals all rely on websites to communicate, sell products, and deliver services. This growing demand creates exciting opportunities for anyone willing to learn and adapt. Whether you are a beginner or already have some experience, these practical tips will help you build strong skills and succeed as a professional website developer.</p>
+        <a href="top-tips-successful-website-developer-2026.html">Read full Course</a>
+      </div>
+
+      <div class="post">
+        <h3>How to Get a Trusted Domain in 2026: A Complete Guide for Beginners and Experts</h3>
+        <p>In 2026, domain trust is more important than ever. Search engines are smarter, users are more cautious, and online competition is intense. A trusted domain improves SEO, increases credibility, builds user confidence, and supports long-term business growth.</p>
+        <a href="trusted-domain-2026.html">Read full Course</a>
+      </div>
+
+      <div class="post">
+        <h3>Understanding Networks and How They Work: A Beginner Friendly Guide</h3>
+        <p>A network is something many people use every day without realizing it. When you browse the internet, send an email, or watch videos online, you are using a network. Networks allow devices to communicate and share information with each other.Networks are important because they connect people, businesses, and systems all over the world. Without networks, modern communication and digital services would not be possible.</p>
+        <a href="understanding-networks.html">Read full Course</a>
+      </div>
+
+      <div class="post">
+        <h3>Step by Step Guide to Start an Electronics Repair Service</h3>
+        <p>The demand for electronics repair is growing as devices become more complex and expensive. Starting your own repair service in 2026 can be a profitable business if you plan carefully and follow the right steps. This guide explains everything you need to know to launch a successful electronics repair service.</p>
+        <a href="start-electronics-repair-service-2026.html">Read full Course</a>
+      </div>
+
+      <div class="post">
+        <h3>What Is a Website? Definition, Types, and How It Works</h3>
+        <p>In today’s digital world, the word “website” is part of everyday life. From reading news and shopping online to learning new skills or running a business, websites play a central role. But what exactly is a website? Let’s break it down in a simple and easy-to-understand way.</p>
+        <a href="what-is-website-definition-types-function.html">Read full Course</a>
+      </div>
+
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy;2025 IGT & Tech College | Founder Seth. All Rights Reserved</p>
+    <div>
+      <a href="computer.html">Video Guidance</a>|
+      <a href="about-seth.html">About Founder</a>|
+      <a href="posts.html">Our Posts</a>|
+      <a href="drivers.html">PC Drivers</a>|
+      <a href="swahili.html">Masomo ya Swahili</a>|
+      <a href="english.html">English Courses</a>|
+      <a href="ikinyarwanda.html">Amasomo y'ikinyarwanda</a>|
+      <a href="contact.html">Contact Us</a>|
+      <a href="https://youtube.com/@techcollege1?si=VYm3wozsmQsemiOr">Youtube</a>|
+      <a href="privacy-policy.html">Privacy and Policy</a>|
+      <a href="amategeko.html">Amategeko n'amabwiriza</a>|
+      <a href="vigezo.html">Vigezo na Masharti</a>
+    </div>
+  </footer>
+
 </body>
 </html>
-
