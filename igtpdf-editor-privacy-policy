@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Privacy Policy | IGT PDF Editor</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            background-color: #f4f6f9;
+            color: #333;
+        }
+
+        header {
+            background: #1e73be;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        nav {
+            background: #0d4f8b;
+            padding: 10px 0;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        nav ul li {
+            display: inline-block;
+            margin: 5px 10px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 30px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        h1, h2, h3 {
+            color: #1e73be;
+        }
+
+        footer {
+            background: #1e73be;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+
+        footer a {
+            color: #fff;
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            nav ul li {
+                display: block;
+                margin: 8px 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>Privacy Policy</h1>
+    <p>IGT PDF Editor</p>
+</header>
+
+<nav>
+    <ul>
+        <li><a href="register.html">Register</a></li>
+        <li><a href="login.html">Login</a></li>
+        <li><a href="software.html">Software</a></li>
+        <li><a href="drivers.html">Drivers</a></li>
+        <li><a href="swahili.html">Swahili</a></li>
+        <li><a href="english.html">English</a></li>
+        <li><a href="ikinyarwanda.html">Ikinyarwanda</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+        <li><a href="about-us.html">About Us</a></li>
+        <li><a href="posts.html">Posts</a></li>
+        <li><a href="books.html">Books</a></li>
+    </ul>
+</nav>
+
+<div class="container">
+
+<h2>Effective Date: 18/02/2026</h2>
+
+<p>
+IGT PDF Editor (“we”, “our”, or “us”) respects your privacy. This Privacy Policy explains how we handle information when you use our mobile application.
+</p>
+
+<h2>1. Information We Collect</h2>
+
+<h3>1.1 Information You Provide</h3>
+<p>
+Our app does not require you to create an account. We do not directly collect personal information such as:
+</p>
+<ul>
+    <li>Name</li>
+    <li>Email address</li>
+    <li>Phone number</li>
+</ul>
+<p>
+However, certain features involve third-party services described below.
+</p>
+
+<h3>1.2 PDF Files and Documents</h3>
+<ul>
+    <li>PDF files you open or edit remain on your device.</li>
+    <li>We do not upload, store, or transmit your documents to our servers.</li>
+    <li>All editing is performed locally on your device.</li>
+</ul>
+
+<h3>1.3 Advertising (AdMob)</h3>
+<p>
+The app uses Google AdMob to display advertisements to free users.
+</p>
+<p>AdMob may collect:</p>
+<ul>
+    <li>Device identifiers</li>
+    <li>IP address</li>
+    <li>Advertising ID</li>
+    <li>App interaction data</li>
+</ul>
+<p>
+This data is used to provide personalized or non-personalized ads.
+</p>
+<p>
+For more information, see:
+<br>
+<a href="https://policies.google.com/privacy" target="_blank">
+Google Privacy Policy
+</a>
+</p>
+
+<h3>1.4 In-App Purchases (Premium Subscription)</h3>
+<p>
+Premium subscriptions are processed through Google Play Billing.
+</p>
+<ul>
+    <li>We do not collect or store credit card information.</li>
+    <li>We do not collect or store payment details.</li>
+</ul>
+<p>
+All transactions are securely handled by Google Play.
+</p>
+
+<h2>2. How We Use Information</h2>
+<ul>
+    <li>Provide PDF editing features</li>
+    <li>Show advertisements (free users)</li>
+    <li>Process premium subscriptions</li>
+    <li>Improve app stability and performance</li>
+</ul>
+<p>We do not sell personal data.</p>
+
+<h2>3. Data Storage</h2>
+<ul>
+    <li>PDF files are stored locally on your device.</li>
+    <li>Edited exports are saved to your device storage.</li>
+    <li>No cloud storage is used.</li>
+</ul>
+
+<h2>4. Data Sharing</h2>
+<p>We do not share your personal information except:</p>
+<ul>
+    <li>With Google AdMob for advertising</li>
+    <li>With Google Play for subscription processing</li>
+    <li>If required by law</li>
+</ul>
+
+<h2>5. Children's Privacy</h2>
+<p>
+This app is not directed toward children under 13.  
+We do not knowingly collect personal data from children.
+</p>
+
+<h2>6. Your Rights (GDPR / CCPA)</h2>
+<p>Depending on your location, you may have rights to:</p>
+<ul>
+    <li>Request data access</li>
+    <li>Request deletion</li>
+    <li>Opt-out of personalized ads</li>
+</ul>
+<p>
+You can manage ad preferences via your device settings:<br>
+<strong>Settings → Google → Ads</strong>
+</p>
+
+<h2>7. Security</h2>
+<p>
+We implement reasonable safeguards to protect your data.  
+However, no method of electronic transmission is 100% secure.
+</p>
+
+<h2>8. Changes to This Policy</h2>
+<p>
+We may update this Privacy Policy from time to time.  
+Changes will be posted within the app listing or website.
+</p>
+
+<h2>9. Contact Information</h2>
+<p>
+If you have questions regarding this Privacy Policy, contact:
+</p>
+<p>
+Email: info.igttech@gmail.com<br>
+Developer: Seth Iradukunda
+</p>
+
+</div>
+
+<footer>
+    <p>© 2026 IGT Tech | IGT PDF Editor</p>
+</footer>
+
+</body>
+</html>
