@@ -6,211 +6,219 @@
 <title>How to Use - IGT Network</title>
 
 <style>
+    body {
+        margin: 0;
+        font-family: 'Segoe UI', Arial, sans-serif;
+        background: #f4f6f9;
+        color: #333;
+        line-height: 1.7;
+    }
 
-body{
-    margin:0;
-    font-family: 'Segoe UI', Arial, sans-serif;
-    background:#f4f6f9;
-    color:#333;
-    line-height:1.7;
-}
+    /* NAVIGATION */
+    nav {
+        background: #0d47a1;
+        padding: 12px 0;
+    }
 
-/* NAVIGATION */
-nav{
-    background:#0d47a1;
-    padding:12px 0;
-}
+    nav ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+    }
 
-nav ul{
-    list-style:none;
-    margin:0;
-    padding:0;
-    text-align:center;
-}
+    nav ul li {
+        display: inline-block;
+        margin: 0 14px;
+    }
 
-nav ul li{
-    display:inline-block;
-    margin:0 14px;
-}
+    nav ul li a {
+        color: white;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 14px;
+    }
 
-nav ul li a{
-    color:white;
-    text-decoration:none;
-    font-weight:600;
-    font-size:14px;
-}
+    nav ul li a:hover {
+        text-decoration: underline;
+    }
 
-nav ul li a:hover{
-    text-decoration:underline;
-}
+    /* MAIN CONTAINER */
+    .container {
+        max-width: 900px;
+        margin: 50px auto;
+        background: white;
+        padding: 50px;
+        border-radius: 12px;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+    }
 
-/* MAIN CONTAINER */
-.container{
-    max-width:1000px;
-    margin:50px auto;
-    background:white;
-    padding:50px;
-    border-radius:10px;
-    box-shadow:0 8px 25px rgba(0,0,0,0.08);
-}
+    h1 {
+        text-align: center;
+        color: #0d47a1;
+        margin-bottom: 5px;
+        font-size: 32px;
+    }
 
-h1{
-    text-align:center;
-    color:#0d47a1;
-    margin-bottom:10px;
-}
+    .subtitle {
+        text-align: center;
+        color: #666;
+        margin-bottom: 40px;
+        font-size: 16px;
+    }
 
-.subtitle{
-    text-align:center;
-    color:#666;
-    margin-bottom:40px;
-}
+    h2 {
+        color: #1565c0;
+        margin-top: 40px;
+        border-bottom: 2px solid #f1f5ff;
+        padding-bottom: 8px;
+    }
 
-h2{
-    color:#1565c0;
-    margin-top:40px;
-}
+    .step {
+        background: #f8faff;
+        padding: 20px 25px;
+        border-left: 5px solid #0d47a1;
+        border-radius: 8px;
+        margin: 20px 0;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+    }
 
-.step{
-    background:#f1f5ff;
-    padding:20px;
-    border-left:5px solid #0d47a1;
-    border-radius:6px;
-    margin:20px 0;
-}
+    .step b {
+        color: #0d47a1;
+    }
 
-.footer{
-    text-align:center;
-    padding:30px;
-    background:#eeeeee;
-    margin-top:40px;
-    font-size:14px;
-}
+    .note {
+        background: #fff3cd;
+        border-left: 5px solid #ffc107;
+        padding: 15px;
+        margin: 20px 0;
+        border-radius: 6px;
+        font-size: 14px;
+    }
 
-.button-demo{
-    display:inline-block;
-    padding:10px 18px;
-    background:#1976D2;
-    color:white;
-    border-radius:6px;
-    text-decoration:none;
-    margin-top:10px;
-}
+    ul {
+        margin-top: 10px;
+    }
 
+    li {
+        margin-bottom: 8px;
+    }
+
+    .footer {
+        text-align: center;
+        padding: 30px;
+        background: #eeeeee;
+        margin-top: 40px;
+        font-size: 14px;
+        color: #555;
+    }
+
+    .button-demo {
+        display: inline-block;
+        padding: 12px 24px;
+        background: #1976D2;
+        color: white;
+        border-radius: 6px;
+        text-decoration: none;
+        font-weight: bold;
+        margin-top: 15px;
+        transition: background 0.3s;
+    }
+
+    .button-demo:hover {
+        background: #0d47a1;
+    }
 </style>
 </head>
 
 <body>
 
 <nav>
-<ul>
-    <li><a href="index.html">Home</a></li>
-    <li><a href="register.html">Register</a></li>
-    <li><a href="login.html">Login</a></li>
-    <li><a href="software.html">Software</a></li>
-    <li><a href="drivers.html">Drivers</a></li>
-    <li><a href="swahili.html">Swahili</a></li>
-    <li><a href="english.html">English</a></li>
-    <li><a href="ikinyarwanda.html">Ikinyarwanda</a></li>
-    <li><a href="contact.html">Contact Us</a></li>
-    <li><a href="about-us.html">About Us</a></li>
-    <li><a href="posts.html">Posts</a></li>
-    <li><a href="books.html">Books</a></li>
-</ul>
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="register.html">Register</a></li>
+        <li><a href="login.html">Login</a></li>
+        <li><a href="software.html">Software</a></li>
+        <li><a href="drivers.html">Drivers</a></li>
+        <li><a href="swahili.html">Swahili</a></li>
+        <li><a href="english.html">English</a></li>
+        <li><a href="ikinyarwanda.html">Ikinyarwanda</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+        <li><a href="about-us.html">About Us</a></li>
+        <li><a href="posts.html">Posts</a></li>
+        <li><a href="books.html">Books</a></li>
+    </ul>
 </nav>
 
 <div class="container">
 
-<h1>How to Use IGT Network</h1>
-<p class="subtitle">Complete User Guide – VPN Protection & App Data Control</p>
+    <h1>How to Use IGT Network</h1>
+    <p class="subtitle">Your Complete Guide to Data Protection, App Blocking & Device Cleaning</p>
 
-<h2>1. First Time Setup</h2>
+    <h2>1. First Time Setup (Permissions)</h2>
+    <p>To protect your data, the app needs to know which apps are installed on your phone. When you open the app for the first time, please allow the following:</p>
+    <div class="step">
+        <b>Step 1:</b> Tap "Allow" when asked for <b>Usage Access</b> (this lets us see which apps use data).<br><br>
+        <b>Step 2:</b> Tap "Allow" to let the app see your <b>Installed Apps</b>.<br><br>
+        <b>Step 3:</b> When you start the firewall, tap "OK" to accept the <b>VPN Connection Request</b>.
+    </div>
+    <div class="note">
+        <strong>Privacy Promise:</strong> All of these permissions are used 100% locally on your phone. We never send your app list or data usage to any external servers.
+    </div>
 
-<div class="step">
-<b>Step 1:</b> Open the IGT Network app.<br>
-<b>Step 2:</b> Allow Usage Access permission when prompted.<br>
-<b>Step 3:</b> Allow VPN permission when requested.<br>
-</div>
+    <h2>2. Blocking Apps from Using the Internet</h2>
+    <p>Stop background apps from draining your mobile data and battery:</p>
+    <div class="step">
+        <b>1.</b> On the main screen, tap <b>Block Apps</b>.<br>
+        <b>2.</b> Scroll through your installed apps and check the box next to any app you want to block.<br>
+        <b>3.</b> Tap <b>Save</b>. <br>
+        <b>4.</b> Tap <b>Start VPN</b> on the main screen to activate the firewall.
+    </div>
 
-<p>
-These permissions are required for the app to block selected applications from accessing background internet.
-All processing happens locally on your device.
-</p>
+    <h2>3. Unblocking Apps</h2>
+    <p>Need to give an app internet access again?</p>
+    <div class="step">
+        <b>1.</b> Tap <b>Unblock Apps</b> on the main screen.<br>
+        <b>2.</b> You will see a list of currently blocked apps. Uncheck the ones you want to allow online.<br>
+        <b>3.</b> Tap <b>Save/Apply</b>. The app will instantly regain internet access.
+    </div>
 
-<h2>2. Starting VPN Protection</h2>
+    <h2>4. Cleaning App Cache & Storage (New Feature!)</h2>
+    <p>Free up space on your phone and make it run faster by clearing hidden junk files:</p>
+    <div class="step">
+        <b>1.</b> Tap the <b>Clean Cache</b> or <b>Storage</b> button.<br>
+        <b>2.</b> The app will safely scan your device for unnecessary temporary files.<br>
+        <b>3.</b> Confirm the cleanup to instantly free up memory on your device.
+    </div>
 
-<div class="step">
-1. Tap <b>Start VPN</b> button.<br>
-2. Confirm Android VPN permission.<br>
-3. Status will change to <b>Protected</b> (Green).
-</div>
+    <h2>5. Stopping the Firewall</h2>
+    <div class="step">
+        To turn off protection and allow all apps to access the internet normally, simply tap the <b>Stop VPN</b> button on the main dashboard.
+    </div>
 
-<p>
-When VPN is active, the app prevents selected applications from using background data.
-</p>
+    <h2>6. Understanding Advertisements</h2>
+    <p>To keep IGT Network free for everyone, we use Google AdMob to display occasional advertisements.</p>
+    <ul>
+        <li>Ads may appear when you save your blocked app list, or when you stop the VPN.</li>
+        <li>Simply tap the "X" in the corner of the ad to close it and continue using the app.</li>
+        <li>You can manage personalized ad preferences in your Android device's Google Settings.</li>
+    </ul>
 
-<h2>3. Managing Apps</h2>
+    <h2>7. Important Security Facts</h2>
+    <ul>
+        <li><b>No Tracking:</b> We do NOT monitor your browsing activity or search history.</li>
+        <li><b>Local Only:</b> The VPN acts as a local firewall. It does NOT route your traffic through remote servers.</li>
+        <li><b>No Data Collection:</b> We do not collect, store, or sell your personal information.</li>
+    </ul>
 
-<div class="step">
-1. Tap <b>Manage Apps</b>.<br>
-2. Select apps you want to block from background internet access.<br>
-3. Save your selection.
-</div>
-
-<p>
-Selected apps will no longer consume background data while VPN is active.
-</p>
-
-<h2>4. Unblocking Apps</h2>
-
-<div class="step">
-1. Go to <b>Unblock Apps</b>.<br>
-2. Uncheck the apps you want to allow.<br>
-3. Changes apply immediately.
-</div>
-
-<h2>5. Stopping VPN</h2>
-
-<div class="step">
-Tap <b>Stop VPN</b> to disable protection anytime.
-</div>
-
-<h2>6. Understanding Advertisements</h2>
-
-<p>
-IGT Network uses Google AdMob to display ads to support development.
-You may disable personalized ads in your Google account settings.
-</p>
-
-<h2>7. Permissions Explanation</h2>
-
-<ul>
-<li><b>Usage Access:</b> Detect installed apps for blocking.</li>
-<li><b>VPN Permission:</b> Control background data locally.</li>
-<li><b>Notification Permission:</b> Show VPN status updates.</li>
-</ul>
-
-<h2>8. Important Notes</h2>
-
-<ul>
-<li>The app does NOT monitor browsing activity.</li>
-<li>The app does NOT collect personal data.</li>
-<li>No traffic is routed to external servers.</li>
-<li>All filtering occurs locally on your device.</li>
-</ul>
-
-<h2>Need Help?</h2>
-
-<p>
-If you experience issues, visit our Contact Us page or email support.
-</p>
-
-<a href="contact.html" class="button-demo">Contact Support</a>
+    <h2>Need More Help?</h2>
+    <p>If you are experiencing issues or have questions about your privacy, our support team is ready to help.</p>
+    <a href="contact.html" class="button-demo">Contact Support</a>
 
 </div>
 
 <div class="footer">
-© 2026 IGT Network – Secure. Simple. Reliable.
+    © 2026 IGT Network – Secure. Simple. Reliable.
 </div>
 
 </body>
