@@ -109,51 +109,44 @@
 
     <h2>1. Information We Collect</h2>
     <p>
-        IGT Network does <strong>NOT</strong> collect, store, transmit, or sell personal user data to external servers.
+        IGT Network does <strong>NOT</strong> collect, store, transmit, or sell personal user data to external servers. All core functionality operates locally on your device.
     </p>
 
-    <h2>2. Usage Access Permission</h2>
+    <h2>2. App Inventory (QUERY_ALL_PACKAGES) & Usage Access</h2>
     <p>
-        The app requests Usage Access permission solely to:
+        To provide the core functionality of our firewall, the app requires the <code>QUERY_ALL_PACKAGES</code> permission to retrieve a list of installed applications on your device, as well as Usage Access to monitor data consumption.
     </p>
     <ul>
-        <li>Detect installed applications</li>
-        <li>Allow users to select apps to block from background internet usage</li>
+        <li>This allows you to view your installed apps and select which ones to block from accessing the internet.</li>
+        <li><strong>Crucial Privacy Note:</strong> Your inventory of installed apps and data usage statistics are processed <strong>strictly locally</strong> on your device. This data is <strong>never</strong> transmitted to our servers, shared with third parties, or used for any purpose other than local firewall management.</li>
     </ul>
-    <p>
-        This information is processed locally on your device and is never transmitted externally.
-    </p>
 
     <h2>3. VPN Service</h2>
     <p>
-        IGT Network uses Android's VPNService API exclusively to control background internet access for selected applications.
+        IGT Network uses Android's <code>VpnService</code> API exclusively to act as a local firewall to control background internet access for the applications you select.
     </p>
     <ul>
-        <li>We do NOT monitor browsing activity</li>
-        <li>We do NOT inspect user traffic</li>
-        <li>We do NOT log or store network data</li>
-        <li>We do NOT route traffic through external servers</li>
-        <li>All filtering occurs locally on the device</li>
+        <li>We do NOT monitor your browsing activity.</li>
+        <li>We do NOT inspect, decrypt, or modify user traffic.</li>
+        <li>We do NOT log or store network data.</li>
+        <li>We do NOT route traffic through external or remote servers.</li>
+        <li>All traffic filtering occurs 100% locally on your device.</li>
     </ul>
-    <p>
-        The VPN functionality is strictly for local traffic control and does not function as a remote VPN service.
-    </p>
 
-    <h2>4. Advertising (Google AdMob)</h2>
+    <h2>4. Advertising (Google AdMob) & Advertising ID</h2>
     <p>
-        The app uses Google AdMob to display advertisements.
+        Our app uses Google AdMob to display advertisements. To provide personalized ads, the app requests the <code>AD_ID</code> permission (Advertising ID).
     </p>
     <p>
         Google may collect certain information such as:
     </p>
     <ul>
-        <li>Device identifiers</li>
-        <li>Advertising ID</li>
+        <li>Device identifiers and Advertising ID</li>
         <li>Approximate location</li>
         <li>Ad interaction data</li>
     </ul>
     <p>
-        This information is collected and processed directly by Google according to their Privacy Policy:
+        This information is collected and processed directly by Google. You can reset your Advertising ID or opt-out of personalized ads at any time through your Android device settings. For more information, please review Google's Privacy Policy:
         <br>
         <a href="https://policies.google.com/privacy" target="_blank">
             https://policies.google.com/privacy
@@ -162,17 +155,17 @@
 
     <h2>5. Notifications Permission</h2>
     <p>
-        On Android 13 and above, notification permission is requested to display VPN status updates and service notifications. Notifications are not used for data collection or marketing.
+        On Android 13 and above, notification permission is requested to display persistent VPN status updates (required by Android to keep the firewall running in the background). Notifications are not used for marketing.
     </p>
 
-    <h2>6. Data Storage</h2>
+    <h2>6. Data Storage & Device Management</h2>
     <p>
-        App settings such as VPN status and blocked applications are stored locally using Android SharedPreferences. No cloud database is used.
+        App settings, such as your VPN status and your list of blocked applications, are stored locally using Android SharedPreferences. No cloud database is used. Additionally, the app provides local device management tools (such as clearing app cache). These tools operate entirely on your device and do not transmit data externally.
     </p>
 
     <h2>7. Data Sharing</h2>
     <p>
-        We do not sell, rent, trade, or share user data with third parties.
+        We do not sell, rent, trade, or share any user data with third parties.
     </p>
 
     <h2>8. Children’s Privacy</h2>
@@ -182,10 +175,10 @@
 
     <h2>9. User Rights</h2>
     <ul>
-        <li>Users may revoke permissions at any time via device settings.</li>
-        <li>Users may disable VPN functionality at any time.</li>
-        <li>Users may reset advertising ID in Google settings.</li>
-        <li>Uninstalling the app removes all locally stored data.</li>
+        <li>Users may revoke permissions (such as Usage Access or Notifications) at any time via device settings.</li>
+        <li>Users may disable the VPN firewall functionality at any time.</li>
+        <li>Users may reset their Advertising ID in Google settings.</li>
+        <li>Uninstalling the app immediately removes all locally stored data and settings.</li>
     </ul>
 
     <h2>10. Policy Updates</h2>
