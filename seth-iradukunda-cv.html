@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Professional CV</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:#f4f6f9;
+padding:40px;
+}
+
+/* TOP BUTTONS */
+
+.top-buttons{
+text-align:center;
+margin-bottom:20px;
+}
+
+.btn{
+padding:12px 22px;
+margin:5px;
+border:none;
+cursor:pointer;
+font-size:15px;
+border-radius:5px;
+transition:0.3s;
+}
+
+.download{
+background:#2c3e50;
+color:white;
+}
+
+.download:hover{
+background:#1a252f;
+}
+
+.visit{
+background:#1abc9c;
+color:white;
+}
+
+.visit:hover{
+background:#16a085;
+}
+
+/* CV CONTAINER */
+
+.cv{
+max-width:900px;
+margin:auto;
+background:white;
+display:flex;
+box-shadow:0 10px 30px rgba(0,0,0,0.1);
+overflow:hidden;
+}
+
+/* LEFT SIDE */
+
+.left{
+width:35%;
+background:#e8eef3;
+padding:25px;
+}
+
+.profile{
+text-align:center;
+margin-bottom:20px;
+}
+
+.profile img{
+width:220px;
+height:220px;
+border-radius:50%;
+border:5px solid white;
+object-fit:cover;
+}
+
+.section{
+margin-top:20px;
+}
+
+.section h3{
+font-size:15px;
+margin-bottom:10px;
+color:#34495e;
+border-bottom:2px solid #1abc9c;
+padding-bottom:4px;
+}
+
+.section ul{
+list-style:none;
+}
+
+.section li{
+margin-bottom:7px;
+font-size:14px;
+}
+
+/* RIGHT SIDE */
+
+.right{
+width:65%;
+}
+
+.header{
+background:#3d4b5c;
+color:white;
+padding:25px;
+}
+
+.header h1{
+font-size:26px;
+}
+
+.header p{
+font-size:14px;
+opacity:0.9;
+}
+
+.content{
+padding:30px;
+}
+
+.content h3{
+color:#34495e;
+border-bottom:2px solid #3498db;
+padding-bottom:5px;
+margin-bottom:15px;
+}
+
+.job{
+margin-bottom:18px;
+}
+
+.job-title{
+display:flex;
+justify-content:space-between;
+font-size:14px;
+color:#555;
+}
+
+.job ul{
+margin-top:8px;
+padding-left:18px;
+}
+
+.job ul li{
+font-size:14px;
+margin-bottom:6px;
+}
+
+.education{
+margin-bottom:12px;
+}
+
+.edu-title{
+display:flex;
+justify-content:space-between;
+font-size:14px;
+}
+
+.edu-title span{
+color:#555;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:768px){
+
+.cv{
+flex-direction:column;
+}
+
+.left, .right{
+width:100%;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="top-buttons">
+
+<button class="btn download" onclick="downloadPDF()">Download CV</button>
+
+<a href="https://igttechcollege.com" target="_blank">
+<button class="btn visit">Visit Website</button>
+</a>
+
+</div>
+
+
+<div id="cv" class="cv">
+
+<!-- LEFT SIDE -->
+
+<div class="left">
+
+<div class="profile">
+<img src=".\images\seth3n.png" alt="profile">
+</div>
+
+<div class="section">
+<h3>CONTACT</h3>
+<ul>
+<li>📞 +256-773-052-560</li>
+<li>✉ igttechcollege.com/contact</li>
+<li>linkedin</li>
+<li>📍 256 Kampala, Uganda</li>
+<li>🌐 www.igttechcollege.com</li>
+</ul>
+</div>
+
+<div class="section">
+<h3>SKILLS</h3>
+<ul>
+<li>Website Development</li>
+<li>Android App Development</li>
+<li>Mobile Repairing Hardware</li>
+<li>Mobile Repairing Software</li>
+<li>Social Media Marketing</li>
+<li>Effective Communication</li>
+<li>Project Management</li>
+<li>Business Management</li>
+</ul>
+</div>
+
+<div class="section">
+<h3>LANGUAGES</h3>
+<ul>
+<li>English (Fluent)</li>
+<li>Swahili (Natural)</li>
+<li>Kinyarwanda(Natural)</li>
+<li>Lunyankole (Intermediate)</li>
+</ul>
+</div>
+
+<div class="section">
+<h3>PROJECTS</h3>
+<ul>
+<li>Website :www.igttechcollege.com</li>
+<li>Tech training for online Africans</li>
+<li>APPS AVALIABLE ON PLAY STORE</li>
+<li>1.IGT Network 2.IGT PDF Editor</li>
+<li>2.IGTT Camera 4.IGT QR & Barcode Scanner</li>
+</ul>
+</div>
+
+<div class="section">
+<h3>REFERENCE</h3>
+<p>IGT Tech College</p>
+<p>Management</p>
+<p>Phone: +256-753-894-085</p>
+<p>Email: info.igttech@gmail.com</p>
+</div>
+
+</div>
+
+
+<!-- RIGHT SIDE -->
+
+<div class="right">
+
+<div class="header">
+<h1>SETH IRADUKUNDA</h1>
+<p>FOUNDER</p>
+</div>
+
+<div class="content">
+
+<h3>ABOUT ME</h3>
+<p>
+I'm Skilled and motivated technology professional with experience in Website Development and Android App Development, 
+combined with practical expertise in Mobile Repairing Hardware and Software. 
+Knowledgeable in Social Media Marketing, helping businesses and projects grow their online presence with Strong background in Project Management and Business Management, 
+with the ability to plan, organize, and complete projects effectively. Known for effective communication, teamwork, and a continuous desire to learn and apply new technologies to solve real-world problems.
+</p>
+
+
+<br>
+
+<h3>WORK EXPERIENCE</h3>
+
+<div class="job">
+
+<div class="job-title">
+<strong>Freelance Technology Developer</strong>
+<span>2023 - Present</span>
+</div>
+
+<p>Website & Android Application Developer</p>
+
+<ul>
+<li>Design and develop responsive websites using modern web technologies.</li>
+<li>Build and publish Android applications for various purposes including utility and productivity apps.</li>
+<li>Maintain and update websites and mobile apps to improve performance and security.</li>
+<li>Provide technical support and troubleshooting for software-related issues.</li>
+</ul>
+
+</div>
+
+
+<div class="job">
+
+<div class="job-title">
+<strong>Mobile Repair Technician</strong>
+<span>2022 - Present</span>
+</div>
+
+<p>Hardware & Software Mobile Repair Specialist</p>
+
+<ul>
+<li>Diagnose and repair smartphone hardware issues including screens, batteries, and charging ports.</li>
+<li>Perform mobile software troubleshooting such as system recovery, flashing firmware, and removing malware.</li>
+<li>Install and configure mobile applications and operating systems.</li>
+<li>Provide technical advice and support to customers.</li>
+</ul>
+
+</div>
+
+
+<div class="job">
+
+<div class="job-title">
+<strong>Digital Marketing & Business Management</strong>
+<span>2022 - Present</span>
+</div>
+
+<p>Social Media Marketing Specialist</p>
+
+<ul>
+<li>Manage social media accounts to promote businesses and digital products.</li>
+<li>Create marketing strategies to increase audience reach and engagement.</li>
+<li>Analyze marketing performance and optimize campaigns.</li>
+<li>Apply business management and project management principles to improve productivity.</li>
+</ul>
+
+</div>
+
+<br>
+
+<h3>EDUCATION</h3>
+
+<div class="education">
+
+<div class="edu-title">
+<strong>Certificate in Website & App Development and Mobile technical</strong>
+<span>2016 - 2020</span>
+</div>
+
+<p>School of Technology | Kampala Uganda</p>
+
+</div>
+
+<div class="education">
+
+<div class="edu-title">
+<strong>Social Media marketing & Communication</strong>
+<span>2022 - 2025</span>
+</div>
+
+<p>School of Business Management | Uganda</p>
+<p style="color: #1abc9c;">I'm still desire to improve Every thing so that I can reach my Dreams</p>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+<script>
+
+function downloadPDF(){
+
+const element=document.getElementById("cv");
+
+html2pdf().set({
+margin:0,
+filename:"professional-cv.pdf",
+image:{type:"jpeg",quality:0.98},
+html2canvas:{scale:2},
+jsPDF:{unit:"mm",format:"a4",orientation:"portrait"}
+}).from(element).save();
+
+}
+
+</script>
+
+</body>
+</html>
