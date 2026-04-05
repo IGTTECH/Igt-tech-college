@@ -29,10 +29,11 @@ input[type="range"] { margin-left:10px; flex:1; }
 </head>
 <body>
 
+<!-- THIS IS WHERE THE SCRIPT GOES. IT MUST BE AT THE TOP OF THE BODY -->
+<script src="coi-serviceworker.js"></script>
+
 <h1>IGT Video Tools Suite</h1>
-<div class="warning">
-    <strong>Note:</strong> To run FFmpeg.wasm on your own website, your server must send <code>Cross-Origin-Opener-Policy: same-origin</code> and <code>Cross-Origin-Embedder-Policy: require-corp</code> headers.
-</div>
+
 <div id="loadingFFmpeg">Loading FFmpeg Core (Please wait)...</div>
 
 <div class="tabs">
