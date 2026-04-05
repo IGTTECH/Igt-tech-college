@@ -29,7 +29,7 @@ input[type="range"] { margin-left:10px; flex:1; }
 </head>
 <body>
 
-<!-- THIS IS WHERE THE SCRIPT GOES. IT MUST BE AT THE TOP OF THE BODY -->
+<!-- Service Worker for SharedArrayBuffer Support -->
 <script src="coi-serviceworker.js"></script>
 
 <h1>IGT Video Tools Suite</h1>
@@ -92,7 +92,8 @@ input[type="range"] { margin-left:10px; flex:1; }
 <script src="https://unpkg.com/@ffmpeg/ffmpeg@0.12.10/dist/umd/ffmpeg.js"></script>
 <script src="https://unpkg.com/@ffmpeg/util@0.12.1/dist/umd/index.js"></script>
 <script>
-const { FFmpeg } = window.FFmpeg;
+// FIXED: The library exports as FFmpegWASM, not window.FFmpeg
+const { FFmpeg } = window.FFmpegWASM;
 const { fetchFile, toBlobURL } = window.FFmpegUtil;
 const ffmpeg = new FFmpeg();
 
