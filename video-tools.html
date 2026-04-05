@@ -51,15 +51,45 @@ nav a:hover {
 .dropZone.hover { background:#d0ebff; }
 input[type="file"] { display:none; }
 video, audio { max-width:100%; margin:10px 0; border-radius: 8px; }
-button { padding:10px 20px; font-size:16px; margin:10px; cursor:pointer; border:none; background-color:#007bff; color:white; border-radius:5px; transition: 0.2s; }
+button { padding:10px 20px; font-size:16px; margin:10px; cursor:pointer; border:none; background-color:#007bff; color:white; border-radius:5px; transition: 0.2s; font-weight: bold; width: 100%; max-width: 500px;}
 button:hover { background-color:#0056b3; }
 button:disabled { background-color:#999; cursor:not-allowed; }
 #progress { width:100%; max-width:500px; height:20px; background:#ddd; border-radius:10px; overflow:hidden; margin:10px 0; display:none; }
 #progress-bar { height:100%; width:0%; background:#28a745; text-align:center; color:white; line-height:20px; font-size:12px; transition: width 0.2s; }
-label { display:flex; align-items:center; margin:5px 0; width: 100%; max-width: 500px; }
-input[type="range"] { margin-left:10px; flex:1; }
 #loadingFFmpeg { margin-top:20px; color:#007bff; font-weight:bold; display:none; }
-.warning { background: #fff3cd; color: #856404; padding: 10px 20px; border-radius: 5px; margin: 10px; max-width: 600px; text-align: center; font-size: 14px; border: 1px solid #ffeeba; }
+
+/* --- Options Grid Styles --- */
+.options-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    width: 100%;
+    max-width: 500px;
+    margin: 10px 0;
+    background: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    box-sizing: border-box;
+}
+.options-grid label {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex: 1;
+    min-width: 140px;
+    font-size: 13px;
+    font-weight: bold;
+    color: #555;
+}
+.options-grid select, .options-grid input[type="range"] {
+    width: 100%;
+    margin-top: 8px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+}
 </style>
 </head>
 <body>
@@ -101,9 +131,39 @@ input[type="range"] { margin-left:10px; flex:1; }
     <div class="dropZone" id="dropZoneCompress">Drag & Drop Video or Click</div>
     <input type="file" id="videoInputCompress" accept="video/*">
     <video id="originalVideoCompress" controls style="display:none;"></video>
-    <label>Compression Quality (Higher = Smaller File)
-        <input type="range" id="qualityRange" min="18" max="35" value="28">
-    </label>
+    
+    <div class="options-grid">
+        <label>Quality (CRF)
+            <input type="range" id="qualityRange" min="18" max="35" value="28">
+        </label>
+        <label>Resolution
+            <select id="resCompress">
+                <option value="original">Original</option>
+                <option value="640:360">Small (640x360)</option>
+                <option value="960:540">Medium (960x540)</option>
+                <option value="1280:720">HD (1280x720)</option>
+                <option value="1920:1080">Full HD (1920x1080)</option>
+            </select>
+        </label>
+        <label>Speed
+            <select id="speedCompress">
+                <option value="0.5">0.5x (Slow)</option>
+                <option value="1" selected>1x (Normal)</option>
+                <option value="1.5">1.5x (Fast)</option>
+                <option value="2">2x (Very Fast)</option>
+            </select>
+        </label>
+        <label>Volume
+            <select id="volCompress">
+                <option value="0.5">50%</option>
+                <option value="1" selected>100% (Normal)</option>
+                <option value="1.5">150%</option>
+                <option value="2">200%</option>
+                <option value="3">300%</option>
+            </select>
+        </label>
+    </div>
+
     <button id="compressBtn">Compress Video</button>
 </div>
 
@@ -112,6 +172,36 @@ input[type="range"] { margin-left:10px; flex:1; }
     <div class="dropZone" id="dropZoneDenoise">Drag & Drop Video or Click</div>
     <input type="file" id="videoInputDenoise" accept="video/*">
     <video id="originalVideoDenoise" controls style="display:none;"></video>
+    
+    <div class="options-grid">
+        <label>Resolution
+            <select id="resDenoise">
+                <option value="original">Original</option>
+                <option value="640:360">Small (640x360)</option>
+                <option value="960:540">Medium (960x540)</option>
+                <option value="1280:720">HD (1280x720)</option>
+                <option value="1920:1080">Full HD (1920x1080)</option>
+            </select>
+        </label>
+        <label>Speed
+            <select id="speedDenoise">
+                <option value="0.5">0.5x (Slow)</option>
+                <option value="1" selected>1x (Normal)</option>
+                <option value="1.5">1.5x (Fast)</option>
+                <option value="2">2x (Very Fast)</option>
+            </select>
+        </label>
+        <label>Volume
+            <select id="volDenoise">
+                <option value="0.5">50%</option>
+                <option value="1" selected>100% (Normal)</option>
+                <option value="1.5">150%</option>
+                <option value="2">200%</option>
+                <option value="3">300%</option>
+            </select>
+        </label>
+    </div>
+
     <button id="denoiseBtn">Denoise Video</button>
 </div>
 
@@ -120,6 +210,27 @@ input[type="range"] { margin-left:10px; flex:1; }
     <div class="dropZone" id="dropZoneExtract">Drag & Drop Video or Click</div>
     <input type="file" id="videoInputExtract" accept="video/*">
     <video id="originalVideoExtract" controls style="display:none;"></video>
+    
+    <div class="options-grid">
+        <label>Speed
+            <select id="speedExtract">
+                <option value="0.5">0.5x (Slow)</option>
+                <option value="1" selected>1x (Normal)</option>
+                <option value="1.5">1.5x (Fast)</option>
+                <option value="2">2x (Very Fast)</option>
+            </select>
+        </label>
+        <label>Volume
+            <select id="volExtract">
+                <option value="0.5">50%</option>
+                <option value="1" selected>100% (Normal)</option>
+                <option value="1.5">150%</option>
+                <option value="2">200%</option>
+                <option value="3">300%</option>
+            </select>
+        </label>
+    </div>
+
     <button id="extractAudioBtn">Extract Audio</button>
 </div>
 
@@ -132,6 +243,35 @@ input[type="range"] { margin-left:10px; flex:1; }
     <div class="dropZone" id="dropZoneAddAudio">Drag & Drop Audio</div>
     <input type="file" id="audioInputAdd" accept="audio/*">
     <audio id="audioPreviewAdd" controls style="display:none;"></audio>
+
+    <div class="options-grid">
+        <label>Resolution
+            <select id="resAdd">
+                <option value="original">Original</option>
+                <option value="640:360">Small (640x360)</option>
+                <option value="960:540">Medium (960x540)</option>
+                <option value="1280:720">HD (1280x720)</option>
+                <option value="1920:1080">Full HD (1920x1080)</option>
+            </select>
+        </label>
+        <label>Speed
+            <select id="speedAdd">
+                <option value="0.5">0.5x (Slow)</option>
+                <option value="1" selected>1x (Normal)</option>
+                <option value="1.5">1.5x (Fast)</option>
+                <option value="2">2x (Very Fast)</option>
+            </select>
+        </label>
+        <label>Volume
+            <select id="volAdd">
+                <option value="0.5">50%</option>
+                <option value="1" selected>100% (Normal)</option>
+                <option value="1.5">150%</option>
+                <option value="2">200%</option>
+                <option value="3">300%</option>
+            </select>
+        </label>
+    </div>
 
     <button id="addAudioBtn">Add Audio to Video</button>
 </div>
@@ -225,6 +365,24 @@ function showProgress(ratio){
     document.getElementById('progress').style.display = 'block';
 }
 
+// Filter Builder Helper
+function buildFilters(scale, speed, volume, extraVf = '') {
+    let vf = [];
+    let af = [];
+
+    if (extraVf) vf.push(extraVf);
+    if (scale && scale !== 'original') vf.push(`scale=${scale}`);
+    if (speed && speed !== 1) vf.push(`setpts=${1/speed}*PTS`);
+
+    if (speed && speed !== 1) af.push(`atempo=${speed}`);
+    if (volume && volume !== 1) af.push(`volume=${volume}`);
+
+    return {
+        vFilter: vf.length > 0 ? vf.join(',') : null,
+        aFilter: af.length > 0 ? af.join(',') : null
+    };
+}
+
 // --- Compress Video ---
 let compressVideoFile = null;
 setupTool('dropZoneCompress','videoInputCompress', 'originalVideoCompress', file=>{
@@ -237,8 +395,20 @@ document.getElementById('compressBtn').addEventListener('click', async ()=>{
     try{
         await loadFFmpeg();
         ffmpeg.FS('writeFile', 'input.mp4', await fetchFile(compressVideoFile));
+        
         const crf = document.getElementById('qualityRange').value;
-        await ffmpeg.run('-i','input.mp4','-vcodec','libx264','-crf',crf,'output.mp4');
+        const res = document.getElementById('resCompress').value;
+        const speed = parseFloat(document.getElementById('speedCompress').value);
+        const vol = parseFloat(document.getElementById('volCompress').value);
+        
+        let args = ['-i', 'input.mp4', '-vcodec', 'libx264', '-crf', crf];
+        const { vFilter, aFilter } = buildFilters(res, speed, vol);
+        
+        if (vFilter) args.push('-vf', vFilter);
+        if (aFilter) args.push('-af', aFilter);
+        args.push('output.mp4');
+
+        await ffmpeg.run(...args);
         const data = ffmpeg.FS('readFile', 'output.mp4');
         const blob = new Blob([data.buffer], { type:'video/mp4' });
         const link = document.getElementById('downloadLink');
@@ -262,7 +432,19 @@ document.getElementById('denoiseBtn').addEventListener('click', async ()=>{
     try{
         await loadFFmpeg();
         ffmpeg.FS('writeFile', 'input.mp4', await fetchFile(denoiseVideoFile));
-        await ffmpeg.run('-i','input.mp4','-vf','hqdn3d','denoised.mp4');
+        
+        const res = document.getElementById('resDenoise').value;
+        const speed = parseFloat(document.getElementById('speedDenoise').value);
+        const vol = parseFloat(document.getElementById('volDenoise').value);
+        
+        let args = ['-i', 'input.mp4', '-vcodec', 'libx264'];
+        const { vFilter, aFilter } = buildFilters(res, speed, vol, 'hqdn3d');
+        
+        if (vFilter) args.push('-vf', vFilter);
+        if (aFilter) args.push('-af', aFilter);
+        args.push('denoised.mp4');
+
+        await ffmpeg.run(...args);
         const data = ffmpeg.FS('readFile', 'denoised.mp4');
         const blob=new Blob([data.buffer],{type:'video/mp4'});
         const link=document.getElementById('downloadLink');
@@ -286,7 +468,17 @@ document.getElementById('extractAudioBtn').addEventListener('click', async ()=>{
     try{
         await loadFFmpeg();
         ffmpeg.FS('writeFile', 'input.mp4', await fetchFile(extractVideoFile));
-        await ffmpeg.run('-i','input.mp4','-q:a','0','-map','a','output.mp3');
+        
+        const speed = parseFloat(document.getElementById('speedExtract').value);
+        const vol = parseFloat(document.getElementById('volExtract').value);
+        
+        let args = ['-i', 'input.mp4', '-q:a', '0', '-map', 'a'];
+        const { aFilter } = buildFilters('original', speed, vol);
+        
+        if (aFilter) args.push('-af', aFilter);
+        args.push('output.mp3');
+
+        await ffmpeg.run(...args);
         const data = ffmpeg.FS('readFile', 'output.mp3');
         const blob=new Blob([data.buffer],{type:'audio/mp3'});
         const link=document.getElementById('downloadLink');
@@ -310,7 +502,26 @@ document.getElementById('addAudioBtn').addEventListener('click', async ()=>{
         await loadFFmpeg();
         ffmpeg.FS('writeFile', 'input.mp4', await fetchFile(addVideoFile));
         ffmpeg.FS('writeFile', 'input_audio.mp3', await fetchFile(addAudioFile));
-        await ffmpeg.run('-i','input.mp4','-i','input_audio.mp3','-c:v','copy','-c:a','aac','video_with_audio.mp4');
+        
+        const res = document.getElementById('resAdd').value;
+        const speed = parseFloat(document.getElementById('speedAdd').value);
+        const vol = parseFloat(document.getElementById('volAdd').value);
+        
+        let args = ['-i', 'input.mp4', '-i', 'input_audio.mp3'];
+        const { vFilter, aFilter } = buildFilters(res, speed, vol);
+        
+        // If filters are applied, we must re-encode video. Otherwise, we can just copy it.
+        if (vFilter || aFilter) {
+            args.push('-c:v', 'libx264', '-c:a', 'aac');
+            if (vFilter) args.push('-vf', vFilter);
+            if (aFilter) args.push('-af', aFilter);
+        } else {
+            args.push('-c:v', 'copy', '-c:a', 'aac');
+        }
+        
+        args.push('-map', '0:v:0', '-map', '1:a:0', 'video_with_audio.mp4');
+
+        await ffmpeg.run(...args);
         const data = ffmpeg.FS('readFile', 'video_with_audio.mp4');
         const blob=new Blob([data.buffer],{type:'video/mp4'});
         const link=document.getElementById('downloadLink');
