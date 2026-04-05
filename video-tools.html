@@ -344,37 +344,41 @@ button:disabled { background-color:#999; cursor:not-allowed; }
 </div>
 <!-- --- End of Guide Section --- -->
 
-<!-- Mobile-Friendly Single-Threaded FFmpeg v0.12.x Scripts -->
-<script src="https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.12.10/dist/umd/ffmpeg.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@ffmpeg/util@0.12.1/dist/umd/index.js"></script>
+<!-- Universal FFmpeg v0.10.1 Scripts (Works everywhere, no Service Worker needed) -->
+<script src="https://unpkg.com/@ffmpeg/ffmpeg@0.10.1/dist/ffmpeg.min.js"></script>
 <script>
-const { FFmpeg } = window.FFmpegWASM;
-const { fetchFile, toBlobURL } = window.FFmpegUtil;
-const ffmpeg = new FFmpeg();
+// --- CRITICAL FIX: Kill old Service Workers ---
+// This hunts down and deletes the old coi-serviceworker.js from the browser's memory
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then(function(registrations) {
+        for(let registration of registrations) {
+            registration.unregister();
+            console.log('Old ServiceWorker successfully removed.');
+        }
+    });
+}
+// ----------------------------------------------
+
+const { createFFmpeg, fetchFile } = FFmpeg;
+const ffmpeg = createFFmpeg({ 
+    log: true,
+    corePath: 'https://unpkg.com/@ffmpeg/core@0.10.0/dist/ffmpeg-core.js'
+});
 
 let ffmpegLoaded = false;
 const loadingIndicator = document.getElementById('loadingFFmpeg');
 
 // Setup Progress Listener
-ffmpeg.on('progress', ({ progress }) => {
-    showProgress(progress);
+ffmpeg.setProgress(({ ratio }) => {
+    showProgress(ratio);
 });
 
-// Load FFmpeg Core (Single Threaded - Mobile Safe)
+// Load FFmpeg Core
 async function loadFFmpeg(){
     if(!ffmpegLoaded){
         loadingIndicator.style.display='block';
         try {
-            const baseURL = 'https://cdn.jsdelivr.net/npm/@ffmpeg/core@0.12.6/dist/umd';
-            const ffmpegURL = 'https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.12.10/dist/umd';
-            
-            await ffmpeg.load({
-                coreURL: await toBlobURL(`${baseURL}/ffmpeg-core.js`, 'text/javascript'),
-                wasmURL: await toBlobURL(`${baseURL}/ffmpeg-core.wasm`, 'application/wasm'),
-                // THIS IS THE FIX: Forces the internal worker to load via Blob URL to bypass CORS!
-                classWorkerURL: await toBlobURL(`${ffmpegURL}/814.ffmpeg.js`, 'text/javascript')
-            });
-            
+            await ffmpeg.load();
             ffmpegLoaded = true;
             loadingIndicator.style.display='none';
         } catch (error) {
@@ -464,7 +468,7 @@ document.getElementById('compressBtn').addEventListener('click', async ()=>{
     document.getElementById('downloadLink').style.display = 'none';
     try{
         await loadFFmpeg();
-        await ffmpeg.writeFile('input.mp4', await fetchFile(compressVideoFile));
+        ffmpeg.FS('writeFile', 'input.mp4', await fetchFile(compressVideoFile));
         
         const crf = document.getElementById('qualityRange').value;
         const res = document.getElementById('resCompress').value;
@@ -478,8 +482,8 @@ document.getElementById('compressBtn').addEventListener('click', async ()=>{
         if (aFilter) args.push('-af', aFilter);
         args.push('output.mp4');
 
-        await ffmpeg.exec(args);
-        const data = await ffmpeg.readFile('output.mp4');
+        await ffmpeg.run(...args);
+        const data = ffmpeg.FS('readFile', 'output.mp4');
         const blob = new Blob([data.buffer], { type:'video/mp4' });
         const link = document.getElementById('downloadLink');
         link.href = URL.createObjectURL(blob);
@@ -501,7 +505,7 @@ document.getElementById('denoiseBtn').addEventListener('click', async ()=>{
     document.getElementById('downloadLink').style.display = 'none';
     try{
         await loadFFmpeg();
-        await ffmpeg.writeFile('input.mp4', await fetchFile(denoiseVideoFile));
+        ffmpeg.FS('writeFile', 'input.mp4', await fetchFile(denoiseVideoFile));
         
         const res = document.getElementById('resDenoise').value;
         const speed = document.getElementById('speedDenoise').value;
@@ -514,8 +518,8 @@ document.getElementById('denoiseBtn').addEventListener('click', async ()=>{
         if (aFilter) args.push('-af', aFilter);
         args.push('denoised.mp4');
 
-        await ffmpeg.exec(args);
-        const data = await ffmpeg.readFile('denoised.mp4');
+        await ffmpeg.run(...args);
+        const data = ffmpeg.FS('readFile', 'denoised.mp4');
         const blob=new Blob([data.buffer],{type:'video/mp4'});
         const link=document.getElementById('downloadLink');
         link.href=URL.createObjectURL(blob); 
@@ -537,7 +541,7 @@ document.getElementById('audioDenoiseBtn').addEventListener('click', async ()=>{
     document.getElementById('downloadLink').style.display = 'none';
     try{
         await loadFFmpeg();
-        await ffmpeg.writeFile('input_media', await fetchFile(audioDenoiseFile));
+        ffmpeg.FS('writeFile', 'input_media', await fetchFile(audioDenoiseFile));
         
         const nrLevel = document.getElementById('levelAudioDenoise').value;
         const vol = parseFloat(document.getElementById('volAudioDenoise').value);
@@ -548,8 +552,8 @@ document.getElementById('audioDenoiseBtn').addEventListener('click', async ()=>{
         if (aFilter) args.push('-af', aFilter);
         args.push('denoised_audio.mp3');
 
-        await ffmpeg.exec(args);
-        const data = await ffmpeg.readFile('denoised_audio.mp3');
+        await ffmpeg.run(...args);
+        const data = ffmpeg.FS('readFile', 'denoised_audio.mp3');
         const blob=new Blob([data.buffer],{type:'audio/mp3'});
         const link=document.getElementById('downloadLink');
         link.href=URL.createObjectURL(blob);
@@ -571,7 +575,7 @@ document.getElementById('extractAudioBtn').addEventListener('click', async ()=>{
     document.getElementById('downloadLink').style.display = 'none';
     try{
         await loadFFmpeg();
-        await ffmpeg.writeFile('input.mp4', await fetchFile(extractVideoFile));
+        ffmpeg.FS('writeFile', 'input.mp4', await fetchFile(extractVideoFile));
         
         const vol = parseFloat(document.getElementById('volExtract').value);
         
@@ -581,8 +585,8 @@ document.getElementById('extractAudioBtn').addEventListener('click', async ()=>{
         if (aFilter) args.push('-af', aFilter);
         args.push('output.mp3');
 
-        await ffmpeg.exec(args);
-        const data = await ffmpeg.readFile('output.mp3');
+        await ffmpeg.run(...args);
+        const data = ffmpeg.FS('readFile', 'output.mp3');
         const blob=new Blob([data.buffer],{type:'audio/mp3'});
         const link=document.getElementById('downloadLink');
         link.href=URL.createObjectURL(blob);
@@ -603,8 +607,8 @@ document.getElementById('addAudioBtn').addEventListener('click', async ()=>{
     document.getElementById('downloadLink').style.display = 'none';
     try{
         await loadFFmpeg();
-        await ffmpeg.writeFile('input.mp4', await fetchFile(addVideoFile));
-        await ffmpeg.writeFile('input_audio.mp3', await fetchFile(addAudioFile));
+        ffmpeg.FS('writeFile', 'input.mp4', await fetchFile(addVideoFile));
+        ffmpeg.FS('writeFile', 'input_audio.mp3', await fetchFile(addAudioFile));
         
         const res = document.getElementById('resAdd').value;
         const speed = document.getElementById('speedAdd').value;
@@ -626,8 +630,8 @@ document.getElementById('addAudioBtn').addEventListener('click', async ()=>{
         
         args.push('-map', '0:v:0', '-map', '1:a:0', 'video_with_audio.mp4');
 
-        await ffmpeg.exec(args);
-        const data = await ffmpeg.readFile('video_with_audio.mp4');
+        await ffmpeg.run(...args);
+        const data = ffmpeg.FS('readFile', 'video_with_audio.mp4');
         const blob=new Blob([data.buffer],{type:'video/mp4'});
         const link=document.getElementById('downloadLink');
         link.href=URL.createObjectURL(blob);
