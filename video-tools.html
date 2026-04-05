@@ -7,6 +7,41 @@
 <style>
 body { font-family: Arial, sans-serif; background-color: #f4f4f4; margin:0; padding:0; display:flex; flex-direction:column; align-items:center; }
 h1 { text-align:center; margin-top:20px; color:#333; }
+
+/* --- Navigation Bar Styles --- */
+nav {
+    background-color: #343a40;
+    width: 100%;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+nav li {
+    margin: 0;
+}
+nav a {
+    display: block;
+    color: #ffffff;
+    text-align: center;
+    padding: 14px 20px;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: bold;
+    transition: background-color 0.3s, color 0.3s;
+}
+nav a:hover {
+    background-color: #007bff;
+    color: #ffffff;
+}
+/* ----------------------------- */
+
 .tabs { display:flex; justify-content:center; margin:20px 0; flex-wrap:wrap; }
 .tab { padding:10px 20px; margin:5px; cursor:pointer; border-radius:5px; background-color:#007bff; color:white; font-weight:bold; transition:0.2s; }
 .tab.active { background-color:#28a745; }
@@ -31,6 +66,24 @@ input[type="range"] { margin-left:10px; flex:1; }
 
 <!-- Service Worker for SharedArrayBuffer Support -->
 <script src="coi-serviceworker.js"></script>
+
+<!-- Navigation Menu -->
+<nav>
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="register.html">Register</a></li>
+        <li><a href="login.html">Login</a></li>
+        <li><a href="software.html">Software</a></li>
+        <li><a href="drivers.html">Drivers</a></li>
+        <li><a href="swahili.html">Swahili</a></li>
+        <li><a href="english.html">English</a></li>
+        <li><a href="ikinyarwanda.html">Ikinyarwanda</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+        <li><a href="about-us.html">About Us</a></li>
+        <li><a href="posts.html">Posts</a></li>
+        <li><a href="books.html">Books</a></li>
+    </ul>
+</nav>
 
 <h1>IGT Video Tools Suite</h1>
 
