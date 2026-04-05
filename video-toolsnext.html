@@ -51,7 +51,7 @@ button:disabled{background:#999;cursor:not-allowed}
     </ul>
 </nav>
 
-<h1>IGT Video Tools Suite 3 </h1>
+<h1>IGT Video Tools Suite 4 </h1>
 
 <div id="loadingFFmpeg">Loading FFmpeg Core (Please wait)...</div>
 
@@ -76,24 +76,21 @@ button:disabled{background:#999;cursor:not-allowed}
                 <option value="640:360">Small (640x360)</option>
                 <option value="960:540">Medium (960x540)</option>
                 <option value="1280:720">HD (1280x720)</option>
-                <option value="1920:1080">Full HD (1920x1080)</option>
             </select>
         </label>
         <label>Processing Speed
             <select id="spCompress">
-                <option value="ultrafast">Ultrafast (Fastest, Larger File)</option>
+                <option value="ultrafast">Ultrafast</option>
                 <option value="fast">Fast</option>
-                <option value="medium" selected>Medium (Balanced)</option>
-                <option value="slow">Slow (Best Compression)</option>
+                <option value="medium" selected>Medium</option>
+                <option value="slow">Slow</option>
             </select>
         </label>
         <label>Volume
             <select id="vCompress">
                 <option value="0.5">50%</option>
-                <option value="1" selected>100% (Normal)</option>
-                <option value="1.5">150%</option>
+                <option value="1" selected>100%</option>
                 <option value="2">200%</option>
-                <option value="3">300%</option>
             </select>
         </label>
     </div>
@@ -110,26 +107,20 @@ button:disabled{background:#999;cursor:not-allowed}
             <select id="resDenoise">
                 <option value="original">Original</option>
                 <option value="640:360">Small (640x360)</option>
-                <option value="960:540">Medium (960x540)</option>
                 <option value="1280:720">HD (1280x720)</option>
-                <option value="1920:1080">Full HD (1920x1080)</option>
             </select>
         </label>
         <label>Processing Speed
             <select id="spDenoise">
                 <option value="ultrafast">Ultrafast</option>
-                <option value="fast">Fast</option>
                 <option value="medium" selected>Medium</option>
-                <option value="slow">Slow</option>
             </select>
         </label>
         <label>Volume
             <select id="vDenoise">
                 <option value="0.5">50%</option>
-                <option value="1" selected>100% (Normal)</option>
-                <option value="1.5">150%</option>
+                <option value="1" selected>100%</option>
                 <option value="2">200%</option>
-                <option value="3">300%</option>
             </select>
         </label>
     </div>
@@ -144,19 +135,16 @@ button:disabled{background:#999;cursor:not-allowed}
     <div class="options-grid">
         <label>Noise Reduction Level
             <select id="nrAudioDenoise">
-                <option value="nr=10">Light Cleanup</option>
-                <option value="nr=20" selected>Medium Cleanup</option>
-                <option value="nr=30">Strong Cleanup</option>
-                <option value="nr=50">Aggressive Cleanup</option>
+                <option value="nr=10">Light</option>
+                <option value="nr=20" selected>Medium</option>
+                <option value="nr=50">Aggressive</option>
             </select>
         </label>
         <label>Volume
             <select id="vAudioDenoise">
                 <option value="0.5">50%</option>
-                <option value="1" selected>100% (Normal)</option>
-                <option value="1.5">150%</option>
+                <option value="1" selected>100%</option>
                 <option value="2">200%</option>
-                <option value="3">300%</option>
             </select>
         </label>
     </div>
@@ -172,10 +160,8 @@ button:disabled{background:#999;cursor:not-allowed}
         <label>Volume
             <select id="vExtract">
                 <option value="0.5">50%</option>
-                <option value="1" selected>100% (Normal)</option>
-                <option value="1.5">150%</option>
+                <option value="1" selected>100%</option>
                 <option value="2">200%</option>
-                <option value="3">300%</option>
             </select>
         </label>
     </div>
@@ -196,26 +182,19 @@ button:disabled{background:#999;cursor:not-allowed}
             <select id="resAdd">
                 <option value="original">Original</option>
                 <option value="640:360">Small (640x360)</option>
-                <option value="960:540">Medium (960x540)</option>
                 <option value="1280:720">HD (1280x720)</option>
-                <option value="1920:1080">Full HD (1920x1080)</option>
             </select>
         </label>
         <label>Processing Speed
             <select id="spAdd">
                 <option value="ultrafast">Ultrafast</option>
-                <option value="fast">Fast</option>
                 <option value="medium" selected>Medium</option>
-                <option value="slow">Slow</option>
             </select>
         </label>
         <label>Volume
             <select id="vAdd">
                 <option value="0.5">50%</option>
-                <option value="1" selected>100% (Normal)</option>
-                <option value="1.5">150%</option>
-                <option value="2">200%</option>
-                <option value="3">300%</option>
+                <option value="1" selected>100%</option>
             </select>
         </label>
     </div>
@@ -229,25 +208,12 @@ button:disabled{background:#999;cursor:not-allowed}
 <div style="max-width: 800px; margin: 40px auto; padding: 20px; background: #ffffff; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); color: #333; line-height: 1.6;">
     <h2 style="color: #007bff; border-bottom: 2px solid #e9ecef; padding-bottom: 10px;">How to Use the IGT Video Tools Suite</h2>
     <p>Welcome to the <strong>IGT Video Tools Suite</strong>. Our free, browser-based media utilities allow you to compress, clean, and edit your audio and video files instantly. Because this tool is powered by WebAssembly, <strong>all processing happens securely on your own device</strong>. Your files are never uploaded to our servers, ensuring 100% privacy and lightning-fast speeds.</p>
-    <h3 style="color: #343a40; margin-top: 25px;">📉 1. Compress Video</h3>
-    <p>Large video files can be difficult to share or upload. Our video compressor reduces file sizes while maintaining excellent visual quality.</p>
-    <h3 style="color: #343a40; margin-top: 25px;">✨ 2. Video Denoise</h3>
-    <p>Did you shoot a video in low light? The Video Denoise tool applies an advanced spatial filter to smooth out visual grain, static, and pixelation, making your footage look cleaner and more professional.</p>
-    <h3 style="color: #343a40; margin-top: 25px;">🎧 3. Audio Denoise</h3>
-    <p>Remove distracting background hiss, hum, or wind noise from your recordings. You can upload either an audio file (like an MP3) or a video file (like an MP4). Select your <strong>Noise Reduction Level</strong>—from "Light" to "Aggressive"—and the tool will isolate and extract a clean, crisp audio track.</p>
-    <h3 style="color: #343a40; margin-top: 25px;">🎵 4. Video → Audio (Extract)</h3>
-    <p>Easily convert video files into audio files. If you have a music video, a recorded lecture, or a podcast in MP4 format, simply upload it here. The tool will instantly strip away the video and provide you with a high-quality MP3 audio file.</p>
-    <h3 style="color: #343a40; margin-top: 25px;">🎬 5. Audio → Video (Merge)</h3>
-    <p>Combine a separate audio track with a video file. This is perfect for adding background music to a silent clip, or replacing a video's original sound with a high-quality voiceover. Just upload your video, upload your new audio track, and click merge!</p>
-    <div style="background: #e9ecef; padding: 15px; border-left: 4px solid #28a745; margin-top: 30px; border-radius: 4px;">
-        <strong>🔒 Privacy Guarantee:</strong> We value your security. Unlike other online converters, the IGT Video Tools Suite does not require you to upload your personal media to the cloud. Everything is processed locally inside your web browser.
-    </div>
 </div>
 
-<!-- FFmpeg v0.11.6 (Single-Threaded, No CORS, No SAB) -->
-<script src="https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.11.6/dist/ffmpeg.min.js"></script>
+<!-- FFmpeg v0.9.7 (NO SharedArrayBuffer required) -->
+<script src="https://unpkg.com/@ffmpeg/ffmpeg@0.9.7/dist/ffmpeg.min.js"></script>
 <script>
-// Kill old Service Workers from previous attempts to prevent conflicts
+// Kill old Service Workers to prevent conflicts
 if ('serviceWorker' in navigator) {
     navigator.serviceWorker.getRegistrations().then(function(registrations) {
         for(let r of registrations) r.unregister();
@@ -256,11 +222,13 @@ if ('serviceWorker' in navigator) {
 
 const { createFFmpeg, fetchFile } = FFmpeg;
 
-// Initialize FFmpeg with the Single-Threaded Core
+// Initialize FFmpeg with Core v0.8.5 (Single-Threaded, No SAB)
 const ffmpeg = createFFmpeg({ 
     log: true,
-    corePath: 'https://cdn.jsdelivr.net/npm/@ffmpeg/core@0.11.0/dist/ffmpeg-core.js'
+    corePath: 'https://unpkg.com/@ffmpeg/core@0.8.5/dist/ffmpeg-core.js'
 });
+
+let ffmpegLoaded = false;
 
 // Setup Progress Listener
 ffmpeg.setProgress(({ ratio }) => {
@@ -270,6 +238,21 @@ ffmpeg.setProgress(({ ratio }) => {
     bar.textContent = percent + '%';
     document.getElementById('progress').style.display = 'block';
 });
+
+// Load FFmpeg Core
+async function loadFFmpeg(){
+    if(!ffmpegLoaded){
+        document.getElementById('loadingFFmpeg').style.display='block';
+        try {
+            await ffmpeg.load();
+            ffmpegLoaded = true;
+            document.getElementById('loadingFFmpeg').style.display='none';
+        } catch (e) {
+            alert("Failed to load FFmpeg core: " + e.message);
+            document.getElementById('loadingFFmpeg').style.display='none';
+        }
+    }
+}
 
 // Tabs Logic
 document.querySelectorAll('.tab').forEach(tab=>{
@@ -324,16 +307,9 @@ async function processMedia(btnId, inFiles, outName, outType, argsBuilder) {
     const btn = document.getElementById(btnId);
     btn.disabled = true;
     document.getElementById('downloadLink').style.display = 'none';
-    const loadingText = document.getElementById('loadingFFmpeg');
     
     try {
-        // Load FFmpeg if not already loaded
-        if (!ffmpeg.isLoaded()) {
-            loadingText.style.display = 'block';
-            loadingText.textContent = 'Downloading FFmpeg Engine (This may take a minute on first run)...';
-            await ffmpeg.load();
-            loadingText.style.display = 'none';
-        }
+        await loadFFmpeg();
         
         // Write input files to memory
         for(let f of inFiles) {
@@ -359,8 +335,6 @@ async function processMedia(btnId, inFiles, outName, outType, argsBuilder) {
     } catch(e) { 
         console.error(e);
         alert("Processing Error: " + e.message); 
-        loadingText.style.display = 'block';
-        loadingText.innerHTML = `<span style="color:red;">Error: ${e.message}</span>`;
     }
     btn.disabled = false;
 }
