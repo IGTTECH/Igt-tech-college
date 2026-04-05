@@ -37,6 +37,7 @@ input[type="range"] { margin-left:10px; flex:1; }
     <div class="tab" data-tool="addAudio">Audio → Video</div>
 </div>
 
+<!-- Compress Video -->
 <div class="tool-container active" id="compress">
     <div id="dropZoneCompress">Drag & Drop Video or Click</div>
     <input type="file" id="videoInputCompress" accept="video/*">
@@ -47,6 +48,7 @@ input[type="range"] { margin-left:10px; flex:1; }
     <button id="compressBtn">Compress Video</button>
 </div>
 
+<!-- Video Denoise -->
 <div class="tool-container" id="denoise">
     <div id="dropZoneDenoise">Drag & Drop Video or Click</div>
     <input type="file" id="videoInputDenoise" accept="video/*">
@@ -54,6 +56,7 @@ input[type="range"] { margin-left:10px; flex:1; }
     <button id="denoiseBtn">Denoise Video</button>
 </div>
 
+<!-- Video → Audio -->
 <div class="tool-container" id="extract">
     <div id="dropZoneExtract">Drag & Drop Video or Click</div>
     <input type="file" id="videoInputExtract" accept="video/*">
@@ -61,6 +64,7 @@ input[type="range"] { margin-left:10px; flex:1; }
     <button id="extractAudioBtn">Extract Audio</button>
 </div>
 
+<!-- Audio → Video -->
 <div class="tool-container" id="addAudio">
     <div id="dropZoneAddVideo">Drag & Drop Video</div>
     <input type="file" id="videoInputAddVideo" accept="video/*">
@@ -78,11 +82,11 @@ input[type="range"] { margin-left:10px; flex:1; }
 </div>
 <a id="downloadLink" style="display:none;" download>Download Output</a>
 
-<!-- UPDATED FFmpeg CDN -->
-<script src="https://unpkg.com/@ffmpeg/ffmpeg@0.12.0/dist/ffmpeg.min.js"></script>
+<!-- FFmpeg HTTPS CDN -->
+<script src="https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.12.0/dist/ffmpeg.min.js"></script>
 <script>
 const { createFFmpeg, fetchFile } = FFmpeg;
-const ffmpeg = createFFmpeg({ log:true });
+const ffmpeg = createFFmpeg({ log: true });
 
 let ffmpegLoaded = false;
 const loadingIndicator = document.getElementById('loadingFFmpeg');
@@ -91,7 +95,7 @@ async function loadFFmpeg(){
     if(!ffmpegLoaded){
         loadingIndicator.style.display='block';
         await ffmpeg.load();
-        ffmpegLoaded=true;
+        ffmpegLoaded = true;
         loadingIndicator.style.display='none';
     }
 }
@@ -110,57 +114,57 @@ document.querySelectorAll('.tab').forEach(tab=>{
 
 // Drag & drop helper
 function setupTool(dropZoneId, fileInputId, callback){
-    const dropZone=document.getElementById(dropZoneId);
-    const fileInput=document.getElementById(fileInputId);
+    const dropZone = document.getElementById(dropZoneId);
+    const fileInput = document.getElementById(fileInputId);
     dropZone.addEventListener('click',()=>fileInput.click());
-    dropZone.addEventListener('dragover',e=>{e.preventDefault(); dropZone.classList.add('hover');});
+    dropZone.addEventListener('dragover',e=>{ e.preventDefault(); dropZone.classList.add('hover'); });
     dropZone.addEventListener('dragleave',()=>dropZone.classList.remove('hover'));
-    dropZone.addEventListener('drop',e=>{e.preventDefault(); dropZone.classList.remove('hover'); callback(e.dataTransfer.files[0]);});
+    dropZone.addEventListener('drop', e=>{ e.preventDefault(); dropZone.classList.remove('hover'); callback(e.dataTransfer.files[0]); });
     fileInput.addEventListener('change',()=>callback(fileInput.files[0]));
 }
 
 // Progress bar
 function showProgress(ratio){
-    const percent=Math.min(100, Math.round(ratio*100));
-    const bar=document.getElementById('progress-bar');
-    bar.style.width=percent+'%';
-    bar.textContent=percent+'%';
-    document.getElementById('progress').style.display='block';
+    const percent = Math.min(100, Math.round(ratio*100));
+    const bar = document.getElementById('progress-bar');
+    bar.style.width = percent + '%';
+    bar.textContent = percent + '%';
+    document.getElementById('progress').style.display = 'block';
 }
 
 // --- Compress Video ---
-let compressVideoFile=null;
-setupTool('dropZoneCompress','videoInputCompress',file=>{
-    compressVideoFile=file;
-    document.getElementById('originalVideoCompress').src=URL.createObjectURL(file);
+let compressVideoFile = null;
+setupTool('dropZoneCompress','videoInputCompress', file=>{
+    compressVideoFile = file;
+    document.getElementById('originalVideoCompress').src = URL.createObjectURL(file);
 });
 document.getElementById('compressBtn').addEventListener('click', async ()=>{
-    if(!compressVideoFile){alert('Select a video first'); return;}
+    if(!compressVideoFile){ alert('Select a video first'); return; }
     await loadFFmpeg();
-    const btn=document.getElementById('compressBtn'); btn.disabled=true;
-    const crf=document.getElementById('qualityRange').value;
+    const btn = document.getElementById('compressBtn'); btn.disabled = true;
+    const crf = document.getElementById('qualityRange').value;
     ffmpeg.FS('writeFile','input.mp4', await fetchFile(compressVideoFile));
     ffmpeg.setProgress(({ratio})=>showProgress(ratio));
     try{
         await ffmpeg.run('-i','input.mp4','-vcodec','libx264','-crf',crf,'output.mp4');
-        const data=ffmpeg.FS('readFile','output.mp4');
-        const blob=new Blob([data.buffer],{type:'video/mp4'});
-        const link=document.getElementById('downloadLink');
-        link.href=URL.createObjectURL(blob);
-        link.download='compressed_video.mp4';
-        link.style.display='inline-block';
-    }catch(e){alert('Error:'+e.message);}
-    btn.disabled=false;
+        const data = ffmpeg.FS('readFile','output.mp4');
+        const blob = new Blob([data.buffer], { type:'video/mp4' });
+        const link = document.getElementById('downloadLink');
+        link.href = URL.createObjectURL(blob);
+        link.download = 'compressed_video.mp4';
+        link.style.display = 'inline-block';
+    } catch(e){ alert('Error: '+e.message); }
+    btn.disabled = false;
 });
 
 // --- Video Denoise ---
 let denoiseVideoFile=null;
-setupTool('dropZoneDenoise','videoInputDenoise',file=>{
+setupTool('dropZoneDenoise','videoInputDenoise', file=>{
     denoiseVideoFile=file;
-    document.getElementById('originalVideoDenoise').src=URL.createObjectURL(file);
+    document.getElementById('originalVideoDenoise').src = URL.createObjectURL(file);
 });
 document.getElementById('denoiseBtn').addEventListener('click', async ()=>{
-    if(!denoiseVideoFile){alert('Select a video first'); return;}
+    if(!denoiseVideoFile){ alert('Select a video first'); return; }
     await loadFFmpeg();
     const btn=document.getElementById('denoiseBtn'); btn.disabled=true;
     ffmpeg.FS('writeFile','input.mp4',await fetchFile(denoiseVideoFile));
@@ -170,24 +174,22 @@ document.getElementById('denoiseBtn').addEventListener('click', async ()=>{
         const data=ffmpeg.FS('readFile','denoised.mp4');
         const blob=new Blob([data.buffer],{type:'video/mp4'});
         const link=document.getElementById('downloadLink');
-        link.href=URL.createObjectURL(blob);
-        link.download='denoised_video.mp4';
-        link.style.display='inline-block';
-    }catch(e){alert('Error:'+e.message);}
+        link.href=URL.createObjectURL(blob); link.download='denoised_video.mp4'; link.style.display='inline-block';
+    } catch(e){ alert('Error:'+e.message); }
     btn.disabled=false;
 });
 
 // --- Video → Audio ---
 let extractVideoFile=null;
-setupTool('dropZoneExtract','videoInputExtract',file=>{
+setupTool('dropZoneExtract','videoInputExtract', file=>{
     extractVideoFile=file;
-    document.getElementById('originalVideoExtract').src=URL.createObjectURL(file);
+    document.getElementById('originalVideoExtract').src = URL.createObjectURL(file);
 });
 document.getElementById('extractAudioBtn').addEventListener('click', async ()=>{
-    if(!extractVideoFile){alert('Select a video first'); return;}
+    if(!extractVideoFile){ alert('Select a video first'); return; }
     await loadFFmpeg();
     const btn=document.getElementById('extractAudioBtn'); btn.disabled=true;
-    ffmpeg.FS('writeFile','input.mp4',await fetchFile(extractVideoFile));
+    ffmpeg.FS('writeFile','input.mp4', await fetchFile(extractVideoFile));
     ffmpeg.setProgress(({ratio})=>showProgress(ratio));
     try{
         await ffmpeg.run('-i','input.mp4','-q:a','0','-map','a','output.mp3');
@@ -197,16 +199,16 @@ document.getElementById('extractAudioBtn').addEventListener('click', async ()=>{
         link.href=URL.createObjectURL(blob);
         link.download='extracted_audio.mp3';
         link.style.display='inline-block';
-    }catch(e){alert('Error:'+e.message);}
+    } catch(e){ alert('Error:'+e.message); }
     btn.disabled=false;
 });
 
 // --- Audio → Video ---
 let addVideoFile=null; let addAudioFile=null;
-setupTool('dropZoneAddVideo','videoInputAddVideo',file=>{ addVideoFile=file; document.getElementById('originalVideoAdd').src=URL.createObjectURL(file); });
-setupTool('dropZoneAddAudio','audioInputAdd',file=>{ addAudioFile=file; document.getElementById('audioPreviewAdd').src=URL.createObjectURL(file); });
+setupTool('dropZoneAddVideo','videoInputAddVideo', file=>{ addVideoFile=file; document.getElementById('originalVideoAdd').src=URL.createObjectURL(file); });
+setupTool('dropZoneAddAudio','audioInputAdd', file=>{ addAudioFile=file; document.getElementById('audioPreviewAdd').src=URL.createObjectURL(file); });
 document.getElementById('addAudioBtn').addEventListener('click', async ()=>{
-    if(!addVideoFile || !addAudioFile){alert('Select both video and audio'); return;}
+    if(!addVideoFile || !addAudioFile){ alert('Select both video and audio'); return; }
     await loadFFmpeg();
     const btn=document.getElementById('addAudioBtn'); btn.disabled=true;
     ffmpeg.FS('writeFile','input.mp4',await fetchFile(addVideoFile));
@@ -220,9 +222,10 @@ document.getElementById('addAudioBtn').addEventListener('click', async ()=>{
         link.href=URL.createObjectURL(blob);
         link.download='video_with_audio.mp4';
         link.style.display='inline-block';
-    }catch(e){alert('Error:'+e.message);}
+    } catch(e){ alert('Error:'+e.message); }
     btn.disabled=false;
 });
 </script>
+
 </body>
 </html>
