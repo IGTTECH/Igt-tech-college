@@ -345,8 +345,7 @@ button:disabled { background-color:#999; cursor:not-allowed; }
 <!-- --- End of Guide Section --- -->
 
 <!-- Mobile-Friendly Single-Threaded FFmpeg v0.12.x Scripts -->
-<script src="https://unpkg.com/@ffmpeg/ffmpeg@0.12.10/dist/umd/ffmpeg.js"></script>
-<script src="https://unpkg.com/@ffmpeg/util@0.12.1/dist/umd/index.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.12.10/dist/umd/ffmpeg.js"></script>
 <script>
 // --- CRITICAL FIX 1: Kill old Service Workers ---
 if ('serviceWorker' in navigator) {
@@ -358,7 +357,6 @@ if ('serviceWorker' in navigator) {
 }
 
 const { FFmpeg } = window.FFmpegWASM;
-const { fetchFile, toBlobURL } = window.FFmpegUtil;
 const ffmpeg = new FFmpeg();
 
 let ffmpegLoaded = false;
@@ -369,23 +367,27 @@ ffmpeg.on('progress', ({ progress }) => {
     showProgress(progress);
 });
 
-// Load FFmpeg Core (Single Threaded - Mobile Safe + CORS Bypass)
+// Load FFmpeg Core (Bulletproof Method)
 async function loadFFmpeg(){
     if(!ffmpegLoaded){
         loadingIndicator.style.display='block';
         try {
-            const coreBase = 'https://unpkg.com/@ffmpeg/core@0.12.6/dist/umd';
-            const ffmpegBase = 'https://unpkg.com/@ffmpeg/ffmpeg@0.12.10/dist/umd';
+            const coreBase = 'https://cdn.jsdelivr.net/npm/@ffmpeg/core@0.12.6/dist/umd';
+            const ffmpegBase = 'https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.12.10/dist/umd';
             
-            // --- CRITICAL FIX 2: The Blob URL Interceptor ---
-            const coreURL = await toBlobURL(`${coreBase}/ffmpeg-core.js`, 'text/javascript');
-            const wasmURL = await toBlobURL(`${coreBase}/ffmpeg-core.wasm`, 'application/wasm');
-            const classWorkerURL = await toBlobURL(`${ffmpegBase}/814.ffmpeg.js`, 'text/javascript');
+            // --- CRITICAL FIX 2: Manual Fetch & Blob ---
+            // We manually download the worker file and convert it to a local Blob.
+            // This completely bypasses the browser's CORS restrictions for Web Workers.
+            const workerRes = await fetch(`${ffmpegBase}/814.ffmpeg.js`);
+            const workerText = await workerRes.text();
+            const workerBlob = new Blob([workerText], { type: 'text/javascript' });
+            const workerURL = URL.createObjectURL(workerBlob);
 
+            // We use direct URLs for the core files, and the local Blob URL for the worker.
             await ffmpeg.load({
-                coreURL: coreURL,
-                wasmURL: wasmURL,
-                classWorkerURL: classWorkerURL
+                coreURL: `${coreBase}/ffmpeg-core.js`,
+                wasmURL: `${coreBase}/ffmpeg-core.wasm`,
+                classWorkerURL: workerURL
             });
             
             ffmpegLoaded = true;
@@ -464,6 +466,16 @@ function buildFilters(scale, volume, extraVf = '', extraAf = '') {
         vFilter: vf.length > 0 ? vf.join(',') : null,
         aFilter: af.length > 0 ? af.join(',') : null
     };
+}
+
+// Helper to read file as Uint8Array
+function fetchFile(file) {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(new Uint8Array(reader.result));
+        reader.onerror = reject;
+        reader.readAsArrayBuffer(file);
+    });
 }
 
 // --- Compress Video ---
