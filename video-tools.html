@@ -88,9 +88,9 @@ input[type="range"] { margin-left:10px; flex:1; }
 </div>
 <a id="downloadLink" style="display:none; margin: 10px; padding: 10px 20px; background: #28a745; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;" download>Download Output</a>
 
-<!-- FFmpeg UMD Scripts (v0.12.x) -->
-<script src="https://unpkg.com/@ffmpeg/ffmpeg@0.12.10/dist/umd/ffmpeg.js"></script>
-<script src="https://unpkg.com/@ffmpeg/util@0.12.1/dist/umd/index.js"></script>
+<!-- FFmpeg UMD Scripts (v0.12.x) using jsdelivr instead of unpkg -->
+<script src="https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.12.10/dist/umd/ffmpeg.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@ffmpeg/util@0.12.1/dist/umd/index.js"></script>
 <script>
 const { FFmpeg } = window.FFmpegWASM;
 const { fetchFile, toBlobURL } = window.FFmpegUtil;
@@ -108,17 +108,22 @@ ffmpeg.on('progress', ({ progress }) => {
 async function loadFFmpeg(){
     if(!ffmpegLoaded){
         loadingIndicator.style.display='block';
-        const baseURL = 'https://unpkg.com/@ffmpeg/core@0.12.6/dist/umd';
+        // FIXED: Switched to jsdelivr to avoid unpkg CORS issues with the service worker
+        const baseURL = 'https://cdn.jsdelivr.net/npm/@ffmpeg/core@0.12.6/dist/umd';
         
-        // FIXED: We must load the worker URL via Blob to bypass Cross-Origin Worker restrictions
-        await ffmpeg.load({
-            coreURL: await toBlobURL(`${baseURL}/ffmpeg-core.js`, 'text/javascript'),
-            wasmURL: await toBlobURL(`${baseURL}/ffmpeg-core.wasm`, 'application/wasm'),
-            workerURL: await toBlobURL(`${baseURL}/ffmpeg-core.worker.js`, 'text/javascript'),
-        });
-        
-        ffmpegLoaded = true;
-        loadingIndicator.style.display='none';
+        try {
+            await ffmpeg.load({
+                coreURL: await toBlobURL(`${baseURL}/ffmpeg-core.js`, 'text/javascript'),
+                wasmURL: await toBlobURL(`${baseURL}/ffmpeg-core.wasm`, 'application/wasm'),
+                workerURL: await toBlobURL(`${baseURL}/ffmpeg-core.worker.js`, 'text/javascript'),
+            });
+            ffmpegLoaded = true;
+            loadingIndicator.style.display='none';
+        } catch (error) {
+            console.error("Failed to load FFmpeg:", error);
+            alert("Failed to load FFmpeg core. Check console for details.");
+            loadingIndicator.style.display='none';
+        }
     }
 }
 
