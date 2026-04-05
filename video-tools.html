@@ -52,7 +52,7 @@ nav a:hover {
 .dropZone { border:2px dashed #007bff; border-radius:10px; width:100%; max-width:500px; height:120px; display:flex; align-items:center; justify-content:center; margin:10px 0; background:#e9ecef; cursor:pointer; transition:background 0.3s; text-align: center; padding: 0 20px; box-sizing: border-box; font-size: 15px; color: #555; }
 .dropZone.hover { background:#d0ebff; }
 input[type="file"] { display:none; }
-video, audio { max-width:100%; margin:10px 0; border-radius: 8px; background: #000; }
+video, audio { max-width:100%; margin:10px 0; border-radius: 8px; background: #000; width: 100%; }
 
 button { padding:12px 20px; font-size:16px; margin:10px 0; cursor:pointer; border:none; background-color:#007bff; color:white; border-radius:5px; transition: 0.2s; font-weight: bold; width: 100%; max-width: 500px; box-sizing: border-box; }
 button:hover { background-color:#0056b3; }
@@ -133,6 +133,7 @@ button:disabled { background-color:#999; cursor:not-allowed; }
 <div class="tabs">
     <div class="tab active" data-tool="compress">Compress Video</div>
     <div class="tab" data-tool="denoise">Video Denoise</div>
+    <div class="tab" data-tool="audioDenoise">Audio Denoise</div>
     <div class="tab" data-tool="extract">Video → Audio</div>
     <div class="tab" data-tool="addAudio">Audio → Video</div>
 </div>
@@ -214,6 +215,35 @@ button:disabled { background-color:#999; cursor:not-allowed; }
     </div>
 
     <button id="denoiseBtn">Denoise Video</button>
+</div>
+
+<!-- Audio Denoise -->
+<div class="tool-container" id="audioDenoise">
+    <div class="dropZone" id="dropZoneAudioDenoise">Drag & Drop Audio/Video or Click</div>
+    <input type="file" id="mediaInputAudioDenoise" accept="audio/*,video/*">
+    <audio id="originalAudioDenoise" controls style="display:none;"></audio>
+    
+    <div class="options-grid">
+        <label>Noise Reduction Level
+            <select id="levelAudioDenoise">
+                <option value="nr=10">Light Cleanup</option>
+                <option value="nr=20" selected>Medium Cleanup</option>
+                <option value="nr=30">Strong Cleanup</option>
+                <option value="nr=50">Aggressive Cleanup</option>
+            </select>
+        </label>
+        <label>Volume
+            <select id="volAudioDenoise">
+                <option value="0.5">50%</option>
+                <option value="1" selected>100% (Normal)</option>
+                <option value="1.5">150%</option>
+                <option value="2">200%</option>
+                <option value="3">300%</option>
+            </select>
+        </label>
+    </div>
+
+    <button id="audioDenoiseBtn">Denoise Audio</button>
 </div>
 
 <!-- Video → Audio -->
@@ -369,12 +399,14 @@ function showProgress(ratio){
 }
 
 // Filter Builder Helper
-function buildFilters(scale, volume, extraVf = '') {
+function buildFilters(scale, volume, extraVf = '', extraAf = '') {
     let vf = [];
     let af = [];
 
     if (extraVf) vf.push(extraVf);
     if (scale && scale !== 'original') vf.push(`scale=${scale}`);
+    
+    if (extraAf) af.push(extraAf);
     if (volume && volume !== 1) af.push(`volume=${volume}`);
 
     return {
@@ -452,6 +484,40 @@ document.getElementById('denoiseBtn').addEventListener('click', async ()=>{
         link.download='denoised_video.mp4'; 
         link.style.display='block';
         link.textContent = 'Download Denoised Video';
+    } catch(e){ alert('Error:'+e.message); }
+    btn.disabled=false;
+});
+
+// --- Audio Denoise ---
+let audioDenoiseFile=null;
+setupTool('dropZoneAudioDenoise','mediaInputAudioDenoise', 'originalAudioDenoise', file=>{
+    audioDenoiseFile=file;
+});
+document.getElementById('audioDenoiseBtn').addEventListener('click', async ()=>{
+    if(!audioDenoiseFile){ alert('Select an audio or video file first'); return; }
+    const btn=document.getElementById('audioDenoiseBtn'); btn.disabled=true;
+    document.getElementById('downloadLink').style.display = 'none';
+    try{
+        await loadFFmpeg();
+        ffmpeg.FS('writeFile', 'input_media', await fetchFile(audioDenoiseFile));
+        
+        const nrLevel = document.getElementById('levelAudioDenoise').value;
+        const vol = parseFloat(document.getElementById('volAudioDenoise').value);
+        
+        let args = ['-i', 'input_media', '-q:a', '0', '-map', 'a'];
+        const { aFilter } = buildFilters('original', vol, '', `afftdn=${nrLevel}`);
+        
+        if (aFilter) args.push('-af', aFilter);
+        args.push('denoised_audio.mp3');
+
+        await ffmpeg.run(...args);
+        const data = ffmpeg.FS('readFile', 'denoised_audio.mp3');
+        const blob=new Blob([data.buffer],{type:'audio/mp3'});
+        const link=document.getElementById('downloadLink');
+        link.href=URL.createObjectURL(blob);
+        link.download='denoised_audio.mp3';
+        link.style.display='block';
+        link.textContent = 'Download Denoised Audio';
     } catch(e){ alert('Error:'+e.message); }
     btn.disabled=false;
 });
