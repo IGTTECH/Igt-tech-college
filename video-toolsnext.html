@@ -3,109 +3,37 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>IGT Video Tools Suite</title>
+<title>IGT Video Tools Suite 1</title>
 <style>
-body { font-family: Arial, sans-serif; background-color: #f4f4f4; margin:0; padding:0; display:flex; flex-direction:column; align-items:center; }
-h1 { text-align:center; margin-top:20px; color:#333; font-size: 24px; padding: 0 10px; }
-
-/* --- Navigation Bar Styles --- */
-nav {
-    background-color: #343a40;
-    width: 100%;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-}
-nav ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-}
-nav li {
-    margin: 0;
-}
-nav a {
-    display: block;
-    color: #ffffff;
-    text-align: center;
-    padding: 12px 15px;
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: bold;
-    transition: background-color 0.3s, color 0.3s;
-}
-nav a:hover {
-    background-color: #007bff;
-    color: #ffffff;
-}
-
-/* --- Main UI Styles --- */
-.tabs { display:flex; justify-content:center; margin:15px 0; flex-wrap:wrap; width: 100%; padding: 0 10px; box-sizing: border-box; }
-.tab { padding:10px 15px; margin:5px; cursor:pointer; border-radius:5px; background-color:#007bff; color:white; font-weight:bold; transition:0.2s; font-size: 14px; flex-grow: 1; text-align: center; max-width: 150px; }
-.tab.active { background-color: #dc3545; }
-
-.tool-container { display:none; flex-direction:column; align-items:center; width:100%; max-width:600px; padding:15px; box-sizing: border-box; }
-.tool-container.active { display:flex; }
-
-.dropZone { border:2px dashed #007bff; border-radius:10px; width:100%; max-width:500px; height:120px; display:flex; align-items:center; justify-content:center; margin:10px 0; background:#e9ecef; cursor:pointer; transition:background 0.3s; text-align: center; padding: 0 20px; box-sizing: border-box; font-size: 15px; color: #555; }
-.dropZone.hover { background:#d0ebff; }
-input[type="file"] { display:none; }
-video, audio { max-width:100%; margin:10px 0; border-radius: 8px; background: #000; width: 100%; }
-
-button { padding:12px 20px; font-size:16px; margin:10px 0; cursor:pointer; border:none; background-color:#007bff; color:white; border-radius:5px; transition: 0.2s; font-weight: bold; width: 100%; max-width: 500px; box-sizing: border-box; }
-button:hover { background-color:#0056b3; }
-button:disabled { background-color:#999; cursor:not-allowed; }
-
-#progress { width:100%; max-width:500px; height:20px; background:#ddd; border-radius:10px; overflow:hidden; margin:10px 0; display:none; }
-#progress-bar { height:100%; width:0%; background:#28a745; text-align:center; color:white; line-height:20px; font-size:12px; transition: width 0.2s; }
-#loadingFFmpeg { margin-top:20px; color:#007bff; font-weight:bold; display:none; text-align: center; padding: 0 10px; }
-
-/* --- Options Grid Styles (Mobile Responsive) --- */
-.options-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 15px;
-    width: 100%;
-    max-width: 500px;
-    margin: 10px 0;
-    background: #fff;
-    padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-    box-sizing: border-box;
-}
-.options-grid label {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    font-size: 13px;
-    font-weight: bold;
-    color: #555;
-    width: 100%;
-}
-.options-grid select, .options-grid input[type="range"] {
-    width: 100%;
-    margin-top: 8px;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 14px;
-    box-sizing: border-box;
-}
-
-/* Mobile Adjustments */
-@media (max-width: 480px) {
-    .options-grid { grid-template-columns: 1fr; }
-    .tab { max-width: 100%; }
-    h1 { font-size: 20px; }
-}
+body{font-family:Arial,sans-serif;background:#f4f4f4;margin:0;padding:0;display:flex;flex-direction:column;align-items:center}
+h1{text-align:center;margin-top:20px;color:#333;font-size:24px;padding:0 10px}
+nav{background:#343a40;width:100%;box-shadow:0 4px 6px rgba(0,0,0,0.1)}
+nav ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;justify-content:center;align-items:center}
+nav a{display:block;color:#fff;padding:12px 15px;text-decoration:none;font-size:14px;font-weight:bold;transition:0.3s}
+nav a:hover{background:#007bff;color:#fff}
+.tabs{display:flex;justify-content:center;margin:15px 0;flex-wrap:wrap;width:100%;padding:0 10px;box-sizing:border-box}
+.tab{padding:10px 15px;margin:5px;cursor:pointer;border-radius:5px;background:#007bff;color:#fff;font-weight:bold;transition:0.2s;font-size:14px;flex-grow:1;text-align:center;max-width:150px}
+.tab.active{background:#dc3545}
+.tool-container{display:none;flex-direction:column;align-items:center;width:100%;max-width:600px;padding:15px;box-sizing:border-box}
+.tool-container.active{display:flex}
+.dropZone{border:2px dashed #007bff;border-radius:10px;width:100%;max-width:500px;height:120px;display:flex;align-items:center;justify-content:center;margin:10px 0;background:#e9ecef;cursor:pointer;text-align:center;padding:0 20px;box-sizing:border-box;font-size:15px;color:#555}
+.dropZone.hover{background:#d0ebff}
+input[type="file"]{display:none}
+video,audio{max-width:100%;margin:10px 0;border-radius:8px;background:#000;width:100%}
+button{padding:12px 20px;font-size:16px;margin:10px 0;cursor:pointer;border:none;background:#007bff;color:#fff;border-radius:5px;font-weight:bold;width:100%;max-width:500px;box-sizing:border-box}
+button:hover{background:#0056b3}
+button:disabled{background:#999;cursor:not-allowed}
+#progress{width:100%;max-width:500px;height:20px;background:#ddd;border-radius:10px;overflow:hidden;margin:10px 0;display:none}
+#progress-bar{height:100%;width:0%;background:#28a745;text-align:center;color:#fff;line-height:20px;font-size:12px;transition:width 0.2s}
+#loadingFFmpeg{margin-top:20px;color:#007bff;font-weight:bold;display:none;text-align:center;padding:0 10px}
+.options-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:15px;width:100%;max-width:500px;margin:10px 0;background:#fff;padding:15px;border-radius:8px;box-shadow:0 2px 4px rgba(0,0,0,0.05);box-sizing:border-box}
+.options-grid label{display:flex;flex-direction:column;font-size:13px;font-weight:bold;color:#555;width:100%}
+.options-grid select,.options-grid input[type="range"]{width:100%;margin-top:8px;padding:8px;border:1px solid #ccc;border-radius:4px;font-size:14px;box-sizing:border-box}
+@media(max-width:480px){.options-grid{grid-template-columns:1fr}.tab{max-width:100%}h1{font-size:20px}}
 </style>
 </head>
 <body>
 
-<!-- Navigation Menu -->
 <nav>
     <ul>
         <li><a href="index.html">Home</a></li>
@@ -124,7 +52,6 @@ button:disabled { background-color:#999; cursor:not-allowed; }
 </nav>
 
 <h1>IGT Video Tools Suite</h1>
-
 <div id="loadingFFmpeg">Loading FFmpeg Core (Please wait)...</div>
 
 <div class="tabs">
@@ -140,39 +67,32 @@ button:disabled { background-color:#999; cursor:not-allowed; }
     <div class="dropZone" id="dropZoneCompress">Drag & Drop Video or Click</div>
     <input type="file" id="videoInputCompress" accept="video/*">
     <video id="originalVideoCompress" controls style="display:none;"></video>
-    
     <div class="options-grid">
-        <label>Quality (CRF)
-            <input type="range" id="qualityRange" min="18" max="35" value="28">
-        </label>
+        <label>Quality (CRF)<input type="range" id="qualityRange" min="18" max="35" value="28"></label>
         <label>Resolution
             <select id="resCompress">
                 <option value="original">Original</option>
                 <option value="640:360">Small (640x360)</option>
                 <option value="960:540">Medium (960x540)</option>
                 <option value="1280:720">HD (1280x720)</option>
-                <option value="1920:1080">Full HD (1920x1080)</option>
             </select>
         </label>
         <label>Processing Speed
             <select id="speedCompress">
-                <option value="ultrafast">Ultrafast (Fastest, Larger File)</option>
+                <option value="ultrafast">Ultrafast</option>
                 <option value="fast">Fast</option>
-                <option value="medium" selected>Medium (Balanced)</option>
-                <option value="slow">Slow (Best Compression)</option>
+                <option value="medium" selected>Medium</option>
+                <option value="slow">Slow</option>
             </select>
         </label>
         <label>Volume
             <select id="volCompress">
                 <option value="0.5">50%</option>
-                <option value="1" selected>100% (Normal)</option>
-                <option value="1.5">150%</option>
+                <option value="1" selected>100%</option>
                 <option value="2">200%</option>
-                <option value="3">300%</option>
             </select>
         </label>
     </div>
-
     <button id="compressBtn">Compress Video</button>
 </div>
 
@@ -181,7 +101,6 @@ button:disabled { background-color:#999; cursor:not-allowed; }
     <div class="dropZone" id="dropZoneDenoise">Drag & Drop Video or Click</div>
     <input type="file" id="videoInputDenoise" accept="video/*">
     <video id="originalVideoDenoise" controls style="display:none;"></video>
-    
     <div class="options-grid">
         <label>Resolution
             <select id="resDenoise">
@@ -189,13 +108,11 @@ button:disabled { background-color:#999; cursor:not-allowed; }
                 <option value="640:360">Small (640x360)</option>
                 <option value="960:540">Medium (960x540)</option>
                 <option value="1280:720">HD (1280x720)</option>
-                <option value="1920:1080">Full HD (1920x1080)</option>
             </select>
         </label>
         <label>Processing Speed
             <select id="speedDenoise">
                 <option value="ultrafast">Ultrafast</option>
-                <option value="fast">Fast</option>
                 <option value="medium" selected>Medium</option>
                 <option value="slow">Slow</option>
             </select>
@@ -203,14 +120,11 @@ button:disabled { background-color:#999; cursor:not-allowed; }
         <label>Volume
             <select id="volDenoise">
                 <option value="0.5">50%</option>
-                <option value="1" selected>100% (Normal)</option>
-                <option value="1.5">150%</option>
+                <option value="1" selected>100%</option>
                 <option value="2">200%</option>
-                <option value="3">300%</option>
             </select>
         </label>
     </div>
-
     <button id="denoiseBtn">Denoise Video</button>
 </div>
 
@@ -219,27 +133,22 @@ button:disabled { background-color:#999; cursor:not-allowed; }
     <div class="dropZone" id="dropZoneAudioDenoise">Drag & Drop Audio/Video or Click</div>
     <input type="file" id="mediaInputAudioDenoise" accept="audio/*,video/*">
     <audio id="originalAudioDenoise" controls style="display:none;"></audio>
-    
     <div class="options-grid">
         <label>Noise Reduction Level
             <select id="levelAudioDenoise">
-                <option value="nr=10">Light Cleanup</option>
-                <option value="nr=20" selected>Medium Cleanup</option>
-                <option value="nr=30">Strong Cleanup</option>
-                <option value="nr=50">Aggressive Cleanup</option>
+                <option value="nr=10">Light</option>
+                <option value="nr=20" selected>Medium</option>
+                <option value="nr=50">Aggressive</option>
             </select>
         </label>
         <label>Volume
             <select id="volAudioDenoise">
                 <option value="0.5">50%</option>
-                <option value="1" selected>100% (Normal)</option>
-                <option value="1.5">150%</option>
+                <option value="1" selected>100%</option>
                 <option value="2">200%</option>
-                <option value="3">300%</option>
             </select>
         </label>
     </div>
-
     <button id="audioDenoiseBtn">Denoise Audio</button>
 </div>
 
@@ -248,19 +157,15 @@ button:disabled { background-color:#999; cursor:not-allowed; }
     <div class="dropZone" id="dropZoneExtract">Drag & Drop Video or Click</div>
     <input type="file" id="videoInputExtract" accept="video/*">
     <video id="originalVideoExtract" controls style="display:none;"></video>
-    
     <div class="options-grid">
         <label>Volume
             <select id="volExtract">
                 <option value="0.5">50%</option>
-                <option value="1" selected>100% (Normal)</option>
-                <option value="1.5">150%</option>
+                <option value="1" selected>100%</option>
                 <option value="2">200%</option>
-                <option value="3">300%</option>
             </select>
         </label>
     </div>
-
     <button id="extractAudioBtn">Extract Audio</button>
 </div>
 
@@ -269,138 +174,106 @@ button:disabled { background-color:#999; cursor:not-allowed; }
     <div class="dropZone" id="dropZoneAddVideo">Drag & Drop Video</div>
     <input type="file" id="videoInputAddVideo" accept="video/*">
     <video id="originalVideoAdd" controls style="display:none;"></video>
-
     <div class="dropZone" id="dropZoneAddAudio">Drag & Drop Audio</div>
     <input type="file" id="audioInputAdd" accept="audio/*">
     <audio id="audioPreviewAdd" controls style="display:none;"></audio>
-
     <div class="options-grid">
         <label>Resolution
             <select id="resAdd">
                 <option value="original">Original</option>
                 <option value="640:360">Small (640x360)</option>
-                <option value="960:540">Medium (960x540)</option>
                 <option value="1280:720">HD (1280x720)</option>
-                <option value="1920:1080">Full HD (1920x1080)</option>
             </select>
         </label>
         <label>Processing Speed
             <select id="speedAdd">
                 <option value="ultrafast">Ultrafast</option>
-                <option value="fast">Fast</option>
                 <option value="medium" selected>Medium</option>
-                <option value="slow">Slow</option>
             </select>
         </label>
         <label>Volume
             <select id="volAdd">
                 <option value="0.5">50%</option>
-                <option value="1" selected>100% (Normal)</option>
-                <option value="1.5">150%</option>
+                <option value="1" selected>100%</option>
                 <option value="2">200%</option>
-                <option value="3">300%</option>
             </select>
         </label>
     </div>
-
     <button id="addAudioBtn">Add Audio to Video</button>
 </div>
 
-<div id="progress">
-    <div id="progress-bar">0%</div>
-</div>
-<a id="downloadLink" style="display:none; margin: 10px; padding: 10px 20px; background: #28a745; color: white; text-decoration: none; border-radius: 5px; font-weight: bold; text-align: center; width: 100%; max-width: 460px; box-sizing: border-box;" download>Download Output</a>
+<div id="progress"><div id="progress-bar">0%</div></div>
+<a id="downloadLink" style="display:none;margin:10px;padding:10px 20px;background:#28a745;color:#fff;text-decoration:none;border-radius:5px;font-weight:bold;text-align:center;width:100%;max-width:460px;box-sizing:border-box" download>Download Output</a>
 
-<!-- --- SEO & User Guide Section --- -->
-<div style="max-width: 800px; margin: 40px auto; padding: 20px; background: #ffffff; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); color: #333; line-height: 1.6;">
-    
-    <h2 style="color: #007bff; border-bottom: 2px solid #e9ecef; padding-bottom: 10px;">How to Use the IGT Video Tools Suite</h2>
+<div style="max-width:800px;margin:40px auto;padding:20px;background:#fff;border-radius:8px;box-shadow:0 2px 10px rgba(0,0,0,0.05);color:#333;line-height:1.6">
+    <h2 style="color:#007bff;border-bottom:2px solid #e9ecef;padding-bottom:10px">How to Use the IGT Video Tools Suite</h2>
     <p>Welcome to the <strong>IGT Video Tools Suite</strong>. Our free, browser-based media utilities allow you to compress, clean, and edit your audio and video files instantly. Because this tool is powered by WebAssembly, <strong>all processing happens securely on your own device</strong>. Your files are never uploaded to our servers, ensuring 100% privacy and lightning-fast speeds.</p>
-
-    <h3 style="color: #343a40; margin-top: 25px;">📉 1. Compress Video</h3>
+    <h3 style="color:#343a40;margin-top:25px">📉 1. Compress Video</h3>
     <p>Large video files can be difficult to share or upload. Our video compressor reduces file sizes while maintaining excellent visual quality.</p>
-    <ul style="margin-top: 5px;">
-        <li><strong>Quality (CRF):</strong> Controls the compression level. A value of 28 is a great balance. Lower numbers (like 18) give better quality but larger file sizes. Higher numbers (like 35) give smaller files but lower quality.</li>
-        <li><strong>Resolution:</strong> Keep your original size, or scale it down to HD (720p) or Medium (540p) to save even more space.</li>
-        <li><strong>Processing Speed:</strong> Choose "Ultrafast" for a quick export, or "Slow" for the absolute best file compression.</li>
-    </ul>
-
-    <h3 style="color: #343a40; margin-top: 25px;">✨ 2. Video Denoise</h3>
-    <p>Did you shoot a video in low light? The Video Denoise tool applies an advanced spatial filter to smooth out visual grain, static, and pixelation, making your footage look cleaner and more professional.</p>
-
-    <h3 style="color: #343a40; margin-top: 25px;">🎧 3. Audio Denoise</h3>
-    <p>Remove distracting background hiss, hum, or wind noise from your recordings. You can upload either an audio file (like an MP3) or a video file (like an MP4). Select your <strong>Noise Reduction Level</strong>—from "Light" to "Aggressive"—and the tool will isolate and extract a clean, crisp audio track.</p>
-
-    <h3 style="color: #343a40; margin-top: 25px;">🎵 4. Video → Audio (Extract)</h3>
-    <p>Easily convert video files into audio files. If you have a music video, a recorded lecture, or a podcast in MP4 format, simply upload it here. The tool will instantly strip away the video and provide you with a high-quality MP3 audio file.</p>
-
-    <h3 style="color: #343a40; margin-top: 25px;">🎬 5. Audio → Video (Merge)</h3>
-    <p>Combine a separate audio track with a video file. This is perfect for adding background music to a silent clip, or replacing a video's original sound with a high-quality voiceover. Just upload your video, upload your new audio track, and click merge!</p>
-
-    <div style="background: #e9ecef; padding: 15px; border-left: 4px solid #28a745; margin-top: 30px; border-radius: 4px;">
-        <strong>🔒 Privacy Guarantee:</strong> We value your security. Unlike other online converters, the IGT Video Tools Suite does not require you to upload your personal media to the cloud. Everything is processed locally inside your web browser.
+    <h3 style="color:#343a40;margin-top:25px">✨ 2. Video Denoise</h3>
+    <p>Did you shoot a video in low light? The Video Denoise tool applies an advanced spatial filter to smooth out visual grain, static, and pixelation.</p>
+    <h3 style="color:#343a40;margin-top:25px">🎧 3. Audio Denoise</h3>
+    <p>Remove distracting background hiss, hum, or wind noise from your recordings.</p>
+    <h3 style="color:#343a40;margin-top:25px">🎵 4. Video → Audio (Extract)</h3>
+    <p>Easily convert video files into audio files.</p>
+    <h3 style="color:#343a40;margin-top:25px">🎬 5. Audio → Video (Merge)</h3>
+    <p>Combine a separate audio track with a video file.</p>
+    <div style="background:#e9ecef;padding:15px;border-left:4px solid #28a745;margin-top:30px;border-radius:4px">
+        <strong>🔒 Privacy Guarantee:</strong> We value your security. Everything is processed locally inside your web browser.
     </div>
-
 </div>
-<!-- --- End of Guide Section --- -->
 
-<!-- Mobile-Friendly Single-Threaded FFmpeg v0.12.x Scripts -->
-<script src="https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.12.10/dist/umd/ffmpeg.js"></script>
+<!-- FFmpeg v0.12.x Scripts -->
+<script src="https://unpkg.com/@ffmpeg/ffmpeg@0.12.10/dist/umd/ffmpeg.js"></script>
+<script src="https://unpkg.com/@ffmpeg/util@0.12.1/dist/umd/index.js"></script>
 <script>
-// --- CRITICAL FIX 1: Kill old Service Workers ---
+// Kill old Service Workers
 if ('serviceWorker' in navigator) {
     navigator.serviceWorker.getRegistrations().then(function(registrations) {
-        for(let registration of registrations) {
-            registration.unregister();
-        }
+        for(let r of registrations) r.unregister();
     });
 }
 
 const { FFmpeg } = window.FFmpegWASM;
+const { fetchFile, toBlobURL } = window.FFmpegUtil;
 const ffmpeg = new FFmpeg();
-
 let ffmpegLoaded = false;
-const loadingIndicator = document.getElementById('loadingFFmpeg');
 
-// Setup Progress Listener
 ffmpeg.on('progress', ({ progress }) => {
-    showProgress(progress);
+    const percent = Math.min(100, Math.max(0, Math.round(progress*100)));
+    const bar = document.getElementById('progress-bar');
+    bar.style.width = percent + '%';
+    bar.textContent = percent + '%';
+    document.getElementById('progress').style.display = 'block';
 });
 
-// Load FFmpeg Core (Bulletproof Method)
 async function loadFFmpeg(){
     if(!ffmpegLoaded){
-        loadingIndicator.style.display='block';
+        document.getElementById('loadingFFmpeg').style.display='block';
         try {
-            const coreBase = 'https://cdn.jsdelivr.net/npm/@ffmpeg/core@0.12.6/dist/umd';
-            const ffmpegBase = 'https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.12.10/dist/umd';
+            const coreBase = 'https://unpkg.com/@ffmpeg/core@0.12.6/dist/umd';
+            const ffmpegBase = 'https://unpkg.com/@ffmpeg/ffmpeg@0.12.10/dist/umd';
             
-            // --- CRITICAL FIX 2: Manual Fetch & Blob ---
-            // We manually download the worker file and convert it to a local Blob.
-            // This completely bypasses the browser's CORS restrictions for Web Workers.
-            const workerRes = await fetch(`${ffmpegBase}/814.ffmpeg.js`);
-            const workerText = await workerRes.text();
-            const workerBlob = new Blob([workerText], { type: 'text/javascript' });
-            const workerURL = URL.createObjectURL(workerBlob);
+            // CRITICAL FIX: Convert ALL THREE files to Blob URLs to bypass CORS completely
+            const coreURL = await toBlobURL(`${coreBase}/ffmpeg-core.js`, 'text/javascript');
+            const wasmURL = await toBlobURL(`${coreBase}/ffmpeg-core.wasm`, 'application/wasm');
+            const workerURL = await toBlobURL(`${ffmpegBase}/814.ffmpeg.js`, 'text/javascript');
 
-            // We use direct URLs for the core files, and the local Blob URL for the worker.
             await ffmpeg.load({
-                coreURL: `${coreBase}/ffmpeg-core.js`,
-                wasmURL: `${coreBase}/ffmpeg-core.wasm`,
+                coreURL: coreURL,
+                wasmURL: wasmURL,
                 classWorkerURL: workerURL
             });
             
             ffmpegLoaded = true;
-            loadingIndicator.style.display='none';
-        } catch (error) {
-            console.error("Failed to load FFmpeg:", error);
-            alert("Failed to load FFmpeg core. Check console for details: " + error.message);
-            loadingIndicator.style.display='none';
+            document.getElementById('loadingFFmpeg').style.display='none';
+        } catch (e) {
+            alert("Failed to load FFmpeg core: " + e.message);
+            document.getElementById('loadingFFmpeg').style.display='none';
         }
     }
 }
 
-// Tabs Logic
 document.querySelectorAll('.tab').forEach(tab=>{
     tab.addEventListener('click',()=>{
         document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
@@ -412,255 +285,130 @@ document.querySelectorAll('.tab').forEach(tab=>{
     });
 });
 
-// Drag & Drop Helper
-function setupTool(dropZoneId, fileInputId, mediaId, callback){
-    const dropZone = document.getElementById(dropZoneId);
-    const fileInput = document.getElementById(fileInputId);
-    const mediaElement = document.getElementById(mediaId);
-    
-    dropZone.addEventListener('click',()=>fileInput.click());
-    dropZone.addEventListener('dragover',e=>{ e.preventDefault(); dropZone.classList.add('hover'); });
-    dropZone.addEventListener('dragleave',()=>dropZone.classList.remove('hover'));
-    dropZone.addEventListener('drop', e=>{ 
-        e.preventDefault(); 
-        dropZone.classList.remove('hover'); 
-        if(e.dataTransfer.files.length > 0) {
-            handleFile(e.dataTransfer.files[0]);
-        }
-    });
-    fileInput.addEventListener('change',()=> {
-        if(fileInput.files.length > 0) {
-            handleFile(fileInput.files[0]);
-        }
-    });
-
-    function handleFile(file) {
-        dropZone.textContent = file.name;
-        mediaElement.src = URL.createObjectURL(file);
-        mediaElement.style.display = 'block';
-        callback(file);
-    }
+function setupTool(dId, fId, mId, cb){
+    const d=document.getElementById(dId), f=document.getElementById(fId), m=document.getElementById(mId);
+    d.addEventListener('click',()=>f.click());
+    d.addEventListener('dragover',e=>{e.preventDefault();d.classList.add('hover');});
+    d.addEventListener('dragleave',()=>d.classList.remove('hover'));
+    d.addEventListener('drop',e=>{e.preventDefault();d.classList.remove('hover');if(e.dataTransfer.files[0])handleFile(e.dataTransfer.files[0]);});
+    f.addEventListener('change',()=>{if(f.files[0])handleFile(f.files[0]);});
+    function handleFile(file){d.textContent=file.name;m.src=URL.createObjectURL(file);m.style.display='block';cb(file);}
 }
 
-// Progress Bar Helper
-function showProgress(ratio){
-    const percent = Math.min(100, Math.max(0, Math.round(ratio*100)));
-    const bar = document.getElementById('progress-bar');
-    bar.style.width = percent + '%';
-    bar.textContent = percent + '%';
-    document.getElementById('progress').style.display = 'block';
+function buildFilters(scale, vol, extraVf='', extraAf='') {
+    let vf=[], af=[];
+    if(extraVf) vf.push(extraVf);
+    if(scale && scale!=='original') vf.push(`scale=${scale}`);
+    if(extraAf) af.push(extraAf);
+    if(vol && vol!=1) af.push(`volume=${vol}`);
+    return { vFilter: vf.length?vf.join(','):null, aFilter: af.length?af.join(','):null };
 }
 
-// Filter Builder Helper
-function buildFilters(scale, volume, extraVf = '', extraAf = '') {
-    let vf = [];
-    let af = [];
-
-    if (extraVf) vf.push(extraVf);
-    if (scale && scale !== 'original') vf.push(`scale=${scale}`);
-    
-    if (extraAf) af.push(extraAf);
-    if (volume && volume !== 1) af.push(`volume=${volume}`);
-
-    return {
-        vFilter: vf.length > 0 ? vf.join(',') : null,
-        aFilter: af.length > 0 ? af.join(',') : null
-    };
-}
-
-// Helper to read file as Uint8Array
-function fetchFile(file) {
-    return new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.onload = () => resolve(new Uint8Array(reader.result));
-        reader.onerror = reject;
-        reader.readAsArrayBuffer(file);
-    });
-}
-
-// --- Compress Video ---
-let compressVideoFile = null;
-setupTool('dropZoneCompress','videoInputCompress', 'originalVideoCompress', file=>{
-    compressVideoFile = file;
-});
+let cFile=null; setupTool('dropZoneCompress','videoInputCompress','originalVideoCompress',f=>cFile=f);
 document.getElementById('compressBtn').addEventListener('click', async ()=>{
-    if(!compressVideoFile){ alert('Select a video first'); return; }
-    const btn = document.getElementById('compressBtn'); btn.disabled = true;
-    document.getElementById('downloadLink').style.display = 'none';
+    if(!cFile) return alert('Select video');
+    document.getElementById('compressBtn').disabled=true;
     try{
         await loadFFmpeg();
-        await ffmpeg.writeFile('input.mp4', await fetchFile(compressVideoFile));
-        
-        const crf = document.getElementById('qualityRange').value;
-        const res = document.getElementById('resCompress').value;
-        const speed = document.getElementById('speedCompress').value;
-        const vol = parseFloat(document.getElementById('volCompress').value);
-        
-        let args = ['-i', 'input.mp4', '-vcodec', 'libx264', '-preset', speed, '-crf', crf];
-        const { vFilter, aFilter } = buildFilters(res, vol);
-        
-        if (vFilter) args.push('-vf', vFilter);
-        if (aFilter) args.push('-af', aFilter);
-        args.push('output.mp4');
-
+        await ffmpeg.writeFile('input.mp4', await fetchFile(cFile));
+        const { vFilter, aFilter } = buildFilters(document.getElementById('resCompress').value, document.getElementById('volCompress').value);
+        let args = ['-i','input.mp4','-vcodec','libx264','-preset',document.getElementById('speedCompress').value,'-crf',document.getElementById('qualityRange').value];
+        if(vFilter) args.push('-vf',vFilter); if(aFilter) args.push('-af',aFilter);
+        args.push('out.mp4');
         await ffmpeg.exec(args);
-        const data = await ffmpeg.readFile('output.mp4');
-        const blob = new Blob([data.buffer], { type:'video/mp4' });
+        const data = await ffmpeg.readFile('out.mp4');
         const link = document.getElementById('downloadLink');
-        link.href = URL.createObjectURL(blob);
-        link.download = 'compressed_video.mp4';
-        link.style.display = 'block';
-        link.textContent = 'Download Compressed Video';
-    } catch(e){ alert('Error: '+e.message); }
-    btn.disabled = false;
+        link.href = URL.createObjectURL(new Blob([data.buffer],{type:'video/mp4'}));
+        link.download = 'compressed.mp4'; link.style.display='block'; link.textContent='Download Video';
+    }catch(e){alert(e.message);}
+    document.getElementById('compressBtn').disabled=false;
 });
 
-// --- Video Denoise ---
-let denoiseVideoFile=null;
-setupTool('dropZoneDenoise','videoInputDenoise', 'originalVideoDenoise', file=>{
-    denoiseVideoFile=file;
-});
+let dFile=null; setupTool('dropZoneDenoise','videoInputDenoise','originalVideoDenoise',f=>dFile=f);
 document.getElementById('denoiseBtn').addEventListener('click', async ()=>{
-    if(!denoiseVideoFile){ alert('Select a video first'); return; }
-    const btn=document.getElementById('denoiseBtn'); btn.disabled=true;
-    document.getElementById('downloadLink').style.display = 'none';
+    if(!dFile) return alert('Select video');
+    document.getElementById('denoiseBtn').disabled=true;
     try{
         await loadFFmpeg();
-        await ffmpeg.writeFile('input.mp4', await fetchFile(denoiseVideoFile));
-        
-        const res = document.getElementById('resDenoise').value;
-        const speed = document.getElementById('speedDenoise').value;
-        const vol = parseFloat(document.getElementById('volDenoise').value);
-        
-        let args = ['-i', 'input.mp4', '-vcodec', 'libx264', '-preset', speed];
-        const { vFilter, aFilter } = buildFilters(res, vol, 'hqdn3d');
-        
-        if (vFilter) args.push('-vf', vFilter);
-        if (aFilter) args.push('-af', aFilter);
-        args.push('denoised.mp4');
-
+        await ffmpeg.writeFile('input.mp4', await fetchFile(dFile));
+        const { vFilter, aFilter } = buildFilters(document.getElementById('resDenoise').value, document.getElementById('volDenoise').value, 'hqdn3d');
+        let args = ['-i','input.mp4','-vcodec','libx264','-preset',document.getElementById('speedDenoise').value];
+        if(vFilter) args.push('-vf',vFilter); if(aFilter) args.push('-af',aFilter);
+        args.push('out.mp4');
         await ffmpeg.exec(args);
-        const data = await ffmpeg.readFile('denoised.mp4');
-        const blob=new Blob([data.buffer],{type:'video/mp4'});
-        const link=document.getElementById('downloadLink');
-        link.href=URL.createObjectURL(blob); 
-        link.download='denoised_video.mp4'; 
-        link.style.display='block';
-        link.textContent = 'Download Denoised Video';
-    } catch(e){ alert('Error:'+e.message); }
-    btn.disabled=false;
+        const data = await ffmpeg.readFile('out.mp4');
+        const link = document.getElementById('downloadLink');
+        link.href = URL.createObjectURL(new Blob([data.buffer],{type:'video/mp4'}));
+        link.download = 'denoised.mp4'; link.style.display='block'; link.textContent='Download Video';
+    }catch(e){alert(e.message);}
+    document.getElementById('denoiseBtn').disabled=false;
 });
 
-// --- Audio Denoise ---
-let audioDenoiseFile=null;
-setupTool('dropZoneAudioDenoise','mediaInputAudioDenoise', 'originalAudioDenoise', file=>{
-    audioDenoiseFile=file;
-});
+let adFile=null; setupTool('dropZoneAudioDenoise','mediaInputAudioDenoise','originalAudioDenoise',f=>adFile=f);
 document.getElementById('audioDenoiseBtn').addEventListener('click', async ()=>{
-    if(!audioDenoiseFile){ alert('Select an audio or video file first'); return; }
-    const btn=document.getElementById('audioDenoiseBtn'); btn.disabled=true;
-    document.getElementById('downloadLink').style.display = 'none';
+    if(!adFile) return alert('Select file');
+    document.getElementById('audioDenoiseBtn').disabled=true;
     try{
         await loadFFmpeg();
-        await ffmpeg.writeFile('input_media', await fetchFile(audioDenoiseFile));
-        
-        const nrLevel = document.getElementById('levelAudioDenoise').value;
-        const vol = parseFloat(document.getElementById('volAudioDenoise').value);
-        
-        let args = ['-i', 'input_media', '-q:a', '0', '-map', 'a'];
-        const { aFilter } = buildFilters('original', vol, '', `afftdn=${nrLevel}`);
-        
-        if (aFilter) args.push('-af', aFilter);
-        args.push('denoised_audio.mp3');
-
+        await ffmpeg.writeFile('in_media', await fetchFile(adFile));
+        const { aFilter } = buildFilters('original', document.getElementById('volAudioDenoise').value, '', `afftdn=${document.getElementById('levelAudioDenoise').value}`);
+        let args = ['-i','in_media','-q:a','0','-map','a'];
+        if(aFilter) args.push('-af',aFilter);
+        args.push('out.mp3');
         await ffmpeg.exec(args);
-        const data = await ffmpeg.readFile('denoised_audio.mp3');
-        const blob=new Blob([data.buffer],{type:'audio/mp3'});
-        const link=document.getElementById('downloadLink');
-        link.href=URL.createObjectURL(blob);
-        link.download='denoised_audio.mp3';
-        link.style.display='block';
-        link.textContent = 'Download Denoised Audio';
-    } catch(e){ alert('Error:'+e.message); }
-    btn.disabled=false;
+        const data = await ffmpeg.readFile('out.mp3');
+        const link = document.getElementById('downloadLink');
+        link.href = URL.createObjectURL(new Blob([data.buffer],{type:'audio/mp3'}));
+        link.download = 'denoised.mp3'; link.style.display='block'; link.textContent='Download Audio';
+    }catch(e){alert(e.message);}
+    document.getElementById('audioDenoiseBtn').disabled=false;
 });
 
-// --- Video → Audio ---
-let extractVideoFile=null;
-setupTool('dropZoneExtract','videoInputExtract', 'originalVideoExtract', file=>{
-    extractVideoFile=file;
-});
+let exFile=null; setupTool('dropZoneExtract','videoInputExtract','originalVideoExtract',f=>exFile=f);
 document.getElementById('extractAudioBtn').addEventListener('click', async ()=>{
-    if(!extractVideoFile){ alert('Select a video first'); return; }
-    const btn=document.getElementById('extractAudioBtn'); btn.disabled=true;
-    document.getElementById('downloadLink').style.display = 'none';
+    if(!exFile) return alert('Select video');
+    document.getElementById('extractAudioBtn').disabled=true;
     try{
         await loadFFmpeg();
-        await ffmpeg.writeFile('input.mp4', await fetchFile(extractVideoFile));
-        
-        const vol = parseFloat(document.getElementById('volExtract').value);
-        
-        let args = ['-i', 'input.mp4', '-q:a', '0', '-map', 'a'];
-        const { aFilter } = buildFilters('original', vol);
-        
-        if (aFilter) args.push('-af', aFilter);
-        args.push('output.mp3');
-
+        await ffmpeg.writeFile('in.mp4', await fetchFile(exFile));
+        const { aFilter } = buildFilters('original', document.getElementById('volExtract').value);
+        let args = ['-i','in.mp4','-q:a','0','-map','a'];
+        if(aFilter) args.push('-af',aFilter);
+        args.push('out.mp3');
         await ffmpeg.exec(args);
-        const data = await ffmpeg.readFile('output.mp3');
-        const blob=new Blob([data.buffer],{type:'audio/mp3'});
-        const link=document.getElementById('downloadLink');
-        link.href=URL.createObjectURL(blob);
-        link.download='extracted_audio.mp3';
-        link.style.display='block';
-        link.textContent = 'Download Extracted Audio';
-    } catch(e){ alert('Error:'+e.message); }
-    btn.disabled=false;
+        const data = await ffmpeg.readFile('out.mp3');
+        const link = document.getElementById('downloadLink');
+        link.href = URL.createObjectURL(new Blob([data.buffer],{type:'audio/mp3'}));
+        link.download = 'extracted.mp3'; link.style.display='block'; link.textContent='Download Audio';
+    }catch(e){alert(e.message);}
+    document.getElementById('extractAudioBtn').disabled=false;
 });
 
-// --- Audio → Video ---
-let addVideoFile=null; let addAudioFile=null;
-setupTool('dropZoneAddVideo','videoInputAddVideo', 'originalVideoAdd', file=>{ addVideoFile=file; });
-setupTool('dropZoneAddAudio','audioInputAdd', 'audioPreviewAdd', file=>{ addAudioFile=file; });
+let avV=null, avA=null; 
+setupTool('dropZoneAddVideo','videoInputAddVideo','originalVideoAdd',f=>avV=f);
+setupTool('dropZoneAddAudio','audioInputAdd','audioPreviewAdd',f=>avA=f);
 document.getElementById('addAudioBtn').addEventListener('click', async ()=>{
-    if(!addVideoFile || !addAudioFile){ alert('Select both video and audio'); return; }
-    const btn=document.getElementById('addAudioBtn'); btn.disabled=true;
-    document.getElementById('downloadLink').style.display = 'none';
+    if(!avV || !avA) return alert('Select both');
+    document.getElementById('addAudioBtn').disabled=true;
     try{
         await loadFFmpeg();
-        await ffmpeg.writeFile('input.mp4', await fetchFile(addVideoFile));
-        await ffmpeg.writeFile('input_audio.mp3', await fetchFile(addAudioFile));
-        
-        const res = document.getElementById('resAdd').value;
-        const speed = document.getElementById('speedAdd').value;
-        const vol = parseFloat(document.getElementById('volAdd').value);
-        
-        let args = ['-i', 'input.mp4', '-i', 'input_audio.mp3'];
-        const { vFilter, aFilter } = buildFilters(res, vol);
-        
-        if (vFilter) {
-            args.push('-c:v', 'libx264', '-preset', speed, '-vf', vFilter);
-        } else {
-            args.push('-c:v', 'copy');
-        }
-
-        args.push('-c:a', 'aac');
-        if (aFilter) args.push('-af', aFilter);
-        
-        args.push('-map', '0:v:0', '-map', '1:a:0', 'video_with_audio.mp4');
-
+        await ffmpeg.writeFile('in.mp4', await fetchFile(avV));
+        await ffmpeg.writeFile('in.mp3', await fetchFile(avA));
+        const { vFilter, aFilter } = buildFilters(document.getElementById('resAdd').value, document.getElementById('volAdd').value);
+        let args = ['-i','in.mp4','-i','in.mp3'];
+        if(vFilter) args.push('-c:v','libx264','-preset',document.getElementById('speedAdd').value,'-vf',vFilter);
+        else args.push('-c:v','copy');
+        args.push('-c:a','aac');
+        if(aFilter) args.push('-af',aFilter);
+        args.push('-map','0:v:0','-map','1:a:0','out.mp4');
         await ffmpeg.exec(args);
-        const data = await ffmpeg.readFile('video_with_audio.mp4');
-        const blob=new Blob([data.buffer],{type:'video/mp4'});
-        const link=document.getElementById('downloadLink');
-        link.href=URL.createObjectURL(blob);
-        link.download='video_with_audio.mp4';
-        link.style.display='block';
-        link.textContent = 'Download Merged Video';
-    } catch(e){ alert('Error:'+e.message); }
-    btn.disabled=false;
+        const data = await ffmpeg.readFile('out.mp4');
+        const link = document.getElementById('downloadLink');
+        link.href = URL.createObjectURL(new Blob([data.buffer],{type:'video/mp4'}));
+        link.download = 'merged.mp4'; link.style.display='block'; link.textContent='Download Video';
+    }catch(e){alert(e.message);}
+    document.getElementById('addAudioBtn').disabled=false;
 });
 </script>
-
 </body>
 </html>
