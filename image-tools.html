@@ -91,7 +91,7 @@
       <!-- SIDEBAR CONTROLS (Right Side) -->
       <div class="w-full lg:w-80 flex-shrink-0 flex flex-col gap-4">
         
-        <!-- NEW: Resize Settings -->
+        <!-- Resize Settings -->
         <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-200">
           <h3 class="text-sm font-bold text-gray-700 uppercase tracking-wider mb-4">Resize Settings</h3>
           
@@ -189,6 +189,12 @@
     let isDrawing = false;
     let currentFilter = 'none';
     let aspectRatio = 1;
+    
+    // New State Variables for Text & Drawing
+    let isTextMode = false;
+    let pendingText = '';
+    let lastX = 0;
+    let lastY = 0;
 
     // UI Controls
     const btnUndo = document.getElementById('btnUndo');
@@ -394,14 +400,33 @@
       };
     });
 
+    /* --- HELPER: GET MOUSE POSITION --- */
+    function getMousePos(e) {
+      const rect = canvas.getBoundingClientRect();
+      const scaleX = canvas.width / rect.width;
+      const scaleY = canvas.height / rect.height;
+      return {
+        x: (e.clientX - rect.left) * scaleX,
+        y: (e.clientY - rect.top) * scaleY
+      };
+    }
+
     /* --- DRAWING --- */
     btnDraw.onclick = () => {
       isDrawingMode = !isDrawingMode;
       if (isDrawingMode) {
+        // Cancel text mode if active
+        if (isTextMode) {
+          isTextMode = false;
+          pendingText = '';
+          btnText.className = 'px-3 py-2 bg-white border border-gray-300 rounded-md hover:bg-gray-50 text-sm font-medium';
+          btnText.textContent = 'Add Text';
+        }
+        
         btnDraw.className = 'px-3 py-2 border rounded-md text-sm font-medium bg-blue-100 border-blue-300 text-blue-700';
         btnDraw.textContent = 'Stop Drawing';
         canvas.classList.add('cursor-crosshair');
-        canvas.classList.remove('cursor-default');
+        canvas.classList.remove('cursor-default', 'cursor-text');
       } else {
         btnDraw.className = 'px-3 py-2 bg-white border border-gray-300 rounded-md hover:bg-gray-50 text-sm font-medium';
         btnDraw.textContent = 'Draw';
@@ -410,31 +435,94 @@
       }
     };
 
-    canvas.onmousedown = e => { if (!isDrawingMode) return; isDrawing = true; draw(e); };
-    canvas.onmousemove = e => { if (!isDrawingMode || !isDrawing) return; draw(e); };
-    canvas.onmouseup = () => { if (isDrawing) { isDrawing = false; saveState(); } };
-    canvas.onmouseleave = canvas.onmouseup;
+    canvas.onmousedown = e => { 
+      const pos = getMousePos(e);
 
-    function draw(e) {
-      const rect = canvas.getBoundingClientRect();
-      const scaleX = canvas.width / rect.width;
-      const scaleY = canvas.height / rect.height;
+      // Handle Text Placement
+      if (isTextMode) {
+        ctx.fillStyle = colorPicker.value;
+        ctx.font = "30px Arial";
+        ctx.fillText(pendingText, pos.x, pos.y);
+        saveState();
+        
+        // Reset text mode
+        isTextMode = false;
+        pendingText = '';
+        btnText.className = 'px-3 py-2 bg-white border border-gray-300 rounded-md hover:bg-gray-50 text-sm font-medium';
+        btnText.textContent = 'Add Text';
+        canvas.classList.remove('cursor-text');
+        canvas.classList.add('cursor-default');
+        return;
+      }
+
+      // Handle Drawing Start
+      if (!isDrawingMode) return; 
+      isDrawing = true; 
+      lastX = pos.x;
+      lastY = pos.y;
       
       ctx.beginPath();
-      ctx.arc((e.clientX - rect.left) * scaleX, (e.clientY - rect.top) * scaleY, 2, 0, Math.PI * 2);
-      ctx.fillStyle = colorPicker.value;
-      ctx.fill();
-    }
+      ctx.moveTo(lastX, lastY);
+    };
+
+    canvas.onmousemove = e => { 
+      if (!isDrawingMode || !isDrawing) return; 
+      
+      const pos = getMousePos(e);
+      
+      // Draw continuous line
+      ctx.lineTo(pos.x, pos.y);
+      ctx.strokeStyle = colorPicker.value;
+      ctx.lineWidth = 5; // Brush size
+      ctx.lineCap = 'round'; // Smooth edges
+      ctx.lineJoin = 'round'; // Smooth corners
+      ctx.stroke();
+      
+      lastX = pos.x;
+      lastY = pos.y;
+    };
+
+    canvas.onmouseup = () => { 
+      if (isDrawing) { 
+        isDrawing = false; 
+        saveState(); 
+      } 
+    };
+    
+    canvas.onmouseleave = canvas.onmouseup;
 
     /* --- ADD TEXT --- */
     btnText.onclick = () => {
+      if (isTextMode) {
+        // Cancel text mode
+        isTextMode = false;
+        pendingText = '';
+        btnText.className = 'px-3 py-2 bg-white border border-gray-300 rounded-md hover:bg-gray-50 text-sm font-medium';
+        btnText.textContent = 'Add Text';
+        canvas.classList.remove('cursor-text');
+        canvas.classList.add('cursor-default');
+        return;
+      }
+
       let text = prompt("Enter text:");
       if (!text) return;
       text = text.replace(/[<>]/g, ''); // sanitize
-      ctx.fillStyle = colorPicker.value;
-      ctx.font = "30px Arial";
-      ctx.fillText(text, 50, 50);
-      saveState();
+      
+      pendingText = text;
+      isTextMode = true;
+      
+      // Disable drawing mode if active
+      if (isDrawingMode) {
+        isDrawingMode = false;
+        btnDraw.className = 'px-3 py-2 bg-white border border-gray-300 rounded-md hover:bg-gray-50 text-sm font-medium';
+        btnDraw.textContent = 'Draw';
+      }
+
+      // Update UI to show we are waiting for a click
+      btnText.className = 'px-3 py-2 border rounded-md text-sm font-medium bg-blue-100 border-blue-300 text-blue-700';
+      btnText.textContent = 'Click to Place';
+      canvas.classList.add('cursor-text');
+      canvas.classList.remove('cursor-default', 'cursor-crosshair');
     };
 
     /* --- DOWNLOAD --- */
