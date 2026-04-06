@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- SECURITY: Allows Tailwind, jsDelivr (for the AI model), and Imgly static assets -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://cdn.tailwindcss.com https://cdn.jsdelivr.net https://static.imgly.com;">
-  <title>IGT Image Tools PRO</title>
+  <title>IGT Image Tools PRO1</title>
   
   <!-- Tailwind CSS via CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
+  
   <!-- Imgly Background Removal AI via CDN -->
-  <script src="https://cdn.jsdelivr.net/npm/@imgly/background-removal@1.4.5/dist/imgly-background-removal.js"></script>
+  <!-- Using unpkg as a reliable fallback CDN -->
+  <script src="https://unpkg.com/@imgly/background-removal@1.4.5/dist/imgly-background-removal.js"></script>
   
   <style>
     body { font-family: 'Inter', Arial, sans-serif; }
@@ -62,7 +62,6 @@
       <!-- CANVAS AREA (Left Side) -->
       <div class="flex-1 w-full min-w-0 flex flex-col items-center bg-white p-4 rounded-xl shadow-sm border border-gray-200">
         <div class="relative w-full overflow-hidden rounded-lg border border-gray-300 canvas-container flex justify-center items-center" style="min-height: 400px;">
-          <!-- Added max-w-full and max-h-[60vh] to ensure it scales down -->
           <canvas id="canvas" class="max-w-full max-h-[60vh] object-contain cursor-default"></canvas>
         </div>
         
@@ -317,7 +316,7 @@
         newImg.src = url;
       } catch (error) {
         console.error("Background removal failed:", error);
-        alert("Failed to remove background. Ensure you are running this on a live server (https://) and not a local file:// URL.");
+        alert("Failed to remove background. Please try again.");
         btnRemoveBg.innerHTML = originalText;
         btnRemoveBg.disabled = false;
       }
