@@ -57,12 +57,13 @@
     </div>
 
     <!-- EDITOR (Hidden initially) -->
-    <div id="editor" class="w-full hidden flex-col lg:flex-row gap-8 items-start">
+    <div id="editor" class="w-full hidden flex-col lg:flex-row gap-6 items-start">
       
-      <!-- CANVAS AREA -->
-      <div class="flex-grow w-full flex flex-col items-center bg-white p-4 rounded-xl shadow-sm border border-gray-200">
+      <!-- CANVAS AREA (Left Side) -->
+      <div class="flex-1 w-full min-w-0 flex flex-col items-center bg-white p-4 rounded-xl shadow-sm border border-gray-200">
         <div class="relative w-full overflow-hidden rounded-lg border border-gray-300 canvas-container flex justify-center items-center" style="min-height: 400px;">
-          <canvas id="canvas" class="max-w-full h-auto object-contain cursor-default" style="max-height: 70vh;"></canvas>
+          <!-- Added max-w-full and max-h-[60vh] to ensure it scales down -->
+          <canvas id="canvas" class="max-w-full max-h-[60vh] object-contain cursor-default"></canvas>
         </div>
         
         <!-- TOOLBAR -->
@@ -79,7 +80,7 @@
         </div>
       </div>
 
-      <!-- SIDEBAR CONTROLS -->
+      <!-- SIDEBAR CONTROLS (Right Side) -->
       <div class="w-full lg:w-80 flex-shrink-0 flex flex-col gap-4">
         
         <!-- Background Tools -->
