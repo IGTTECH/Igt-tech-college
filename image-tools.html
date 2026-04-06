@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>IGT Image Tools PRO2</title>
+  <title>IGT Image Tools PRO3</title>
   
   <!-- Tailwind CSS via CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -17,6 +17,9 @@
       originalWarn.apply(console, args);
     };
   </script>
+  
+  <!-- Imgly Background Removal AI via CDN -->
+  <script src="https://unpkg.com/@imgly/background-removal@1.4.5/dist/imgly-background-removal.js"></script>
   
   <style>
     body { font-family: 'Inter', Arial, sans-serif; }
@@ -76,6 +79,9 @@
           <button id="btnUndo" class="px-3 py-2 bg-white border border-gray-300 rounded-md hover:bg-gray-50 text-sm font-medium disabled:opacity-50" disabled>Undo</button>
           <button id="btnRedo" class="px-3 py-2 bg-white border border-gray-300 rounded-md hover:bg-gray-50 text-sm font-medium disabled:opacity-50" disabled>Redo</button>
           <button id="btnReset" class="px-3 py-2 bg-white border border-gray-300 rounded-md hover:bg-gray-50 text-sm font-medium">Reset</button>
+          
+          <!-- NEW: Change Image Button -->
+          <button id="btnChangeImage" class="px-3 py-2 bg-blue-50 border border-blue-200 text-blue-700 rounded-md hover:bg-blue-100 text-sm font-medium transition-colors">Change Image</button>
           
           <div class="w-px h-8 bg-gray-300 mx-1"></div>
           
@@ -163,14 +169,7 @@
     </div>
   </main>
 
-  <!-- Load Transformers.js as an ES Module -->
-  <script type="module">
-    import { pipeline, env } from 'https://cdn.jsdelivr.net/npm/@xenova/transformers@2.17.1';
-    
-    // Configure transformers.js to use the CDN for models
-    env.allowLocalModels = false;
-    env.useBrowserCache = true;
-
+  <script>
     // Elements
     const dropZone = document.getElementById('dropZone');
     const editor = document.getElementById('editor');
@@ -190,6 +189,7 @@
     const btnUndo = document.getElementById('btnUndo');
     const btnRedo = document.getElementById('btnRedo');
     const btnReset = document.getElementById('btnReset');
+    const btnChangeImage = document.getElementById('btnChangeImage');
     const btnDraw = document.getElementById('btnDraw');
     const btnText = document.getElementById('btnText');
     const btnDownload = document.getElementById('btnDownload');
@@ -226,19 +226,32 @@
           editor.classList.remove('hidden');
           editor.classList.add('flex');
           
-          saveState();
+          // Reset adjustments
+          brightness.value = 100; contrast.value = 100; saturation.value = 100;
+          currentFilter = 'none';
           updateFilters();
+          
+          // Reset history for new image
+          history = [];
+          redoStack = [];
+          saveState();
         };
         img.src = e.target.result;
       };
       reader.readAsDataURL(file);
+      
+      // Reset the file input so the same file can be selected again
+      upload.value = '';
     }
 
-    /* --- DROPZONE EVENTS --- */
+    /* --- DROPZONE & UPLOAD EVENTS --- */
     dropZone.onclick = () => upload.click();
     dropZone.ondragover = e => e.preventDefault();
     dropZone.ondrop = e => { e.preventDefault(); if(e.dataTransfer.files[0]) loadImage(e.dataTransfer.files[0]); };
     upload.onchange = e => { if(e.target.files[0]) loadImage(e.target.files[0]); };
+    
+    // Change Image Button
+    btnChangeImage.onclick = () => upload.click();
 
     /* --- HISTORY (UNDO/REDO) --- */
     function saveState() {
@@ -293,65 +306,45 @@
       btnRedo.disabled = redoStack.length === 0;
     }
 
-    /* --- BACKGROUND REMOVAL (Transformers.js) --- */
-    let segmenter = null;
-
+    /* --- REAL AI BACKGROUND REMOVAL --- */
     btnRemoveBg.onclick = async () => {
+      if (typeof imglyRemoveBackground === 'undefined') {
+        alert("Background removal library is still loading. Please wait a moment and try again.");
+        return;
+      }
+
       const originalText = btnRemoveBg.innerHTML;
-      btnRemoveBg.innerHTML = `<svg class="animate-spin h-5 w-5 mr-2 text-purple-700" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> Loading AI...`;
+      btnRemoveBg.innerHTML = `<svg class="animate-spin h-5 w-5 mr-2 text-purple-700" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> Processing AI...`;
       btnRemoveBg.disabled = true;
 
       try {
-        // 1. Load the model (only happens once)
-        if (!segmenter) {
-          segmenter = await pipeline('image-segmentation', 'Xenova/segformer-b0-finetuned-ade-512-512');
-        }
-        
-        btnRemoveBg.innerHTML = `<svg class="animate-spin h-5 w-5 mr-2 text-purple-700" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> Processing...`;
+        // Configuration to ensure it pulls the AI model from the public CDN
+        const config = {
+          publicPath: "https://unpkg.com/@imgly/background-removal@1.4.5/dist/"
+        };
 
-        // 2. Get image data from canvas
-        const imageData = canvas.toDataURL('image/jpeg');
+        // Get the current canvas image
+        const imageSrc = canvas.toDataURL('image/png');
         
-        // 3. Run segmentation
-        const result = await segmenter(imageData);
+        // Run the AI background removal (returns a Blob with a transparent background)
+        const blob = await imglyRemoveBackground(imageSrc, config);
+        const url = URL.createObjectURL(blob);
         
-        // 4. Find the background mask (usually label 'background' or similar)
-        // For simplicity in this basic model, we'll use a basic composite operation
-        // Note: A true robust background removal in pure JS without a backend is complex.
-        // If this model isn't perfect, the standard approach is to use an API like remove.bg
-        
-        // Create a temporary canvas to process the mask
-        const tempCanvas = document.createElement('canvas');
-        tempCanvas.width = canvas.width;
-        tempCanvas.height = canvas.height;
-        const tCtx = tempCanvas.getContext('2d');
-        
-        // Draw original image
-        tCtx.drawImage(canvas, 0, 0);
-        
-        // Apply a basic global composite operation to simulate background removal
-        // (In a real production app, you would process the alpha channel based on the segmentation mask)
-        tCtx.globalCompositeOperation = 'destination-in';
-        
-        // For this demo, we'll draw a circle in the center to prove the canvas manipulation works
-        // A full client-side background removal requires processing the raw pixel array against the AI mask
-        tCtx.beginPath();
-        tCtx.arc(canvas.width/2, canvas.height/2, Math.min(canvas.width, canvas.height)/2.5, 0, Math.PI * 2);
-        tCtx.fill();
-        
-        // Update main canvas
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        ctx.drawImage(tempCanvas, 0, 0);
-        saveState();
-        
-        btnRemoveBg.innerHTML = originalText;
-        btnRemoveBg.disabled = false;
-        
-        alert("Note: Full client-side AI background removal is limited. For production, consider using the Remove.bg API.");
-
+        const newImg = new Image();
+        newImg.onload = () => {
+          // Clear canvas and draw the new image with the background removed
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          ctx.drawImage(newImg, 0, 0, canvas.width, canvas.height);
+          saveState();
+          
+          btnRemoveBg.innerHTML = originalText;
+          btnRemoveBg.disabled = false;
+          URL.revokeObjectURL(url);
+        };
+        newImg.src = url;
       } catch (error) {
         console.error("Background removal failed:", error);
-        alert("Failed to process image. The AI model might be blocked by your browser.");
+        alert("Failed to remove background. Please try again.");
         btnRemoveBg.innerHTML = originalText;
         btnRemoveBg.disabled = false;
       }
