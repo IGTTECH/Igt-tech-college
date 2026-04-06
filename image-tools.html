@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>IGT Image Tools PRO</title>
   
-  <!-- 1. Suppress Tailwind Warning BEFORE loading Tailwind -->
+  <!-- Suppress Tailwind Warning BEFORE loading Tailwind -->
   <script>
     const originalWarn = console.warn;
     console.warn = function(...args) {
@@ -91,24 +91,28 @@
       <!-- SIDEBAR CONTROLS (Right Side) -->
       <div class="w-full lg:w-80 flex-shrink-0 flex flex-col gap-4">
         
-        <!-- Background Tools -->
+        <!-- NEW: Resize Settings -->
         <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-200">
-          <h3 class="text-sm font-bold text-gray-700 uppercase tracking-wider mb-4">Background</h3>
-          <div class="space-y-3">
-            <button id="btnRemoveBg" class="w-full py-2 bg-purple-100 text-purple-700 border border-purple-300 rounded-md hover:bg-purple-200 font-medium transition-colors flex justify-center items-center gap-2">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
-              <span id="btnRemoveBgText">Remove Background</span>
-            </button>
-            
-            <div class="h-px bg-gray-200 my-2"></div>
-            
-            <div class="flex gap-2">
-              <input type="color" id="bgColorPicker" value="#ffffff" class="w-10 h-10 p-1 bg-white border border-gray-300 rounded-md cursor-pointer" title="Background Color">
-              <button id="btnAddSolidBg" class="flex-1 py-2 bg-white border border-gray-300 rounded-md hover:bg-gray-50 text-sm font-medium">Add Color BG</button>
+          <h3 class="text-sm font-bold text-gray-700 uppercase tracking-wider mb-4">Resize Settings</h3>
+          
+          <div class="space-y-4">
+            <div class="flex gap-4">
+              <div class="flex-1">
+                <label class="block text-xs text-gray-500 mb-1">Width (px)</label>
+                <input type="number" id="resizeWidth" class="w-full p-2 border border-gray-300 rounded-md text-sm focus:ring-blue-500 focus:border-blue-500" placeholder="Width">
+              </div>
+              <div class="flex-1">
+                <label class="block text-xs text-gray-500 mb-1">Height (px)</label>
+                <input type="number" id="resizeHeight" class="w-full p-2 border border-gray-300 rounded-md text-sm focus:ring-blue-500 focus:border-blue-500" placeholder="Height">
+              </div>
             </div>
             
-            <button id="btnAddImageBg" class="w-full py-2 bg-white border border-gray-300 rounded-md hover:bg-gray-50 text-sm font-medium">Add Image BG</button>
-            <input type="file" id="bgUpload" class="hidden" accept="image/*">
+            <div class="flex items-center">
+              <input type="checkbox" id="lockAspectRatio" class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500" checked>
+              <label for="lockAspectRatio" class="ml-2 text-sm text-gray-700">Lock Aspect Ratio</label>
+            </div>
+            
+            <button id="btnApplyResize" class="w-full py-2 bg-blue-50 text-blue-700 border border-blue-300 rounded-md hover:bg-blue-100 font-medium transition-colors">Apply Resize</button>
           </div>
         </div>
 
@@ -144,7 +148,7 @@
 
         <!-- Export -->
         <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-200">
-          <h3 class="text-sm font-bold text-gray-700 uppercase tracking-wider mb-4">Export</h3>
+          <h3 class="text-sm font-bold text-gray-700 uppercase tracking-wider mb-4">Export Settings</h3>
           <div class="space-y-4">
             <div>
               <label class="block text-xs text-gray-500 mb-1">Format</label>
@@ -158,7 +162,10 @@
               <div class="flex justify-between text-xs text-gray-500 mb-1"><span>Quality</span><span id="valQuality">90%</span></div>
               <input type="range" id="quality" min="0.1" max="1" step="0.1" value="0.9" class="w-full accent-blue-600">
             </div>
-            <button id="btnDownload" class="w-full py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 font-medium shadow-sm transition-colors">Download Image</button>
+            <button id="btnDownload" class="w-full py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 font-medium shadow-sm transition-colors flex justify-center items-center gap-2">
+              <span>Export</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+            </button>
           </div>
         </div>
 
@@ -181,6 +188,7 @@
     let isDrawingMode = false;
     let isDrawing = false;
     let currentFilter = 'none';
+    let aspectRatio = 1;
 
     // UI Controls
     const btnUndo = document.getElementById('btnUndo');
@@ -192,6 +200,13 @@
     const btnDownload = document.getElementById('btnDownload');
     const colorPicker = document.getElementById('colorPicker');
     
+    // Resize Controls
+    const resizeWidth = document.getElementById('resizeWidth');
+    const resizeHeight = document.getElementById('resizeHeight');
+    const lockAspectRatio = document.getElementById('lockAspectRatio');
+    const btnApplyResize = document.getElementById('btnApplyResize');
+
+    // Adjustment Controls
     const brightness = document.getElementById('brightness');
     const contrast = document.getElementById('contrast');
     const saturation = document.getElementById('saturation');
@@ -199,14 +214,6 @@
     const valContrast = document.getElementById('valContrast');
     const valSaturation = document.getElementById('valSaturation');
     const filterBtns = document.querySelectorAll('.filter-btn');
-
-    // Background Controls
-    const btnRemoveBg = document.getElementById('btnRemoveBg');
-    const btnRemoveBgText = document.getElementById('btnRemoveBgText');
-    const bgColorPicker = document.getElementById('bgColorPicker');
-    const btnAddSolidBg = document.getElementById('btnAddSolidBg');
-    const btnAddImageBg = document.getElementById('btnAddImageBg');
-    const bgUpload = document.getElementById('bgUpload');
 
     /* --- LOAD IMAGE --- */
     function loadImage(file) {
@@ -218,6 +225,11 @@
           canvas.height = img.height;
           ctx.clearRect(0, 0, canvas.width, canvas.height);
           ctx.drawImage(img, 0, 0);
+          
+          // Set initial resize values
+          aspectRatio = img.width / img.height;
+          resizeWidth.value = img.width;
+          resizeHeight.value = img.height;
           
           // Switch Views
           dropZone.classList.add('hidden');
@@ -258,8 +270,16 @@
     function restoreState(dataUrl) {
       const temp = new Image();
       temp.onload = () => {
+        // Update canvas dimensions in case we are undoing a resize
+        canvas.width = temp.width;
+        canvas.height = temp.height;
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         ctx.drawImage(temp, 0, 0);
+        
+        // Update resize UI to match the restored state
+        resizeWidth.value = canvas.width;
+        resizeHeight.value = canvas.height;
+        aspectRatio = canvas.width / canvas.height;
       };
       temp.src = dataUrl;
     }
@@ -300,104 +320,47 @@
       btnRedo.disabled = redoStack.length === 0;
     }
 
-    /* --- DYNAMIC AI LOADING & BACKGROUND REMOVAL --- */
-    // We do NOT load the heavy AI script until the user clicks the button.
-    // This prevents the browser from blocking it on page load.
-    async function loadImglyScript() {
-      if (window.imglyRemoveBackground) return true;
-      
-      return new Promise((resolve, reject) => {
-        const script = document.createElement('script');
-        // Using jsdelivr as it is generally more stable than unpkg
-        script.src = "https://cdn.jsdelivr.net/npm/@imgly/background-removal@1.4.5/dist/imgly-background-removal.js";
-        script.onload = () => resolve(true);
-        script.onerror = () => reject(new Error("Network blocked the AI script."));
-        document.head.appendChild(script);
-      });
-    }
-
-    btnRemoveBg.onclick = async () => {
-      btnRemoveBg.disabled = true;
-      const originalHTML = btnRemoveBg.innerHTML;
-      
-      try {
-        // Step 1: Load the script dynamically
-        btnRemoveBgText.innerText = "Initializing AI...";
-        await loadImglyScript();
-
-        // Step 2: Process the image
-        btnRemoveBgText.innerText = "Processing Image...";
-        
-        const config = {
-          publicPath: "https://static.imgly.com/@imgly/background-removal-data/1.4.5/dist/",
-          debug: false
-        };
-
-        // Pass canvas directly to save memory
-        const blob = await imglyRemoveBackground(canvas, config);
-        const url = URL.createObjectURL(blob);
-        
-        const newImg = new Image();
-        newImg.onload = () => {
-          ctx.clearRect(0, 0, canvas.width, canvas.height);
-          ctx.drawImage(newImg, 0, 0, canvas.width, canvas.height);
-          saveState();
-          
-          btnRemoveBg.innerHTML = originalHTML;
-          btnRemoveBg.disabled = false;
-          URL.revokeObjectURL(url);
-        };
-        newImg.src = url;
-
-      } catch (error) {
-        console.error("AI Error:", error);
-        alert("Background removal failed.\n\nReason: " + error.message + "\n\nIf you are on a mobile device, it may not have enough RAM to run the AI model locally.");
-        btnRemoveBg.innerHTML = originalHTML;
-        btnRemoveBg.disabled = false;
+    /* --- RESIZE LOGIC --- */
+    resizeWidth.addEventListener('input', () => {
+      if (lockAspectRatio.checked && resizeWidth.value) {
+        resizeHeight.value = Math.round(resizeWidth.value / aspectRatio);
       }
-    };
+    });
 
-    /* --- ADD BACKGROUNDS --- */
-    btnAddSolidBg.onclick = () => {
+    resizeHeight.addEventListener('input', () => {
+      if (lockAspectRatio.checked && resizeHeight.value) {
+        resizeWidth.value = Math.round(resizeHeight.value * aspectRatio);
+      }
+    });
+
+    btnApplyResize.onclick = () => {
+      const newWidth = parseInt(resizeWidth.value);
+      const newHeight = parseInt(resizeHeight.value);
+
+      if (!newWidth || !newHeight || newWidth <= 0 || newHeight <= 0) {
+        alert("Please enter valid width and height dimensions.");
+        return;
+      }
+
+      // Create a temporary canvas to hold the current image data
       const tempCanvas = document.createElement('canvas');
       tempCanvas.width = canvas.width;
       tempCanvas.height = canvas.height;
       const tCtx = tempCanvas.getContext('2d');
-      
-      tCtx.fillStyle = bgColorPicker.value;
-      tCtx.fillRect(0, 0, tempCanvas.width, tempCanvas.height);
       tCtx.drawImage(canvas, 0, 0);
-      
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.drawImage(tempCanvas, 0, 0);
-      saveState();
-    };
 
-    btnAddImageBg.onclick = () => bgUpload.click();
-    bgUpload.onchange = e => {
-      const file = e.target.files[0];
-      if (!file) return;
-      
-      const reader = new FileReader();
-      reader.onload = event => {
-        const bgImg = new Image();
-        bgImg.onload = () => {
-          const tempCanvas = document.createElement('canvas');
-          tempCanvas.width = canvas.width;
-          tempCanvas.height = canvas.height;
-          const tCtx = tempCanvas.getContext('2d');
-          
-          tCtx.drawImage(bgImg, 0, 0, tempCanvas.width, tempCanvas.height);
-          tCtx.drawImage(canvas, 0, 0);
-          
-          ctx.clearRect(0, 0, canvas.width, canvas.height);
-          ctx.drawImage(tempCanvas, 0, 0);
-          saveState();
-          bgUpload.value = '';
-        };
-        bgImg.src = event.target.result;
-      };
-      reader.readAsDataURL(file);
+      // Resize the main canvas
+      canvas.width = newWidth;
+      canvas.height = newHeight;
+
+      // Draw the image scaled to the new dimensions
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.drawImage(tempCanvas, 0, 0, canvas.width, canvas.height);
+
+      // Update aspect ratio in case they unlocked and changed it
+      aspectRatio = canvas.width / canvas.height;
+
+      saveState();
     };
 
     /* --- FILTERS & ADJUSTMENTS --- */
