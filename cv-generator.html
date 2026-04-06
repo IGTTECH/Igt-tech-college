@@ -11,8 +11,8 @@
     <!-- Tailwind CSS for UI styling -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Vue 3 for reactivity (Secure against XSS) -->
-    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <!-- Vue 3 PRODUCTION Build (Removes the console warning) -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
     
     <!-- html2pdf for PDF generation -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
@@ -492,4 +492,136 @@
                     profileImage: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80',
                     name: 'SETH IRADUKUNDA',
                     title: 'FOUNDER',
-                    about: "I'm Skilled and motivated technology professional with experience in Website Development and Android App Development, combined with practical expertise in Mobile Repairing Hardware and Software. Knowledgeable in Social Media Marketing, helping businesses and projects grow their online presence with Strong background in Project Management and Business Management, with the ability to plan, organize, and complete
+                    about: "I'm Skilled and motivated technology professional with experience in Website Development and Android App Development, combined with practical expertise in Mobile Repairing Hardware and Software. Knowledgeable in Social Media Marketing, helping businesses and projects grow their online presence with Strong background in Project Management and Business Management, with the ability to plan, organize, and complete projects effectively. Known for effective communication, teamwork, and a continuous desire to learn and apply new technologies to solve real-world problems.",
+                    contact: {
+                        phone: '+256-773-052-560',
+                        email: 'igttechcollege.com/contact',
+                        linkedin: 'www.linkedin.com/in/seth-iradukunda-webdev1234567',
+                        location: '256 Kampala, Uganda',
+                        website: 'www.igttechcollege.com'
+                    },
+                    skills: [
+                        'Website Development',
+                        'Android App Development',
+                        'Mobile Repairing Hardware',
+                        'Mobile Repairing Software',
+                        'Social Media Marketing',
+                        'Effective Communication',
+                        'Project Management',
+                        'Business Management'
+                    ],
+                    languages: [
+                        'English (Fluent)',
+                        'Swahili (Natural)',
+                        'Kinyarwanda(Natural)',
+                        'Lunyankole (Intermediate)'
+                    ],
+                    projects: [
+                        'Website :www.igttechcollege.com',
+                        'Tech training for online Africans',
+                        'APPS AVALIABLE ON PLAY STORE',
+                        '1.IGT Network | 2.IGT PDF Editor',
+                        '3.IGTT Camera | 4.IGT QR & Barcode Scanner'
+                    ],
+                    references: [
+                        'IGT Tech College',
+                        'Management',
+                        'Whatsapp: +256-753-894-085',
+                        'Email: info.igttech@gmail.com'
+                    ],
+                    experience: [
+                        {
+                            title: 'Freelance Technology Developer',
+                            date: '2023 - Present',
+                            company: 'Website & Android Application Developer',
+                            bullets: [
+                                'Design and develop responsive websites using modern web technologies.',
+                                'Build and publish Android applications for various purposes including utility and productivity apps.',
+                                'Maintain and update websites and mobile apps to improve performance and security.',
+                                'Provide technical support and troubleshooting for software-related issues.'
+                            ]
+                        },
+                        {
+                            title: 'Mobile Repair Technician',
+                            date: '2022 - Present',
+                            company: 'Hardware & Software Mobile Repair Specialist',
+                            bullets: [
+                                'Diagnose and repair smartphone hardware issues including screens, batteries, and charging ports.',
+                                'Perform mobile software troubleshooting such as system recovery, flashing firmware, and removing malware.',
+                                'Install and configure mobile applications and operating systems.',
+                                'Provide technical advice and support to customers.'
+                            ]
+                        },
+                        {
+                            title: 'Digital Marketing & Business Management',
+                            date: '2022 - Present',
+                            company: 'Social Media Marketing Specialist',
+                            bullets: [
+                                'Manage social media accounts to promote businesses and digital products.',
+                                'Create marketing strategies to increase audience reach and engagement.',
+                                'Analyze marketing performance and optimize campaigns.',
+                                'Apply business management and project management principles to improve productivity.'
+                            ]
+                        }
+                    ],
+                    education: [
+                        {
+                            title: 'Certificate in Website & App Development and Mobile technical',
+                            date: '2016 - 2020',
+                            school: 'School of Technology | Kampala Uganda',
+                            description: ''
+                        },
+                        {
+                            title: 'Social Media marketing & Communication',
+                            date: '2022 - 2025',
+                            school: 'School of Business Management | Uganda',
+                            description: "I'm still desire to improve Every thing so that I can reach my Dreams"
+                        }
+                    ]
+                }
+            }
+        },
+        methods: {
+            handleImageUpload(event) {
+                const file = event.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        this.cv.profileImage = e.target.result;
+                    };
+                    reader.readAsDataURL(file);
+                }
+            },
+            addExperience() {
+                this.cv.experience.push({
+                    title: '',
+                    date: '',
+                    company: '',
+                    bullets: ['']
+                });
+            },
+            addEducation() {
+                this.cv.education.push({
+                    title: '',
+                    date: '',
+                    school: '',
+                    description: ''
+                });
+            },
+            downloadPDF() {
+                const element = document.getElementById('cv-document');
+                const opt = {
+                    margin: 0,
+                    filename: `${this.cv.name.toLowerCase().replace(/\s+/g, '-')}-cv.pdf`,
+                    image: { type: 'jpeg', quality: 0.98 },
+                    html2canvas: { scale: 2, useCORS: true },
+                    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+                };
+                html2pdf().set(opt).from(element).save();
+            }
+        }
+    }).mount('#app')
+</script>
+
+</body>
+</html>
