@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- SECURITY: Updated to allow Tailwind, jsDelivr (for the AI model), and Imgly static assets -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://cdn.tailwindcss.com https://cdn.jsdelivr.net https://static.imgly.com;">
+  <title>IGT Image Tools PRO</title>
+  
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Imgly Background Removal AI via CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@imgly/background-removal@1.4.5/dist/imgly-background-removal.js"></script>
+  
+  <style>
+    body { font-family: 'Inter', Arial, sans-serif; }
+    /* Checkerboard pattern to show transparency */
+    .canvas-container {
+      background-image: 
+        linear-gradient(45deg, #ccc 25%, transparent 25%), 
+        linear-gradient(135deg, #ccc 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, #ccc 75%),
+        linear-gradient(135deg, transparent 75%, #ccc 75%);
+      background-size: 20px 20px;
+      background-position: 0 0, 10px 0, 10px -10px, 0px 10px;
+      background-color: #fff;
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-gray-50 text-gray-800 flex flex-col">
+
+  <!-- NAVIGATION -->
+  <nav class="bg-blue-600 text-white shadow-md">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+      <div class="text-xl font-bold tracking-tight">IGT Image Tools PRO</div>
+      <ul class="hidden md:flex space-x-1 text-sm font-medium">
+        <li><a href="index.html" class="px-3 py-2 rounded-md hover:bg-blue-700">Home</a></li>
+        <li><a href="register.html" class="px-3 py-2 rounded-md hover:bg-blue-700">Register</a></li>
+        <li><a href="login.html" class="px-3 py-2 rounded-md hover:bg-blue-700">Login</a></li>
+        <li><a href="software.html" class="px-3 py-2 rounded-md hover:bg-blue-700">Software</a></li>
+        <li><a href="contact.html" class="px-3 py-2 rounded-md hover:bg-blue-700">Contact Us</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <main class="flex-grow max-w-7xl mx-auto px-4 py-8 w-full flex flex-col items-center">
+    
+    <!-- DROPZONE (Visible initially) -->
+    <div id="dropZone" class="w-full max-w-2xl mt-10 border-2 border-dashed border-blue-400 rounded-xl p-12 flex flex-col items-center justify-center bg-white cursor-pointer hover:bg-blue-50 transition-colors shadow-sm">
+      <svg class="w-12 h-12 text-blue-500 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path>
+      </svg>
+      <h3 class="text-xl font-semibold text-gray-700 mb-2">Drag & Drop Image or Click</h3>
+      <p class="text-gray-500 text-sm">Supports PNG, JPG, WEBP</p>
+      <input type="file" id="upload" class="hidden" accept="image/png,image/jpeg,image/webp">
+    </div>
+
+    <!-- EDITOR (Hidden initially) -->
+    <div id="editor" class="w-full hidden flex-col lg:flex-row gap-8 items-start">
+      
+      <!-- CANVAS AREA -->
+      <div class="flex-grow w-full flex flex-col items-center bg-white p-4 rounded-xl shadow-sm border border-gray-200">
+        <div class="relative w-full overflow-hidden rounded-lg border border-gray-300 canvas-container flex justify-center items-center" style="min-height: 400px;">
+          <canvas id="canvas" class="max-w-full h-auto object-contain cursor-default" style="max-height: 70vh;"></canvas>
+        </div>
+        
+        <!-- TOOLBAR -->
+        <div class="flex flex-wrap justify-center items-center gap-2 mt-4 p-2 bg-gray-100 rounded-lg w-full">
+          <button id="btnUndo" class="px-3 py-2 bg-white border border-gray-300 rounded-md hover:bg-gray-50 text-sm font-medium disabled:opacity-50" disabled>Undo</button>
+          <button id="btnRedo" class="px-3 py-2 bg-white border border-gray-300 rounded-md hover:bg-gray-50 text-sm font-medium disabled:opacity-50" disabled>Redo</button>
+          <button id="btnReset" class="px-3 py-2 bg-white border border-gray-300 rounded-md hover:bg-gray-50 text-sm font-medium">Reset</button>
+          
+          <div class="w-px h-8 bg-gray-300 mx-1"></div>
+          
+          <input type="color" id="colorPicker" value="#ef4444" class="w-9 h-9 p-1 bg-white border border-gray-300 rounded-md cursor-pointer" title="Choose color">
+          <button id="btnDraw" class="px-3 py-2 bg-white border border-gray-300 rounded-md hover:bg-gray-50 text-sm font-medium transition-colors">Draw</button>
+          <button id="btnText" class="px-3 py-2 bg-white border border-gray-300 rounded-md hover:bg-gray-50 text-sm font-medium">Add Text</button>
+        </div>
+      </div>
+
+      <!-- SIDEBAR CONTROLS -->
+      <div class="w-full lg:w-80 flex-shrink-0 flex flex-col gap-4">
+        
+        <!-- Background Tools -->
+        <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-200">
+          <h3 class="text-sm font-bold text-gray-700 uppercase tracking-wider mb-4">Background</h3>
+          <div class="space-y-3">
+            <button id="btnRemoveBg" class="w-full py-2 bg-purple-100 text-purple-700 border border-purple-300 rounded-md hover:bg-purple-200 font-medium transition-colors flex justify-center items-center gap-2">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
+              <span>Remove Background</span>
+            </button>
+            
+            <div class="h-px bg-gray-200 my-2"></div>
+            
+            <div class="flex gap-2">
+              <input type="color" id="bgColorPicker" value="#ffffff" class="w-10 h-10 p-1 bg-white border border-gray-300 rounded-md cursor-pointer" title="Background Color">
+              <button id="btnAddSolidBg" class="flex-1 py-2 bg-white border border-gray-300 rounded-md hover:bg-gray-50 text-sm font-medium">Add Color BG</button>
+            </div>
+            
+            <button id="btnAddImageBg" class="w-full py-2 bg-white border border-gray-300 rounded-md hover:bg-gray-50 text-sm font-medium">Add Image BG</button>
+            <input type="file" id="bgUpload" class="hidden" accept="image/*">
+          </div>
+        </div>
+
+        <!-- Adjustments -->
+        <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-200">
+          <h3 class="text-sm font-bold text-gray-700 uppercase tracking-wider mb-4">Adjustments</h3>
+          <div class="space-y-4">
+            <div>
+              <div class="flex justify-between text-xs text-gray-500 mb-1"><span>Brightness</span><span id="valBrightness">100%</span></div>
+              <input type="range" id="brightness" min="0" max="200" value="100" class="w-full accent-blue-600">
+            </div>
+            <div>
+              <div class="flex justify-between text-xs text-gray-500 mb-1"><span>Contrast</span><span id="valContrast">100%</span></div>
+              <input type="range" id="contrast" min="0" max="200" value="100" class="w-full accent-blue-600">
+            </div>
+            <div>
+              <div class="flex justify-between text-xs text-gray-500 mb-1"><span>Saturation</span><span id="valSaturation">100%</span></div>
+              <input type="range" id="saturation" min="0" max="200" value="100" class="w-full accent-blue-600">
+            </div>
+          </div>
+        </div>
+
+        <!-- Filters -->
+        <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-200">
+          <h3 class="text-sm font-bold text-gray-700 uppercase tracking-wider mb-4">Filters</h3>
+          <div class="grid grid-cols-2 gap-2">
+            <button class="filter-btn py-2 px-3 text-sm rounded-md border bg-white border-gray-300 hover:bg-gray-50" data-filter="grayscale(100%)">Grayscale</button>
+            <button class="filter-btn py-2 px-3 text-sm rounded-md border bg-white border-gray-300 hover:bg-gray-50" data-filter="sepia(100%)">Sepia</button>
+            <button class="filter-btn py-2 px-3 text-sm rounded-md border bg-white border-gray-300 hover:bg-gray-50" data-filter="invert(100%)">Invert</button>
+            <button class="filter-btn py-2 px-3 text-sm rounded-md border bg-blue-50 border-blue-300 text-blue-700" data-filter="none">Clear</button>
+          </div>
+        </div>
+
+        <!-- Export -->
+        <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-200">
+          <h3 class="text-sm font-bold text-gray-700 uppercase tracking-wider mb-4">Export</h3>
+          <div class="space-y-4">
+            <div>
+              <label class="block text-xs text-gray-500 mb-1">Format</label>
+              <select id="format" class="w-full p-2 border border-gray-300 rounded-md text-sm">
+                <option value="image/png">PNG</option>
+                <option value="image/jpeg">JPG</option>
+                <option value="image/webp">WEBP</option>
+              </select>
+            </div>
+            <div>
+              <div class="flex justify-between text-xs text-gray-500 mb-1"><span>Quality</span><span id="valQuality">90%</span></div>
+              <input type="range" id="quality" min="0.1" max="1" step="0.1" value="0.9" class="w-full accent-blue-600">
+            </div>
+            <button id="btnDownload" class="w-full py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 font-medium shadow-sm transition-colors">Download Image</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // Elements
+    const dropZone = document.getElementById('dropZone');
+    const editor = document.getElementById('editor');
+    const upload = document.getElementById('upload');
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+
+    // State Variables
+    let img = new Image();
+    let history = [];
+    let redoStack = [];
+    let isDrawingMode = false;
+    let isDrawing = false;
+    let currentFilter = 'none';
+
+    // UI Controls
+    const btnUndo = document.getElementById('btnUndo');
+    const btnRedo = document.getElementById('btnRedo');
+    const btnReset = document.getElementById('btnReset');
+    const btnDraw = document.getElementById('btnDraw');
+    const btnText = document.getElementById('btnText');
+    const btnDownload = document.getElementById('btnDownload');
+    const colorPicker = document.getElementById('colorPicker');
+    
+    const brightness = document.getElementById('brightness');
+    const contrast = document.getElementById('contrast');
+    const saturation = document.getElementById('saturation');
+    const valBrightness = document.getElementById('valBrightness');
+    const valContrast = document.getElementById('valContrast');
+    const valSaturation = document.getElementById('valSaturation');
+    const filterBtns = document.querySelectorAll('.filter-btn');
+
+    // Background Controls
+    const btnRemoveBg = document.getElementById('btnRemoveBg');
+    const bgColorPicker = document.getElementById('bgColorPicker');
+    const btnAddSolidBg = document.getElementById('btnAddSolidBg');
+    const btnAddImageBg = document.getElementById('btnAddImageBg');
+    const bgUpload = document.getElementById('bgUpload');
+
+    /* --- LOAD IMAGE --- */
+    function loadImage(file) {
+      if (!file.type.startsWith('image/')) { alert('Only image files allowed'); return; }
+      const reader = new FileReader();
+      reader.onload = e => {
+        img.onload = () => {
+          canvas.width = img.width;
+          canvas.height = img.height;
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          ctx.drawImage(img, 0, 0);
+          
+          // Switch Views
+          dropZone.classList.add('hidden');
+          editor.classList.remove('hidden');
+          editor.classList.add('flex');
+          
+          saveState();
+          updateFilters();
+        };
+        img.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+
+    /* --- DROPZONE EVENTS --- */
+    dropZone.onclick = () => upload.click();
+    dropZone.ondragover = e => e.preventDefault();
+    dropZone.ondrop = e => { e.preventDefault(); if(e.dataTransfer.files[0]) loadImage(e.dataTransfer.files[0]); };
+    upload.onchange = e => { if(e.target.files[0]) loadImage(e.target.files[0]); };
+
+    /* --- HISTORY (UNDO/REDO) --- */
+    function saveState() {
+      history.push(canvas.toDataURL());
+      if (history.length > 30) history.shift();
+      redoStack = [];
+      updateButtons();
+    }
+
+    function restoreState(dataUrl) {
+      const temp = new Image();
+      temp.onload = () => {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.drawImage(temp, 0, 0);
+      };
+      temp.src = dataUrl;
+    }
+
+    btnUndo.onclick = () => {
+      if (history.length > 1) {
+        redoStack.push(history.pop());
+        restoreState(history[history.length - 1]);
+        updateButtons();
+      }
+    };
+
+    btnRedo.onclick = () => {
+      if (redoStack.length > 0) {
+        const state = redoStack.pop();
+        history.push(state);
+        restoreState(state);
+        updateButtons();
+      }
+    };
+
+    btnReset.onclick = () => {
+      if (history.length > 0) {
+        const initialState = history[0];
+        history = [initialState];
+        redoStack = [];
+        restoreState(initialState);
+        
+        brightness.value = 100; contrast.value = 100; saturation.value = 100;
+        currentFilter = 'none';
+        updateFilters();
+        updateButtons();
+      }
+    };
+
+    function updateButtons() {
+      btnUndo.disabled = history.length <= 1;
+      btnRedo.disabled = redoStack.length === 0;
+    }
+
+    /* --- BACKGROUND REMOVAL & ADDITION --- */
+    
+    // 1. Remove Background (AI)
+    btnRemoveBg.onclick = async () => {
+      if (typeof imglyRemoveBackground === 'undefined') {
+        alert("Background removal library is still loading or failed to load. Please check your internet connection.");
+        return;
+      }
+
+      const originalText = btnRemoveBg.innerHTML;
+      btnRemoveBg.innerHTML = `<svg class="animate-spin h-5 w-5 mr-2 text-purple-700" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> Processing...`;
+      btnRemoveBg.disabled = true;
+
+      try {
+        // Pass the current canvas image to the AI model
+        const blob = await imglyRemoveBackground(canvas.toDataURL());
+        const url = URL.createObjectURL(blob);
+        
+        const newImg = new Image();
+        newImg.onload = () => {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          ctx.drawImage(newImg, 0, 0);
+          saveState();
+          
+          btnRemoveBg.innerHTML = originalText;
+          btnRemoveBg.disabled = false;
+          URL.revokeObjectURL(url);
+        };
+        newImg.src = url;
+      } catch (error) {
+        console.error("Background removal failed:", error);
+        alert("Failed to remove background. The image might be too complex or the model failed to load.");
+        btnRemoveBg.innerHTML = originalText;
+        btnRemoveBg.disabled = false;
+      }
+    };
+
+    // 2. Add Solid Color Background
+    btnAddSolidBg.onclick = () => {
+      const tempCanvas = document.createElement('canvas');
+      tempCanvas.width = canvas.width;
+      tempCanvas.height = canvas.height;
+      const tCtx = tempCanvas.getContext('2d');
+      
+      // Draw the solid color
+      tCtx.fillStyle = bgColorPicker.value;
+      tCtx.fillRect(0, 0, tempCanvas.width, tempCanvas.height);
+      
+      // Draw the current image (with transparent areas) over it
+      tCtx.drawImage(canvas, 0, 0);
+      
+      // Update main canvas
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.drawImage(tempCanvas, 0, 0);
+      saveState();
+    };
+
+    // 3. Add Image Background
+    btnAddImageBg.onclick = () => bgUpload.click();
+    bgUpload.onchange = e => {
+      const file = e.target.files[0];
+      if (!file) return;
+      
+      const reader = new FileReader();
+      reader.onload = event => {
+        const bgImg = new Image();
+        bgImg.onload = () => {
+          const tempCanvas = document.createElement('canvas');
+          tempCanvas.width = canvas.width;
+          tempCanvas.height = canvas.height;
+          const tCtx = tempCanvas.getContext('2d');
+          
+          // Draw background image (stretched to fit canvas)
+          tCtx.drawImage(bgImg, 0, 0, tempCanvas.width, tempCanvas.height);
+          
+          // Draw current image over it
+          tCtx.drawImage(canvas, 0, 0);
+          
+          // Update main canvas
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          ctx.drawImage(tempCanvas, 0, 0);
+          saveState();
+          
+          // Reset input so the same file can be selected again if needed
+          bgUpload.value = '';
+        };
+        bgImg.src = event.target.result;
+      };
+      reader.readAsDataURL(file);
+    };
+
+    /* --- FILTERS & ADJUSTMENTS --- */
+    function updateFilters() {
+      valBrightness.textContent = brightness.value + '%';
+      valContrast.textContent = contrast.value + '%';
+      valSaturation.textContent = saturation.value + '%';
+      
+      let filterStr = `brightness(${brightness.value}%) contrast(${contrast.value}%) saturate(${saturation.value}%)`;
+      if (currentFilter !== 'none') filterStr += ` ${currentFilter}`;
+      
+      // Apply non-destructive CSS filter to canvas
+      canvas.style.filter = filterStr;
+      
+      // Update active button styling
+      filterBtns.forEach(btn => {
+        if (btn.dataset.filter === currentFilter) {
+          btn.className = 'filter-btn py-2 px-3 text-sm rounded-md border bg-blue-50 border-blue-300 text-blue-700';
+        } else {
+          btn.className = 'filter-btn py-2 px-3 text-sm rounded-md border bg-white border-gray-300 hover:bg-gray-50';
+        }
+      });
+    }
+
+    brightness.oninput = updateFilters;
+    contrast.oninput = updateFilters;
+    saturation.oninput = updateFilters;
+
+    filterBtns.forEach(btn => {
+      btn.onclick = () => {
+        currentFilter = btn.dataset.filter;
+        updateFilters();
+      };
+    });
+
+    /* --- DRAWING --- */
+    btnDraw.onclick = () => {
+      isDrawingMode = !isDrawingMode;
+      if (isDrawingMode) {
+        btnDraw.className = 'px-3 py-2 border rounded-md text-sm font-medium bg-blue-100 border-blue-300 text-blue-700';
+        btnDraw.textContent = 'Stop Drawing';
+        canvas.classList.add('cursor-crosshair');
+        canvas.classList.remove('cursor-default');
+      } else {
+        btnDraw.className = 'px-3 py-2 bg-white border border-gray-300 rounded-md hover:bg-gray-50 text-sm font-medium';
+        btnDraw.textContent = 'Draw';
+        canvas.classList.remove('cursor-crosshair');
+        canvas.classList.add('cursor-default');
+      }
+    };
+
+    canvas.onmousedown = e => {
+      if (!isDrawingMode) return;
+      isDrawing = true;
+      draw(e);
+    };
+
+    canvas.onmousemove = e => {
+      if (!isDrawingMode || !isDrawing) return;
+      draw(e);
+    };
+
+    canvas.onmouseup = () => {
+      if (isDrawing) {
+        isDrawing = false;
+        saveState();
+      }
+    };
+    
+    canvas.onmouseleave = canvas.onmouseup;
+
+    function draw(e) {
+      const rect = canvas.getBoundingClientRect();
+      const scaleX = canvas.width / rect.width;
+      const scaleY = canvas.height / rect.height;
+      
+      ctx.beginPath();
+      ctx.arc((e.clientX - rect.left) * scaleX, (e.clientY - rect.top) * scaleY, 2, 0, Math.PI * 2);
+      ctx.fillStyle = colorPicker.value;
+      ctx.fill();
+    }
+
+    /* --- ADD TEXT --- */
+    btnText.onclick = () => {
+      let text = prompt("Enter text:");
+      if (!text) return;
+      text = text.replace(/[<>]/g, ''); // sanitize
+      ctx.fillStyle = colorPicker.value;
+      ctx.font = "30px Arial";
+      ctx.fillText(text, 50, 50);
+      saveState();
+    };
+
+    /* --- DOWNLOAD --- */
+    const qualityInput = document.getElementById('quality');
+    const valQuality = document.getElementById('valQuality');
+    qualityInput.oninput = () => valQuality.textContent = Math.round(qualityInput.value * 100) + '%';
+
+    btnDownload.onclick = () => {
+      const format = document.getElementById('format').value;
+      const quality = parseFloat(qualityInput.value);
+      
+      // Create an offscreen canvas to bake the CSS filters into the actual image data
+      const offscreen = document.createElement('canvas');
+      offscreen.width = canvas.width;
+      offscreen.height = canvas.height;
+      const offCtx = offscreen.getContext('2d');
+      
+      offCtx.filter = canvas.style.filter;
+      offCtx.drawImage(canvas, 0, 0);
+      
+      const a = document.createElement('a');
+      a.href = offscreen.toDataURL(format, quality);
+      a.download = "edited_image";
+      a.click();
+    };
+  </script>
+</body>
+</html>
