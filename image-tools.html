@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- SECURITY: Updated to allow Tailwind, jsDelivr (for the AI model), and Imgly static assets -->
+  <!-- SECURITY: Allows Tailwind, jsDelivr (for the AI model), and Imgly static assets -->
   <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://cdn.tailwindcss.com https://cdn.jsdelivr.net https://static.imgly.com;">
   <title>IGT Image Tools PRO</title>
   
@@ -294,8 +294,13 @@
       btnRemoveBg.disabled = true;
 
       try {
+        // Explicitly tell the AI to use the public CDN for its models
+        const config = {
+          publicPath: "https://static.imgly.com/@imgly/background-removal-data/1.4.5/dist/"
+        };
+
         // Pass the current canvas image to the AI model
-        const blob = await imglyRemoveBackground(canvas.toDataURL());
+        const blob = await imglyRemoveBackground(canvas.toDataURL(), config);
         const url = URL.createObjectURL(blob);
         
         const newImg = new Image();
@@ -311,7 +316,7 @@
         newImg.src = url;
       } catch (error) {
         console.error("Background removal failed:", error);
-        alert("Failed to remove background. The image might be too complex or the model failed to load.");
+        alert("Failed to remove background. Ensure you are running this on a live server (https://) and not a local file:// URL.");
         btnRemoveBg.innerHTML = originalText;
         btnRemoveBg.disabled = false;
       }
