@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>IGT Image Tools PRO3</title>
+  <title>IGT Image Tools PRO4</title>
   
   <!-- Tailwind CSS via CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -306,7 +306,7 @@
       btnRedo.disabled = redoStack.length === 0;
     }
 
-    /* --- REAL AI BACKGROUND REMOVAL --- */
+    /* --- SECURE CLIENT-SIDE AI BACKGROUND REMOVAL --- */
     btnRemoveBg.onclick = async () => {
       if (typeof imglyRemoveBackground === 'undefined') {
         alert("Background removal library is still loading. Please wait a moment and try again.");
@@ -318,16 +318,14 @@
       btnRemoveBg.disabled = true;
 
       try {
-        // Configuration to ensure it pulls the AI model from the public CDN
+        // Use the official static data path for the AI models (prevents loading errors)
         const config = {
-          publicPath: "https://unpkg.com/@imgly/background-removal@1.4.5/dist/"
+          publicPath: "https://static.imgly.com/@imgly/background-removal-data/1.4.5/dist/"
         };
 
-        // Get the current canvas image
-        const imageSrc = canvas.toDataURL('image/png');
-        
-        // Run the AI background removal (returns a Blob with a transparent background)
-        const blob = await imglyRemoveBackground(imageSrc, config);
+        // Pass the canvas directly instead of converting to Base64 first.
+        // This saves a MASSIVE amount of RAM and prevents mobile browsers from crashing!
+        const blob = await imglyRemoveBackground(canvas, config);
         const url = URL.createObjectURL(blob);
         
         const newImg = new Image();
@@ -344,7 +342,7 @@
         newImg.src = url;
       } catch (error) {
         console.error("Background removal failed:", error);
-        alert("Failed to remove background. Please try again.");
+        alert("Failed to remove background. If you are on a phone, the image might be too large for the device's memory.");
         btnRemoveBg.innerHTML = originalText;
         btnRemoveBg.disabled = false;
       }
