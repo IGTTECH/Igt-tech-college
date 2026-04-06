@@ -3,12 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>IGT Image Tools PRO4</title>
+  <title>IGT Image Tools PRO</title>
   
-  <!-- Tailwind CSS via CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- 1. Suppress Tailwind Warning BEFORE loading Tailwind -->
   <script>
-    // Suppress the Tailwind CDN warning in the console
     const originalWarn = console.warn;
     console.warn = function(...args) {
       if (args[0] && typeof args[0] === 'string' && args[0].includes('cdn.tailwindcss.com should not be used in production')) {
@@ -18,8 +16,8 @@
     };
   </script>
   
-  <!-- Imgly Background Removal AI via CDN -->
-  <script src="https://unpkg.com/@imgly/background-removal@1.4.5/dist/imgly-background-removal.js"></script>
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
   
   <style>
     body { font-family: 'Inter', Arial, sans-serif; }
@@ -80,7 +78,6 @@
           <button id="btnRedo" class="px-3 py-2 bg-white border border-gray-300 rounded-md hover:bg-gray-50 text-sm font-medium disabled:opacity-50" disabled>Redo</button>
           <button id="btnReset" class="px-3 py-2 bg-white border border-gray-300 rounded-md hover:bg-gray-50 text-sm font-medium">Reset</button>
           
-          <!-- NEW: Change Image Button -->
           <button id="btnChangeImage" class="px-3 py-2 bg-blue-50 border border-blue-200 text-blue-700 rounded-md hover:bg-blue-100 text-sm font-medium transition-colors">Change Image</button>
           
           <div class="w-px h-8 bg-gray-300 mx-1"></div>
@@ -100,7 +97,7 @@
           <div class="space-y-3">
             <button id="btnRemoveBg" class="w-full py-2 bg-purple-100 text-purple-700 border border-purple-300 rounded-md hover:bg-purple-200 font-medium transition-colors flex justify-center items-center gap-2">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
-              <span>Remove Background</span>
+              <span id="btnRemoveBgText">Remove Background</span>
             </button>
             
             <div class="h-px bg-gray-200 my-2"></div>
@@ -205,6 +202,7 @@
 
     // Background Controls
     const btnRemoveBg = document.getElementById('btnRemoveBg');
+    const btnRemoveBgText = document.getElementById('btnRemoveBgText');
     const bgColorPicker = document.getElementById('bgColorPicker');
     const btnAddSolidBg = document.getElementById('btnAddSolidBg');
     const btnAddImageBg = document.getElementById('btnAddImageBg');
@@ -239,8 +237,6 @@
         img.src = e.target.result;
       };
       reader.readAsDataURL(file);
-      
-      // Reset the file input so the same file can be selected again
       upload.value = '';
     }
 
@@ -249,8 +245,6 @@
     dropZone.ondragover = e => e.preventDefault();
     dropZone.ondrop = e => { e.preventDefault(); if(e.dataTransfer.files[0]) loadImage(e.dataTransfer.files[0]); };
     upload.onchange = e => { if(e.target.files[0]) loadImage(e.target.files[0]); };
-    
-    // Change Image Button
     btnChangeImage.onclick = () => upload.click();
 
     /* --- HISTORY (UNDO/REDO) --- */
@@ -306,69 +300,79 @@
       btnRedo.disabled = redoStack.length === 0;
     }
 
-    /* --- SECURE CLIENT-SIDE AI BACKGROUND REMOVAL --- */
+    /* --- DYNAMIC AI LOADING & BACKGROUND REMOVAL --- */
+    // We do NOT load the heavy AI script until the user clicks the button.
+    // This prevents the browser from blocking it on page load.
+    async function loadImglyScript() {
+      if (window.imglyRemoveBackground) return true;
+      
+      return new Promise((resolve, reject) => {
+        const script = document.createElement('script');
+        // Using jsdelivr as it is generally more stable than unpkg
+        script.src = "https://cdn.jsdelivr.net/npm/@imgly/background-removal@1.4.5/dist/imgly-background-removal.js";
+        script.onload = () => resolve(true);
+        script.onerror = () => reject(new Error("Network blocked the AI script."));
+        document.head.appendChild(script);
+      });
+    }
+
     btnRemoveBg.onclick = async () => {
-      if (typeof imglyRemoveBackground === 'undefined') {
-        alert("Background removal library is still loading. Please wait a moment and try again.");
-        return;
-      }
-
-      const originalText = btnRemoveBg.innerHTML;
-      btnRemoveBg.innerHTML = `<svg class="animate-spin h-5 w-5 mr-2 text-purple-700" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> Processing AI...`;
       btnRemoveBg.disabled = true;
-
+      const originalHTML = btnRemoveBg.innerHTML;
+      
       try {
-        // Use the official static data path for the AI models (prevents loading errors)
+        // Step 1: Load the script dynamically
+        btnRemoveBgText.innerText = "Initializing AI...";
+        await loadImglyScript();
+
+        // Step 2: Process the image
+        btnRemoveBgText.innerText = "Processing Image...";
+        
         const config = {
-          publicPath: "https://static.imgly.com/@imgly/background-removal-data/1.4.5/dist/"
+          publicPath: "https://static.imgly.com/@imgly/background-removal-data/1.4.5/dist/",
+          debug: false
         };
 
-        // Pass the canvas directly instead of converting to Base64 first.
-        // This saves a MASSIVE amount of RAM and prevents mobile browsers from crashing!
+        // Pass canvas directly to save memory
         const blob = await imglyRemoveBackground(canvas, config);
         const url = URL.createObjectURL(blob);
         
         const newImg = new Image();
         newImg.onload = () => {
-          // Clear canvas and draw the new image with the background removed
           ctx.clearRect(0, 0, canvas.width, canvas.height);
           ctx.drawImage(newImg, 0, 0, canvas.width, canvas.height);
           saveState();
           
-          btnRemoveBg.innerHTML = originalText;
+          btnRemoveBg.innerHTML = originalHTML;
           btnRemoveBg.disabled = false;
           URL.revokeObjectURL(url);
         };
         newImg.src = url;
+
       } catch (error) {
-        console.error("Background removal failed:", error);
-        alert("Failed to remove background. If you are on a phone, the image might be too large for the device's memory.");
-        btnRemoveBg.innerHTML = originalText;
+        console.error("AI Error:", error);
+        alert("Background removal failed.\n\nReason: " + error.message + "\n\nIf you are on a mobile device, it may not have enough RAM to run the AI model locally.");
+        btnRemoveBg.innerHTML = originalHTML;
         btnRemoveBg.disabled = false;
       }
     };
 
-    // 2. Add Solid Color Background
+    /* --- ADD BACKGROUNDS --- */
     btnAddSolidBg.onclick = () => {
       const tempCanvas = document.createElement('canvas');
       tempCanvas.width = canvas.width;
       tempCanvas.height = canvas.height;
       const tCtx = tempCanvas.getContext('2d');
       
-      // Draw the solid color
       tCtx.fillStyle = bgColorPicker.value;
       tCtx.fillRect(0, 0, tempCanvas.width, tempCanvas.height);
-      
-      // Draw the current image (with transparent areas) over it
       tCtx.drawImage(canvas, 0, 0);
       
-      // Update main canvas
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       ctx.drawImage(tempCanvas, 0, 0);
       saveState();
     };
 
-    // 3. Add Image Background
     btnAddImageBg.onclick = () => bgUpload.click();
     bgUpload.onchange = e => {
       const file = e.target.files[0];
@@ -383,18 +387,12 @@
           tempCanvas.height = canvas.height;
           const tCtx = tempCanvas.getContext('2d');
           
-          // Draw background image (stretched to fit canvas)
           tCtx.drawImage(bgImg, 0, 0, tempCanvas.width, tempCanvas.height);
-          
-          // Draw current image over it
           tCtx.drawImage(canvas, 0, 0);
           
-          // Update main canvas
           ctx.clearRect(0, 0, canvas.width, canvas.height);
           ctx.drawImage(tempCanvas, 0, 0);
           saveState();
-          
-          // Reset input so the same file can be selected again if needed
           bgUpload.value = '';
         };
         bgImg.src = event.target.result;
@@ -411,10 +409,8 @@
       let filterStr = `brightness(${brightness.value}%) contrast(${contrast.value}%) saturate(${saturation.value}%)`;
       if (currentFilter !== 'none') filterStr += ` ${currentFilter}`;
       
-      // Apply non-destructive CSS filter to canvas
       canvas.style.filter = filterStr;
       
-      // Update active button styling
       filterBtns.forEach(btn => {
         if (btn.dataset.filter === currentFilter) {
           btn.className = 'filter-btn py-2 px-3 text-sm rounded-md border bg-blue-50 border-blue-300 text-blue-700';
@@ -451,24 +447,9 @@
       }
     };
 
-    canvas.onmousedown = e => {
-      if (!isDrawingMode) return;
-      isDrawing = true;
-      draw(e);
-    };
-
-    canvas.onmousemove = e => {
-      if (!isDrawingMode || !isDrawing) return;
-      draw(e);
-    };
-
-    canvas.onmouseup = () => {
-      if (isDrawing) {
-        isDrawing = false;
-        saveState();
-      }
-    };
-    
+    canvas.onmousedown = e => { if (!isDrawingMode) return; isDrawing = true; draw(e); };
+    canvas.onmousemove = e => { if (!isDrawingMode || !isDrawing) return; draw(e); };
+    canvas.onmouseup = () => { if (isDrawing) { isDrawing = false; saveState(); } };
     canvas.onmouseleave = canvas.onmouseup;
 
     function draw(e) {
@@ -502,7 +483,6 @@
       const format = document.getElementById('format').value;
       const quality = parseFloat(qualityInput.value);
       
-      // Create an offscreen canvas to bake the CSS filters into the actual image data
       const offscreen = document.createElement('canvas');
       offscreen.width = canvas.width;
       offscreen.height = canvas.height;
