@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Code Tools - IGT Tech College</title>
+    
+    <!-- Tailwind CSS for Styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- QR Code Generator Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    
+    <!-- Barcode Generator Library -->
+    <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
+    
+    <!-- Camera Scanner Library -->
+    <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        // Configure Tailwind to use the green theme
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        green: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            800: '#166534',
+                            900: '#14532d',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        .tab-btn.active {
+            background-color: #f0fdf4;
+            color: #15803d;
+            border-color: #dcfce7;
+        }
+        /* Fix for scanner video element on mobile */
+        #reader video { object-fit: cover; border-radius: 0.5rem; }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans min-h-screen flex flex-col">
+    
+    <!-- Top Contact Bar -->
+    <div class="bg-green-900 text-green-50 text-xs py-2 px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+        <div class="flex gap-6 max-w-6xl mx-auto w-full">
+            <span class="flex items-center gap-2"><i class="fa-solid fa-envelope"></i> info@igttechcollege.com</span>
+            <span class="hidden sm:flex items-center gap-2"><i class="fa-solid fa-phone"></i> Support Available 24/7</span>
+            <span class="ml-auto font-medium tracking-wide">SECURE STUDENT & STAFF PORTAL</span>
+        </div>
+    </div>
+
+    <!-- Main Navigation Header -->
+    <header class="bg-white border-b border-gray-200 sticky top-0 z-20 shadow-sm">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-4">
+                <!-- Back to Home Button -->
+                <a href="https://www.igttechcollege.com/" class="text-gray-400 hover:text-green-600 transition-colors flex items-center justify-center w-10 h-10 rounded-full hover:bg-green-50" title="Back to Main Website">
+                    <i class="fa-solid fa-arrow-left text-xl"></i>
+                </a>
+                
+                <div class="w-12 h-12 bg-green-600 rounded-xl flex items-center justify-center text-white font-bold text-2xl shadow-md">
+                    IGT
+                </div>
+                <div>
+                    <h1 class="text-2xl font-bold text-gray-900 leading-tight">IGT Tech College</h1>
+                    <p class="text-xs text-green-600 font-bold uppercase tracking-wider mt-0.5">Digital Tools</p>
+                </div>
+            </div>
+            
+            <!-- Desktop Navigation Links -->
+            <nav class="hidden md:flex items-center gap-8 text-sm font-semibold text-gray-600">
+                <a href="https://www.igttechcollege.com/" class="hover:text-green-600 transition-colors">Home</a>
+                <a href="#" class="hover:text-green-600 transition-colors">Programs</a>
+                <a href="#" class="hover:text-green-600 transition-colors">Admissions</a>
+                <a href="#" class="text-green-600 border-b-2 border-green-600 pb-1">Code Tools</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <div class="bg-gradient-to-b from-green-50 to-white border-b border-gray-200 py-12 sm:py-16">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4 tracking-tight">Professional Code Management</h2>
+            <p class="text-lg text-gray-600 leading-relaxed">
+                Generate custom QR codes for your projects, create standard barcodes for inventory, or scan existing codes securely. Designed specifically for IGT Tech College students, faculty, and partners.
+            </p>
+        </div>
+    </div>
+
+    <!-- Main Application Area -->
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 flex-grow w-full">
+        
+        <!-- Tabs -->
+        <div class="bg-white p-1.5 rounded-xl border border-gray-200 shadow-sm flex flex-col sm:flex-row gap-1.5 mb-8 max-w-3xl mx-auto">
+            <button onclick="switchTab('qr')" id="tab-qr" class="tab-btn active flex-1 flex items-center justify-center gap-2 py-3.5 px-4 rounded-lg font-semibold text-sm transition-all text-gray-600 hover:bg-gray-50 border border-transparent">
+                <i class="fa-solid fa-qrcode text-lg"></i> QR Generator
+            </button>
+            <button onclick="switchTab('barcode')" id="tab-barcode" class="tab-btn flex-1 flex items-center justify-center gap-2 py-3.5 px-4 rounded-lg font-semibold text-sm transition-all text-gray-600 hover:bg-gray-50 border border-transparent">
+                <i class="fa-solid fa-barcode text-lg"></i> Barcode Generator
+            </button>
+            <button onclick="switchTab('scan')" id="tab-scan" class="tab-btn flex-1 flex items-center justify-center gap-2 py-3.5 px-4 rounded-lg font-semibold text-sm transition-all text-gray-600 hover:bg-gray-50 border border-transparent">
+                <i class="fa-solid fa-camera-retro text-lg"></i> Secure Scanner
+            </button>
+        </div>
+
+        <!-- Content Area -->
+        <div class="bg-white rounded-2xl shadow-lg border border-gray-200 p-6 sm:p-10 mb-16">
+            
+            <!-- QR Generator Tab -->
+            <div id="content-qr" class="tab-content active">
+                <div class="flex flex-col md:flex-row gap-10">
+                    <div class="flex-1 space-y-6">
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-2">Content (URL, Text, or Contact Info)</label>
+                            <textarea id="qr-text" class="w-full p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none transition-all resize-none h-32 text-gray-800" oninput="generateQR()">https://www.igttechcollege.com/</textarea>
+                        </div>
+                        <div class="grid grid-cols-2 gap-6 p-5 bg-gray-50 rounded-xl border border-gray-100">
+                            <div>
+                                <label class="block text-sm font-bold text-gray-700 mb-2">Foreground Color</label>
+                                <input type="color" id="qr-color-dark" value="#000000" class="w-full h-12 rounded-lg cursor-pointer border-0 p-0" onchange="generateQR()">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-bold text-gray-700 mb-2">Background Color</label>
+                                <input type="color" id="qr-color-light" value="#ffffff" class="w-full h-12 rounded-lg cursor-pointer border-0 p-0" onchange="generateQR()">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex flex-col items-center justify-center p-8 bg-gray-50 rounded-2xl border border-gray-200 min-w-[320px]">
+                        <div class="bg-white p-5 rounded-2xl shadow-sm mb-8 flex items-center justify-center border border-gray-100">
+                            <div id="qr-code"></div>
+                        </div>
+                        <button onclick="downloadQR()" class="flex items-center gap-2 px-8 py-4 bg-green-600 text-white rounded-xl font-bold hover:bg-green-700 transition-colors w-full justify-center shadow-md hover:shadow-lg">
+                            <i class="fa-solid fa-download"></i> Download QR Code
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Barcode Generator Tab -->
+            <div id="content-barcode" class="tab-content">
+                <div class="flex flex-col md:flex-row gap-10">
+                    <div class="flex-1 space-y-6">
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-2">Barcode Value (ID, Serial, etc.)</label>
+                            <input type="text" id="barcode-text" value="IGT-123456789" class="w-full p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none transition-all text-gray-800 font-mono" oninput="generateBarcode()">
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 p-5 bg-gray-50 rounded-xl border border-gray-100">
+                            <div class="sm:col-span-2">
+                                <label class="block text-sm font-bold text-gray-700 mb-2">Industry Format</label>
+                                <select id="barcode-format" class="w-full p-3 border border-gray-300 rounded-lg bg-white outline-none focus:ring-2 focus:ring-green-500 font-medium text-gray-700" onchange="generateBarcode()">
+                                    <option value="CODE128">CODE128 (Standard)</option>
+                                    <option value="CODE39">CODE39</option>
+                                    <option value="EAN13">EAN13 (Retail)</option>
+                                    <option value="UPC">UPC</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-bold text-gray-700 mb-2">Line Color</label>
+                                <input type="color" id="barcode-color" value="#000000" class="w-full h-12 rounded-lg cursor-pointer border-0 p-0" onchange="generateBarcode()">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-bold text-gray-700 mb-2">Background Color</label>
+                                <input type="color" id="barcode-bg" value="#ffffff" class="w-full h-12 rounded-lg cursor-pointer border-0 p-0" onchange="generateBarcode()">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex flex-col items-center justify-center p-8 bg-gray-50 rounded-2xl border border-gray-200 min-w-[320px] overflow-hidden">
+                        <div class="bg-white p-6 rounded-2xl shadow-sm mb-8 flex items-center justify-center w-full overflow-x-auto border border-gray-100" id="barcode-container">
+                            <svg id="barcode"></svg>
+                        </div>
+                        <button onclick="downloadBarcode()" class="flex items-center gap-2 px-8 py-4 bg-green-600 text-white rounded-xl font-bold hover:bg-green-700 transition-colors w-full justify-center shadow-md hover:shadow-lg">
+                            <i class="fa-solid fa-download"></i> Download Barcode
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scanner Tab -->
+            <div id="content-scan" class="tab-content">
+                <div class="flex flex-col items-center max-w-3xl mx-auto">
+                    <div class="w-full bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm">
+                        <div class="p-5 bg-gray-50 border-b border-gray-200 flex items-center gap-3">
+                            <div class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center text-green-600">
+                                <i class="fa-solid fa-camera"></i>
+                            </div>
+                            <h3 class="font-bold text-gray-800 text-lg">Live Camera Scanner</h3>
+                        </div>
+                        <div class="p-8">
+                            <div id="scanner-container" class="w-full max-w-lg mx-auto">
+                                <div id="reader" class="w-full rounded-xl overflow-hidden border-2 border-dashed border-gray-300 bg-gray-50"></div>
+                                <p class="text-sm text-gray-500 text-center mt-6 font-medium">
+                                    Point your device's camera at any QR code or Barcode to scan it automatically.
+                                </p>
+                            </div>
+                            <div id="scanner-result" class="hidden flex-col items-center py-10">
+                                <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mb-6 shadow-inner">
+                                    <i class="fa-solid fa-check text-green-600 text-4xl"></i>
+                                </div>
+                                <h4 class="text-2xl font-bold text-gray-900 mb-3">Scan Successful!</h4>
+                                <div class="w-full max-w-lg bg-gray-50 p-5 rounded-xl border border-gray-200 mb-8 relative shadow-sm">
+                                    <p id="scan-text" class="text-gray-800 break-all pr-12 font-mono text-lg"></p>
+                                    <button onclick="copyScan()" class="absolute top-4 right-4 p-2.5 text-gray-500 hover:text-green-600 hover:bg-green-100 rounded-lg transition-colors" title="Copy to clipboard">
+                                        <i class="fa-solid fa-copy text-lg"></i>
+                                    </button>
+                                </div>
+                                <div class="flex gap-4 w-full max-w-lg">
+                                    <a id="scan-link" href="#" target="_blank" class="hidden flex-1 text-center px-6 py-3.5 bg-green-600 text-white rounded-xl font-bold hover:bg-green-700 transition-colors shadow-md">Open Link</a>
+                                    <button onclick="resetScanner()" class="flex-1 px-6 py-3.5 bg-gray-200 text-gray-800 rounded-xl font-bold hover:bg-gray-300 transition-colors">Scan Another</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Information / Features Section -->
+        <div class="grid md:grid-cols-3 gap-8 mt-8 border-t border-gray-200 pt-16">
+            <div class="text-center px-4">
+                <div class="w-14 h-14 bg-green-100 text-green-600 rounded-2xl flex items-center justify-center mx-auto mb-5 text-2xl shadow-sm">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </div>
+                <h3 class="font-bold text-gray-900 text-lg mb-3">100% Secure & Private</h3>
+                <p class="text-gray-600 text-sm leading-relaxed">All code generation and scanning happens locally in your browser. No data, text, or camera feeds are ever transmitted to external servers, ensuring complete privacy for sensitive college information.</p>
+            </div>
+            <div class="text-center px-4">
+                <div class="w-14 h-14 bg-green-100 text-green-600 rounded-2xl flex items-center justify-center mx-auto mb-5 text-2xl shadow-sm">
+                    <i class="fa-solid fa-bolt"></i>
+                </div>
+                <h3 class="font-bold text-gray-900 text-lg mb-3">Lightning Fast</h3>
+                <p class="text-gray-600 text-sm leading-relaxed">Powered by modern web technologies, our tools provide instant results without page reloads or waiting for server responses. Generate high-quality codes in milliseconds.</p>
+            </div>
+            <div class="text-center px-4">
+                <div class="w-14 h-14 bg-green-100 text-green-600 rounded-2xl flex items-center justify-center mx-auto mb-5 text-2xl shadow-sm">
+                    <i class="fa-solid fa-mobile-screen"></i>
+                </div>
+                <h3 class="font-bold text-gray-900 text-lg mb-3">Device Friendly</h3>
+                <p class="text-gray-600 text-sm leading-relaxed">Whether you are using a desktop computer in the campus lab or your smartphone on the go, the interface adapts perfectly to your screen for a seamless experience.</p>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Professional Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-16 mt-auto">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-10">
+            <div class="md:col-span-2">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-10 h-10 bg-green-600 rounded-lg flex items-center justify-center text-white font-bold text-lg">IGT</div>
+                    <h4 class="text-white font-bold text-xl">IGT Tech College</h4>
+                </div>
+                <p class="text-sm text-gray-400 mb-6 max-w-sm leading-relaxed">
+                    Empowering the next generation of technology leaders through innovation, dedication, and practical skills. Our digital tools are built to support your academic journey.
+                </p>
+                <div class="flex gap-4">
+                    <a href="#" class="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center hover:bg-green-600 hover:text-white transition-colors"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" class="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center hover:bg-green-600 hover:text-white transition-colors"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="#" class="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center hover:bg-green-600 hover:text-white transition-colors"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="#" class="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center hover:bg-green-600 hover:text-white transition-colors"><i class="fa-brands fa-instagram"></i></a>
+                </div>
+            </div>
+            
+            <div>
+                <h4 class="text-white font-bold mb-6 text-lg">Quick Links</h4>
+                <ul class="space-y-3 text-sm">
+                    <li><a href="https://www.igttechcollege.com/" class="hover:text-green-400 transition-colors flex items-center gap-2"><i class="fa-solid fa-angle-right text-xs text-green-600"></i> Main Website</a></li>
+                    <li><a href="#" class="hover:text-green-400 transition-colors flex items-center gap-2"><i class="fa-solid fa-angle-right text-xs text-green-600"></i> Student Portal</a></li>
+                    <li><a href="#" class="hover:text-green-400 transition-colors flex items-center gap-2"><i class="fa-solid fa-angle-right text-xs text-green-600"></i> Faculty Directory</a></li>
+                    <li><a href="#" class="hover:text-green-400 transition-colors flex items-center gap-2"><i class="fa-solid fa-angle-right text-xs text-green-600"></i> Privacy Policy</a></li>
+                </ul>
+            </div>
+            
+            <div>
+                <h4 class="text-white font-bold mb-6 text-lg">Contact Us</h4>
+                <ul class="space-y-4 text-sm">
+                    <li class="flex items-start gap-3">
+                        <i class="fa-solid fa-location-dot mt-1 text-green-500"></i> 
+                        <span>123 Tech Campus Drive<br>Innovation City, TX 75001</span>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <i class="fa-solid fa-envelope text-green-500"></i> 
+                        <a href="mailto:info@igttechcollege.com" class="hover:text-green-400 transition-colors">info@igttechcollege.com</a>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <i class="fa-solid fa-phone text-green-500"></i> 
+                        <span>+1 (555) 123-4567</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 pt-8 border-t border-gray-800 text-sm text-center text-gray-500 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p>&copy; 2026 IGT Tech College. All rights reserved.</p>
+            <p>Designed for Secure Campus Operations</p>
+        </div>
+    </footer>
+
+    <script>
+        // --- Tab Switching Logic ---
+        let html5QrcodeScanner = null;
+
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+            
+            document.getElementById('content-' + tabId).classList.add('active');
+            document.getElementById('tab-' + tabId).classList.add('active');
+
+            if (tabId === 'scan') {
+                initScanner();
+            } else if (html5QrcodeScanner) {
+                html5QrcodeScanner.clear().catch(error => console.error("Failed to clear scanner", error));
+                html5QrcodeScanner = null;
+            }
+        }
+
+        // --- QR Code Logic ---
+        let qrCodeObj = null;
+        function generateQR() {
+            const text = document.getElementById('qr-text').value;
+            const colorDark = document.getElementById('qr-color-dark').value;
+            const colorLight = document.getElementById('qr-color-light').value;
+            const container = document.getElementById('qr-code');
+            
+            container.innerHTML = '';
+            if (!text) return;
+
+            qrCodeObj = new QRCode(container, {
+                text: text,
+                width: 256,
+                height: 256,
+                colorDark : colorDark,
+                colorLight : colorLight,
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        }
+
+        function downloadQR() {
+            const img = document.querySelector('#qr-code img');
+            const canvas = document.querySelector('#qr-code canvas');
+            if (!img && !canvas) return;
+            
+            const url = img && img.src ? img.src : canvas.toDataURL("image/png");
+            const link = document.createElement('a');
+            link.download = 'igt-qrcode.png';
+            link.href = url;
+            link.click();
+        }
+
+        // --- Barcode Logic ---
+        function generateBarcode() {
+            const text = document.getElementById('barcode-text').value;
+            const format = document.getElementById('barcode-format').value;
+            const lineColor = document.getElementById('barcode-color').value;
+            const background = document.getElementById('barcode-bg').value;
+            
+            document.getElementById('barcode-container').style.backgroundColor = background;
+
+            if (!text) {
+                document.getElementById('barcode').innerHTML = '';
+                return;
+            }
+
+            try {
+                JsBarcode("#barcode", text, {
+                    format: format,
+                    lineColor: lineColor,
+                    background: background,
+                    width: 2,
+                    height: 100,
+                    displayValue: true
+                });
+            } catch (e) {
+                console.error("Invalid barcode format for the given text");
+            }
+        }
+
+        function downloadBarcode() {
+            const svg = document.getElementById('barcode');
+            const svgData = new XMLSerializer().serializeToString(svg);
+            const canvas = document.createElement("canvas");
+            const ctx = canvas.getContext("2d");
+            const img = new Image();
+            
+            img.onload = function() {
+                canvas.width = img.width;
+                canvas.height = img.height;
+                ctx.fillStyle = document.getElementById('barcode-bg').value;
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                ctx.drawImage(img, 0, 0);
+                
+                const link = document.createElement('a');
+                link.download = 'igt-barcode.png';
+                link.href = canvas.toDataURL("image/png");
+                link.click();
+            };
+            img.src = "data:image/svg+xml;base64," + btoa(unescape(encodeURIComponent(svgData)));
+        }
+
+        // --- Scanner Logic ---
+        function initScanner() {
+            if (html5QrcodeScanner) return;
+            
+            document.getElementById('scanner-container').classList.remove('hidden');
+            document.getElementById('scanner-result').classList.add('hidden');
+            document.getElementById('scanner-result').classList.remove('flex');
+
+            html5QrcodeScanner = new Html5QrcodeScanner(
+                "reader",
+                { fps: 10, qrbox: {width: 250, height: 250} },
+                /* verbose= */ false);
+                
+            html5QrcodeScanner.render(onScanSuccess, onScanFailure);
+        }
+
+        function onScanSuccess(decodedText, decodedResult) {
+            document.getElementById('scanner-container').classList.add('hidden');
+            document.getElementById('scanner-result').classList.remove('hidden');
+            document.getElementById('scanner-result').classList.add('flex');
+            
+            document.getElementById('scan-text').innerText = decodedText;
+            
+            const linkBtn = document.getElementById('scan-link');
+            if (decodedText.startsWith('http://') || decodedText.startsWith('https://')) {
+                linkBtn.href = decodedText;
+                linkBtn.classList.remove('hidden');
+            } else {
+                linkBtn.classList.add('hidden');
+            }
+
+            if (html5QrcodeScanner) {
+                html5QrcodeScanner.clear();
+                html5QrcodeScanner = null;
+            }
+        }
+
+        function onScanFailure(error) {
+            // Ignore frame errors to prevent console spam
+        }
+
+        function copyScan() {
+            const text = document.getElementById('scan-text').innerText;
+            navigator.clipboard.writeText(text).then(() => {
+                alert("Copied to clipboard!");
+            });
+        }
+
+        function resetScanner() {
+            initScanner();
+        }
+
+        // Initialize default codes on page load
+        window.onload = () => {
+            generateQR();
+            generateBarcode();
+        };
+    </script>
+</body>
+</html>
