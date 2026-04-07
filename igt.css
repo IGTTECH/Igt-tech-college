@@ -153,12 +153,12 @@ body {
 
   .whatsapp-button {
     position: fixed;
-    bottom: 10px;
-    right: 10px;
+    bottom: 8px;
+    right: 8px;
     background-color: #25D366;
     color: white;
-    padding: 10px 15px;
-    border-radius: 30px;
+    padding: 7px 10px;
+    border-radius: 15px;
     text-decoration: none;
     display: flex;
     align-items: center;
@@ -167,8 +167,8 @@ body {
   }
 
   .whatsapp-button img {
-    height: 30px;
-    margin-right: 10px;
+    height: 15px;
+    margin-right: 5px;
   }
   #studentCount {
     font-size: 2em;
