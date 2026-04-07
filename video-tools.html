@@ -6,7 +6,33 @@
 <title>IGT Video Tools Suite</title>
 <style>
 body { font-family: Arial, sans-serif; background-color: #f4f4f4; margin:0; padding:0; display:flex; flex-direction:column; align-items:center; }
-h1 { text-align:center; margin-top:20px; color:#333; font-size: 24px; padding: 0 10px; }
+h1 { text-align:center; margin-top:20px; color:#333; font-size: 24px; padding: 0 10px; margin-bottom: 10px;}
+
+/* --- Support Button Styles --- */
+.support-btn-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin: 10px 0 20px 0;
+}
+.support-btn {
+    display: inline-block;
+    background-color: #ffc439; /* PayPal Yellow */
+    color: #003087; /* PayPal Blue */
+    padding: 12px 30px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: background-color 0.3s, transform 0.2s;
+    border: 1px solid #ffb300;
+    text-align: center;
+}
+.support-btn:hover {
+    background-color: #ffb300;
+    transform: translateY(-2px);
+}
 
 /* --- Navigation Bar Styles --- */
 nav {
@@ -95,6 +121,46 @@ button:disabled { background-color:#999; cursor:not-allowed; }
     box-sizing: border-box;
 }
 
+/* --- Professional Footer Styles --- */
+footer {
+    background-color: #343a40;
+    color: #ffffff;
+    width: 100%;
+    padding: 40px 20px 20px 20px;
+    margin-top: 40px;
+    box-sizing: border-box;
+    text-align: center;
+}
+.footer-content {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+.footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px 30px;
+    margin-bottom: 25px;
+    list-style: none;
+    padding: 0;
+}
+.footer-links a {
+    color: #adb5bd;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+.footer-links a:hover {
+    color: #ffffff;
+}
+.footer-copyright {
+    font-size: 14px;
+    color: #6c757d;
+    border-top: 1px solid #495057;
+    padding-top: 20px;
+}
+
 /* Mobile Adjustments */
 @media (max-width: 480px) {
     .options-grid { grid-template-columns: 1fr; }
@@ -119,13 +185,18 @@ button:disabled { background-color:#999; cursor:not-allowed; }
         <li><a href="ikinyarwanda.html">Ikinyarwanda</a></li>
         <li><a href="contact.html">Contact Us</a></li>
         <li><a href="about-us.html">About Us</a></li>
-        <li><a href="posts.html">Posts</a></li>
+        <li><a href="cv-generator.html">CV Generator</a></li>
         <li><a href="qrcode-barcode-generator.html">Qr & Barcode Generator</a></li>
         <li><a href="igt-tech-college-apps.html">Apps</a></li>
     </ul>
 </nav>
 
 <h1>IGT Video Tools Suite</h1>
+
+<!-- TOP PAYPAL BUTTON -->
+<div class="support-btn-container">
+    <a href="https://www.paypal.com/ncp/payment/YZWS98LUZBJML" target="_blank" class="support-btn">💙 Support IGT Tech</a>
+</div>
 
 <div id="loadingFFmpeg">Loading FFmpeg Core (Please wait)...</div>
 
@@ -345,6 +416,32 @@ button:disabled { background-color:#999; cursor:not-allowed; }
 
 </div>
 <!-- --- End of Guide Section --- -->
+
+<!-- BOTTOM PAYPAL BUTTON -->
+<div class="support-btn-container" style="margin-bottom: 0;">
+    <a href="https://www.paypal.com/ncp/payment/YZWS98LUZBJML" target="_blank" class="support-btn">💙 Support IGT Tech</a>
+</div>
+
+<!-- PROFESSIONAL FOOTER WITH 10 LINKS -->
+<footer>
+    <div class="footer-content">
+        <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="image-tools.html">Edit Image</a></li>
+            <li><a href="software.html">Software For Mobile Repairing </a></li>
+            <li><a href="books.html">Get Books</a></li>
+            <li><a href="qrcode-barcode-generator.html">QR & Barcode</a></li>
+            <li><a href="posts.html">Posts</a></li>
+            <li><a href="swahili.html">Masomo ya Swahili</a></li>
+            <li><a href="kinyarwanda.html">Amasomo y'Ikinyarwanda</a></li>
+            <li><a href="english.html">English Courses</a></li>
+            <li><a href="drivers.html">PC Drivers</a></li>
+        </ul>
+        <div class="footer-copyright">
+            &copy; 2024 IGT Tech. All rights reserved.
+        </div>
+    </div>
+</footer>
 
 <!-- Stable FFmpeg v0.11.x Scripts -->
 <script src="https://unpkg.com/@ffmpeg/ffmpeg@0.11.6/dist/ffmpeg.min.js"></script>
