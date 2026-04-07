@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IGT PDF CONVERSION - Professional Suite</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="https://unpkg.com/docx@8.5.0/build/index.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/gitbrent/pptxgenjs@3.12.0/dist/pptxgen.bundle.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
+    <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .dropzone-active { border-color: #16a34a; background-color: #f0fdf4; transform: scale(1.02); }
+    </style>
+</head>
+<body class="bg-[#fcfcfc] text-[#1a1a1a]">
+    <!-- Header -->
+    <header class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <div class="w-8 h-8 bg-green-600 rounded-lg flex items-center justify-center text-white">
+                    <i data-lucide="zap" class="w-5 h-5"></i>
+                </div>
+                <span class="text-xl font-bold tracking-tight hidden sm:block">IGT PDF CONVERSION</span>
+                <span class="text-xl font-bold tracking-tight sm:hidden">IGT PDF</span>
+            </div>
+            <div class="flex items-center gap-6">
+                <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-600">
+                    <a href="index.html" class="hover:text-green-600 transition-colors">Home</a>
+                    <a href="cv-generator.html" class="hover:text-green-600 transition-colors">Cv Generator</a>
+                    <a href="software.html" class="hover:text-green-600 transition-colors">Software</a>
+                    <a href="video-tools.html" class="hover:text-green-600 transition-colors">Video Editor</a>
+                    <a href="igt-tech-college-apps.html" class="hover:text-green-600 transition-colors">Apps</a>
+                </nav>
+                <a href="https://www.paypal.com/ncp/payment/YZWS98LUZBJML" target="_blank" class="bg-[#0070ba] text-white px-4 py-2 md:px-5 md:py-2 rounded-full hover:bg-[#005ea6] transition-all shadow-sm shadow-blue-200 font-semibold flex items-center gap-2 text-sm">
+                    <i data-lucide="heart" class="w-4 h-4 fill-current text-red-400"></i>
+                    <span class="hidden sm:inline">Support IGT Tech</span>
+                    <span class="sm:hidden">Support</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 py-12">
+        <!-- Hero Section -->
+        <section class="text-center mb-20">
+            <div class="inline-flex items-center gap-2 bg-green-50 text-green-700 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest mb-6 border border-green-100">
+                <i data-lucide="globe" class="w-3.5 h-3.5"></i> Professional Suite by IGT Tech
+            </div>
+            <h1 class="text-3xl md:text-6xl font-black tracking-tighter mb-6 leading-[1.1]">
+                Professional PDF <br />
+                <span class="text-green-600">Conversion Suite.</span>
+            </h1>
+            <p class="text-xl text-gray-500 max-w-2xl mx-auto mb-12 leading-relaxed">
+                The most secure way to transform your documents. No uploads to servers, 
+                no data retention, just pure client-side performance.
+            </p>
+            
+            <!-- Dropzone -->
+            <div id="dropzone" class="relative max-w-3xl mx-auto p-16 rounded-[2.5rem] border-2 border-dashed border-gray-200 bg-white hover:border-green-400 hover:bg-gray-50/50 shadow-xl shadow-gray-200/50 transition-all cursor-pointer">
+                <input type="file" id="fileInput" class="hidden" accept=".pdf,.docx,.xlsx,.pptx" multiple>
+                <div class="flex flex-col items-center gap-5">
+                    <div class="w-20 h-20 bg-green-100 text-green-600 rounded-3xl flex items-center justify-center mb-2 shadow-inner">
+                        <i data-lucide="file-up" class="w-10 h-10"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold">Drop your files here</h3>
+                    <p class="text-gray-400 font-medium">Supports PDF, Word, Excel, and PowerPoint</p>
+                    <div class="flex gap-4 mt-4">
+                        <span class="flex items-center gap-1.5 text-xs font-bold text-gray-500 bg-gray-100 px-4 py-2 rounded-full">
+                            <i data-lucide="lock" class="w-3.5 h-3.5"></i> 100% SECURE
+                        </span>
+                        <span class="flex items-center gap-1.5 text-xs font-bold text-gray-500 bg-gray-100 px-4 py-2 rounded-full">
+                            <i data-lucide="shield" class="w-3.5 h-3.5"></i> ZERO LOGS
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Queue Section -->
+        <section id="queue" class="max-w-3xl mx-auto mb-20 hidden">
+            <div class="flex items-center justify-between mb-8">
+                <h2 class="text-2xl font-black tracking-tight">Active Queue</h2>
+                <button id="clearQueue" class="text-sm text-gray-400 hover:text-red-500 transition-colors font-bold flex items-center gap-1.5">
+                    <i data-lucide="trash-2" class="w-4 h-4"></i> CLEAR QUEUE
+                </button>
+            </div>
+            <div id="taskList" class="space-y-6"></div>
+        </section>
+
+        <!-- How it Works Section -->
+        <section id="how-it-works" class="mb-32">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-black mb-4 tracking-tight">How it Works</h2>
+                <p class="text-gray-500 max-w-xl mx-auto">Our 3-step process ensures your data remains yours while delivering professional results.</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-12">
+                <div class="relative group">
+                    <div class="absolute -top-6 -left-6 text-8xl font-black text-gray-100 group-hover:text-green-50 transition-colors z-0">01</div>
+                    <div class="relative z-10">
+                        <div class="w-16 h-16 bg-white border border-gray-100 shadow-sm text-green-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                            <i data-lucide="file-up" class="w-8 h-8"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Upload Files</h3>
+                        <p class="text-gray-500 leading-relaxed">Select or drop your documents into our secure browser-based interface.</p>
+                    </div>
+                </div>
+                <div class="relative group">
+                    <div class="absolute -top-6 -left-6 text-8xl font-black text-gray-100 group-hover:text-green-50 transition-colors z-0">02</div>
+                    <div class="relative z-10">
+                        <div class="w-16 h-16 bg-white border border-gray-100 shadow-sm text-green-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                            <i data-lucide="cpu" class="w-8 h-8"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Local Processing</h3>
+                        <p class="text-gray-500 leading-relaxed">Our engine processes the file directly in your RAM. No data is sent to any server.</p>
+                    </div>
+                </div>
+                <div class="relative group">
+                    <div class="absolute -top-6 -left-6 text-8xl font-black text-gray-100 group-hover:text-green-50 transition-colors z-0">03</div>
+                    <div class="relative z-10">
+                        <div class="w-16 h-16 bg-white border border-gray-100 shadow-sm text-green-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                            <i data-lucide="download" class="w-8 h-8"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Instant Download</h3>
+                        <p class="text-gray-500 leading-relaxed">Your converted files are ready immediately. Download them in multiple formats.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Choose Us Grid -->
+        <section id="why-choose-us" class="mb-32">
+            <div class="bg-gray-900 rounded-[3rem] p-12 md:p-20 text-white overflow-hidden relative">
+                <div class="relative z-10">
+                    <div class="grid md:grid-cols-2 gap-20 items-center">
+                        <div>
+                            <h2 class="text-3xl md:text-5xl font-black mb-8 leading-tight">Why IGT is the <br /><span class="text-green-400">Better Choice.</span></h2>
+                            <div class="space-y-8">
+                                <div class="flex gap-6">
+                                    <div class="w-12 h-12 bg-green-400/20 text-green-400 rounded-xl flex-shrink-0 flex items-center justify-center">
+                                        <i data-lucide="shield" class="w-6 h-6"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-xl font-bold mb-2">Absolute Privacy</h4>
+                                        <p class="text-gray-400 leading-relaxed">Unlike other converters, we never see your files. Your privacy is guaranteed by the code itself.</p>
+                                    </div>
+                                </div>
+                                <div class="flex gap-6">
+                                    <div class="w-12 h-12 bg-green-400/20 text-green-400 rounded-xl flex-shrink-0 flex items-center justify-center">
+                                        <i data-lucide="zap" class="w-6 h-6"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-xl font-bold mb-2">Lightning Fast</h4>
+                                        <p class="text-gray-400 leading-relaxed">No waiting for server queues. Processing happens at the speed of your local hardware.</p>
+                                    </div>
+                                </div>
+                                <div class="flex gap-6">
+                                    <div class="w-12 h-12 bg-green-400/20 text-green-400 rounded-xl flex-shrink-0 flex items-center justify-center">
+                                        <i data-lucide="user-check" class="w-6 h-6"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-xl font-bold mb-2">No Registration</h4>
+                                        <p class="text-gray-400 leading-relaxed">Start converting immediately. No email, no credit card, no tracking. Just results.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="bg-white/5 p-8 rounded-3xl border border-white/10 backdrop-blur-sm">
+                                <div class="text-3xl font-black text-green-400 mb-2">100%</div>
+                                <div class="text-sm font-bold text-gray-400 uppercase tracking-widest">Client Side</div>
+                            </div>
+                            <div class="bg-white/5 p-8 rounded-3xl border border-white/10 backdrop-blur-sm mt-8">
+                                <div class="text-3xl font-black text-green-400 mb-2">ZERO</div>
+                                <div class="text-sm font-bold text-gray-400 uppercase tracking-widest">Data Retention</div>
+                            </div>
+                            <div class="bg-white/5 p-8 rounded-3xl border border-white/10 backdrop-blur-sm">
+                                <div class="text-3xl font-black text-green-400 mb-2">FREE</div>
+                                <div class="text-sm font-bold text-gray-400 uppercase tracking-widest">Forever</div>
+                            </div>
+                            <div class="bg-white/5 p-8 rounded-3xl border border-white/10 backdrop-blur-sm mt-8">
+                                <div class="text-3xl font-black text-green-400 mb-2">UNLIMITED</div>
+                                <div class="text-sm font-bold text-gray-400 uppercase tracking-widest">Conversions</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- User Guide Section -->
+        <section id="security" class="mb-32">
+            <div class="max-w-4xl mx-auto bg-white p-12 md:p-20 rounded-[3rem] border border-gray-100 shadow-2xl shadow-gray-200/50">
+                <div class="flex flex-col items-center text-center mb-16">
+                    <div class="w-20 h-20 bg-green-600 text-white rounded-3xl flex items-center justify-center mb-8 shadow-xl shadow-green-200">
+                        <i data-lucide="user-check" class="w-10 h-10"></i>
+                    </div>
+                    <h2 class="text-3xl md:text-4xl font-black mb-6 tracking-tight">User Guide & Tips</h2>
+                    <p class="text-xl text-gray-500 leading-relaxed">
+                        Get the most out of IGT PDF Conversion with these simple usage guidelines.
+                    </p>
+                </div>
+                <div class="grid md:grid-cols-2 gap-12">
+                    <div class="space-y-6">
+                        <h4 class="text-xl font-bold flex items-center gap-3">
+                            <i data-lucide="layout-grid" class="w-6 h-6 text-green-600"></i> Batch Processing
+                        </h4>
+                        <p class="text-gray-500 leading-relaxed">
+                            You can drop multiple files at once. Each file will appear in the queue where you can select different target formats for each individual document.
+                        </p>
+                    </div>
+                    <div class="space-y-6">
+                        <h4 class="text-xl font-bold flex items-center gap-3">
+                            <i data-lucide="image" class="w-6 h-6 text-green-600"></i> High-Res Images
+                        </h4>
+                        <p class="text-gray-500 leading-relaxed">
+                            When converting PDF to PNG, we use a 2.0x scale factor to ensure text remains crisp and readable even in image format.
+                        </p>
+                    </div>
+                    <div class="space-y-6">
+                        <h4 class="text-xl font-bold flex items-center gap-3">
+                            <i data-lucide="file-code" class="w-6 h-6 text-green-600"></i> Data Extraction
+                        </h4>
+                        <p class="text-gray-500 leading-relaxed">
+                            Use the JSON or Markdown options if you need to extract structured data for development or documentation purposes.
+                        </p>
+                    </div>
+                    <div class="space-y-6">
+                        <h4 class="text-xl font-bold flex items-center gap-3">
+                            <i data-lucide="shield-check" class="w-6 h-6 text-green-600"></i> Privacy Tip
+                        </h4>
+                        <p class="text-gray-500 leading-relaxed">
+                            Since all processing is local, you can even disconnect your internet after the page loads to ensure 100% offline conversion.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-gray-100 py-20">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-start gap-12 mb-16">
+                <div class="max-w-sm">
+                    <div class="flex items-center gap-2 mb-6">
+                        <div class="w-8 h-8 bg-green-600 rounded-lg flex items-center justify-center text-white">
+                            <i data-lucide="zap" class="w-5 h-5"></i>
+                        </div>
+                        <span class="text-xl font-bold tracking-tight">IGT PDF CONVERSION</span>
+                    </div>
+                    <p class="text-gray-400 font-medium leading-relaxed">
+                        A professional-grade tool developed by IGT Tech College to provide secure, 
+                        private, and fast document conversion for everyone.
+                    </p>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-12">
+                    <div>
+                        <h5 class="font-bold mb-6 uppercase tracking-widest text-xs text-gray-400">Product</h5>
+                        <ul class="space-y-4 text-sm font-bold text-gray-600">
+                            <li><a href="video-tools.html" class="hover:text-green-600 transition-colors">Video Editor</a></li>
+                            <li><a href="image-tools.html" class="hover:text-green-600 transition-colors">Image Editor</a></li>
+                            <li><a href="cv-generator.html" class="hover:text-green-600 transition-colors">CV Generator</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h5 class="font-bold mb-6 uppercase tracking-widest text-xs text-gray-400">Company</h5>
+                        <ul class="space-y-4 text-sm font-bold text-gray-600">
+                            <li><a href="about-us.html" class="hover:text-green-600 transition-colors">About IGT</a></li>
+                            <li><a href="https://wa.me/message/6O35VDCIY43TE1" class="hover:text-green-600 transition-colors">Contact</a></li>
+                            <li><a href="posts.html" class="hover:text-green-600 transition-colors">Posts</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="pt-8 border-t border-gray-50 flex flex-col md:flex-row justify-between items-center gap-6 text-sm font-bold text-gray-400">
+                <p>© 2026 IGT Tech College. All rights reserved.</p>
+                
+                <a href="https://www.paypal.com/ncp/payment/YZWS98LUZBJML" target="_blank" class="bg-[#0070ba] text-white px-8 py-3 rounded-full hover:bg-[#005ea6] transition-all shadow-md shadow-blue-200 font-semibold flex items-center justify-center gap-2 text-sm w-full md:w-auto hover:-translate-y-0.5">
+                    <i data-lucide="heart" class="w-4 h-4 fill-current text-red-400"></i>
+                    Support IGT Tech
+                </a>
+
+                <div class="flex gap-8">
+                    <a href="https://wa.me/message/6O35VDCIY43TE1" class="hover:text-green-600 transition-colors">Whatsapp Us</a>
+                    <a href="https://www.facebook.com/Techcollege1" class="hover:text-green-600 transition-colors">Facebook</a>
+                    <a href="https://www.linkedin.com/in/seth-iradukunda-webdev1234567/" class="hover:text-green-600 transition-colors">LinkedIn</a>
+                    <a href="https://www.youtube.com/@TechCollege1" class="hover:text-green-600 transition-colors">YouTube</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Configure PDF.js worker
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+        const dropzone = document.getElementById('dropzone');
+        const fileInput = document.getElementById('fileInput');
+        const queueSection = document.getElementById('queue');
+        const taskList = document.getElementById('taskList');
+        const clearQueue = document.getElementById('clearQueue');
+
+        let tasks = [];
+
+        dropzone.addEventListener('click', () => fileInput.click());
+        dropzone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            dropzone.classList.add('dropzone-active');
+        });
+        dropzone.addEventListener('dragleave', () => {
+            dropzone.classList.remove('dropzone-active');
+        });
+        dropzone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dropzone.classList.remove('dropzone-active');
+            handleFiles(e.dataTransfer.files);
+        });
+        fileInput.addEventListener('change', (e) => {
+            handleFiles(e.target.files);
+        });
+
+        clearQueue.addEventListener('click', () => {
+            tasks = [];
+            renderTasks();
+        });
+
+        function handleFiles(files) {
+            Array.from(files).forEach(file => {
+                const ext = file.name.split('.').pop().toLowerCase();
+                if (['pdf', 'docx', 'xlsx', 'pptx'].includes(ext)) {
+                    const task = {
+                        id: Math.random().toString(36).substr(2, 9),
+                        file: file,
+                        fileName: file.name,
+                        fileType: ext,
+                        status: 'idle',
+                        progress: 0,
+                        resultUrl: null,
+                        resultName: null
+                    };
+                    tasks.push(task);
+                }
+            });
+            renderTasks();
+        }
+
+        function renderTasks() {
+            if (tasks.length > 0) {
+                queueSection.classList.remove('hidden');
+            } else {
+                queueSection.classList.add('hidden');
+            }
+
+            taskList.innerHTML = tasks.map(task => `
+                <div class="bg-white p-8 rounded-3xl border border-gray-100 shadow-lg shadow-gray-100 flex flex-col gap-6">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 ${
+                                task.fileType === 'pdf' ? 'bg-red-50 text-red-600' :
+                                task.fileType === 'docx' ? 'bg-blue-50 text-blue-600' :
+                                task.fileType === 'xlsx' ? 'bg-green-50 text-green-600' :
+                                'bg-orange-50 text-orange-600'
+                            } rounded-xl flex items-center justify-center shadow-sm">
+                                <i data-lucide="file-text" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg truncate max-w-[200px] md:max-w-md">${task.fileName}</h4>
+                                <p class="text-xs text-gray-400 uppercase tracking-widest font-black">${task.fileType.toUpperCase()} Document</p>
+                            </div>
+                        </div>
+                        <button onclick="removeTask('${task.id}')" class="text-gray-300 hover:text-red-400 transition-colors">
+                            <i data-lucide="trash-2" class="w-5 h-5"></i>
+                        </button>
+                    </div>
+
+                    ${task.status === 'idle' ? `
+                        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-3">
+                            <button onclick="startConversion('${task.id}', 'png')" class="flex items-center justify-center gap-2 bg-green-50 text-green-700 hover:bg-green-600 hover:text-white border border-green-100 p-3 rounded-2xl transition-all text-xs font-bold">
+                                <i data-lucide="image" class="w-4 h-4"></i> PNG
+                            </button>
+                            <button onclick="startConversion('${task.id}', 'pdf')" class="flex items-center justify-center gap-2 bg-green-50 text-green-700 hover:bg-green-600 hover:text-white border border-green-100 p-3 rounded-2xl transition-all text-xs font-bold">
+                                <i data-lucide="file-text" class="w-4 h-4"></i> PDF
+                            </button>
+                            <button onclick="startConversion('${task.id}', 'txt')" class="flex items-center justify-center gap-2 bg-green-50 text-green-700 hover:bg-green-600 hover:text-white border border-green-100 p-3 rounded-2xl transition-all text-xs font-bold">
+                                <i data-lucide="file-text" class="w-4 h-4"></i> TXT
+                            </button>
+                            <button onclick="startConversion('${task.id}', 'docx')" class="flex items-center justify-center gap-2 bg-green-50 text-green-700 hover:bg-green-600 hover:text-white border border-green-100 p-3 rounded-2xl transition-all text-xs font-bold">
+                                <i data-lucide="file-text" class="w-4 h-4"></i> DOCX
+                            </button>
+                            <button onclick="startConversion('${task.id}', 'xlsx')" class="flex items-center justify-center gap-2 bg-green-50 text-green-700 hover:bg-green-600 hover:text-white border border-green-100 p-3 rounded-2xl transition-all text-xs font-bold">
+                                <i data-lucide="layout-grid" class="w-4 h-4"></i> XLSX
+                            </button>
+                            <button onclick="startConversion('${task.id}', 'pptx')" class="flex items-center justify-center gap-2 bg-green-50 text-green-700 hover:bg-green-600 hover:text-white border border-green-100 p-3 rounded-2xl transition-all text-xs font-bold">
+                                <i data-lucide="zap" class="w-4 h-4"></i> PPTX
+                            </button>
+                            <button onclick="startConversion('${task.id}', 'json')" class="flex items-center justify-center gap-2 bg-green-50 text-green-700 hover:bg-green-600 hover:text-white border border-green-100 p-3 rounded-2xl transition-all text-xs font-bold">
+                                <i data-lucide="code" class="w-4 h-4"></i> JSON
+                            </button>
+                            <button onclick="startConversion('${task.id}', 'md')" class="flex items-center justify-center gap-2 bg-green-50 text-green-700 hover:bg-green-600 hover:text-white border border-green-100 p-3 rounded-2xl transition-all text-xs font-bold">
+                                <i data-lucide="file-code" class="w-4 h-4"></i> MD
+                            </button>
+                        </div>
+                    ` : task.status === 'processing' ? `
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between text-sm">
+                                <span class="text-gray-500 font-bold flex items-center gap-2">
+                                    <i data-lucide="loader-2" class="w-4 h-4 animate-spin text-green-600"></i>
+                                    PROCESSING...
+                                </span>
+                                <span class="font-mono font-black text-green-600">${task.progress}%</span>
+                            </div>
+                            <div class="h-3 bg-gray-100 rounded-full overflow-hidden shadow-inner">
+                                <div class="h-full bg-green-600 transition-all" style="width: ${task.progress}%"></div>
+                            </div>
+                        </div>
+                    ` : `
+                        <div class="flex flex-col gap-4">
+                            <a href="${task.resultUrl}" download="${task.resultName}" class="w-full bg-green-600 text-white p-4 rounded-2xl flex items-center justify-center gap-2 hover:bg-green-700 transition-all font-bold shadow-lg shadow-green-200">
+                                <i data-lucide="download" class="w-5 h-5"></i> DOWNLOAD RESULT
+                            </a>
+                        </div>
+                    `}
+                </div>
+            `).join('');
+            lucide.createIcons();
+        }
+
+        window.removeTask = function(id) {
+            tasks = tasks.filter(t => t.id !== id);
+            renderTasks();
+        };
+
+        window.startConversion = async function(id, format) {
+            const task = tasks.find(t => t.id === id);
+            if (!task) return;
+
+            task.status = 'processing';
+            task.progress = 0;
+            renderTasks();
+
+            try {
+                const arrayBuffer = await task.file.arrayBuffer();
+                let fullText = "";
+                let jsonData = [];
+
+                if (task.fileType === 'pdf') {
+                    const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+                    if (format === 'png') {
+                        const zip = new JSZip();
+                        for (let i = 1; i <= pdf.numPages; i++) {
+                            const page = await pdf.getPage(i);
+                            const viewport = page.getViewport({ scale: 2 });
+                            const canvas = document.createElement('canvas');
+                            const context = canvas.getContext('2d');
+                            canvas.height = viewport.height;
+                            canvas.width = viewport.width;
+                            await page.render({ canvasContext: context, viewport: viewport }).promise;
+                            const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
+                            zip.file(`page-${i}.png`, blob);
+                            task.progress = Math.round((i / pdf.numPages) * 100);
+                            renderTasks();
+                        }
+                        const content = await zip.generateAsync({ type: 'blob' });
+                        task.resultUrl = URL.createObjectURL(content);
+                        task.resultName = task.fileName.replace('.pdf', '.zip');
+                    } else {
+                        for (let i = 1; i <= pdf.numPages; i++) {
+                            const page = await pdf.getPage(i);
+                            const textContent = await page.getTextContent();
+                            const pageText = textContent.items.map(item => item.str).join(' ');
+                            fullText += `--- Page ${i} ---\n${pageText}\n\n`;
+                            task.progress = Math.round((i / pdf.numPages) * 100);
+                            renderTasks();
+                        }
+                    }
+                } else if (task.fileType === 'docx') {
+                    const result = await mammoth.extractRawText({ arrayBuffer });
+                    fullText = result.value;
+                } else if (task.fileType === 'xlsx') {
+                    const workbook = XLSX.read(arrayBuffer);
+                    workbook.SheetNames.forEach(name => {
+                        const sheet = workbook.Sheets[name];
+                        fullText += `--- Sheet: ${name} ---\n${XLSX.utils.sheet_to_txt(sheet)}\n\n`;
+                    });
+                } else if (task.fileType === 'pptx') {
+                    fullText = "PPTX Extraction is limited in standalone mode.";
+                }
+
+                if (task.resultUrl) {
+                    // Already set for PNG
+                } else {
+                    let blob;
+                    if (format === 'pdf') {
+                        const pdfDoc = await PDFLib.PDFDocument.create();
+                        const page = pdfDoc.addPage();
+                        const { height } = page.getSize();
+                        const lines = fullText.split('\n');
+                        let y = height - 50;
+                        for (const line of lines) {
+                            if (y < 50) break;
+                            page.drawText(line.substring(0, 80), { x: 50, y, size: 12 });
+                            y -= 15;
+                        }
+                        const pdfBytes = await pdfDoc.save();
+                        blob = new Blob([pdfBytes], { type: 'application/pdf' });
+                        task.resultName = task.fileName.split('.')[0] + '.pdf';
+                    } else if (format === 'docx') {
+                        const doc = new docx.Document({
+                            sections: [{
+                                children: fullText.split('\n').map(l => new docx.Paragraph({ children: [new docx.TextRun(l)] }))
+                            }]
+                        });
+                        blob = await docx.Packer.toBlob(doc);
+                        task.resultName = task.fileName.split('.')[0] + '.docx';
+                    } else if (format === 'xlsx') {
+                        const ws = XLSX.utils.aoa_to_sheet(fullText.split('\n').map(l => [l]));
+                        const wb = XLSX.utils.book_new();
+                        XLSX.utils.book_append_sheet(wb, ws, "Sheet1");
+                        const wbout = XLSX.write(wb, { bookType: 'xlsx', type: 'array' });
+                        blob = new Blob([wbout], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+                        task.resultName = task.fileName.split('.')[0] + '.xlsx';
+                    } else if (format === 'pptx') {
+                        const pptx = new PptxGenJS();
+                        fullText.split('--- Page').forEach(p => {
+                            const slide = pptx.addSlide();
+                            slide.addText(p.trim(), { x: 1, y: 1, w: 8, h: 4, fontSize: 12 });
+                        });
+                        blob = await pptx.write("blob");
+                        task.resultName = task.fileName.split('.')[0] + '.pptx';
+                    } else if (format === 'json') {
+                        blob = new Blob([JSON.stringify({ content: fullText }, null, 2)], { type: 'application/json' });
+                        task.resultName = task.fileName.split('.')[0] + '.json';
+                    } else if (format === 'md') {
+                        blob = new Blob([`# ${task.fileName}\n\n${fullText}`], { type: 'text/markdown' });
+                        task.resultName = task.fileName.split('.')[0] + '.md';
+                    } else {
+                        blob = new Blob([fullText], { type: 'text/plain' });
+                        task.resultName = task.fileName.split('.')[0] + '.txt';
+                    }
+                    task.resultUrl = URL.createObjectURL(blob);
+                }
+
+                task.status = 'completed';
+                task.progress = 100;
+                renderTasks();
+            } catch (err) {
+                console.error(err);
+                task.status = 'error';
+                renderTasks();
+            }
+        };
+    </script>
+</body>
+</html>
