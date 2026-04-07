@@ -1,656 +1,678 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>IGT Image Tools PRO</title>
-<script>
-const originalWarn = console.warn;
-console.warn = function(...args) {
-if (args[0] && typeof args[0] === 'string' && args[0].includes('cdn.tailwindcss.com should not be used in production')) {
-return;
-}
-originalWarn.apply(console, args);
-};
-</script>
-<!-- Tailwind CSS via CDN -->
-<script src="https://cdn.tailwindcss.com"></script>
-<style>
-body { font-family: 'Inter', Arial, sans-serif; }
-/* Checkerboard pattern to show transparency */
-.canvas-container {
-background-image:
-linear-gradient(45deg, #ccc 25%, transparent 25%),
-linear-gradient(135deg, #ccc 25%, transparent 25%),
-linear-gradient(45deg, transparent 75%, #ccc 75%),
-linear-gradient(135deg, transparent 75%, #ccc 75%);
-background-size: 20px 20px;
-background-position: 0 0, 10px 0, 10px -10px, 0px 10px;
-background-color: #fff;
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IGT Image Tools</title>
+  
+  <!-- Suppress Tailwind Warning -->
+  <script>
+    const originalWarn = console.warn;
+    console.warn = function(...args) {
+      if (args[0] && typeof args[0] === 'string' && args[0].includes('cdn.tailwindcss.com should not be used in production')) {
+        return;
+      }
+      originalWarn.apply(console, args);
+    };
+  </script>
+  
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+    body { font-family: 'Inter', sans-serif; }
+    
+    /* Checkerboard pattern to show transparency */
+    .canvas-container {
+      background-image:
+        linear-gradient(45deg, #ccc 25%, transparent 25%),
+        linear-gradient(135deg, #ccc 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, #ccc 75%),
+        linear-gradient(135deg, transparent 75%, #ccc 75%);
+      background-size: 20px 20px;
+      background-position: 0 0, 10px 0, 10px -10px, 0px 10px;
+      background-color: #fff;
+    }
+
+    input[type="range"] {
+      height: 6px;
+      -webkit-appearance: none;
+      background: #e5e7eb;
+      border-radius: 3px;
+    }
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 16px;
+      height: 16px;
+      background: #16a34a;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body class="min-h-screen bg-gray-50 text-gray-800 flex flex-col">
-<!-- NAVIGATION -->
-<nav class="bg-blue-600 text-white shadow-md">
-<div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-<div class="text-xl font-bold tracking-tight">IGT Image Tools PRO</div>
-<ul class="hidden md:flex space-x-1 text-sm font-medium">
-<li><a href="index.html" class="px-3 py-2 rounded-md hover:bg-blue-700">Home</a></li>
-<li><a href="software.html" class="px-3 py-2 rounded-md hover:bg-blue-700">Software</a></li>
-<li><a href="contact.html" class="px-3 py-2 rounded-md hover:bg-blue-700">Contact Us</a></li>
-<li><a href="video-tools.html" class="px-3 py-2 rounded-md hover:bg-blue-700">Edit Video & Audio</a></li>
-<li><a href="english.html" class="px-3 py-2 rounded-md hover:bg-blue-700">English</a></li>
-<li><a href="ikinyarwanda.html" class="px-3 py-2 rounded-md hover:bg-blue-700">Kinyarwanda</a></li>
-<li><a href="swahili.html" class="px-3 py-2 rounded-md hover:bg-blue-700">Swahili</a></li>
-<li><a href="posts.html" class="px-3 py-2 rounded-md hover:bg-blue-700">Posts</a></li>
-<li><a href="books.html" class="px-3 py-2 rounded-md hover:bg-blue-700">Books</a></li>
-<li><a href="igt-tech-college-apps.html" class="px-3 py-2 rounded-md hover:bg-blue-700">Our Apps</a></li>
-</ul>
-</div>
-</nav>
-
-<!-- MAIN CONTENT -->
-<main class="flex-grow max-w-7xl mx-auto px-4 py-8 w-full flex flex-col items-center">
-
-  <!-- DROPZONE (Visible initially) -->
-  <div id="dropZone" class="w-full max-w-2xl mt-6 border-2 border-dashed border-blue-400 rounded-xl p-12 flex flex-col items-center justify-center bg-white cursor-pointer hover:bg-blue-50 transition-colors shadow-sm">
-    <svg class="w-12 h-12 text-blue-500 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path>
-    </svg>
-    <h3 class="text-xl font-semibold text-gray-700 mb-2">Drag & Drop Image or Click</h3>
-    <p class="text-gray-500 text-sm">Supports PNG, JPG, WEBP</p>
-    <input type="file" id="upload" class="hidden" accept="image/png,image/jpeg,image/webp">
-  </div>
-
-  <!-- NEW: BEAUTIFUL GUIDANCE SECTION (Visible initially) -->
-  <div id="guidanceSection" class="w-full max-w-5xl mt-12 mb-12">
-    <div class="text-center mb-10">
-      <h2 class="text-3xl font-extrabold text-gray-800 tracking-tight">Welcome to IGT Image Tools PRO</h2>
-      <p class="text-gray-500 mt-3 max-w-2xl mx-auto text-lg">Your all-in-one, secure, client-side image editing solution. Read below to master all the powerful features available to you.</p>
+  <!-- NAVIGATION -->
+  <nav class="bg-green-600 text-white shadow-md">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+      <div class="text-xl font-bold tracking-tight">IGT Image Tools PRO</div>
+      <div class="flex items-center gap-4">
+        <ul class="hidden xl:flex space-x-1 text-sm font-medium items-center">
+          <li><a href="index.html" class="px-3 py-2 rounded-md hover:bg-green-700 transition-colors">Home</a></li>
+          <li><a href="software.html" class="px-3 py-2 rounded-md hover:bg-green-700 transition-colors">Software</a></li>
+          <li><a href="contact.html" class="px-3 py-2 rounded-md hover:bg-green-700 transition-colors">Contact Us</a></li>
+          <li><a href="video-tools.html" class="px-3 py-2 rounded-md hover:bg-green-700 transition-colors">Edit Video & Audio</a></li>
+          <li><a href="posts.html" class="px-3 py-2 rounded-md hover:bg-green-700 transition-colors">Posts</a></li>
+          <li><a href="books.html" class="px-3 py-2 rounded-md hover:bg-green-700 transition-colors">Books</a></li>
+          <li><a href="igt-tech-college-apps.html" class="px-3 py-2 rounded-md hover:bg-green-700 transition-colors">Our Apps</a></li>
+        </ul>
+        <a 
+          href="https://www.paypal.com/ncp/payment/YZWS98LUZBJML" 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          class="px-4 py-2 bg-yellow-400 text-green-900 rounded-full font-bold hover:bg-yellow-300 transition-all shadow-sm flex items-center gap-2 text-sm whitespace-nowrap"
+        >
+          <i data-lucide="external-link" class="w-4 h-4"></i>
+          Support IGT Tech
+        </a>
+      </div>
     </div>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <main class="flex-grow max-w-7xl mx-auto px-4 py-8 w-full flex flex-col items-center">
     
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      
-      <!-- Card 1 -->
-      <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 hover:border-blue-300 hover:shadow-md transition-all">
-        <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center mb-4">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-        </div>
-        <h3 class="text-lg font-bold text-gray-800 mb-2">1. Upload & Start</h3>
-        <p class="text-sm text-gray-600 leading-relaxed">Begin by dragging and dropping your image into the dashed box above, or simply click it to browse your device. All processing happens securely on your device.</p>
-      </div>
-
-      <!-- Card 2 -->
-      <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 hover:border-blue-300 hover:shadow-md transition-all">
-        <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center mb-4">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"></path></svg>
-        </div>
-        <h3 class="text-lg font-bold text-gray-800 mb-2">2. Precision Resizing</h3>
-        <p class="text-sm text-gray-600 leading-relaxed">Need a specific size? Use the Resize Settings in the right sidebar. Enter your desired width or height. Keep 'Lock Aspect Ratio' checked to prevent your image from stretching.</p>
-      </div>
-
-      <!-- Card 3 -->
-      <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 hover:border-blue-300 hover:shadow-md transition-all">
-        <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center mb-4">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg>
-        </div>
-        <h3 class="text-lg font-bold text-gray-800 mb-2">3. Freehand Drawing</h3>
-        <p class="text-sm text-gray-600 leading-relaxed">Select a color from the color picker below the image, then click the 'Draw' button. You can use your mouse on a PC or your finger on a mobile device to draw smooth, continuous lines.</p>
-      </div>
-
-      <!-- Card 4 -->
-      <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 hover:border-blue-300 hover:shadow-md transition-all">
-        <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center mb-4">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
-        </div>
-        <h3 class="text-lg font-bold text-gray-800 mb-2">4. Click-to-Place Text</h3>
-        <p class="text-sm text-gray-600 leading-relaxed">Pick a color, click 'Add Text', and type your message. The button will change to 'Tap to Place'. Simply click or tap anywhere on your image to drop the text exactly where you want it.</p>
-      </div>
-
-      <!-- Card 5 -->
-      <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 hover:border-blue-300 hover:shadow-md transition-all">
-        <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center mb-4">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path></svg>
-        </div>
-        <h3 class="text-lg font-bold text-gray-800 mb-2">5. Adjustments & Filters</h3>
-        <p class="text-sm text-gray-600 leading-relaxed">Enhance your photo using the Brightness, Contrast, and Saturation sliders in the sidebar. You can also apply instant creative filters like Grayscale, Sepia, or Invert with a single click.</p>
-      </div>
-
-      <!-- Card 6 -->
-      <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 hover:border-blue-300 hover:shadow-md transition-all">
-        <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center mb-4">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
-        </div>
-        <h3 class="text-lg font-bold text-gray-800 mb-2">6. High-Quality Export</h3>
-        <p class="text-sm text-gray-600 leading-relaxed">Once your masterpiece is ready, go to Export Settings. Choose your preferred format (PNG, JPG, or WEBP), adjust the quality slider to manage file size, and click Export to download.</p>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- EDITOR (Hidden initially) -->
-  <div id="editor" class="w-full hidden flex-col lg:flex-row gap-6 items-start">
-    
-    <!-- CANVAS AREA (Left Side) -->
-    <div class="flex-1 w-full min-w-0 flex flex-col items-center bg-white p-4 rounded-xl shadow-sm border border-gray-200">
-      <div class="relative w-full overflow-hidden rounded-lg border border-gray-300 canvas-container flex justify-center items-center" style="min-height: 400px;">
-        <canvas id="canvas" class="max-w-full max-h-[60vh] object-contain cursor-default"></canvas>
+    <!-- GUIDANCE SECTION (Visible initially) -->
+    <div id="guidanceSection" class="w-full max-w-5xl mt-4 mb-8">
+      <div class="text-center mb-10">
+        <h2 class="text-3xl font-extrabold text-gray-800 tracking-tight">Welcome to IGT Image Tools PRO</h2>
+        <p class="text-gray-500 mt-3 max-w-2xl mx-auto text-lg">Your all-in-one, secure, client-side image editing solution. Read below to master all the powerful features available to you.</p>
       </div>
       
-      <!-- TOOLBAR -->
-      <div class="flex flex-wrap justify-center items-center gap-2 mt-4 p-2 bg-gray-100 rounded-lg w-full">
-        <button id="btnUndo" class="px-3 py-2 bg-white border border-gray-300 rounded-md hover:bg-gray-50 text-sm font-medium disabled:opacity-50" disabled>Undo</button>
-        <button id="btnRedo" class="px-3 py-2 bg-white border border-gray-300 rounded-md hover:bg-gray-50 text-sm font-medium disabled:opacity-50" disabled>Redo</button>
-        <button id="btnReset" class="px-3 py-2 bg-white border border-gray-300 rounded-md hover:bg-gray-50 text-sm font-medium">Reset</button>
-        
-        <button id="btnChangeImage" class="px-3 py-2 bg-blue-50 border border-blue-200 text-blue-700 rounded-md hover:bg-blue-100 text-sm font-medium transition-colors">Change Image</button>
-        
-        <div class="w-px h-8 bg-gray-300 mx-1"></div>
-        
-        <input type="color" id="colorPicker" value="#ef4444" class="w-9 h-9 p-1 bg-white border border-gray-300 rounded-md cursor-pointer" title="Choose color">
-        <button id="btnDraw" class="px-3 py-2 bg-white border border-gray-300 rounded-md hover:bg-gray-50 text-sm font-medium transition-colors">Draw</button>
-        <button id="btnText" class="px-3 py-2 bg-white border border-gray-300 rounded-md hover:bg-gray-50 text-sm font-medium">Add Text</button>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 hover:border-green-300 hover:shadow-md transition-all">
+          <div class="w-12 h-12 bg-green-100 text-green-600 rounded-lg flex items-center justify-center mb-4">
+            <i data-lucide="image"></i>
+          </div>
+          <h3 class="text-lg font-bold text-gray-800 mb-2">1. Upload & Start</h3>
+          <p class="text-sm text-gray-600 leading-relaxed">Begin by dragging and dropping your image into the dashed box below, or simply click it to browse your device. All processing happens securely on your device.</p>
+        </div>
+        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 hover:border-green-300 hover:shadow-md transition-all">
+          <div class="w-12 h-12 bg-green-100 text-green-600 rounded-lg flex items-center justify-center mb-4">
+            <i data-lucide="maximize"></i>
+          </div>
+          <h3 class="text-lg font-bold text-gray-800 mb-2">2. Precision Resizing</h3>
+          <p class="text-sm text-gray-600 leading-relaxed">Need a specific size? Use the Resize Settings in the right sidebar. Enter your desired width or height. Keep 'Lock Aspect Ratio' checked to prevent your image from stretching.</p>
+        </div>
+        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 hover:border-green-300 hover:shadow-md transition-all">
+          <div class="w-12 h-12 bg-green-100 text-green-600 rounded-lg flex items-center justify-center mb-4">
+            <i data-lucide="pencil"></i>
+          </div>
+          <h3 class="text-lg font-bold text-gray-800 mb-2">3. Freehand Drawing</h3>
+          <p class="text-sm text-gray-600 leading-relaxed">Select a color from the color picker below the image, then click the 'Draw' button. You can use your mouse on a PC or your finger on a mobile device to draw smooth, continuous lines.</p>
+        </div>
+        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 hover:border-green-300 hover:shadow-md transition-all">
+          <div class="w-12 h-12 bg-green-100 text-green-600 rounded-lg flex items-center justify-center mb-4">
+            <i data-lucide="type"></i>
+          </div>
+          <h3 class="text-lg font-bold text-gray-800 mb-2">4. Click-to-Place Text</h3>
+          <p class="text-sm text-gray-600 leading-relaxed">Pick a color, click 'Add Text', and type your message. The button will change to 'Tap to Place'. Simply click or tap anywhere on your image to drop the text exactly where you want it.</p>
+        </div>
+        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 hover:border-green-300 hover:shadow-md transition-all">
+          <div class="w-12 h-12 bg-green-100 text-green-600 rounded-lg flex items-center justify-center mb-4">
+            <i data-lucide="sliders-horizontal"></i>
+          </div>
+          <h3 class="text-lg font-bold text-gray-800 mb-2">5. Adjustments & Filters</h3>
+          <p class="text-sm text-gray-600 leading-relaxed">Enhance your photo using the Brightness, Contrast, and Saturation sliders in the sidebar. You can also apply instant creative filters like Grayscale, Sepia, or Invert with a single click.</p>
+        </div>
+        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 hover:border-green-300 hover:shadow-md transition-all">
+          <div class="w-12 h-12 bg-green-100 text-green-600 rounded-lg flex items-center justify-center mb-4">
+            <i data-lucide="download"></i>
+          </div>
+          <h3 class="text-lg font-bold text-gray-800 mb-2">6. High-Quality Export</h3>
+          <p class="text-sm text-gray-600 leading-relaxed">Once your masterpiece is ready, go to Export Settings. Choose your preferred format (PNG, JPG, or WEBP), adjust the quality slider to manage file size, and click Export to download.</p>
+        </div>
       </div>
     </div>
 
-    <!-- SIDEBAR CONTROLS (Right Side) -->
-    <div class="w-full lg:w-80 flex-shrink-0 flex flex-col gap-4">
+    <!-- DROPZONE (Visible initially) -->
+    <div id="dropZone" class="w-full max-w-2xl mb-6 border-2 border-dashed border-green-400 rounded-xl p-12 flex flex-col items-center justify-center bg-white cursor-pointer hover:bg-green-50 transition-colors shadow-sm">
+      <i data-lucide="upload" class="w-12 h-12 text-green-500 mb-4"></i>
+      <h3 class="text-xl font-semibold text-gray-700 mb-2">Drag & Drop Image or Click</h3>
+      <p class="text-gray-500 text-sm">Supports PNG, JPG, WEBP</p>
+      <input type="file" id="upload" class="hidden" accept="image/png,image/jpeg,image/webp">
+    </div>
+
+    <!-- MOVED SECTIONS (How to use & Support) (Visible initially) -->
+    <div id="movedSections" class="w-full max-w-2xl flex flex-col sm:flex-row gap-4 mb-12">
+      <!-- Guidance Mini -->
+      <div class="flex-1 bg-green-50 p-5 rounded-xl shadow-sm border border-green-200">
+        <h3 class="text-sm font-bold text-green-800 uppercase tracking-wider mb-3 flex items-center gap-2">
+          <i data-lucide="info" class="w-4 h-4"></i> How to use
+        </h3>
+        <ul class="text-xs text-green-800 space-y-2 list-disc pl-4">
+          <li><strong>Resize:</strong> Enter new dimensions. Keep 'Lock Aspect Ratio' checked to prevent image distortion.</li>
+          <li><strong>Draw:</strong> Pick a color, click 'Draw', and use your mouse or finger to draw on the image.</li>
+          <li><strong>Add Text:</strong> Pick a color, click 'Add Text', type your words, then tap anywhere on the image to place it.</li>
+          <li><strong>Adjust & Filter:</strong> Use sliders to change brightness/contrast, or apply quick filters like Grayscale.</li>
+          <li><strong>Undo/Redo:</strong> Made a mistake? Use the Undo button to go back a step.</li>
+        </ul>
+      </div>
+
+      <!-- Support -->
+      <div class="flex-1 bg-yellow-50 p-5 rounded-xl shadow-sm border border-yellow-200">
+        <h3 class="text-sm font-bold text-yellow-800 uppercase tracking-wider mb-3">Support IGT Tech</h3>
+        <p class="text-xs text-yellow-800 mb-4 leading-relaxed">If you find this tool helpful, please consider supporting us to keep it free and updated.</p>
+        <a href="https://www.paypal.com/ncp/payment/YZWS98LUZBJML" target="_blank" rel="noopener noreferrer" class="w-full py-3 bg-yellow-400 text-green-900 rounded-md font-bold hover:bg-yellow-300 transition-colors shadow-sm flex justify-center items-center gap-2">
+          <i data-lucide="external-link" class="w-5 h-5"></i>
+          Support IGT Tech
+        </a>
+      </div>
+    </div>
+
+    <!-- EDITOR (Hidden initially) -->
+    <div id="editor" class="w-full hidden flex-col lg:flex-row gap-6 items-start">
       
-      <!-- Resize Settings -->
-      <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-200">
-        <h3 class="text-sm font-bold text-gray-700 uppercase tracking-wider mb-4">Resize Settings</h3>
+      <!-- CANVAS AREA -->
+      <div class="flex-1 w-full min-w-0 flex flex-col items-center bg-white p-4 rounded-xl shadow-sm border border-gray-200">
+        <div class="relative w-full overflow-hidden rounded-lg border border-gray-300 canvas-container flex justify-center items-center" style="min-height: 400px;">
+          <canvas id="canvas" class="max-w-full max-h-[60vh] object-contain cursor-default"></canvas>
+        </div>
         
-        <div class="space-y-4">
-          <div class="flex gap-4">
-            <div class="flex-1">
-              <label class="block text-xs text-gray-500 mb-1">Width (px)</label>
-              <input type="number" id="resizeWidth" class="w-full p-2 border border-gray-300 rounded-md text-sm focus:ring-blue-500 focus:border-blue-500" placeholder="Width">
-            </div>
-            <div class="flex-1">
-              <label class="block text-xs text-gray-500 mb-1">Height (px)</label>
-              <input type="number" id="resizeHeight" class="w-full p-2 border border-gray-300 rounded-md text-sm focus:ring-blue-500 focus:border-blue-500" placeholder="Height">
-            </div>
-          </div>
+        <!-- TOOLBAR -->
+        <div class="flex flex-wrap justify-center items-center gap-2 mt-4 p-2 bg-gray-100 rounded-lg w-full">
+          <button id="btnUndo" class="px-3 py-2 bg-white border border-gray-300 rounded-md hover:bg-gray-50 text-sm font-medium disabled:opacity-50 flex items-center gap-1" disabled>
+            <i data-lucide="undo" class="w-4 h-4"></i> Undo
+          </button>
+          <button id="btnRedo" class="px-3 py-2 bg-white border border-gray-300 rounded-md hover:bg-gray-50 text-sm font-medium disabled:opacity-50 flex items-center gap-1" disabled>
+            <i data-lucide="redo" class="w-4 h-4"></i> Redo
+          </button>
+          <button id="btnReset" class="px-3 py-2 bg-white border border-gray-300 rounded-md hover:bg-gray-50 text-sm font-medium flex items-center gap-1">
+            <i data-lucide="rotate-ccw" class="w-4 h-4"></i> Reset
+          </button>
           
-          <div class="flex items-center">
-            <input type="checkbox" id="lockAspectRatio" class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500" checked>
-            <label for="lockAspectRatio" class="ml-2 text-sm text-gray-700">Lock Aspect Ratio</label>
-          </div>
+          <button id="btnChangeImage" class="px-3 py-2 bg-green-50 border border-green-200 text-green-700 rounded-md hover:bg-green-100 text-sm font-medium transition-colors flex items-center gap-1">
+            <i data-lucide="image" class="w-4 h-4"></i> Change Image
+          </button>
           
-          <button id="btnApplyResize" class="w-full py-2 bg-blue-50 text-blue-700 border border-blue-300 rounded-md hover:bg-blue-100 font-medium transition-colors">Apply Resize</button>
-        </div>
-      </div>
-
-      <!-- Adjustments -->
-      <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-200">
-        <h3 class="text-sm font-bold text-gray-700 uppercase tracking-wider mb-4">Adjustments</h3>
-        <div class="space-y-4">
-          <div>
-            <div class="flex justify-between text-xs text-gray-500 mb-1"><span>Brightness</span><span id="valBrightness">100%</span></div>
-            <input type="range" id="brightness" min="0" max="200" value="100" class="w-full accent-blue-600">
-          </div>
-          <div>
-            <div class="flex justify-between text-xs text-gray-500 mb-1"><span>Contrast</span><span id="valContrast">100%</span></div>
-            <input type="range" id="contrast" min="0" max="200" value="100" class="w-full accent-blue-600">
-          </div>
-          <div>
-            <div class="flex justify-between text-xs text-gray-500 mb-1"><span>Saturation</span><span id="valSaturation">100%</span></div>
-            <input type="range" id="saturation" min="0" max="200" value="100" class="w-full accent-blue-600">
-          </div>
-        </div>
-      </div>
-
-      <!-- Filters -->
-      <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-200">
-        <h3 class="text-sm font-bold text-gray-700 uppercase tracking-wider mb-4">Filters</h3>
-        <div class="grid grid-cols-2 gap-2">
-          <button class="filter-btn py-2 px-3 text-sm rounded-md border bg-white border-gray-300 hover:bg-gray-50" data-filter="grayscale(100%)">Grayscale</button>
-          <button class="filter-btn py-2 px-3 text-sm rounded-md border bg-white border-gray-300 hover:bg-gray-50" data-filter="sepia(100%)">Sepia</button>
-          <button class="filter-btn py-2 px-3 text-sm rounded-md border bg-white border-gray-300 hover:bg-gray-50" data-filter="invert(100%)">Invert</button>
-          <button class="filter-btn py-2 px-3 text-sm rounded-md border bg-blue-50 border-blue-300 text-blue-700" data-filter="none">Clear</button>
-        </div>
-      </div>
-
-      <!-- Export -->
-      <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-200">
-        <h3 class="text-sm font-bold text-gray-700 uppercase tracking-wider mb-4">Export Settings</h3>
-        <div class="space-y-4">
-          <div>
-            <label class="block text-xs text-gray-500 mb-1">Format</label>
-            <select id="format" class="w-full p-2 border border-gray-300 rounded-md text-sm">
-              <option value="image/png">PNG</option>
-              <option value="image/jpeg">JPG</option>
-              <option value="image/webp">WEBP</option>
-            </select>
-          </div>
-          <div>
-            <div class="flex justify-between text-xs text-gray-500 mb-1"><span>Quality</span><span id="valQuality">90%</span></div>
-            <input type="range" id="quality" min="0.1" max="1" step="0.1" value="0.9" class="w-full accent-blue-600">
-          </div>
-          <button id="btnDownload" class="w-full py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 font-medium shadow-sm transition-colors flex justify-center items-center gap-2">
-            <span>Export</span>
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+          <div class="w-px h-8 bg-gray-300 mx-1"></div>
+          
+          <input type="color" id="colorPicker" value="#ef4444" class="w-9 h-9 p-1 bg-white border border-gray-300 rounded-md cursor-pointer" title="Choose color">
+          <button id="btnDraw" class="px-3 py-2 bg-white border border-gray-300 rounded-md hover:bg-gray-50 text-sm font-medium transition-colors flex items-center gap-1">
+            <i data-lucide="pencil" class="w-4 h-4"></i> Draw
+          </button>
+          <button id="btnText" class="px-3 py-2 bg-white border border-gray-300 rounded-md hover:bg-gray-50 text-sm font-medium flex items-center gap-1">
+            <i data-lucide="type" class="w-4 h-4"></i> Add Text
           </button>
         </div>
       </div>
 
+      <!-- SIDEBAR -->
+      <div class="w-full lg:w-80 flex-shrink-0 flex flex-col gap-4">
+        
+        <!-- Resize Settings -->
+        <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-200">
+          <h3 class="text-sm font-bold text-gray-700 uppercase tracking-wider mb-4 flex items-center gap-2">
+            <i data-lucide="maximize" class="w-4 h-4"></i> Resize Settings
+          </h3>
+          <div class="space-y-4">
+            <div class="flex gap-4">
+              <div class="flex-1">
+                <label class="block text-xs text-gray-500 mb-1">Width (px)</label>
+                <input type="number" id="resizeWidth" class="w-full p-2 border border-gray-300 rounded-md text-sm focus:ring-green-500 focus:border-green-500" placeholder="Width">
+              </div>
+              <div class="flex-1">
+                <label class="block text-xs text-gray-500 mb-1">Height (px)</label>
+                <input type="number" id="resizeHeight" class="w-full p-2 border border-gray-300 rounded-md text-sm focus:ring-green-500 focus:border-green-500" placeholder="Height">
+              </div>
+            </div>
+            <div class="flex items-center">
+              <input type="checkbox" id="lockAspectRatio" class="w-4 h-4 text-green-600 border-gray-300 rounded focus:ring-green-500" checked>
+              <label for="lockAspectRatio" class="ml-2 text-sm text-gray-700">Lock Aspect Ratio</label>
+            </div>
+            <button id="btnApplyResize" class="w-full py-2 bg-green-50 text-green-700 border border-green-300 rounded-md hover:bg-green-100 font-medium transition-colors">Apply Resize</button>
+          </div>
+        </div>
+
+        <!-- Adjustments -->
+        <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-200">
+          <h3 class="text-sm font-bold text-gray-700 uppercase tracking-wider mb-4 flex items-center gap-2">
+            <i data-lucide="sliders-horizontal" class="w-4 h-4"></i> Adjustments
+          </h3>
+          <div class="space-y-4">
+            <div>
+              <div class="flex justify-between text-xs text-gray-500 mb-1"><span>Brightness</span><span id="valBrightness">100%</span></div>
+              <input type="range" id="brightness" min="0" max="200" value="100" class="w-full">
+            </div>
+            <div>
+              <div class="flex justify-between text-xs text-gray-500 mb-1"><span>Contrast</span><span id="valContrast">100%</span></div>
+              <input type="range" id="contrast" min="0" max="200" value="100" class="w-full">
+            </div>
+            <div>
+              <div class="flex justify-between text-xs text-gray-500 mb-1"><span>Saturation</span><span id="valSaturation">100%</span></div>
+              <input type="range" id="saturation" min="0" max="200" value="100" class="w-full">
+            </div>
+          </div>
+        </div>
+
+        <!-- Filters -->
+        <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-200">
+          <h3 class="text-sm font-bold text-gray-700 uppercase tracking-wider mb-4 flex items-center gap-2">
+            <i data-lucide="palette" class="w-4 h-4"></i> Filters
+          </h3>
+          <div class="grid grid-cols-2 gap-2">
+            <button class="filter-btn py-2 px-3 text-sm rounded-md border bg-white border-gray-300 hover:bg-gray-50" data-filter="grayscale(100%)">Grayscale</button>
+            <button class="filter-btn py-2 px-3 text-sm rounded-md border bg-white border-gray-300 hover:bg-gray-50" data-filter="sepia(100%)">Sepia</button>
+            <button class="filter-btn py-2 px-3 text-sm rounded-md border bg-white border-gray-300 hover:bg-gray-50" data-filter="invert(100%)">Invert</button>
+            <button class="filter-btn py-2 px-3 text-sm rounded-md border bg-green-50 border-green-300 text-green-700" data-filter="none">Clear</button>
+          </div>
+        </div>
+
+        <!-- Export -->
+        <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-200">
+          <h3 class="text-sm font-bold text-gray-700 uppercase tracking-wider mb-4 flex items-center gap-2">
+            <i data-lucide="download" class="w-4 h-4"></i> Export Settings
+          </h3>
+          <div class="space-y-4">
+            <div>
+              <label class="block text-xs text-gray-500 mb-1">Format</label>
+              <select id="format" class="w-full p-2 border border-gray-300 rounded-md text-sm">
+                <option value="image/png">PNG</option>
+                <option value="image/jpeg">JPG</option>
+                <option value="image/webp">WEBP</option>
+              </select>
+            </div>
+            <div>
+              <div class="flex justify-between text-xs text-gray-500 mb-1"><span>Quality</span><span id="valQuality">90%</span></div>
+              <input type="range" id="quality" min="0.1" max="1" step="0.1" value="0.9" class="w-full">
+            </div>
+            <button id="btnDownload" class="w-full py-3 bg-green-600 text-white rounded-md hover:bg-green-700 font-medium shadow-sm transition-colors flex justify-center items-center gap-2">
+              <span>Export</span>
+              <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+
+      </div>
     </div>
-  </div>
-</main>
-<script>
-// Elements
-const dropZone = document.getElementById('dropZone');
-const guidanceSection = document.getElementById('guidanceSection');
-const editor = document.getElementById('editor');
-const upload = document.getElementById('upload');
-const canvas = document.getElementById('canvas');
-const ctx = canvas.getContext('2d');
+  </main>
 
-// State Variables
-let img = new Image();
-let history = [];
-let redoStack = [];
-let isDrawingMode = false;
-let isDrawing = false;
-let currentFilter = 'none';
-let aspectRatio = 1;
+  <!-- FOOTER -->
+  <footer class="bg-gray-900 text-gray-300 py-12 mt-auto w-full">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
+        <div>
+          <h4 class="text-white font-bold mb-4 text-lg">IGT Image Tools</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="index.html" class="hover:text-green-400 transition-colors">Home</a></li>
+            <li><a href="software.html" class="hover:text-green-400 transition-colors">Software For Tech</a></li>
+            <li><a href="igt-tech-college-apps.html" class="hover:text-green-400 transition-colors">Our Apps</a></li>
+            <li><a href="english" class="hover:text-green-400 transition-colors">Mobile Repairing & Web Dev Training</a></li>
+            <li><a href="swahili.html" class="hover:text-green-400 transition-colors">Ufundi Simu Na Ujenzi wa Tovuti</a></li>
+            <li><a href="cv-generator.html" class="hover:text-green-400 transition-colors">CV Generator</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-white font-bold mb-4 text-lg">Tools & Resources</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="video-tools.html" class="hover:text-green-400 transition-colors">Edit Video & Audio</a></li>
+            <li><a href="posts.html" class="hover:text-green-400 transition-colors">Posts</a></li>
+            <li><a href="books.html" class="hover:text-green-400 transition-colors">Books</a></li>
+            <li><a href="software.html" class="hover:text-green-400 transition-colors">Software Tools</a></li>
+            <li><a href="drivers.html" class="hover:text-green-400 transition-colors">Drivers for Software Tech</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-white font-bold mb-4 text-lg">Coures in different Languages</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="english.html" class="hover:text-green-400 transition-colors">English</a></li>
+            <li><a href="ikinyarwanda.html" class="hover:text-green-400 transition-colors">Kinyarwanda</a></li>
+            <li><a href="swahili.html" class="hover:text-green-400 transition-colors">Swahili</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-white font-bold mb-4 text-lg">Company</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="contact.html" class="hover:text-green-400 transition-colors">Contact Us</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center text-sm">
+        <p>&copy; 2026 IGT Tech. All rights reserved.</p>
+        <div class="mt-4 md:mt-0 flex space-x-4">
+          <a href="privacy-policy.html" class="hover:text-white transition-colors">Privacy Policy</a>
+          <a href="about-us.html" class="hover:text-white transition-colors">About US</a>
+        </div>
+      </div>
+    </div>
+  </footer>
 
-// New State Variables for Text & Drawing
-let isTextMode = false;
-let pendingText = '';
-let lastX = 0;
-let lastY = 0;
+  <script>
+    // Initialize Lucide icons
+    lucide.createIcons();
 
-// UI Controls
-const btnUndo = document.getElementById('btnUndo');
-const btnRedo = document.getElementById('btnRedo');
-const btnReset = document.getElementById('btnReset');
-const btnChangeImage = document.getElementById('btnChangeImage');
-const btnDraw = document.getElementById('btnDraw');
-const btnText = document.getElementById('btnText');
-const btnDownload = document.getElementById('btnDownload');
-const colorPicker = document.getElementById('colorPicker');
+    // Elements
+    const dropZone = document.getElementById('dropZone');
+    const guidanceSection = document.getElementById('guidanceSection');
+    const movedSections = document.getElementById('movedSections');
+    const editor = document.getElementById('editor');
+    const upload = document.getElementById('upload');
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
 
-// Resize Controls
-const resizeWidth = document.getElementById('resizeWidth');
-const resizeHeight = document.getElementById('resizeHeight');
-const lockAspectRatio = document.getElementById('lockAspectRatio');
-const btnApplyResize = document.getElementById('btnApplyResize');
+    // State
+    let img = new Image();
+    let history = [];
+    let redoStack = [];
+    let isDrawingMode = false;
+    let isDrawing = false;
+    let isTextMode = false;
+    let pendingText = '';
+    let currentFilter = 'none';
+    let aspectRatio = 1;
+    let lastX = 0;
+    let lastY = 0;
 
-// Adjustment Controls
-const brightness = document.getElementById('brightness');
-const contrast = document.getElementById('contrast');
-const saturation = document.getElementById('saturation');
-const valBrightness = document.getElementById('valBrightness');
-const valContrast = document.getElementById('valContrast');
-const valSaturation = document.getElementById('valSaturation');
-const filterBtns = document.querySelectorAll('.filter-btn');
+    // UI Controls
+    const btnUndo = document.getElementById('btnUndo');
+    const btnRedo = document.getElementById('btnRedo');
+    const btnReset = document.getElementById('btnReset');
+    const btnChangeImage = document.getElementById('btnChangeImage');
+    const btnDraw = document.getElementById('btnDraw');
+    const btnText = document.getElementById('btnText');
+    const btnDownload = document.getElementById('btnDownload');
+    const colorPicker = document.getElementById('colorPicker');
 
-/* --- LOAD IMAGE --- */
-function loadImage(file) {
-if (!file.type.startsWith('image/')) { alert('Only image files allowed'); return; }
-const reader = new FileReader();
-reader.onload = e => {
-img.onload = () => {
-canvas.width = img.width;
-canvas.height = img.height;
-ctx.clearRect(0, 0, canvas.width, canvas.height);
-ctx.drawImage(img, 0, 0);
+    // Resize
+    const resizeWidth = document.getElementById('resizeWidth');
+    const resizeHeight = document.getElementById('resizeHeight');
+    const lockAspectRatio = document.getElementById('lockAspectRatio');
+    const btnApplyResize = document.getElementById('btnApplyResize');
 
-// Set initial resize values
-aspectRatio = img.width / img.height;
-resizeWidth.value = img.width;
-resizeHeight.value = img.height;
+    // Adjustments
+    const brightness = document.getElementById('brightness');
+    const contrast = document.getElementById('contrast');
+    const saturation = document.getElementById('saturation');
+    const valBrightness = document.getElementById('valBrightness');
+    const valContrast = document.getElementById('valContrast');
+    const valSaturation = document.getElementById('valSaturation');
+    const filterBtns = document.querySelectorAll('.filter-btn');
 
-// Switch Views (Hide Dropzone AND Guidance, Show Editor)
-dropZone.classList.add('hidden');
-guidanceSection.classList.add('hidden');
-editor.classList.remove('hidden');
-editor.classList.add('flex');
+    /* --- LOAD IMAGE --- */
+    function loadImage(file) {
+      if (!file.type.startsWith('image/')) { alert('Only image files allowed'); return; }
+      const reader = new FileReader();
+      reader.onload = e => {
+        img.onload = () => {
+          canvas.width = img.width;
+          canvas.height = img.height;
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          ctx.drawImage(img, 0, 0);
 
-// Reset adjustments
-brightness.value = 100; contrast.value = 100; saturation.value = 100;
-currentFilter = 'none';
-updateFilters();
+          aspectRatio = img.width / img.height;
+          resizeWidth.value = img.width;
+          resizeHeight.value = img.height;
 
-// Reset history for new image
-history = [];
-redoStack = [];
-saveState();
-};
-img.src = e.target.result;
-};
-reader.readAsDataURL(file);
-upload.value = '';
-}
+          dropZone.classList.add('hidden');
+          guidanceSection.classList.add('hidden');
+          movedSections.classList.add('hidden');
+          editor.classList.remove('hidden');
+          editor.classList.add('flex');
 
-/* --- DROPZONE & UPLOAD EVENTS --- */
-dropZone.onclick = () => upload.click();
-dropZone.ondragover = e => e.preventDefault();
-dropZone.ondrop = e => { e.preventDefault(); if(e.dataTransfer.files[0]) loadImage(e.dataTransfer.files[0]); };
-upload.onchange = e => { if(e.target.files[0]) loadImage(e.target.files[0]); };
-btnChangeImage.onclick = () => upload.click();
+          brightness.value = 100; contrast.value = 100; saturation.value = 100;
+          currentFilter = 'none';
+          updateFilters();
 
-/* --- HISTORY (UNDO/REDO) --- */
-function saveState() {
-history.push(canvas.toDataURL());
-if (history.length > 30) history.shift();
-redoStack = [];
-updateButtons();
-}
-
-function restoreState(dataUrl) {
-const temp = new Image();
-temp.onload = () => {
-// Update canvas dimensions in case we are undoing a resize
-canvas.width = temp.width;
-canvas.height = temp.height;
-ctx.clearRect(0, 0, canvas.width, canvas.height);
-ctx.drawImage(temp, 0, 0);
-
-// Update resize UI to match the restored state
-resizeWidth.value = canvas.width;
-resizeHeight.value = canvas.height;
-aspectRatio = canvas.width / canvas.height;
-};
-temp.src = dataUrl;
-}
-
-btnUndo.onclick = () => {
-if (history.length > 1) {
-redoStack.push(history.pop());
-restoreState(history[history.length - 1]);
-updateButtons();
-}
-};
-
-btnRedo.onclick = () => {
-if (redoStack.length > 0) {
-const state = redoStack.pop();
-history.push(state);
-restoreState(state);
-updateButtons();
-}
-};
-
-btnReset.onclick = () => {
-if (history.length > 0) {
-const initialState = history[0];
-history = [initialState];
-redoStack = [];
-restoreState(initialState);
-
-brightness.value = 100; contrast.value = 100; saturation.value = 100;
-currentFilter = 'none';
-updateFilters();
-updateButtons();
-}
-};
-
-function updateButtons() {
-btnUndo.disabled = history.length <= 1;
-btnRedo.disabled = redoStack.length === 0;
-}
-
-/* --- RESIZE LOGIC --- */
-resizeWidth.addEventListener('input', () => {
-if (lockAspectRatio.checked && resizeWidth.value) {
-resizeHeight.value = Math.round(resizeWidth.value / aspectRatio);
-}
-});
-
-resizeHeight.addEventListener('input', () => {
-if (lockAspectRatio.checked && resizeHeight.value) {
-resizeWidth.value = Math.round(resizeHeight.value * aspectRatio);
-}
-});
-
-btnApplyResize.onclick = () => {
-const newWidth = parseInt(resizeWidth.value);
-const newHeight = parseInt(resizeHeight.value);
-
-if (!newWidth || !newHeight || newWidth <= 0 || newHeight <= 0) {
-alert("Please enter valid width and height dimensions.");
-return;
-}
-
-// Create a temporary canvas to hold the current image data
-const tempCanvas = document.createElement('canvas');
-tempCanvas.width = canvas.width;
-tempCanvas.height = canvas.height;
-const tCtx = tempCanvas.getContext('2d');
-tCtx.drawImage(canvas, 0, 0);
-
-// Resize the main canvas
-canvas.width = newWidth;
-canvas.height = newHeight;
-
-// Draw the image scaled to the new dimensions
-ctx.clearRect(0, 0, canvas.width, canvas.height);
-ctx.drawImage(tempCanvas, 0, 0, canvas.width, canvas.height);
-
-// Update aspect ratio in case they unlocked and changed it
-aspectRatio = canvas.width / canvas.height;
-
-saveState();
-};
-
-/* --- FILTERS & ADJUSTMENTS --- */
-function updateFilters() {
-valBrightness.textContent = brightness.value + '%';
-valContrast.textContent = contrast.value + '%';
-valSaturation.textContent = saturation.value + '%';
-
-let filterStr = `brightness(${brightness.value}%) contrast(${contrast.value}%) saturate(${saturation.value}%)`;
-if (currentFilter !== 'none') filterStr += ` ${currentFilter}`;
-
-canvas.style.filter = filterStr;
-
-filterBtns.forEach(btn => {
-if (btn.dataset.filter === currentFilter) {
-btn.className = 'filter-btn py-2 px-3 text-sm rounded-md border bg-blue-50 border-blue-300 text-blue-700';
-} else {
-btn.className = 'filter-btn py-2 px-3 text-sm rounded-md border bg-white border-gray-300 hover:bg-gray-50';
-}
-});
-}
-
-brightness.oninput = updateFilters;
-contrast.oninput = updateFilters;
-saturation.oninput = updateFilters;
-
-filterBtns.forEach(btn => {
-btn.onclick = () => {
-currentFilter = btn.dataset.filter;
-updateFilters();
-};
-});
-
-/* --- HELPER: GET MOUSE/TOUCH POSITION --- */
-function getMousePos(e) {
-  const rect = canvas.getBoundingClientRect();
-  const scaleX = canvas.width / rect.width;
-  const scaleY = canvas.height / rect.height;
-  
-  let clientX, clientY;
-
-  // Check if it's a touch event (mobile) or mouse event (PC)
-  if (e.touches && e.touches.length > 0) {
-    clientX = e.touches[0].clientX;
-    clientY = e.touches[0].clientY;
-  } else if (e.changedTouches && e.changedTouches.length > 0) {
-    // For touchend event
-    clientX = e.changedTouches[0].clientX;
-    clientY = e.changedTouches[0].clientY;
-  } else {
-    clientX = e.clientX;
-    clientY = e.clientY;
-  }
-
-  return {
-    x: (clientX - rect.left) * scaleX,
-    y: (clientY - rect.top) * scaleY
-  };
-}
-
-/* --- DRAWING & TEXT MODES --- */
-btnDraw.onclick = () => {
-  isDrawingMode = !isDrawingMode;
-  if (isDrawingMode) {
-    // Cancel text mode if active
-    if (isTextMode) {
-      isTextMode = false;
-      pendingText = '';
-      btnText.className = 'px-3 py-2 bg-white border border-gray-300 rounded-md hover:bg-gray-50 text-sm font-medium';
-      btnText.textContent = 'Add Text';
+          history = [];
+          redoStack = [];
+          saveState();
+        };
+        img.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+      upload.value = '';
     }
 
-    btnDraw.className = 'px-3 py-2 border rounded-md text-sm font-medium bg-blue-100 border-blue-300 text-blue-700';
-    btnDraw.textContent = 'Stop Drawing';
-    canvas.classList.add('cursor-crosshair');
-    canvas.classList.remove('cursor-default', 'cursor-text');
-  } else {
-    btnDraw.className = 'px-3 py-2 bg-white border border-gray-300 rounded-md hover:bg-gray-50 text-sm font-medium';
-    btnDraw.textContent = 'Draw';
-    canvas.classList.remove('cursor-crosshair');
-    canvas.classList.add('cursor-default');
-  }
-};
+    dropZone.onclick = () => upload.click();
+    dropZone.ondragover = e => e.preventDefault();
+    dropZone.ondrop = e => { e.preventDefault(); if(e.dataTransfer.files[0]) loadImage(e.dataTransfer.files[0]); };
+    upload.onchange = e => { if(e.target.files[0]) loadImage(e.target.files[0]); };
+    btnChangeImage.onclick = () => upload.click();
 
-btnText.onclick = () => {
-  if (isTextMode) {
-    // Cancel text mode
-    isTextMode = false;
-    pendingText = '';
-    btnText.className = 'px-3 py-2 bg-white border border-gray-300 rounded-md hover:bg-gray-50 text-sm font-medium';
-    btnText.textContent = 'Add Text';
-    canvas.classList.remove('cursor-text');
-    canvas.classList.add('cursor-default');
-    return;
-  }
+    /* --- HISTORY --- */
+    function saveState() {
+      history.push(canvas.toDataURL());
+      if (history.length > 30) history.shift();
+      redoStack = [];
+      updateButtons();
+    }
 
-  let text = prompt("Enter text:");
-  if (!text) return;
-  text = text.replace(/[<>]/g, ''); // sanitize
+    function restoreState(dataUrl) {
+      const temp = new Image();
+      temp.onload = () => {
+        canvas.width = temp.width;
+        canvas.height = temp.height;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.drawImage(temp, 0, 0);
+        resizeWidth.value = canvas.width;
+        resizeHeight.value = canvas.height;
+        aspectRatio = canvas.width / canvas.height;
+      };
+      temp.src = dataUrl;
+    }
 
-  pendingText = text;
-  isTextMode = true;
+    btnUndo.onclick = () => {
+      if (history.length > 1) {
+        redoStack.push(history.pop());
+        restoreState(history[history.length - 1]);
+        updateButtons();
+      }
+    };
 
-  // Disable drawing mode if active
-  if (isDrawingMode) {
-    isDrawingMode = false;
-    btnDraw.className = 'px-3 py-2 bg-white border border-gray-300 rounded-md hover:bg-gray-50 text-sm font-medium';
-    btnDraw.textContent = 'Draw';
-  }
+    btnRedo.onclick = () => {
+      if (redoStack.length > 0) {
+        const state = redoStack.pop();
+        history.push(state);
+        restoreState(state);
+        updateButtons();
+      }
+    };
 
-  // Update UI to show we are waiting for a click/tap
-  btnText.className = 'px-3 py-2 border rounded-md text-sm font-medium bg-blue-100 border-blue-300 text-blue-700';
-  btnText.textContent = 'Tap to Place';
-  canvas.classList.add('cursor-text');
-  canvas.classList.remove('cursor-default', 'cursor-crosshair');
-};
+    btnReset.onclick = () => {
+      if (history.length > 0) {
+        const initialState = history[0];
+        history = [initialState];
+        redoStack = [];
+        restoreState(initialState);
+        brightness.value = 100; contrast.value = 100; saturation.value = 100;
+        currentFilter = 'none';
+        updateFilters();
+        updateButtons();
+      }
+    };
 
-/* --- MOUSE & TOUCH EVENT HANDLERS --- */
-function handlePointerDown(e) {
-  const pos = getMousePos(e);
+    function updateButtons() {
+      btnUndo.disabled = history.length <= 1;
+      btnRedo.disabled = redoStack.length === 0;
+    }
 
-  // Handle Text Placement
-  if (isTextMode) {
-    ctx.fillStyle = colorPicker.value;
-    ctx.font = "30px Arial";
-    ctx.fillText(pendingText, pos.x, pos.y);
-    saveState();
+    /* --- RESIZE --- */
+    resizeWidth.addEventListener('input', () => {
+      if (lockAspectRatio.checked && resizeWidth.value) {
+        resizeHeight.value = Math.round(resizeWidth.value / aspectRatio);
+      }
+    });
 
-    // Reset text mode
-    isTextMode = false;
-    pendingText = '';
-    btnText.className = 'px-3 py-2 bg-white border border-gray-300 rounded-md hover:bg-gray-50 text-sm font-medium';
-    btnText.textContent = 'Add Text';
-    canvas.classList.remove('cursor-text');
-    canvas.classList.add('cursor-default');
-    return;
-  }
+    resizeHeight.addEventListener('input', () => {
+      if (lockAspectRatio.checked && resizeHeight.value) {
+        resizeWidth.value = Math.round(resizeHeight.value * aspectRatio);
+      }
+    });
 
-  // Handle Drawing Start
-  if (!isDrawingMode) return;
-  isDrawing = true;
-  lastX = pos.x;
-  lastY = pos.y;
+    btnApplyResize.onclick = () => {
+      const newWidth = parseInt(resizeWidth.value);
+      const newHeight = parseInt(resizeHeight.value);
+      if (!newWidth || !newHeight || newWidth <= 0 || newHeight <= 0) {
+        alert("Please enter valid dimensions.");
+        return;
+      }
+      const tempCanvas = document.createElement('canvas');
+      tempCanvas.width = canvas.width;
+      tempCanvas.height = canvas.height;
+      const tCtx = tempCanvas.getContext('2d');
+      tCtx.drawImage(canvas, 0, 0);
+      canvas.width = newWidth;
+      canvas.height = newHeight;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.drawImage(tempCanvas, 0, 0, canvas.width, canvas.height);
+      aspectRatio = canvas.width / canvas.height;
+      saveState();
+    };
 
-  ctx.beginPath();
-  ctx.moveTo(lastX, lastY);
-}
+    /* --- FILTERS --- */
+    function updateFilters() {
+      valBrightness.textContent = brightness.value + '%';
+      valContrast.textContent = contrast.value + '%';
+      valSaturation.textContent = saturation.value + '%';
+      let filterStr = `brightness(${brightness.value}%) contrast(${contrast.value}%) saturate(${saturation.value}%)`;
+      if (currentFilter !== 'none') filterStr += ` ${currentFilter}`;
+      canvas.style.filter = filterStr;
+      filterBtns.forEach(btn => {
+        if (btn.dataset.filter === currentFilter) {
+          btn.className = 'filter-btn py-2 px-3 text-sm rounded-md border bg-green-50 border-green-300 text-green-700';
+        } else {
+          btn.className = 'filter-btn py-2 px-3 text-sm rounded-md border bg-white border-gray-300 hover:bg-gray-50';
+        }
+      });
+    }
 
-function handlePointerMove(e) {
-  if (!isDrawingMode || !isDrawing) return;
+    brightness.oninput = updateFilters;
+    contrast.oninput = updateFilters;
+    saturation.oninput = updateFilters;
+    filterBtns.forEach(btn => btn.onclick = () => { currentFilter = btn.dataset.filter; updateFilters(); });
 
-  const pos = getMousePos(e);
+    /* --- POSITION HELPER --- */
+    function getMousePos(e) {
+      const rect = canvas.getBoundingClientRect();
+      const scaleX = canvas.width / rect.width;
+      const scaleY = canvas.height / rect.height;
+      let clientX, clientY;
+      if (e.touches && e.touches.length > 0) {
+        clientX = e.touches[0].clientX; clientY = e.touches[0].clientY;
+      } else if (e.changedTouches && e.changedTouches.length > 0) {
+        clientX = e.changedTouches[0].clientX; clientY = e.changedTouches[0].clientY;
+      } else {
+        clientX = e.clientX; clientY = e.clientY;
+      }
+      return { x: (clientX - rect.left) * scaleX, y: (clientY - rect.top) * scaleY };
+    }
 
-  // Draw continuous line
-  ctx.lineTo(pos.x, pos.y);
-  ctx.strokeStyle = colorPicker.value;
-  ctx.lineWidth = 5; // Brush size
-  ctx.lineCap = 'round'; // Smooth edges
-  ctx.lineJoin = 'round'; // Smooth corners
-  ctx.stroke();
+    /* --- DRAW & TEXT --- */
+    btnDraw.onclick = () => {
+      isDrawingMode = !isDrawingMode;
+      if (isDrawingMode) {
+        isTextMode = false; pendingText = '';
+        btnText.className = 'px-3 py-2 bg-white border border-gray-300 rounded-md hover:bg-gray-50 text-sm font-medium flex items-center gap-1';
+        btnText.innerHTML = '<i data-lucide="type" class="w-4 h-4"></i> Add Text';
+        btnDraw.className = 'px-3 py-2 border rounded-md text-sm font-medium bg-green-100 border-green-300 text-green-700 flex items-center gap-1';
+        btnDraw.innerHTML = '<i data-lucide="pencil" class="w-4 h-4"></i> Stop Drawing';
+        canvas.classList.add('cursor-crosshair');
+        canvas.classList.remove('cursor-default', 'cursor-text');
+      } else {
+        btnDraw.className = 'px-3 py-2 bg-white border border-gray-300 rounded-md hover:bg-gray-50 text-sm font-medium flex items-center gap-1';
+        btnDraw.innerHTML = '<i data-lucide="pencil" class="w-4 h-4"></i> Draw';
+        canvas.classList.remove('cursor-crosshair');
+        canvas.classList.add('cursor-default');
+      }
+      lucide.createIcons();
+    };
 
-  lastX = pos.x;
-  lastY = pos.y;
-}
+    btnText.onclick = () => {
+      if (isTextMode) {
+        isTextMode = false; pendingText = '';
+        btnText.className = 'px-3 py-2 bg-white border border-gray-300 rounded-md hover:bg-gray-50 text-sm font-medium flex items-center gap-1';
+        btnText.innerHTML = '<i data-lucide="type" class="w-4 h-4"></i> Add Text';
+        canvas.classList.remove('cursor-text');
+        canvas.classList.add('cursor-default');
+        lucide.createIcons();
+        return;
+      }
+      let text = prompt("Enter text:");
+      if (!text) return;
+      pendingText = text.replace(/[<>]/g, '');
+      isTextMode = true;
+      if (isDrawingMode) {
+        isDrawingMode = false;
+        btnDraw.className = 'px-3 py-2 bg-white border border-gray-300 rounded-md hover:bg-gray-50 text-sm font-medium flex items-center gap-1';
+        btnDraw.innerHTML = '<i data-lucide="pencil" class="w-4 h-4"></i> Draw';
+      }
+      btnText.className = 'px-3 py-2 border rounded-md text-sm font-medium bg-green-100 border-green-300 text-green-700 flex items-center gap-1';
+      btnText.innerHTML = '<i data-lucide="type" class="w-4 h-4"></i> Tap to Place';
+      canvas.classList.add('cursor-text');
+      canvas.classList.remove('cursor-default', 'cursor-crosshair');
+      lucide.createIcons();
+    };
 
-function handlePointerUp(e) {
-  if (isDrawing) {
-    isDrawing = false;
-    saveState();
-  }
-}
+    function handlePointerDown(e) {
+      const pos = getMousePos(e);
+      if (isTextMode) {
+        ctx.fillStyle = colorPicker.value;
+        ctx.font = "30px Arial";
+        ctx.fillText(pendingText, pos.x, pos.y);
+        saveState();
+        isTextMode = false; pendingText = '';
+        btnText.className = 'px-3 py-2 bg-white border border-gray-300 rounded-md hover:bg-gray-50 text-sm font-medium flex items-center gap-1';
+        btnText.innerHTML = '<i data-lucide="type" class="w-4 h-4"></i> Add Text';
+        canvas.classList.remove('cursor-text');
+        canvas.classList.add('cursor-default');
+        lucide.createIcons();
+        return;
+      }
+      if (!isDrawingMode) return;
+      isDrawing = true; lastX = pos.x; lastY = pos.y;
+      ctx.beginPath(); ctx.moveTo(lastX, lastY);
+    }
 
-// Attach Mouse Events (PC)
-canvas.addEventListener('mousedown', handlePointerDown);
-canvas.addEventListener('mousemove', handlePointerMove);
-canvas.addEventListener('mouseup', handlePointerUp);
-canvas.addEventListener('mouseleave', handlePointerUp);
+    function handlePointerMove(e) {
+      if (!isDrawingMode || !isDrawing) return;
+      const pos = getMousePos(e);
+      ctx.lineTo(pos.x, pos.y);
+      ctx.strokeStyle = colorPicker.value;
+      ctx.lineWidth = 5; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+      ctx.stroke(); lastX = pos.x; lastY = pos.y;
+    }
 
-// Attach Touch Events (Mobile)
-canvas.addEventListener('touchstart', (e) => {
-  if (isDrawingMode || isTextMode) e.preventDefault(); // Prevent screen scrolling while drawing/tapping
-  handlePointerDown(e);
-}, { passive: false });
+    function handlePointerUp() { if (isDrawing) { isDrawing = false; saveState(); } }
 
-canvas.addEventListener('touchmove', (e) => {
-  if (isDrawingMode || isTextMode) e.preventDefault(); // Prevent screen scrolling while drawing
-  handlePointerMove(e);
-}, { passive: false });
+    canvas.addEventListener('mousedown', handlePointerDown);
+    canvas.addEventListener('mousemove', handlePointerMove);
+    canvas.addEventListener('mouseup', handlePointerUp);
+    canvas.addEventListener('mouseleave', handlePointerUp);
+    canvas.addEventListener('touchstart', (e) => { if (isDrawingMode || isTextMode) e.preventDefault(); handlePointerDown(e); }, { passive: false });
+    canvas.addEventListener('touchmove', (e) => { if (isDrawingMode || isTextMode) e.preventDefault(); handlePointerMove(e); }, { passive: false });
+    canvas.addEventListener('touchend', (e) => { if (isDrawingMode || isTextMode) e.preventDefault(); handlePointerUp(); }, { passive: false });
 
-canvas.addEventListener('touchend', (e) => {
-  if (isDrawingMode || isTextMode) e.preventDefault();
-  handlePointerUp(e);
-}, { passive: false });
+    /* --- DOWNLOAD --- */
+    const qualityInput = document.getElementById('quality');
+    const valQuality = document.getElementById('valQuality');
+    qualityInput.oninput = () => valQuality.textContent = Math.round(qualityInput.value * 100) + '%';
 
-
-/* --- DOWNLOAD --- */
-const qualityInput = document.getElementById('quality');
-const valQuality = document.getElementById('valQuality');
-qualityInput.oninput = () => valQuality.textContent = Math.round(qualityInput.value * 100) + '%';
-
-btnDownload.onclick = () => {
-const format = document.getElementById('format').value;
-const quality = parseFloat(qualityInput.value);
-
-const offscreen = document.createElement('canvas');
-offscreen.width = canvas.width;
-offscreen.height = canvas.height;
-const offCtx = offscreen.getContext('2d');
-
-offCtx.filter = canvas.style.filter;
-offCtx.drawImage(canvas, 0, 0);
-
-const a = document.createElement('a');
-a.href = offscreen.toDataURL(format, quality);
-a.download = "edited_image";
-a.click();
-};
-</script>
+    btnDownload.onclick = () => {
+      const format = document.getElementById('format').value;
+      const quality = parseFloat(qualityInput.value);
+      const offscreen = document.createElement('canvas');
+      offscreen.width = canvas.width; offscreen.height = canvas.height;
+      const offCtx = offscreen.getContext('2d');
+      offCtx.filter = canvas.style.filter;
+      offCtx.drawImage(canvas, 0, 0);
+      const a = document.createElement('a');
+      a.href = offscreen.toDataURL(format, quality);
+      a.download = "edited_image";
+      a.click();
+    };
+  </script>
 </body>
 </html>
