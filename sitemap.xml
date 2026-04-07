@@ -141,11 +141,12 @@
    <loc>https://www.igttechcollege.com/image-tools.html</loc>
     <lastmod>2026-04-06T12:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.80</priority>   
+    <priority>0.80</priority>
   </url>
+   <url>
+    <loc>https://www.igttechcollege.com/qrcode-barcode-generator.html</loc>
+    <lastmod>2026-04-07T09:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>   
+  </url>    
 </urlset>
-
-
-
-
-
