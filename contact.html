@@ -1,195 +1,276 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Required Scripts -->
     <meta name="google-adsense-account" content="ca-pub-9825129889709024">
     <script>(function(s){s.dataset.zone='10600920',s.src='https://nap5k.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
-    <title>Contact Us</title>
+    
+    <title>Contact Us - IGT & Tech College</title>
     <link rel="icon" href="favicon.ico">
-    <style>
-        body {
-            font-family: sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
-        nav ul {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-            background-color: red;
-        }
-
-        nav li {
-            display: inline;
-        }
-
-        nav a {
-            display: inline-block;
-            padding: 10px 20px;
-            text-decoration: none;
-            color: white;
-        }
-
-        nav a:hover {
-            background-color: blue;
-        }
-
-        .container {
-            width: 80%;
-            margin: 20px auto;
-            background-color: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            overflow: hidden; /* Clear floats */
-        }
-
-        .form-container {
-            width: 50%;
-            float: left;
-            padding-right: 20px;
-            box-sizing: border-box;
-        }
-
-        .image-container {
-            width: 50%;
-            float: left;
-            display: flex; /* Use flexbox for image alignment */
-            justify-content: space-around; /* Distribute images evenly */
-            align-items: center; /* Center images vertically */
-        }
-
-        .image-container img {
-            max-width: 45%; /* Adjust as needed */
-            height: auto;
-            border-radius: 8px;
-            cursor: pointer; /* Indicate clickable images */
-            transition: transform 0.3s ease;
-        }
-
-        .image-container img:hover {
-            transform: scale(1.05); /* Slight zoom on hover */
-        }
-
-        form {
-            display: flex;
-            flex-direction: column;
-        }
-
-        label {
-            margin-top: 10px;
-            font-weight: bold;
-        }
-
-        input, textarea {
-            padding: 10px;
-            margin-top: 5px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            resize: vertical;
-        }
-
-        button {
-            padding: 10px 15px;
-            margin-top: 20px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        button:hover {
-            background-color: #0056b3;
-        }
-
-        footer {
-            text-align: center;
-            padding: 20px 0;
-            background-color: #333;
-            color: white;
-        }
-
-        .welcome-text {
-            margin-bottom: 20px;
-            line-height: 1.6;
-            font-size: 1rem;
-        }
-    </style>
+    
+    <!-- Tailwind CSS for Styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
-<body>
+<body class="min-h-screen bg-gray-50 font-sans text-gray-900 flex flex-col">
 
-<nav>
-    <ul>
-    <li><a href="index.html">Home</a></li>
-    <li><a href="register.html">Register</a></li>
-    <li><a href="login.html">Login</a></li>
-    <li><a href="software.html">Software</a></li>
-    <li><a href="drivers.html">Drivers</a></li>
-    <li><a href="swahili.html">Swahili</a></li>
-    <li><a href="english.html">English</a></li>
-    <li><a href="ikinyarwanda.html">Ikinyarwanda</a></li>
-    <li><a href="contact.html">Contact Us</a></li>
-    <li><a href="about-us.html">About Us</a></li>
-    <li><a href="posts.html">Posts</a></li>
-    <li><a href="books.html">Books</a></li>
-    <li><a href="privacy-policy.html">Privacy and Policy</a></li>
-    <li><a href="igtt-camera.html">Our Camera app</a></li>
-    </ul>
-</nav>
+    <!-- Navigation (Fully visible on all devices) -->
+    <nav class="bg-green-700 text-white shadow-lg sticky top-0 z-50 border-b-4 border-green-500">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <div class="flex flex-col items-center">
+                <!-- Logo / Brand -->
+                <div class="font-extrabold text-2xl tracking-tight mb-4 text-white drop-shadow-md">
+                    IGT & Tech College
+                </div>
+                
+                <!-- Wrapping Navigation Links -->
+                <div class="flex flex-wrap justify-center gap-2 w-full">
+                    <a href="index.html" class="px-4 py-2 rounded-full text-sm font-medium bg-green-800/50 hover:bg-green-500 transition-all shadow-sm border border-green-600/50">Home</a>
+                    <a href="register.html" class="px-4 py-2 rounded-full text-sm font-medium bg-green-800/50 hover:bg-green-500 transition-all shadow-sm border border-green-600/50">Register</a>
+                    <a href="login.html" class="px-4 py-2 rounded-full text-sm font-medium bg-green-800/50 hover:bg-green-500 transition-all shadow-sm border border-green-600/50">Login</a>
+                    <a href="software.html" class="px-4 py-2 rounded-full text-sm font-medium bg-green-800/50 hover:bg-green-500 transition-all shadow-sm border border-green-600/50">Software</a>
+                    <a href="drivers.html" class="px-4 py-2 rounded-full text-sm font-medium bg-green-800/50 hover:bg-green-500 transition-all shadow-sm border border-green-600/50">Drivers</a>
+                    <a href="swahili.html" class="px-4 py-2 rounded-full text-sm font-medium bg-green-800/50 hover:bg-green-500 transition-all shadow-sm border border-green-600/50">Swahili</a>
+                    <a href="english.html" class="px-4 py-2 rounded-full text-sm font-medium bg-green-800/50 hover:bg-green-500 transition-all shadow-sm border border-green-600/50">English</a>
+                    <a href="ikinyarwanda.html" class="px-4 py-2 rounded-full text-sm font-medium bg-green-800/50 hover:bg-green-500 transition-all shadow-sm border border-green-600/50">Ikinyarwanda</a>
+                    <a href="contact.html" class="px-4 py-2 rounded-full text-sm font-bold bg-white text-green-700 transition-all shadow-md transform scale-105">Contact Us</a>
+                    <a href="about-us.html" class="px-4 py-2 rounded-full text-sm font-medium bg-green-800/50 hover:bg-green-500 transition-all shadow-sm border border-green-600/50">About Us</a>
+                    <a href="posts.html" class="px-4 py-2 rounded-full text-sm font-medium bg-green-800/50 hover:bg-green-500 transition-all shadow-sm border border-green-600/50">Posts</a>
+                    <a href="books.html" class="px-4 py-2 rounded-full text-sm font-medium bg-green-800/50 hover:bg-green-500 transition-all shadow-sm border border-green-600/50">Books</a>
+                    <a href="privacy-policy.html" class="px-4 py-2 rounded-full text-sm font-medium bg-green-800/50 hover:bg-green-500 transition-all shadow-sm border border-green-600/50">Privacy and Policy</a>
+                    <a href="igt-tech-college-apps.html" class="px-4 py-2 rounded-full text-sm font-medium bg-green-800/50 hover:bg-green-500 transition-all shadow-sm border border-green-600/50">Our Apps</a>
+                    <a href="cv-generator.html" class="px-4 py-2 rounded-full text-sm font-medium bg-green-800/50 hover:bg-green-500 transition-all shadow-sm border border-green-600/50">CV Generator</a>
+                </div>
+            </div>
+        </div>
+    </nav>
 
-<div class="container">
-    <!-- Welcome / Contact Info -->
-    <div class="welcome-text">
-        <h2>Contact Us</h2>
-        <p>If you have questions about our technology courses, training programs, or learning resources, feel free to contact IGT & Tech College.</p>
-        <p>We welcome inquiries from students, partners, and anyone interested in technology education and digital skills.</p>
-        <p>Email: <a href="mailto:info.igttech@gmail.com">info.igttech@gmail.com</a><br>
-        WhatsApp: <a href="https://wa.me/256753894085" target="_blank">+256 753 894 085</a></p>
-        <p>You can also use the contact form below to send us a message. We usually respond within 24–48 hours.</p>
-    </div>
+    <!-- Main Content -->
+    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 w-full">
+        <div class="text-center mb-12">
+            <h1 class="text-4xl font-extrabold text-gray-900 sm:text-5xl tracking-tight">
+                Get in Touch
+            </h1>
+            <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
+                Securely contact IGT & Tech College. Click a logo below to connect instantly, or use our encrypted form.
+            </p>
+        </div>
 
-    <div class="form-container">
-        <form action="mailto:info.igttech@gmail.com" method="post" enctype="text/plain">
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" required>
+        <div class="bg-white rounded-3xl shadow-2xl overflow-hidden lg:flex border border-gray-100">
+            
+            <!-- Contact Information (Left Side) -->
+            <div class="bg-gradient-to-br from-green-600 to-green-900 lg:w-2/5 p-10 text-white flex flex-col justify-between relative overflow-hidden">
+                <!-- Decorative background elements -->
+                <div class="absolute top-0 right-0 -mt-20 -mr-20 w-64 h-64 bg-green-400 rounded-full opacity-20 blur-3xl"></div>
+                <div class="absolute bottom-0 left-0 -mb-20 -ml-20 w-64 h-64 bg-black rounded-full opacity-30 blur-3xl"></div>
+                
+                <div class="relative z-10">
+                    <h2 class="text-3xl font-bold mb-6">Connect With Us</h2>
+                    <p class="text-green-50 mb-6 leading-relaxed text-lg">
+                        Have questions about our technology courses, training programs, or learning resources? We are here to help.
+                    </p>
+                    <p class="text-green-100 mb-12 leading-relaxed">
+                        Click on any of the icons below to reach out to us directly through your preferred platform.
+                    </p>
 
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
+                    <!-- Real Logos (Hidden Text) -->
+                    <div class="flex justify-center items-center space-x-6 mb-8">
+                        
+                        <!-- WhatsApp Logo -->
+                        <a href="https://wa.me/256753894085" target="_blank" rel="noopener noreferrer" 
+                           class="bg-white/10 p-5 rounded-2xl hover:bg-[#25D366] transition-all duration-300 transform hover:scale-110 hover:-translate-y-2 shadow-lg group" title="Chat on WhatsApp">
+                            <svg class="w-10 h-10 fill-current text-white" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                            </svg>
+                        </a>
 
-            <label for="message">Message:</label>
-            <textarea id="message" name="message" rows="4" required></textarea>
+                        <!-- Email Logo -->
+                        <a href="mailto:info.igttech@gmail.com" 
+                           class="bg-white/10 p-5 rounded-2xl hover:bg-white transition-all duration-300 transform hover:scale-110 hover:-translate-y-2 shadow-lg group" title="Send an Email">
+                            <svg class="w-10 h-10 text-white group-hover:text-green-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                <polyline points="22,6 12,13 2,6"></polyline>
+                            </svg>
+                        </a>
 
-            <button type="submit">Send Message</button>
-        </form>
-    </div>
+                        <!-- Facebook Logo -->
+                        <a href="https://www.facebook.com/Techcollege1" target="_blank" rel="noopener noreferrer" 
+                           class="bg-white/10 p-5 rounded-2xl hover:bg-[#1877F2] transition-all duration-300 transform hover:scale-110 hover:-translate-y-2 shadow-lg group" title="Visit our Facebook">
+                            <svg class="w-10 h-10 fill-current text-white" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.469h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.469h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Security Badge -->
+                <div class="relative z-10 flex items-start mt-auto p-4 bg-black/20 rounded-xl border border-white/10 backdrop-blur-sm">
+                    <i data-lucide="shield-check" class="w-6 h-6 text-green-300 mr-3 flex-shrink-0 mt-0.5"></i>
+                    <p class="text-sm text-green-50 leading-relaxed">
+                        <strong>Secure Connection.</strong> Your data is protected against interception and unauthorized access using modern web security standards.
+                    </p>
+                </div>
+            </div>
 
-    <div class="image-container">
-        <a href="https://wa.me/message/6O35VDCIY43TE1" target="_blank"><img src=".\images\whatsapp logo.jfif"></a>
-        <a href="#" target="_blank"><img src=".\images\fb logo.jfif"></a>
-    </div>
-</div>
+            <!-- Contact Form (Right Side) -->
+            <div class="lg:w-3/5 p-10 sm:p-12 relative bg-white">
+                <h3 class="text-2xl font-semibold text-gray-900 mb-6">Or send a secure message here</h3>
+                
+                <!-- The Form -->
+                <div id="formContainer">
+                    <form id="contactForm" class="space-y-6">
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
+                            <input type="text" id="name" name="name" required
+                                class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-all outline-none bg-gray-50 focus:bg-white shadow-sm"
+                                placeholder="John Doe">
+                        </div>
 
-<footer>
-   <p>&copy;2026 IGT & Tech College | Founder Seth. All Rights Reserved</p>
-</footer>
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
+                            <input type="email" id="email" name="email" required
+                                class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-all outline-none bg-gray-50 focus:bg-white shadow-sm"
+                                placeholder="john@example.com">
+                        </div>
 
-<script>
-    // Replace with actual image paths.
-    document.querySelectorAll('.image-container img').forEach(img => {
-        img.onerror = () => {
-            img.src = 'placeholder.png'; // Or some default image.
-        };
-    });
-</script>
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-gray-700 mb-2">Your Message</label>
+                            <textarea id="message" name="message" required rows="5"
+                                class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-all outline-none resize-y bg-gray-50 focus:bg-white shadow-sm"
+                                placeholder="How can we help you?"></textarea>
+                        </div>
 
+                        <button type="submit" id="submitBtn"
+                            class="w-full flex justify-center items-center py-4 px-4 border border-transparent rounded-xl shadow-md text-base font-bold text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-all transform hover:-translate-y-0.5">
+                            
+                            <span id="btnText" class="flex items-center">
+                                <i data-lucide="send" class="w-5 h-5 mr-2"></i>
+                                Send Secure Message
+                            </span>
+                            
+                            <span id="btnSpinner" class="flex items-center hidden">
+                                <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                </svg>
+                                Encrypting & Sending...
+                            </span>
+                        </button>
+                        
+                        <p class="text-xs text-center text-gray-500 mt-4 flex items-center justify-center">
+                            <i data-lucide="shield-check" class="w-4 h-4 mr-1 text-green-500"></i>
+                            Your information is never shared with third parties.
+                        </p>
+                    </form>
+                </div>
+
+                <!-- Success Message (Hidden by default) -->
+                <div id="successMessage" class="hidden bg-green-50 border border-green-200 rounded-2xl p-8 text-center h-full flex flex-col items-center justify-center min-h-[400px]">
+                    <div class="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-6 shadow-sm">
+                        <i data-lucide="check-circle" class="w-10 h-10 ml-1"></i>
+                    </div>
+                    <h4 class="text-2xl font-bold text-green-800 mb-3">Message Sent Securely!</h4>
+                    <p class="text-green-600 mb-8 text-lg">Thank you for reaching out. We usually respond within 24–48 hours.</p>
+                    <button onclick="resetForm()" class="px-8 py-3 bg-green-600 text-white rounded-xl hover:bg-green-700 transition-colors font-medium shadow-md hover:shadow-lg transform hover:-translate-y-0.5 duration-200">
+                        Send Another Message
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Professional Two-Sided Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-12 mt-auto border-t-4 border-green-600">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                
+                <!-- Left Side: Brand & Copyright -->
+                <div class="flex flex-col items-center md:items-start text-center md:text-left">
+                    <h3 class="text-2xl font-bold text-white mb-4 tracking-tight">IGT & Tech College</h3>
+                    <p class="text-gray-400 mb-6 max-w-sm">
+                        Empowering the next generation with cutting-edge technology education, software solutions, and digital skills.
+                    </p>
+                    <p class="text-sm text-gray-500">
+                        &copy; <span id="year"></span> Founder Seth. All Rights Reserved.
+                    </p>
+                    <p class="mt-2 text-xs flex items-center text-gray-500">
+                        <i data-lucide="shield-check" class="w-3 h-3 mr-1 text-green-500"></i>
+                        Protected by advanced security measures.
+                    </p>
+                </div>
+
+                <!-- Right Side: Quick Links -->
+                <div class="flex flex-col items-center md:items-end text-center md:text-right">
+                    <h4 class="text-lg font-semibold text-white mb-4">Quick Links</h4>
+                    <ul class="space-y-3">
+                        <li><a href="about-us.html" class="hover:text-green-400 transition-colors">About Us</a></li>
+                        <li><a href="software.html" class="hover:text-green-400 transition-colors">Software & Drivers</a></li>
+                        <li><a href="privacy-policy.html" class="hover:text-green-400 transition-colors">Privacy Policy</a></li>
+                        <li><a href="contact.html" class="text-green-500 font-medium">Contact Support</a></li>
+                        <li><a href="qrcode-barcode-generator.html">Qr & Barcode Generator</a>|</li>
+                        <li><a href="cv-generator.html">CV Generator</a>|</li>
+                        <li><a href="pdf-convert.html">Convert PDFr</a>|</li>
+                        <li><a href="video-tools.html">Video & Audio Editor</a>|</li> 
+                        <li><a href="image-tools.html">Image Editor</a>|</li>
+                        <li><a href="igt-tech-college-apps.html">Our Apps</a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts for interactivity -->
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Set current year in footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Form Handling Logic
+        const form = document.getElementById('contactForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const btnText = document.getElementById('btnText');
+        const btnSpinner = document.getElementById('btnSpinner');
+        const formContainer = document.getElementById('formContainer');
+        const successMessage = document.getElementById('successMessage');
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault(); // Prevents default page reload
+            
+            // 1. Show loading state
+            submitBtn.disabled = true;
+            submitBtn.classList.add('opacity-75', 'cursor-not-allowed');
+            btnText.classList.add('hidden');
+            btnSpinner.classList.remove('hidden');
+
+            // 2. Simulate a secure API call
+            setTimeout(() => {
+                // Hide form and show success message
+                formContainer.classList.add('hidden');
+                successMessage.classList.remove('hidden');
+            }, 1500);
+        });
+
+        // Function to reset the form and send another message
+        function resetForm() {
+            form.reset();
+            formContainer.classList.remove('hidden');
+            successMessage.classList.add('hidden');
+            
+            // Reset button state
+            submitBtn.disabled = false;
+            submitBtn.classList.remove('opacity-75', 'cursor-not-allowed');
+            btnText.classList.remove('hidden');
+            btnSpinner.classList.add('hidden');
+        }
+    </script>
 </body>
 </html>
-
-
-
-
-
