@@ -123,7 +123,17 @@
                 
                 <!-- The Form -->
                 <div id="formContainer">
-                    <form id="contactForm" class="space-y-6">
+                    <form id="contactForm" action="https://api.web3forms.com/submit" method="POST" class="space-y-6">
+                        
+                        <!-- REPLACE THIS VALUE WITH YOUR ACTUAL WEB3FORMS ACCESS KEY -->
+                        <input type="hidden" name="access_key" value="479c6f01-d6b7-4d93-b409-ff48d89020b9">
+                        
+                        <!-- Optional: Subject line for the email you receive -->
+                        <input type="hidden" name="subject" value="New Contact Form Submission from IGT & Tech College">
+                        
+                        <!-- Optional: Redirect to a custom success page, or leave blank to use the javascript success message below -->
+                        <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+
                         <div>
                             <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
                             <input type="text" id="name" name="name" required
@@ -234,7 +244,7 @@
         // Set current year in footer
         document.getElementById('year').textContent = new Date().getFullYear();
 
-        // Form Handling Logic
+        // Form Handling Logic (Now connected to Web3Forms)
         const form = document.getElementById('contactForm');
         const submitBtn = document.getElementById('submitBtn');
         const btnText = document.getElementById('btnText');
@@ -251,12 +261,36 @@
             btnText.classList.add('hidden');
             btnSpinner.classList.remove('hidden');
 
-            // 2. Simulate a secure API call
-            setTimeout(() => {
-                // Hide form and show success message
-                formContainer.classList.add('hidden');
-                successMessage.classList.remove('hidden');
-            }, 1500);
+            // 2. Send data to Web3Forms
+            const formData = new FormData(form);
+            const object = Object.fromEntries(formData);
+            const json = JSON.stringify(object);
+
+            fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: json
+            })
+            .then(async (response) => {
+                let json = await response.json();
+                if (response.status == 200) {
+                    // Success! Hide form and show success message
+                    formContainer.classList.add('hidden');
+                    successMessage.classList.remove('hidden');
+                } else {
+                    console.log(response);
+                    alert("Something went wrong! Please try again.");
+                    resetForm();
+                }
+            })
+            .catch(error => {
+                console.log(error);
+                alert("Something went wrong! Please try again.");
+                resetForm();
+            });
         });
 
         // Function to reset the form and send another message
