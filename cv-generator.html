@@ -352,7 +352,8 @@
             <div style="transform: scale(0.85); transform-origin: top center; margin-bottom: -15%;">
                 <div id="cv-document" class="cv-wrapper">
                     <div class="cv-left">
-                        <div class="cv-profile"><img src="https://www.igttechcollege.com/images/seth3nn.jpg" crossorigin="anonymous"></div>
+                        <!-- THIS IS THE ONLY LINE CHANGED: Added the colon before src -->
+                        <div class="cv-profile"><img :src="cv.profileImage" crossorigin="anonymous"></div>
                         <div class="cv-section"><h3>CONTACT</h3><ul><li v-if="cv.contact.phone">📞 {{ cv.contact.phone }}</li><li v-if="cv.contact.email">✉ {{ cv.contact.email }}</li><li v-if="cv.contact.linkedin">{{ cv.contact.linkedin }}</li><li v-if="cv.contact.location">📍 {{ cv.contact.location }}</li><li v-if="cv.contact.website">🌐 {{ cv.contact.website }}</li></ul></div>
                         <div class="cv-section" v-if="cv.skills.length > 0"><h3>SKILLS</h3><ul><li v-for="skill in cv.skills">{{ skill }}</li></ul></div>
                         <div class="cv-section" v-if="cv.languages.length > 0"><h3>LANGUAGES</h3><ul><li v-for="lang in cv.languages">{{ lang }}</li></ul></div>
