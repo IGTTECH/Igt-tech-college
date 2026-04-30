@@ -114,18 +114,18 @@
                 <div class="space-y-4">
                     <div class="flex gap-4">
                         <div class="w-1 h-auto bg-blue-600 rounded"></div>
-                        <p><strong>Security Analysis:</strong> We collect non-personal device information such as installed package names, battery temperature, and RAM usage exclusively for real-time security audits.</p>
+                        <p><strong>Installed Application Information:</strong> We collect and process the list of installed applications on your device to enable core security features including App Lock, malware detection (Antivirus), and Link Protection (detecting threats within other apps).</p>
                     </div>
                     <div class="flex gap-4">
                         <div class="w-1 h-auto bg-blue-600 rounded"></div>
-                        <p><strong>Package Scanning:</strong> The app utilizes the <code>QUERY_ALL_PACKAGES</code> permission to analyze every installed piece of software on your device to cross-reference with our malware database locally.</p>
+                        <p><strong>Security Diagnostics:</strong> We utilize non-personal diagnostic data such as battery temperature, storage availability, and RAM usage exclusively for performance optimization and security audits.</p>
                     </div>
                 </div>
             </section>
 
             <section class="policy-section">
                 <span class="blue-heading">2. Detailed Permission Disclosure</span>
-                <p class="mb-8">To provide professional security, IGT Security requires access to specific Android subsystems. Below is a full disclosure of why we request these permissions:</p>
+                <p class="mb-8">To provide professional security, IGT Security requires access to specific Android subsystems. In compliance with Google Play policy, we provide a prominent disclosure and seek your affirmative consent before accessing sensitive data.</p>
                 
                 <div class="permission-item">
                     <span class="badge">Accessibility Service</span>
@@ -158,9 +158,9 @@
                 </div>
 
                 <div class="permission-item">
-                    <span class="badge">Background Location</span>
-                    <h4 class="font-bold text-gray-900 mb-2">Remote Recovery System</h4>
-                    <p class="text-sm">Necessary to provide the location of your device via the Anti-Theft remote command system. Access is required in the background so that coordinates can be retrieved even if the app UI is not open.</p>
+                    <span class="badge">Location Access</span>
+                    <h4 class="font-bold text-gray-900 mb-2">Network Security & Anti-Theft</h4>
+                    <p class="text-sm">Location access is required to perform deep Wi-Fi security scans (which requires location data in modern Android versions) and to provide GPS coordinates in response to verified Anti-Theft SMS commands.</p>
                 </div>
             </section>
 
@@ -181,7 +181,6 @@
                 <ul class="list-disc list-inside space-y-2 ml-4">
                     <li><strong>In-App Wipe:</strong> You can clear all security logs, intruder photos, and vault items within the Settings menu.</li>
                     <li><strong>Total Deletion:</strong> Uninstalling the app permanently erases all associated local data and vault contents.</li>
-                    <li><strong>User Account Deletion:</strong> Users who registered for our security courses can request account deletion by emailing our support team.</li>
                 </ul>
             </section>
 
