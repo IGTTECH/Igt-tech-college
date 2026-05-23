@@ -128,39 +128,56 @@
                 <p class="mb-8">To provide professional security, IGT Security requires access to specific Android subsystems. In compliance with Google Play policy, we provide a prominent disclosure and seek your affirmative consent before accessing sensitive data.</p>
                 
                 <div class="permission-item">
-                    <span class="badge">Accessibility Service</span>
-                    <h4 class="font-bold text-gray-900 mb-2">Phishing & Link Protection</h4>
-                    <p class="text-sm">We use Accessibility Services to scan URLs typed or clicked in browsers. This allows us to block malicious phishing sites before they harvest your banking or login data. <strong>We do not capture user text input or record private chats.</strong></p>
+                    <span class="badge">Accessibility Service (AccessibilityService API)</span>
+                    <h4 class="font-bold text-gray-900 mb-2">Real-Time Phishing & Link Protection</h4>
+                    <p class="text-sm mb-2">To support our <strong>Link Protection</strong> feature, IGT Security requires enabling Android's <strong>AccessibilityService API</strong> which monitors web links instantly as you open or click them across other applications and browsers.</p>
+                    <ul class="list-disc pl-5 text-xs text-gray-500 space-y-1">
+                        <li><strong>How we use it:</strong> We read active web URLs clicked inside web browsers, social networks, and messaging clients to check against malicious lookalike domains and phishing triggers.</li>
+                        <li><strong>In-App Alert Override:</strong> If a suspicious or dangerous domain is evaluated, we present a prompt security warn-screen overlay to block access and safeguard your device from credentials thief tools.</li>
+                        <li><strong>Absolute Privacy Guarantee:</strong> The Accessibility Service is strictly limited to inspecting browser URL patterns. We DO NOT record, read, store, or transmit any other on-screen elements, user text entries, keyboards, private messaging data, chat histories, or authentication credentials. Zero data is collected or shared with external servers; all operations happen offline locally on your device.</li>
+                    </ul>
+                </div>
+
+                <div class="permission-item">
+                    <span class="badge">Microphone Access</span>
+                    <h4 class="font-bold text-gray-900 mb-2">Clap to Find - Anti-Theft Alert</h4>
+                    <p class="text-sm">We use the device microphone locally to listen for clap frequency signatures (detecting 3 continuous hand claps) to sound a locator signal when your device is misplaced. This analysis is executed purely offline and raw audio records are never cached, stored, or sent to any server.</p>
+                </div>
+
+                <div class="permission-item">
+                    <span class="badge">Accelerometer & Proximity Sensors</span>
+                    <h4 class="font-bold text-gray-900 mb-2">Motion Alarm & Anti-Pocket Snatch Shield</h4>
+                    <p class="text-sm">Used for physical security alerts when you are away. Calculates acceleration speed peaks and light changes to fire siren sounds if your smartphone is picked up or pulled out of your bag without permission.</p>
                 </div>
 
                 <div class="permission-item">
                     <span class="badge">Device Administrator</span>
-                    <h4 class="font-bold text-gray-900 mb-2">Uninstall Protection</h4>
-                    <p class="text-sm">This permission prevents unauthorized attempts to uninstall the security app, ensuring that thieves cannot bypass your locks or tracking features without your master PIN.</p>
+                    <h4 class="font-bold text-gray-900 mb-2">Uninstall Protection (Uninstall Guard)</h4>
+                    <p class="text-sm">Maintains active system integrity. Stops malware hooks, hackers, or unauthorized snatchers from forcibly wiping or uninstalling IGT Security on custom settings unless you successfully double-authenticate your master PIN.</p>
                 </div>
 
                 <div class="permission-item">
                     <span class="badge">Camera Access</span>
-                    <h4 class="font-bold text-gray-900 mb-2">Intruder Capture</h4>
-                    <p class="text-sm">When the "Intruder Alert" feature is active, the front camera is used to take a photo after 3 failed unlock attempts. These photos are saved to your local device sandbox and are never transmitted to our servers.</p>
+                    <h4 class="font-bold text-gray-900 mb-2">Intruder Selfie Capture</h4>
+                    <p class="text-sm">When the "Intruder Alert" security module triggers, we access the front camera strictly to capture a silent snapshot when an incorrect unlock PIN/pattern is entered 3 consecutive times. Your captured snapshots are stored privately within your localized secured sandbox and never uploaded.</p>
                 </div>
 
                 <div class="permission-item">
                     <span class="badge">Notification Access</span>
-                    <h4 class="font-bold text-gray-900 mb-2">Notification Guard</h4>
-                    <p class="text-sm">We monitor notifications to filter out spam and hide sensitive message contents from the lock screen, preventing 'shoulder surfing' and unauthorized reading of your OTP codes.</p>
+                    <h4 class="font-bold text-gray-900 mb-2">Notification & Spam Filter Guard</h4>
+                    <p class="text-sm">Scans incoming android notifications locally. Instantly intercepts bulk marketing logs, adware alerts, and push notifications based on custom blocklists without transmitting contents off the device.</p>
                 </div>
 
                 <div class="permission-item">
                     <span class="badge">SMS Access (Receive/Send)</span>
-                    <h4 class="font-bold text-gray-900 mb-2">Remote Anti-Theft Commands</h4>
-                    <p class="text-sm">Required for our "Lost Device" feature. You can send an SMS from a trusted number to your phone to remotely lock it, trigger an alarm, or locate it via GPS coordinates. We do not use this to read personal SMS logs.</p>
+                    <h4 class="font-bold text-gray-900 mb-2">Remote Contact Anti-Theft Commands</h4>
+                    <p class="text-sm">Enables remote lost-device controls. Accepts authenticated SMS command strings (like trigger alarm, lock device, or retrieve GPS coordinates) received exclusively from trusted emergency phone contacts configured in your active setup.</p>
                 </div>
 
                 <div class="permission-item">
                     <span class="badge">Location Access</span>
-                    <h4 class="font-bold text-gray-900 mb-2">Network Security & Anti-Theft</h4>
-                    <p class="text-sm">Location access is required to perform deep Wi-Fi security scans (which requires location data in modern Android versions) and to provide GPS coordinates in response to verified Anti-Theft SMS commands.</p>
+                    <h4 class="font-bold text-gray-900 mb-2">GPS Tracker & Wi-Fi Deep Encryption Scans</h4>
+                    <p class="text-sm">Used locally to query basic wireless hotspot SSIDs as required by modern Android modules to verify connection security levels. Also allows returning relative coordinates to trusted contacts under authenticated Anti-Theft SMS commands.</p>
                 </div>
             </section>
 
@@ -175,7 +192,7 @@
                 </div>
             </section>
 
-            <section class="policy-section">
+            <section id="deletion" class="policy-section">
                 <span class="blue-heading">4. Data Deletion & Safety</span>
                 <p class="mb-4">In accordance with Google Play's <strong>Data Safety</strong> policies, you have complete control over your data deletion:</p>
                 <ul class="list-disc list-inside space-y-2 ml-4">
