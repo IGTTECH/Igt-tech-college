@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Guidance & Tutorial - IGT Camera Tools</title>
+    <style>
+        :root {
+            --primary: #6750A4;
+            --primary-container: #EADDFF;
+            --on-primary: #FFFFFF;
+            --on-primary-container: #21005D;
+            --secondary: #625B71;
+            --tertiary: #7D5260;
+            --background: #FEF7FF;
+            --surface: #F7F2FA;
+            --surface-variant: #E7E0EC;
+            --outline: #79747E;
+            --text-main: #1D1B20;
+            --text-sub: #49454F;
+            --shadow: rgba(0, 0, 0, 0.08);
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background-color: var(--background);
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--primary);
+            color: var(--on-primary);
+            padding: 40px 20px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        header p {
+            margin: 10px 0 0 0;
+            font-size: 1.15rem;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .quick-nav {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+
+        .nav-card {
+            background: var(--surface);
+            border: 1px solid var(--surface-variant);
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+            box-shadow: 0 2px 6px var(--shadow);
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .nav-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 16px rgba(103, 80, 164, 0.12);
+            border-color: var(--primary);
+        }
+
+        .nav-card svg {
+            fill: var(--primary);
+            width: 36px;
+            height: 36px;
+            margin-bottom: 12px;
+        }
+
+        .nav-card h3 {
+            margin: 0;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--primary-container-on);
+        }
+
+        .section-card {
+            background: #FFFFFF;
+            border-radius: 24px;
+            padding: 40px;
+            margin-bottom: 32px;
+            box-shadow: 0 4px 20px var(--shadow);
+            border: 1px solid rgba(0, 0, 0, 0.04);
+        }
+
+        .section-card h2 {
+            color: var(--primary);
+            font-size: 1.8rem;
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-bottom: 2px solid var(--surface-variant);
+            padding-bottom: 12px;
+        }
+
+        .section-card h2 svg {
+            fill: var(--primary);
+            width: 28px;
+            height: 28px;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+            margin-top: 24px;
+        }
+
+        @media (min-width: 768px) {
+            .feature-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .feature-box {
+            background: var(--surface);
+            padding: 24px;
+            border-radius: 16px;
+            border-left: 5px solid var(--primary);
+        }
+
+        .feature-box h3 {
+            margin-top: 0;
+            color: var(--primary-container-on);
+            font-size: 1.25rem;
+            margin-bottom: 8px;
+        }
+
+        .step-list {
+            margin: 20px 0;
+            padding-left: 20px;
+        }
+
+        .step-list li {
+            margin-bottom: 12px;
+            position: relative;
+        }
+
+        .tip-banner {
+            background-color: var(--primary-container);
+            color: var(--on-primary-container);
+            padding: 20px;
+            border-radius: 16px;
+            margin-top: 24px;
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+        }
+
+        .tip-banner svg {
+            fill: var(--on-primary-container);
+            flex-shrink: 0;
+            width: 24px;
+            height: 24px;
+            margin-top: 2px;
+        }
+
+        .tip-banner p {
+            margin: 0;
+            font-weight: 500;
+        }
+
+        .badge-pro {
+            background-color: var(--tertiary);
+            color: #FFFFFF;
+            font-size: 0.75rem;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            vertical-align: middle;
+            margin-left: 8px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-sub);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--surface-variant);
+        }
+
+        /* SVG Icon styling helper */
+        .icon-inline {
+            display: inline-block;
+            width: 1.2em;
+            height: 1.2em;
+            vertical-align: middle;
+            fill: currentColor;
+            margin: 0 4px;
+        }
+        
+        /* Modernized Custom Top Navigation Bar */
+        nav {
+            background-color: var(--surface);
+            border-bottom: 2px solid var(--surface-variant);
+            padding: 12px 16px;
+            box-shadow: 0 2px 8px var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+        }
+        nav li {
+            display: inline-flex;
+            align-items: center;
+        }
+        nav a {
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-decoration: none;
+            padding: 6px 12px;
+            border-radius: 8px;
+            transition: all 0.25s ease-in-out;
+            border: 1px solid transparent;
+        }
+        nav a:hover {
+            background-color: var(--primary-container);
+            color: var(--on-primary-container);
+            border-color: var(--outline);
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Back to Home Page |</a></li>
+            <li><a href="books.html">Get Books here |</a></li>
+            <li><a href="login.html">Mobile Repairing |</a></li>
+            <li><a href="login.html">Website Development |</a></li>
+            <li><a href="computer.html">Computer Training Free</a></li>
+            <li><a href="posts.html">Posts</a></li>
+            <li><a href="contact.html">Contact us</a></li>
+            <li><a href="register.html">Register</a></li>
+            <li><a href="privacy-policy">Privacy and Policy</a>|</li>
+            <li><a href="computer.html">Guidence</a>|</li>
+            <li><a href="igt-tech-college-apps.html">Our Apps</a></li>
+            <li><a href="cv-generator.html">VC Generator</a></li>
+        </ul>
+    </nav>
+
+    <header>
+        <h1>IGT Camera Tools</h1>
+        <p>Your Ultimate User Companion &amp; Feature Masterclass</p>
+    </header>
+
+    <div class="container">
+        
+        <!-- Quick Navigation Links -->
+        <div class="quick-nav">
+            <a href="#camera" class="nav-card">
+                <svg viewBox="0 0 24 24"><path d="M4 4h3l2-2h6l2 2h3a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6c0-1.1.9-2 2-2zm8 3a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 2a3 3 0 1 1 0 6 3 3 0 0 1 0-6z"/></svg>
+                <h3>Camera Controls</h3>
+            </a>
+            <a href="#video-recorder" class="nav-card">
+                <svg viewBox="0 0 24 24"><path d="M17 10.5V7a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-3.5l4 4v-11l-4 4zM14 13h-3v3H9v-3H6v-2h3V8h2v3h3v2z"/></svg>
+                <h3>Video Recorder</h3>
+            </a>
+            <a href="#editors" class="nav-card">
+                <svg viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a0.996 0 0 0 0-1.41l-2.34-2.34a0.996 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
+                <h3>Photo &amp; Video Studio</h3>
+            </a>
+            <a href="#files" class="nav-card">
+                <svg viewBox="0 0 24 24"><path d="M10 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z"/></svg>
+                <h3>File Management</h3>
+            </a>
+        </div>
+
+        <!-- Section 1: Professional Camera Controls -->
+        <div id="camera" class="section-card">
+            <h2>
+                <svg viewBox="0 0 24 24"><path d="M4 4h3l2-2h6l2 2h3a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6c0-1.1.9-2 2-2zm8 3a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 2a3 3 0 1 1 0 6 3 3 0 0 1 0-6z"/></svg>
+                1. Professional Camera Controls
+            </h2>
+            <p>Our camera engine leverages standard device capabilities to unlock physical DSLR attributes, supplying clear frame compositions, dynamic adjustments, and real-time post-processing controls.</p>
+            
+            <div class="feature-grid">
+                <div class="feature-box">
+                    <h3>Manual Exposure Slider</h3>
+                    <p>Slide left or right on the Ev overlay to correct backlighting. This fine-tunes shutter sensitivity and exposure compensation dynamically before capturing images.</p>
+                </div>
+                <div class="feature-box">
+                    <h3>Focal Grid Overlays</h3>
+                    <p>Toggle the 3x3 Rule-of-Thirds grid layout. Use it for balancing horizons, architectural alignment, and professional frame distributions.</p>
+                </div>
+                <div class="feature-box">
+                    <h3>Interactive High-Precision Zoom</h3>
+                    <p>Pinch-to-zoom or use the on-screen slider from 1.0x to 8.0x digital zoom parameters. Our algorithm preserves edge contrasts for readable previews.</p>
+                </div>
+                <div class="feature-box">
+                    <h3>Live Tint &amp; Filters</h3>
+                    <p>Switch between Monochrome, Sepia, Cold Bleach, Warm Gold, and HDR-Simulation. See exact color balances before snapping your photo.</p>
+                </div>
+            </div>
+
+            <div class="tip-banner">
+                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+                <div>
+                    <p><strong>DSLR Composition Pro-Tip:</strong> Enable the Rule of Thirds grid. Guide your dynamic subjects (like faces or scenic horizons) along the intersecting lines for a naturally pleasing perspective.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 2: Advanced Video Recorder -->
+        <div id="video-recorder" class="section-card">
+            <h2>
+                <svg viewBox="0 0 24 24"><path d="M17 10.5V7a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-3.5l4 4v-11l-4 4z"/></svg>
+                2. Advanced Video Recorder
+            </h2>
+            <p>Capture fluid high-fidelity videos with synchronized background audio processing, framing rules, and frame-rate adjustments.</p>
+
+            <div class="feature-grid">
+                <div class="feature-box">
+                    <h3>Synchronized Audio Capture</h3>
+                    <p>Dual capture routing ensures that external audio signals mapped through the microphone maintain perfect alignment with the camera scan lines without latency.</p>
+                </div>
+                <div class="feature-box">
+                    <h3>Flash &amp; Torch Modes</h3>
+                    <p>Switch between off, auto, and continuous Torch mode. Continuous torch keeps low-light frame areas exposed cleanly throughout wide recordings.</p>
+                </div>
+                <div class="feature-box">
+                    <h3>Lock Auto-Focus</h3>
+                    <p>Tap anywhere on the active video viewfinder stream to lock focus on specific subjects, stopping background adjustments from shifting focus during recording.</p>
+                </div>
+                <div class="feature-box">
+                    <h3>Quick Compression Mode <span class="badge-pro">PRO</span></h3>
+                    <p>Pre-render videos at lower resolutions or target bitrates to save device memory instantly, ready for quick sharing.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 3: Photo & Video Studio Edits -->
+        <div id="editors" class="section-card">
+            <h2>
+                <svg viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a0.996 0 0 0 0-1.41l-2.34-2.34a0.996 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
+                3. Photo &amp; Video Studio Edits
+            </h2>
+            <p>Our editing suites provide a comprehensive playground for processing your captured tracks, frames, and images with advanced rendering outputs.</p>
+
+            <h3>How to edit photos:</h3>
+            <ol class="step-list">
+                <li>Go to the <strong>Image Studio Tab</strong> inside the application dashboard.</li>
+                <li>Tap <strong>Select Image</strong> to import any graphic asset from your device gallery.</li>
+                <li>Adjust sliders for <strong>Contrast, Brightness, Saturation, Temp, and Vignette</strong>. See real-time histogram renders on corresponding displays.</li>
+                <li>Apply filters such as <em>Retro Slate, Emerald Sky, Warm Nostalgia</em>.</li>
+                <li>Tap <strong>Export Image</strong> to render your final, lossless high-resolution edit straight to your storage.</li>
+            </ol>
+
+            <h3>How to process videos:</h3>
+            <ol class="step-list">
+                <li>Go to the <strong>Video Studio Tab</strong> in your tools hub.</li>
+                <li>Select a local video file from your media storage.</li>
+                <li>Crop unwanted borders, trim starting/ending silent delay intervals, configure target frames &amp; aspect ratios.</li>
+                <li>Choose between different compression presets depending on target platforms (e.g. email draft limits, HD socials, or high-fidelity master preserves).</li>
+            </ol>
+
+            <div class="tip-banner" style="background-color: #FFF8E1; color: #F57F17;">
+                <svg viewBox="0 0 24 24" style="fill: #F57F17;"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+                <div>
+                    <p><strong>Exporting Details:</strong> Free exports are backed by secure client configurations. Your output files are synthesized entirely on your local machine, keeping your personal media assets fully private.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 4: File Managers & Local Utilities -->
+        <div id="files" class="section-card">
+            <h2>
+                <svg viewBox="0 0 24 24"><path d="M10 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z"/></svg>
+                4. File Managers &amp; Local Utilities
+            </h2>
+            <p>Review, rename, check details, and organize all captured photos, video tracks, and audio recordings seamlessly from the nested library view.</p>
+
+            <div class="feature-grid">
+                <div class="feature-box">
+                    <h3>Media Attributes Inspector</h3>
+                    <p>Understand your assets. Inspect exact file sizes, spatial dimensions, audio codecs, bitrates, and capture timestamps instantly.</p>
+                </div>
+                <div class="feature-box">
+                    <h3>Easy Sharing &amp; Export</h3>
+                    <p>With an integrated secure sharing framework, you can distribute rendered assets straight to emails, social channels, or remote drives with single-tap controls.</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 IGT Camera Tools. Designed with Material Design 3 guidelines.</p>
+    </footer>
+
+</body>
+</html>
