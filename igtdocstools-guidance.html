@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IGT Docs Tools - Complete User Manual & Feature Guidance</title>
+    <!-- Tailwind CSS for elegant design -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter & JetBrains Mono -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            800: '#166534',
+                            900: '#14532d',
+                        },
+                        secondary: {
+                            50: '#f8fafc',
+                            100: '#f1f5f9',
+                            600: '#475569',
+                            700: '#334155',
+                            800: '#1e293b',
+                            900: '#0f172a',
+                        },
+                        igtGreen: '#16a34a'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased min-h-screen">
+
+    <!-- Header / Hero Banner -->
+    <header class="bg-gradient-to-r from-secondary-900 via-primary-900 to-secondary-950 text-white relative overflow-hidden">
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(22,163,74,0.15),transparent)] pointer-events-none"></div>
+        <div class="max-w-6xl mx-auto px-6 py-12 sm:py-16 relative z-10">
+            <div class="flex items-center gap-4 mb-4">
+                <span class="bg-primary-600 text-white text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full">Official User Manual</span>
+                <span class="bg-secondary-700 text-white text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full">v2026.1 - Offline First</span>
+            </div>
+            <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight mb-4">IGT Docs Tools</h1>
+            <p class="text-lg sm:text-xl text-emerald-100 max-w-3xl font-light leading-relaxed">
+                The ultimate handbook for IGT Docs Tools. Find complete step-by-step instructions on utilizing our advanced offline document editor, draggable signatures, automated OCR engines, CV builders, and private security vaults.
+            </p>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-6 py-10">
+        <!-- Quick Stats Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex items-start gap-4">
+                <div class="p-3 bg-primary-50 text-primary-600 rounded-xl">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold text-slate-500 uppercase tracking-wider">Privacy Assurance</h3>
+                    <p class="text-2xl font-bold text-slate-900 mt-1">100% Secure &amp; Offline</p>
+                    <p class="text-xs text-slate-400 mt-1">No sign-ups or remote cloud storage uploads</p>
+                </div>
+            </div>
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex items-start gap-4">
+                <div class="p-3 bg-emerald-50 text-emerald-600 rounded-xl">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold text-slate-500 uppercase tracking-wider">Hardware Optimized</h3>
+                    <p class="text-2xl font-bold text-slate-900 mt-1">Ultra Fast Rendering</p>
+                    <p class="text-xs text-slate-400 mt-1">Optimized memory footprint for Android devices</p>
+                </div>
+            </div>
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex items-start gap-4">
+                <div class="p-3 bg-blue-50 text-blue-600 rounded-xl">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold text-slate-500 uppercase tracking-wider">Application Scope</h3>
+                    <p class="text-2xl font-bold text-slate-900 mt-1">All-In-One Toolkit</p>
+                    <p class="text-xs text-slate-400 mt-1">25+ offline tools inside a single lightweight client</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+            
+            <!-- Table of Contents Sidebar -->
+            <aside class="lg:col-span-1 space-y-4">
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 sticky top-6">
+                    <h2 class="text-sm font-bold text-slate-900 uppercase tracking-wider mb-4">Manual Directory</h2>
+                    <nav class="space-y-1">
+                        <a href="#about-app" class="block px-3 py-2 text-sm font-medium text-slate-600 hover:text-primary-600 hover:bg-slate-50 rounded-lg transition-all">1. About IGT Docs Tools</a>
+                        <a href="#getting-started" class="block px-3 py-2 text-sm font-medium text-slate-600 hover:text-primary-600 hover:bg-slate-50 rounded-lg transition-all">2. Getting Started &amp; Imports</a>
+                        <a href="#pdf-suite" class="block px-3 py-2 text-sm font-medium text-slate-600 hover:text-primary-600 hover:bg-slate-50 rounded-lg transition-all">3. Advanced PDF Suite</a>
+                        <a href="#office-converters" class="block px-3 py-2 text-sm font-medium text-slate-600 hover:text-primary-600 hover:bg-slate-50 rounded-lg transition-all">4. Office &amp; Doc Converters</a>
+                        <a href="#ocr-scanner" class="block px-3 py-2 text-sm font-medium text-slate-600 hover:text-primary-600 hover:bg-slate-50 rounded-lg transition-all">5. OCR Scanner &amp; Text</a>
+                        <a href="#security-vault" class="block px-3 py-2 text-sm font-medium text-slate-600 hover:text-primary-600 hover:bg-slate-50 rounded-lg transition-all">6. Encrypted Security Vault</a>
+                        <a href="#cv-builder" class="block px-3 py-2 text-sm font-medium text-slate-600 hover:text-primary-600 hover:bg-slate-50 rounded-lg transition-all">7. CV &amp; Resume Builder</a>
+                        <a href="#notes-whiteboard" class="block px-3 py-2 text-sm font-medium text-slate-600 hover:text-primary-600 hover:bg-slate-50 rounded-lg transition-all">8. Notes Whiteboard &amp; Sketch</a>
+                        <a href="#offline-ai" class="block px-3 py-2 text-sm font-medium text-slate-600 hover:text-primary-600 hover:bg-slate-50 rounded-lg transition-all">9. Offline AI Assistant</a>
+                        <a href="#faq" class="block px-3 py-2 text-sm font-medium text-slate-600 hover:text-primary-600 hover:bg-slate-50 rounded-lg transition-all">10. User FAQ &amp; Tips</a>
+                    </nav>
+                </div>
+            </aside>
+
+            <!-- Main Content Area -->
+            <div class="lg:col-span-3 space-y-10">
+                
+                <!-- Section 1: About -->
+                <section id="about-app" class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 scroll-mt-6">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4 flex items-center gap-2">
+                        <span class="text-primary-600">01.</span> About IGT Docs Tools
+                    </h2>
+                    <p class="text-slate-600 leading-relaxed mb-4">
+                        <strong>IGT Docs Tools</strong> is a professional, offline-first productivity suite designed specifically for modern Android devices. We believe that your private records, books, notes, and professional papers belong solely to you.
+                    </p>
+                    <p class="text-slate-600 leading-relaxed">
+                        Rather than transmitting your sensitive materials to a remote web server, IGT Docs Tools performs every file operation—including PDF rendering, format conversion, handwritten sketches, and Optical Character Recognition (OCR)—directly on your device. This guarantees maximum security, absolute privacy, and seamless operation even when completely disconnected from the internet.
+                    </p>
+                </section>
+
+                <!-- Section 2: Getting Started -->
+                <section id="getting-started" class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 scroll-mt-6">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4 flex items-center gap-2">
+                        <span class="text-primary-600">02.</span> Getting Started &amp; Secure Imports
+                    </h2>
+                    <p class="text-slate-600 leading-relaxed mb-4">
+                        When you launch the app, you will be greeted by the central dashboard. All file management inside IGT Docs Tools takes place within a secure sandbox directory.
+                    </p>
+                    <div class="space-y-4">
+                        <div class="flex items-start gap-3">
+                            <div class="w-6 h-6 rounded-full bg-primary-100 text-primary-700 flex items-center justify-center font-bold text-xs mt-1">1</div>
+                            <div>
+                                <h4 class="font-bold text-slate-800 text-sm">How to Import a Document</h4>
+                                <p class="text-xs text-slate-600 leading-relaxed mt-1">
+                                    To load a document into the app, tap the <strong>"Import Doc"</strong> button on the primary dashboard. This opens your device's native file picker. Select any PDF, DOC, PPT, or Image file. The app will securely copy this file into its local sandboxed storage space and register it in the on-device database index.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="w-6 h-6 rounded-full bg-primary-100 text-primary-700 flex items-center justify-center font-bold text-xs mt-1">2</div>
+                            <div>
+                                <h4 class="font-bold text-slate-800 text-sm">File Management &amp; Sorting</h4>
+                                <p class="text-xs text-slate-600 leading-relaxed mt-1">
+                                    Imported documents will appear immediately in your "My Docs" list. You can view, rename, search, delete, or sort files by name, file size, or date of import using the quick-filter bar.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section 3: Advanced PDF Suite -->
+                <section id="pdf-suite" class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 scroll-mt-6">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4 flex items-center gap-2">
+                        <span class="text-primary-600">03.</span> Advanced PDF Suite
+                    </h2>
+                    <p class="text-slate-600 leading-relaxed mb-6">
+                        Unlock powerful tools to manipulate, protect, sign, and modify PDF documents directly from the screen.
+                    </p>
+
+                    <div class="space-y-6">
+                        <div class="p-5 bg-slate-50 rounded-xl border border-slate-100">
+                            <h3 class="font-bold text-slate-800 text-base flex items-center gap-2">
+                                <span class="text-emerald-600">✍️</span> Draggable Digital Signatures
+                            </h3>
+                            <p class="text-xs text-slate-600 leading-relaxed mt-1">
+                                You can customize signature stamps for contracts and approvals:
+                            </p>
+                            <ol class="list-decimal pl-5 text-xs text-slate-600 mt-2 space-y-1">
+                                <li>Tap <strong>"Sign PDF"</strong> inside the PDF Editor.</li>
+                                <li>Create your signature stamp: either draw directly on the scribble pad with high-precision digital ink, or type your name using beautiful cursive calligraphy fonts.</li>
+                                <li>Confirm your seal. It is generated as an overlay stamp.</li>
+                                <li><strong>Interactive Drag &amp; Drop:</strong> Long-press and drag the signature element across the document. Place it on the exact page and position you want, then pinch/stretch to scale its size.</li>
+                            </ol>
+                        </div>
+
+                        <div class="p-5 bg-slate-50 rounded-xl border border-slate-100">
+                            <h3 class="font-bold text-slate-800 text-base flex items-center gap-2">
+                                <span class="text-emerald-600">🎨</span> Advanced Draw, Whiteout, &amp; Undo/Redo
+                            </h3>
+                            <p class="text-xs text-slate-600 leading-relaxed mt-1">
+                                Customize, highlight, or redact information within seconds:
+                            </p>
+                            <ul class="list-disc pl-5 text-xs text-slate-600 mt-2 space-y-1">
+                                <li><strong>Draw Pen:</strong> Sketch on top of the document. You can customize brush thickness and pick from a full palette of eye-catching colors.</li>
+                                <li><strong>Whiteout Eraser:</strong> Redact sensitive parts. Applying the whiteout tool places an opaque white cover over the text, cleaning out confidential data underneath.</li>
+                                <li><strong>Undo / Redo / Clear:</strong> Made a mistake? Seamlessly step back or forward through your markings using the instant Undo &amp; Redo actions, or wipe the whiteboard clean with the Clear button.</li>
+                            </ul>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="p-4 bg-emerald-50/50 rounded-xl border border-emerald-100">
+                                <h4 class="font-bold text-emerald-800 text-sm">🔒 Passcodes &amp; Password Locks</h4>
+                                <p class="text-xs text-emerald-700 leading-relaxed mt-1">
+                                    Seal high-value PDFs with military-grade offline encryption. Set a unique alphanumeric password key to lock any file. Unlocking requires entering the exact passkey.
+                                </p>
+                            </div>
+                            <div class="p-4 bg-emerald-50/50 rounded-xl border border-emerald-100">
+                                <h4 class="font-bold text-emerald-800 text-sm">🏷️ Custom Text &amp; Image Watermarks</h4>
+                                <p class="text-xs text-emerald-700 leading-relaxed mt-1">
+                                    Brand your paperwork with official indicators. Enter a watermark word (e.g., "CONFIDENTIAL", "DRAFT") or load a logo image, adjust the transparency overlay, and press apply.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="p-5 bg-slate-50 rounded-xl border border-slate-100">
+                            <h3 class="font-bold text-slate-800 text-base flex items-center gap-2">
+                                <span class="text-emerald-600">✂️</span> PDF Joiner, Splitter, &amp; Page Cropper
+                            </h3>
+                            <p class="text-xs text-slate-600 leading-relaxed mt-1">
+                                Need to split a chapter, trim borders, or merge multiple files into one master portfolio? Use the PDF Joiner to append documents in custom sequence, or launch the Page Cropper to adjust frame padding offline.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section 4: Office Converters -->
+                <section id="office-converters" class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 scroll-mt-6">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4 flex items-center gap-2">
+                        <span class="text-primary-600">04.</span> Office &amp; Document Converters
+                    </h2>
+                    <p class="text-slate-600 leading-relaxed mb-6">
+                        Convert documents back and forth between formats without internet. Our local converter engines parse raw elements to preserve layout fidelity.
+                    </p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="p-4 bg-slate-50 rounded-xl border border-slate-100 text-center">
+                            <span class="text-2xl">📝</span>
+                            <h4 class="font-bold text-slate-800 text-sm mt-2">Word &lt;=&gt; PDF</h4>
+                            <p class="text-xs text-slate-500 mt-1">
+                                Convert standard Microsoft Word (.DOC/.DOCX) documents into PDFs, or extract text elements from PDFs into editable Word files.
+                            </p>
+                        </div>
+                        <div class="p-4 bg-slate-50 rounded-xl border border-slate-100 text-center">
+                            <span class="text-2xl">📊</span>
+                            <h4 class="font-bold text-slate-800 text-sm mt-2">PowerPoint &lt;=&gt; PDF</h4>
+                            <p class="text-xs text-slate-500 mt-1">
+                                Package presentation slides (.PPT/.PPTX) into high-quality PDF page formats, or compile PDF pages back into dynamic slide layouts.
+                            </p>
+                        </div>
+                        <div class="p-4 bg-slate-50 rounded-xl border border-slate-100 text-center">
+                            <span class="text-2xl">🖼️</span>
+                            <h4 class="font-bold text-slate-800 text-sm mt-2">Image &lt;=&gt; PDF</h4>
+                            <p class="text-xs text-slate-500 mt-1">
+                                Capture gallery photos, receipt scans, or documents and save them as PDFs. Alternatively, extract raw high-res images from any PDF page.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 p-5 bg-emerald-50 rounded-xl border border-emerald-100">
+                        <h4 class="font-bold text-emerald-800 text-sm flex items-center gap-2">
+                            <svg class="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+                            High-Efficiency PDF Compressor
+                        </h4>
+                        <p class="text-xs text-emerald-700 leading-relaxed mt-1">
+                            Is your file too heavy to email or share? Launch the PDF Compressor tool. It allows you to select customized quality and scaling factors to downsize physical bytes while ensuring text lines remain readable.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Section 5: OCR Scanner -->
+                <section id="ocr-scanner" class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 scroll-mt-6">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4 flex items-center gap-2">
+                        <span class="text-primary-600">05.</span> OCR Scanner &amp; Text Recognition
+                    </h2>
+                    <p class="text-slate-600 leading-relaxed mb-4">
+                        Turn physical paper into live, copyable digital text with our lightning-fast, secure OCR scanning pipeline.
+                    </p>
+
+                    <div class="space-y-4">
+                        <div class="bg-slate-50 p-5 rounded-xl border border-slate-100">
+                            <h4 class="font-bold text-slate-800 text-sm">Step-by-Step Scanning Guide:</h4>
+                            <ol class="list-decimal pl-5 text-xs text-slate-600 mt-2 space-y-2">
+                                <li>Tap the <strong>"Scan to PDF / OCR"</strong> action card on the home tab.</li>
+                                <li>Position your camera. The app utilizes intelligent camera helpers to display a real-time frame guide. Press the Capture key.</li>
+                                <li>Adjust boundaries on the interactive cropping grid to select the document paper and exclude desk borders.</li>
+                                <li>Confirm to save. The scan will be saved as a high-contrast black-and-white or color document inside the sandbox.</li>
+                            </ol>
+                        </div>
+
+                        <div class="bg-slate-50 p-5 rounded-xl border border-slate-100">
+                            <h4 class="font-bold text-slate-800 text-sm">Copying Structured OCR Output:</h4>
+                            <p class="text-xs text-slate-600 leading-relaxed mt-1">
+                                After scanning a document page, the app automatically analyzes text blocks offline. Tap <strong>"Extract OCR Text"</strong> to view the results. The system intelligently detects:
+                            </p>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mt-3">
+                                <div class="bg-white p-3 rounded-lg border border-slate-100 text-center text-xs text-slate-600">
+                                    <span class="font-bold block text-primary-600">Headings &amp; Sections</span> Organized hierarchy
+                                </div>
+                                <div class="bg-white p-3 rounded-lg border border-slate-100 text-center text-xs text-slate-600">
+                                    <span class="font-bold block text-primary-600">Bullet Lists</span> Clean bullet point markers
+                                </div>
+                                <div class="bg-white p-3 rounded-lg border border-slate-100 text-center text-xs text-slate-600">
+                                    <span class="font-bold block text-primary-600">Paragraphs &amp; Columns</span> Natural wrapping bounds
+                                </div>
+                            </div>
+                            <p class="text-xs text-slate-500 mt-3 leading-relaxed">
+                                Copy the processed text to your clipboard with a single tap, or export it directly as a clean text file.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section 6: Security Vault -->
+                <section id="security-vault" class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 scroll-mt-6">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4 flex items-center gap-2">
+                        <span class="text-primary-600">06.</span> Encrypted Security Vault
+                    </h2>
+                    <p class="text-slate-600 leading-relaxed mb-4">
+                        For ultimate security, IGT Docs Tools provides an isolated, encrypted folder called the <strong>Security Vault</strong>. This folder is locked behind a primary app PIN code.
+                    </p>
+
+                    <div class="space-y-4">
+                        <div class="flex items-start gap-3">
+                            <svg class="w-6 h-6 text-emerald-600 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+                            <div>
+                                <h4 class="font-bold text-slate-800 text-sm">Configuring Your Vault Access</h4>
+                                <p class="text-xs text-slate-600 leading-relaxed mt-0.5">
+                                    Tap on <strong>"Security Vault"</strong> on the home interface. If it is your first visit, you will be prompted to register a secure, multi-digit PIN. Your PIN is hashed and securely written directly into the private system partition.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-3">
+                            <svg class="w-6 h-6 text-emerald-600 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path></svg>
+                            <div>
+                                <h4 class="font-bold text-slate-800 text-sm">Moving Documents In and Out</h4>
+                                <p class="text-xs text-slate-600 leading-relaxed mt-0.5">
+                                    Inside your My Docs list, tap on any file's options icon and select <strong>"Move to Security Vault"</strong>. The file is immediately relocated to the encrypted sector, shielding it from standard lists and accidental views. Relocating a file out of the vault is just as simple: authenticate your PIN and choose "Unlock from Vault".
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section 7: CV Builder -->
+                <section id="cv-builder" class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 scroll-mt-6">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4 flex items-center gap-2">
+                        <span class="text-primary-600">07.</span> CV &amp; Resume Builder
+                    </h2>
+                    <p class="text-slate-600 leading-relaxed mb-4">
+                        Build, design, and export professional ATS-friendly job applications and portfolios completely offline.
+                    </p>
+
+                    <div class="space-y-4">
+                        <div class="bg-slate-50 p-5 rounded-xl border border-slate-100">
+                            <h4 class="font-bold text-slate-800 text-sm mb-2">How to Build Your CV:</h4>
+                            <ol class="list-decimal pl-5 text-xs text-slate-600 space-y-2">
+                                <li><strong>Profile Completion:</strong> Enter your contact information, profile bio, career targets, educational records, professional employment histories, and custom skills.</li>
+                                <li><strong>Style Selection:</strong> Select from our library of elegant, clean, and modern template patterns (Minimal, Executive, Creative, or Technical).</li>
+                                <li><strong>Placement of Portrait Photos:</strong> Premium PRO users can seamlessly load high-resolution corporate portraits and align them onto the template's designated photo headers.</li>
+                                <li><strong>Export:</strong> Tap <strong>"Export CV as PDF"</strong>. The app instantly formats your inputs, generates a clean document, and saves it in your "My Docs" library for immediate distribution.</li>
+                            </ol>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section 8: Notes Whiteboard -->
+                <section id="notes-whiteboard" class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 scroll-mt-6">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4 flex items-center gap-2">
+                        <span class="text-primary-600">08.</span> Notes Whiteboard &amp; Sketchpad
+                    </h2>
+                    <p class="text-slate-600 leading-relaxed mb-4">
+                        Capture your thoughts, plan architecture diagrams, draw sketches, or take handwritten lecture notes using the Notes Whiteboard tool.
+                    </p>
+
+                    <div class="bg-slate-50 p-5 rounded-xl border border-slate-100 space-y-4">
+                        <div>
+                            <h4 class="font-bold text-slate-800 text-xs mb-1">Sketch Controls:</h4>
+                            <p class="text-xs text-slate-600 leading-relaxed">
+                                Launch the <strong>"Notes Whiteboard"</strong> screen. A large, sensitive drawing canvas will open. Use the bottom toolbar to adjust your ink color (Black, Blue, Green, Red) and set stroke dimensions (Fine Pen, Normal Pen, Thick Marker).
+                            </p>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-slate-800 text-xs mb-1">Canvas Operations:</h4>
+                            <p class="text-xs text-slate-600 leading-relaxed">
+                                Erase mistake marks by activating the <strong>"Eraser Tool"</strong>. Alternatively, discard all whiteboard layers to start fresh by pressing the <strong>"Clear Canvas"</strong> button. The canvas is completely responsive, supporting smooth multitouch pan-and-pinch gesture scales.
+                            </p>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-slate-800 text-xs mb-1">Exporting Notes:</h4>
+                            <p class="text-xs text-slate-600 leading-relaxed">
+                                Once finished, tap <strong>"Save Sketch"</strong>. You can export your doodle as a raw high-fidelity PNG image or compile it into a single-page PDF document, placing it instantly into your sandbox index.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section 9: Offline AI -->
+                <section id="offline-ai" class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 scroll-mt-6">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4 flex items-center gap-2">
+                        <span class="text-primary-600">09.</span> Offline AI Document Assistant
+                    </h2>
+                    <p class="text-slate-600 leading-relaxed mb-4">
+                        Unlock powerful intelligence right on your mobile phone. Chat with your imported records, summarize pages, and translate segments completely offline.
+                    </p>
+
+                    <div class="p-5 bg-emerald-50 rounded-xl border border-emerald-100 space-y-4">
+                        <div class="flex items-start gap-3">
+                            <span class="text-2xl">🤖</span>
+                            <div>
+                                <h4 class="font-bold text-emerald-800 text-sm">Chat with PDFs</h4>
+                                <p class="text-xs text-emerald-700 leading-relaxed mt-0.5">
+                                    Select any PDF file from your list, tap <strong>"Chat with AI"</strong>, and enter your prompt. The on-device engine reads the index parameters and returns answers, extracts definitions, or generates executive outlines instantly without consuming cellular data.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-3">
+                            <span class="text-2xl">💡</span>
+                            <div>
+                                <h4 class="font-bold text-emerald-800 text-sm">Key Summaries &amp; Insights</h4>
+                                <p class="text-xs text-emerald-700 leading-relaxed mt-0.5">
+                                    Long-press any document card and choose <strong>"Summarize Document"</strong>. The AI assistant will process the text chunks to output structured summaries containing key bullet takeaways and highlighted vocabularies.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section 10: FAQ -->
+                <section id="faq" class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 scroll-mt-6">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-2">
+                        <span class="text-primary-600">10.</span> User FAQ &amp; Quick Tips
+                    </h2>
+
+                    <div class="space-y-6">
+                        <div>
+                            <h4 class="font-bold text-slate-800 text-sm">Q: Are my documents safe and private?</h4>
+                            <p class="text-xs text-slate-600 mt-1 leading-relaxed">
+                                <strong>A: Yes, absolutely!</strong> IGT Docs Tools stores your imported materials inside a sandbox partition protected by Android security constraints. The app operates 100% offline and contains zero code that sends files to third-party databases.
+                            </p>
+                        </div>
+
+                        <hr class="border-slate-100">
+
+                        <div>
+                            <h4 class="font-bold text-slate-800 text-sm">Q: What happens if I lose my Security Vault PIN?</h4>
+                            <p class="text-xs text-slate-600 mt-1 leading-relaxed">
+                                <strong>A:</strong> Because we prioritize privacy, we do not store your PIN on any server. If you lose your Security Vault PIN, you will not be able to access the secure vault. Keep your PIN memorized or safely written in a secure password manager.
+                            </p>
+                        </div>
+
+                        <hr class="border-slate-100">
+
+                        <div>
+                            <h4 class="font-bold text-slate-800 text-sm">Q: Why did my OCR scan fail on dark paper?</h4>
+                            <p class="text-xs text-slate-600 mt-1 leading-relaxed">
+                                <strong>A:</strong> For optimal text recognition results, make sure the text contrast is clear and the scanning environment is well-lit. Avoid shadows across pages and hold your phone stable during capture.
+                            </p>
+                        </div>
+
+                        <hr class="border-slate-100">
+
+                        <div>
+                            <h4 class="font-bold text-slate-800 text-sm">Q: How do I export my finished documents?</h4>
+                            <p class="text-xs text-slate-600 mt-1 leading-relaxed">
+                                <strong>A:</strong> Simply open the document, tap the <strong>"Export / Share"</strong> button in the options panel, and select your preferred method—whether it's sending it as an email attachment, saving to custom storage, or printing directly.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-10 mt-16 border-t border-slate-800">
+        <div class="max-w-6xl mx-auto px-6 text-center text-sm">
+            <p class="font-semibold text-slate-300">IGT Docs Tools User Support Group</p>
+            <p class="mt-2 text-slate-500">&copy; 2026 IGT Solutions. All Rights Reserved. Fully responsive complete user guide.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
