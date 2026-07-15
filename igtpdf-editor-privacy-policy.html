@@ -2,244 +2,248 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Privacy Policy | IGT PDF Editor</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+    <title>Privacy Policy - IGT Docs Tools</title>
     <style>
+        :root {
+            --primary-color: #2563eb;
+            --primary-dark: #1d4ed8;
+            --text-color: #334155;
+            --heading-color: #0f172a;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --border-color: #e2e8f0;
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             line-height: 1.6;
-            background-color: #f4f6f9;
-            color: #333;
-        }
-
-        header {
-            background: #1e73be;
-            color: white;
-            padding: 20px;
-            text-align: center;
-        }
-
-        nav {
-            background: #0d4f8b;
-            padding: 10px 0;
-        }
-
-        nav ul {
-            list-style: none;
+            color: var(--text-color);
+            background-color: var(--bg-color);
             margin: 0;
             padding: 0;
-            text-align: center;
-        }
-
-        nav ul li {
-            display: inline-block;
-            margin: 5px 10px;
-        }
-
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        nav ul li a:hover {
-            text-decoration: underline;
         }
 
         .container {
-            max-width: 1000px;
-            margin: 30px auto;
-            background: white;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 0 24px;
         }
 
-        h1, h2, h3 {
-            color: #1e73be;
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
         }
 
-        footer {
-            background: #1e73be;
-            color: white;
+        .header {
             text-align: center;
-            padding: 20px;
-            margin-top: 40px;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 30px;
+            margin-bottom: 30px;
         }
 
-        footer a {
-            color: #fff;
+        .logo {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            letter-spacing: -0.025em;
+        }
+
+        h1 {
+            font-size: 2rem;
+            color: var(--heading-color);
+            margin-top: 0;
+            margin-bottom: 8px;
+        }
+
+        .last-updated {
+            font-size: 0.875rem;
+            color: #64748b;
+            font-style: italic;
+        }
+
+        h2 {
+            font-size: 1.35rem;
+            color: var(--heading-color);
+            border-left: 4px solid var(--primary-color);
+            padding-left: 12px;
+            margin-top: 36px;
+            margin-bottom: 16px;
+        }
+
+        h3 {
+            font-size: 1.1rem;
+            color: var(--heading-color);
+            margin-top: 24px;
+            margin-bottom: 8px;
+        }
+
+        p {
+            margin-top: 0;
+            margin-bottom: 16px;
+            text-align: justify;
+        }
+
+        ul, ol {
+            margin-top: 0;
+            margin-bottom: 16px;
+            padding-left: 24px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        a:hover {
+            color: var(--primary-dark);
             text-decoration: underline;
         }
 
-        @media (max-width: 768px) {
-            nav ul li {
-                display: block;
-                margin: 8px 0;
+        .highlight-box {
+            background-color: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 24px 0;
+        }
+
+        .highlight-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        .contact-info {
+            background-color: #f1f5f9;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 30px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            color: #64748b;
+            font-size: 0.875rem;
+        }
+
+        @media (max-width: 640px) {
+            .container {
+                margin: 16px auto;
+                padding: 0 16px;
+            }
+            .card {
+                padding: 24px;
+            }
+            .logo {
+                font-size: 2rem;
+            }
+            h1 {
+                font-size: 1.6rem;
             }
         }
     </style>
 </head>
-
 <body>
+    <div class="container">
+        <div class="card">
+            <div class="header">
+                <div class="logo">IGT Docs Tools</div>
+                <h1>Privacy Policy</h1>
+                <div class="last-updated">Last Updated: July 15, 2026</div>
+            </div>
 
-<header>
-    <h1>Privacy Policy</h1>
-    <p>IGT PDF Editor</p>
-</header>
+            <p>Welcome to <strong>IGT Docs Tools</strong> ("we", "our", or "us"). We are committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our mobile application (the "App" or "IGT Docs Tools").</p>
+            
+            <p>Please read this Privacy Policy carefully. By using the App, you consent to the collection, use, and disclosure of your information as described in this policy. If you do not agree with the terms of this privacy policy, please do not access or use the App.</p>
 
-<nav>
-    <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="register.html">Register</a></li>
-        <li><a href="login.html">Login</a></li>
-        <li><a href="software.html">Software</a></li>
-        <li><a href="drivers.html">Drivers</a></li>
-        <li><a href="swahili.html">Swahili</a></li>
-        <li><a href="english.html">English</a></li>
-        <li><a href="ikinyarwanda.html">Ikinyarwanda</a></li>
-        <li><a href="contact.html">Contact Us</a></li>
-        <li><a href="about-us.html">About Us</a></li>
-        <li><a href="posts.html">Posts</a></li>
-        <li><a href="books.html">Books</a></li>
-    </ul>
-</nav>
+            <div class="highlight-box">
+                <strong>Important Summary (Offline-First and Privacy-Respecting)</strong>
+                <p>IGT Docs Tools is designed as a document scanner, viewer, and editor. Your documents, photos, scans, and converted files are processed entirely <strong>on your device</strong>. We do not host or transfer your document contents, personal files, or camera feeds to external servers for storage or remote processing.</p>
+            </div>
 
-<div class="container">
+            <h2>1. Information We Collect and Receive</h2>
+            <p>To provide our services, we may access certain device capabilities and receive data through third-party services integrated within the App:</p>
 
-<h2>Effective Date: 18/02/2026</h2>
+            <h3>A. Device Permissions and System Access</h3>
+            <p>To perform core features like document scanning, editing, and conversion, the App requests access to the following device features:</p>
+            <ul>
+                <li><strong>Camera:</strong> Used to capture images of physical documents for the purpose of document scanning and OCR (text recognition). Pictures taken are processed dynamically on-device and are not uploaded or shared.</li>
+                <li><strong>Storage (Photos & Files Access):</strong> Required to import existing PDFs, documents, or images from your device for editing or conversion (e.g., converting PDF to PPT, PDF to Word Doc), and to save compiled outputs back to your device storage.</li>
+                <li><strong>Internet State:</strong> Used to check for network connectivity and support third-party advertising, billing integrations, and basic telemetry.</li>
+            </ul>
 
-<p>
-IGT PDF Editor (“we”, “our”, or “us”) respects your privacy. This Privacy Policy explains how we handle information when you use our mobile application.
-</p>
+            <h3>B. Automatically Collected Information (Third-Party Partners)</h3>
+            <p>We do not collect any personal data directly. However, the App contains third-party Software Development Kits (SDKs) used for monetization (advertising) and payment processing. These services may automatically collect certain device-specific parameters, such as:</p>
+            <ul>
+                <li>Device Model, Operating System, and Version</li>
+                <li>IP Address and approximate geographic location (country/city level)</li>
+                <li>Advertising Identifier (Google Advertising ID / GAID)</li>
+                <li>App installation information and usage statistics (e.g., duration of session, features accessed)</li>
+            </ul>
 
-<h2>1. Information We Collect</h2>
+            <h2>2. On-Device Processing & Google ML Kit</h2>
+            <p>For the Optical Character Recognition (OCR) and Text Recognition capabilities, IGT Docs Tools integrates the <strong>Google ML Kit Text Recognition SDK</strong>. All scanning, text extractions, and data extractions occur strictly <strong>on-device</strong>. No images, camera feeds, or recognized text are uploaded to Google or IGT Docs Tools servers.</p>
 
-<h3>1.1 Information You Provide</h3>
-<p>
-Our app does not require you to create an account. We do not directly collect personal information such as:
-</p>
-<ul>
-    <li>Name</li>
-    <li>Email address</li>
-    <li>Phone number</li>
-</ul>
-<p>
-However, certain features involve third-party services described below.
-</p>
+            <h2>3. Third-Party Services and Advertising SDKs</h2>
+            <p>This App integrates several third-party services that process data in accordance with their respective privacy policies. These partners may collect device IDs and display ads based on your preferences:</p>
+            <ul>
+                <li><strong>Google Play Services:</strong> Enables core platform features, including application integrity and update notifications. <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google Privacy Policy</a></li>
+                <li><strong>Google Play Billing:</strong> Facilitates secure, encrypted in-app purchases or subscription processing. <a href="https://payments.google.com/payments/apis-secure/u/0/get_legal_document?ldo=0&ldt=privacypolicy" target="_blank" rel="noopener noreferrer">Google Payments Privacy Policy</a></li>
+                <li><strong>Appodeal:</strong> Our primary ad mediation partner which displays ads within the App. Appodeal aggregates various ad networks and uses your Advertising ID to serve relevant ads. <a href="https://appdeal.com/privacy-policy/" target="_blank" rel="noopener noreferrer">Appodeal Privacy Policy</a></li>
+                <li><strong>AppLovin:</strong> Partner network showing relevant ads. <a href="https://www.applovin.com/privacy/" target="_blank" rel="noopener noreferrer">AppLovin Privacy Policy</a></li>
+                <li><strong>Unity Ads:</strong> Partner network showing relevant video and interactive ads. <a href="https://unity.com/legal/game-player-and-app-user-privacy-policy" target="_blank" rel="noopener noreferrer">Unity Privacy Policy</a></li>
+                <li><strong>Meta Audience Network:</strong> Partner network delivering customized ads. <a href="https://www.facebook.com/about/privacy/" target="_blank" rel="noopener noreferrer">Meta Privacy Policy</a></li>
+            </ul>
 
-<h3>1.2 PDF Files and Documents</h3>
-<ul>
-    <li>PDF files you open or edit remain on your device.</li>
-    <li>We do not upload, store, or transmit your documents to our servers.</li>
-    <li>All editing is performed locally on your device.</li>
-</ul>
+            <h2>4. How We Use the Collected Information</h2>
+            <p>Any details accessed or gathered are used solely to:</p>
+            <ul>
+                <li>Deliver, maintain, and improve the operational performance of IGT Docs Tools.</li>
+                <li>Process your local file operations, document conversions, and OCR scans efficiently.</li>
+                <li>Manage and verify your in-app purchases, premium features, and subscriptions.</li>
+                <li>Deliver target-appropriate ads and analyze ad performance.</li>
+                <li>Enforce App security, prevent fraudulent behavior, and comply with legal requirements.</li>
+            </ul>
 
-<h3>1.3 Advertising (AdMob)</h3>
-<p>
-The app uses Google AdMob to display advertisements to free users.
-</p>
-<p>AdMob may collect:</p>
-<ul>
-    <li>Device identifiers</li>
-    <li>IP address</li>
-    <li>Advertising ID</li>
-    <li>App interaction data</li>
-</ul>
-<p>
-This data is used to provide personalized or non-personalized ads.
-</p>
-<p>
-For more information, see:
-<br>
-<a href="https://policies.google.com/privacy" target="_blank">
-Google Privacy Policy
-</a>
-</p>
+            <h2>5. Data Retention and Security</h2>
+            <p>Since we do not upload your personal documents, files, or scanned photos to any cloud servers, we do not store your documents. All documents reside safely on your local device. Any data processed temporarily in your RAM is deleted immediately when the application or scanning session closes.</p>
+            <p>Our third-party partners retain automatically collected device metadata in accordance with their strict data-retention schedules, protected by industry-standard encryption practices.</p>
 
-<h3>1.4 In-App Purchases (Premium Subscription)</h3>
-<p>
-Premium subscriptions are processed through Google Play Billing.
-</p>
-<ul>
-    <li>We do not collect or store credit card information.</li>
-    <li>We do not collect or store payment details.</li>
-</ul>
-<p>
-All transactions are securely handled by Google Play.
-</p>
+            <h2>6. Children's Privacy</h2>
+            <p>Our services do not address anyone under the age of 13. We do not knowingly collect personally identifiable information from children under 13. In the case we discover that a child under 13 has provided us with personal information, we immediately delete this from our servers. If you are a parent or guardian and you are aware that your child has provided us with personal information, please contact us so that we can take necessary actions.</p>
 
-<h2>2. How We Use Information</h2>
-<ul>
-    <li>Provide PDF editing features</li>
-    <li>Show advertisements (free users)</li>
-    <li>Process premium subscriptions</li>
-    <li>Improve app stability and performance</li>
-</ul>
-<p>We do not sell personal data.</p>
+            <h2>7. Your Choices and Opt-Out Rights</h2>
+            <p>You can manage and restrict the information processed by taking the following actions:</p>
+            <ul>
+                <li><strong>Device Permissions:</strong> You can grant or revoke Camera and Storage access permissions at any time via your device's System Settings menu.</li>
+                <li><strong>Reset Advertising ID:</strong> You can reset your Google Advertising ID or opt-out of personalized ads completely via your Android device's Settings -> Privacy -> Ads section.</li>
+                <li><strong>In-App Purchases:</strong> You can manage or cancel premium subscriptions through your Google Play Store Account settings.</li>
+            </ul>
 
-<h2>3. Data Storage</h2>
-<ul>
-    <li>PDF files are stored locally on your device.</li>
-    <li>Edited exports are saved to your device storage.</li>
-    <li>No cloud storage is used.</li>
-</ul>
+            <h2>8. Changes to This Privacy Policy</h2>
+            <p>We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "Last Updated" date at the top of this document. You are advised to review this Privacy Policy periodically for any changes.</p>
 
-<h2>4. Data Sharing</h2>
-<p>We do not share your personal information except:</p>
-<ul>
-    <li>With Google AdMob for advertising</li>
-    <li>With Google Play for subscription processing</li>
-    <li>If required by law</li>
-</ul>
-
-<h2>5. Children's Privacy</h2>
-<p>
-This app is not directed toward children under 13.  
-We do not knowingly collect personal data from children.
-</p>
-
-<h2>6. Your Rights (GDPR / CCPA)</h2>
-<p>Depending on your location, you may have rights to:</p>
-<ul>
-    <li>Request data access</li>
-    <li>Request deletion</li>
-    <li>Opt-out of personalized ads</li>
-</ul>
-<p>
-You can manage ad preferences via your device settings:<br>
-<strong>Settings → Google → Ads</strong>
-</p>
-
-<h2>7. Security</h2>
-<p>
-We implement reasonable safeguards to protect your data.  
-However, no method of electronic transmission is 100% secure.
-</p>
-
-<h2>8. Changes to This Policy</h2>
-<p>
-We may update this Privacy Policy from time to time.  
-Changes will be posted within the app listing or website.
-</p>
-
-<h2>9. Contact Information</h2>
-<p>
-If you have questions regarding this Privacy Policy, contact:
-</p>
-<p>
-Email: info.igttech@gmail.com<br>
-Developer: Seth Iradukunda
-</p>
-
-</div>
-
-<footer>
-    <p>© 2026 IGT Tech | IGT PDF Editor</p>
-</footer>
-
+            <h2>9. Contact Us</h2>
+            <p>If you have any questions or suggestions about this Privacy Policy, please do not hesitate to contact us at:</p>
+            
+            <div class="contact-info">
+                <strong>IGT Docs Tools Developer Support</strong><br>
+                Email: <a href="mailto:info.igttech@gmail.com">info.igttech@gmail.com</a>
+            </div>
+        </div>
+        <footer>
+            &copy; 2026 IGT Docs Tools. All rights reserved.
+        </footer>
+    </div>
 </body>
 </html>
