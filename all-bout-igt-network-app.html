@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How to Solve MBs and Wi-Fi Consumption in Smartphones Using IGT Network App</title>
+<meta name="description" content="Complete guide on how to solve mobile data (MBs) and Wi-Fi consumption in smartphones. Learn how the IGT Network App blocks background apps, saves data, and optimizes internet.">
+<meta name="keywords" content="save mobile data, stop data consumption, block background apps, save MBs android, IGT Network app, reduce wifi consumption, no-root firewall, internet speed test, wifi analyzer, background MBs saver">
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --primary: #0a3d62;
+    --primary-light: #1e5fa5;
+    --accent: #ff9f43;
+    --accent-hover: #ff7f00;
+    --bg-light: #f8fafc;
+    --bg-card: #ffffff;
+    --text-main: #334155;
+    --text-dark: #0f172a;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+}
+
+body {
+    font-family: 'Inter', Arial, Helvetica, sans-serif;
+    margin: 0;
+    background: var(--bg-light);
+    color: var(--text-main);
+    line-height: 1.6;
+}
+
+/* NAVIGATION */
+nav {
+    background: var(--primary);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+nav ul li {
+    margin: 0;
+}
+
+nav ul li a {
+    display: block;
+    padding: 16px 20px;
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.2s ease-in-out;
+}
+
+nav ul li a:hover {
+    background: var(--primary-light);
+    color: var(--accent);
+}
+
+/* HERO SECTION */
+.hero {
+    background: linear-gradient(135deg, #1e90ff, var(--primary));
+    color: white;
+    text-align: center;
+    padding: 100px 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100px;
+    background: linear-gradient(to top, var(--bg-light), transparent);
+    pointer-events: none;
+}
+
+.hero h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 42px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.2;
+}
+
+.hero p {
+    font-size: 20px;
+    max-width: 800px;
+    margin: 0 auto 35px auto;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.hero img {
+    width: 220px;
+    max-width: 90%;
+    border-radius: 16px;
+    margin: 20px auto;
+    display: block;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    border: 4px solid rgba(255,255,255,0.2);
+}
+
+.download-btn {
+    display: inline-block;
+    padding: 16px 36px;
+    background: var(--accent);
+    color: white;
+    font-size: 18px;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(255, 159, 67, 0.4);
+    transition: all 0.2s ease-in-out;
+}
+
+.download-btn:hover {
+    background: var(--accent-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 159, 67, 0.6);
+}
+
+/* CONTAINER */
+.container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 50px 20px;
+}
+
+/* CORE SEO CONTENT SECTION */
+.seo-intro {
+    background: var(--bg-card);
+    border-radius: 12px;
+    padding: 40px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    margin-bottom: 60px;
+    border-left: 6px solid var(--accent);
+}
+
+.seo-intro h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    color: var(--primary);
+    font-size: 32px;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.seo-intro h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    color: var(--primary-light);
+    font-size: 22px;
+    margin-top: 30px;
+    margin-bottom: 12px;
+}
+
+.seo-intro p {
+    font-size: 16px;
+    color: var(--text-main);
+    line-height: 1.8;
+    margin-bottom: 16px;
+}
+
+/* SECTION HEADER */
+.section-title {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.section-title h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 36px;
+    color: var(--text-dark);
+    margin-bottom: 15px;
+}
+
+.section-title p {
+    font-size: 18px;
+    color: var(--text-muted);
+    max-width: 700px;
+    margin: auto;
+}
+
+/* CATEGORIES & FEATURES */
+.category-section {
+    margin-top: 60px;
+    margin-bottom: 40px;
+}
+
+.category-heading {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 28px;
+    color: var(--primary);
+    margin-bottom: 25px;
+    border-bottom: 3px solid #1e90ff;
+    padding-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+}
+
+.feature-box {
+    background: var(--bg-card);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+    border-top: 5px solid #1e90ff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+}
+
+.feature-box-content h4 {
+    margin-top: 0;
+    margin-bottom: 12px;
+    font-size: 20px;
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.feature-box-content p {
+    font-size: 14px;
+    color: var(--text-main);
+    line-height: 1.6;
+    margin: 0;
+}
+
+.badge-premium {
+    background: #ffeaa7;
+    color: #d63031;
+    font-size: 10px;
+    font-weight: 800;
+    padding: 3px 8px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* GUIDE & FAQS SECTIONS */
+.guide-section {
+    background: linear-gradient(to right, #ffffff, #f1f5f9);
+    border-radius: 12px;
+    padding: 40px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    margin-top: 80px;
+}
+
+.guide-section h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    color: var(--primary);
+    font-size: 30px;
+    margin-top: 0;
+    margin-bottom: 25px;
+}
+
+.step-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.step-item {
+    margin-bottom: 25px;
+    position: relative;
+    padding-left: 50px;
+}
+
+.step-item::before {
+    content: attr(data-step);
+    position: absolute;
+    left: 0;
+    top: 2px;
+    width: 32px;
+    height: 32px;
+    background: var(--accent);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.step-item h4 {
+    margin: 0 0 8px 0;
+    font-size: 18px;
+    color: var(--text-dark);
+}
+
+.step-item p {
+    margin: 0;
+    color: var(--text-main);
+    font-size: 15px;
+}
+
+/* FOOTER */
+footer {
+    background: var(--primary);
+    color: white;
+    text-align: center;
+    padding: 40px 20px;
+    margin-top: 80px;
+    border-top: 4px solid var(--accent);
+}
+
+footer p {
+    margin: 8px 0;
+}
+
+footer a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+<ul>
+<li><a href="https://www.igttechcollege.com/index.html">Home</a></li>
+<li><a href="https://www.igttechcollege.com/register.html">Register</a></li>
+<li><a href="https://www.igttechcollege.com/login.html">Login</a></li>
+<li><a href="https://www.igttechcollege.com/all-bout-igt-network-app.html">Software</a></li>
+<li><a href="https://www.igttechcollege.com/drivers.html">Drivers</a></li>
+<li><a href="https://www.igttechcollege.com/swahili.html">Swahili</a></li>
+<li><a href="https://www.igttechcollege.com/english.html">English</a></li>
+<li><a href="https://www.igttechcollege.com/ikinyarwanda.html">Ikinyarwanda</a></li>
+<li><a href="https://www.igttechcollege.com/contact.html">Contact Us</a></li>
+<li><a href="https://www.igttechcollege.com/about-us.html">About Us</a></li>
+<li><a href="https://www.igttechcollege.com/posts.html">Posts</a></li>
+<li><a href="https://www.igttechcollege.com/books.html">Books</a></li>
+<li><a href="https://www.igttechcollege.com/igt-tech-college-apps.html">Our Apps</a></li>
+</ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+    <h1>Stop Mobile Data & Wi-Fi Wastage on Your Smartphone Today</h1>
+    <p>Discover IGT Network App: The Ultimate Solution to Block Background Apps, Control Hotspot usage, and Fully Optimize Your Smartphone Internet Consumption (MBs).</p>
+    
+    <img src=".\images\igt-network.png" alt="IGT Network App Screenshot">
+    
+    <a href="https://play.google.com/store/apps/details?id=com.igtnetwork.app" class="download-btn">
+        Download From Play Store Now
+    </a>
+</section>
+
+<!-- SEO INTRODUCTION -->
+<div class="container">
+    <section class="seo-intro">
+        <h2>How to Solve MBs and Wi-Fi Consumption in Smartphones Using IGT Network</h2>
+        <p>In the modern digital age, smartphones have become absolute essentials for connection, learning, and business. However, millions of users around the world suffer from a common, frustrating problem: <strong>extremely high mobile data and Wi-Fi consumption</strong>. You buy a data package (MBs), and within hours or days—without actively downloading large files or streaming videos—your internet package is entirely exhausted. Where do those MBs go?</p>
+        
+        <h3>The Hidden Culprit: Background App Data Consumption</h3>
+        <p>The primary reason for fast internet package depletion is background applications. When you minimize an app, it does not stop operating. Social media platforms, messaging applications, cloud synchronization services, weather checkers, and telemetry trackers continuously connect to remote servers in the background. They download ads, update feeds, sync profiles, send diagnostic logs, and perform unexpected checks. This hidden background process runs silently, draining your precious cellular mobile package and depleting your limited Wi-Fi plan.</p>
+        
+        <h3>The Ultimate Remedy: IGT Network App</h3>
+        <p>This is where the <strong>IGT Network App</strong> comes in as an indispensable companion. Built by networking professionals, IGT Network is a state-of-the-art smartphone optimization and firewall utility designed to put you back in absolute control of your device's connectivity. By utilizing a rootless, high-efficiency VPN firewall, IGT Network lets you choose exactly which applications can access the internet over cellular mobile data, which apps can access via Wi-Fi networks, and which apps should be completely blocked from using background data. With 78 powerful companion features, it's the most comprehensive network utility tool available today.</p>
+    </section>
+
+    <!-- SECTION TITLE -->
+    <div class="section-title">
+        <h2>Complete 78 Companion Features In-Depth Explanations</h2>
+        <p>Explore every single feature of the IGT Network App. Each tool is engineered to deliver unmatched network control, professional diagnostics, smart bandwidth savings, and absolute cybersecurity.</p>
+    </div>
+
+    <!-- SECTION 1: DIAGNOSTIC CATEGORY -->
+    <div class="category-section">
+        <h3 class="category-heading">⚡ Network Diagnostics & Analysis (18 Features)</h3>
+        <p style="margin-bottom: 25px; color: var(--text-muted);">Perform exhaustive network diagnostics, evaluate connections, inspect packet latencies, and pinpoint local network congestion issues with surgical accuracy.</p>
+        
+        <div class="features">
+            <div class="feature-box">
+                <div class="feature-box-content">
+                    <h4>⚡ Internet Speed Test</h4>
+                    <p>Measure download speed, upload speed, round-trip ping time, and signal jitter. This tool allows you to accurately measure the precise bandwidth delivered by your Mobile Network Operator or local Internet Service Provider (ISP), ensuring you get the performance you are paying for.</p>
+                </div>
+            </div>
+            
+            <div class="feature-box">
+                <div class="feature-box-content">
+                    <h4>📶 Wi-Fi Analyzer</h4>
+                    <p>Check the RSSI (Received Signal Strength Indicator) of all surrounding networks, discover active channels, determine channel frequency (2.4GHz vs 5GHz), and analyze local congestion to find the quietest and most stable channel for your router.</p>
+                </div>
+            </div>
+            
+            <div class="feature-box">
+                <div class="feature-box-content">
+                    <h4>🔍 Network Scanner <span class="badge-premium">Premium</span></h4>
+                    <p>Conduct a deep ARP (Address Resolution Protocol) scan of your local network subnet to discover every connected client. Identify IP addresses, MAC addresses, device manufacturer details, and instantly locate unauthorized intruders hijacking your home connection.</p>
+                </div>
+            </div>
+            
+            <div class="feature-box">
+                <div class="feature-box-content">
+                    <h4>🌐 IP Tools & Lookup <span class="badge-premium">Premium</span></h4>
+                    <p>Inspect your active IP address configuration, including local IP address, public IP address, default gateways, and current DNS servers. Perform instant WHOIS, DNS, and geo-location lookups on any public IP address instantly.</p>
+                </div>
+            </div>
+            
+            <div class="feature-box">
+                <div class="feature-box-content">
+                    <h4>🛡️ Port Scanner <span class="badge-premium">Premium</span></h4>
+                    <p>Scan targets or your own device to discover open TCP and UDP ports. Find active network services running on local network nodes and audit potential security vulnerabilities that hackers can exploit to breach your local network security.</p>
+                </div>
+            </div>
+            
+            <div class="feature-box">
+                <div class="feature-box-content">
+                    <h4>🚀 Ping Tool <span class="badge-premium">Premium</span></h4>
+                    <p>Measure precise packet latency to any domain or server IP address. Analyze response consistency, track minimal/maximum round-trip-times, monitor jitter, and trace real-time packet loss spikes that degrade video conferencing and online gaming experiences.</p>
+                </div>
+            </div>
+            
+            <div class="feature-box">
+                <div class="feature-box-content">
+                    <h4>📍 Traceroute Path</h4>
+                    <p>Track the complete routing hops that network packets take from your smartphone to a target web server. Identify exact transit paths, trace geographic locations of intermediary nodes, and locate exactly where routing latency spikes occur.</p>
+                </div>
+            </div>
+            
+            <div class="feature-box">
+                <div class="feature-box-content">
+                    <h4>⚙️ DNS Tools</h4>
+                    <p>Perform direct query records (such as A, MX, TXT, NS, CNAME) from custom DNS servers. Compare the speeds of top-tier secure DNS networks (like Google DNS, Cloudflare, OpenDNS, and Quad9) to select the fastest option for your network.</p>
+                </div>
+            </div>
+            
+            <div class="feature-box">
+                <div class="feature-box-content">
+                    <h4>📝 WHOIS Lookup <span class="badge-premium">Premium</span></h4>
+                    <p>Consult domain registrar databases to inspect domain availability, owner registration information, registration dates, expiration periods, and primary nameservers. An invaluable tool for system administrators and cybersecurity specialists.</p>
+                </div>
+            </div>
+            
+            <div class="feature-box">
+                <div class="feature-box-content">
+                    <h4>🌍 Website Checker <span class="badge-premium">Premium</span></h4>
+                    <p>Validate any public website's response code (like HTTP 200 OK), inspect security headers, analyze load times, and audit the validity of active SSL/TLS certificates. Perfect for tracking server outages and secure protocol standards.</p>
+                </div>
+            </div>
+            
+            <div class="feature-box">
+                <div class="feature-box-content">
+                    <h4>🧮 Network Calculator <span class="badge-premium">Premium</span></h4>
+                    <p>Simplify complex CIDR (Classless Inter-Domain Routing) calculations. Rapidly determine subnets, calculate IP ranges, identify network masks, specify wildcard addresses, and compute maximum broadcast regions for structured system configurations.</p>
+                </div>
+            </div>
+            
+            <div class="feature-box">
+                <div class="feature-box-content">
+                    <h4>🚪 Router Login Finder</h4>
+                    <p>Scan your current connection to identify the exact IP address of your router's administration interface. It provides standard default admin passwords for hundreds of router brands to help you easily configure your home Wi-Fi security.</p>
+                </div>
+            </div>
+            
+            <div class="feature-box">
+                <div class="feature-box-content">
+                    <h4>⚠️ Internet Outage Checker</h4>
+                    <p>Continuously audit multiple independent globally dispersed servers to isolate internet outages. Helps you understand if connectivity failure is due to your device, your local Wi-Fi router, or a general blackout by your ISP.</p>
+                </div>
+            </div>
+            
+            <div class="feature-box">
+                <div class="feature-box-content">
+                    <h4>📱 Signal Monitor</h4>
+                    <p>Keep track of live cellular dBm signal levels (such as LTE and 5G band quality). View active carrier bands, track signal-to-noise ratios, and analyze cellular tower proximity to optimize mobile network coverage and speeds.</p>
+                </div>
+            </div>
+            
+            <div class="feature-box">
+                <div class="feature-box-content">
+                    <h4>✨ Internet Quality Test <span class="badge-premium">Premium</span></h4>
+                    <p>A specialized speed tool that checks if your active connection can handle ultra high-definition (UHD) 4K streaming, smooth voice-over-IP (VoIP) calling, competitive real-time gaming, and multi-user video chat without buffering.</p>
+                </div>
+            </div>
+            
+            <div class="feature-box">
+                <div class="feature-box-content">
+                    <h4>🩺 Wi-Fi Quality Checker</h4>
+                    <p>Compare the reliability and noise interference ratios of your active Wi-Fi connection. Understand if a wireless network is too unstable or slow before disabling mobile cellular data, saving you from accidental disconnects.</p>
+                </div>
+            </div>
+            
+            <div class="feature-box">
+                <div class="feature-box-content">
+                    <h4>💯 Network Health Score <span class="badge-premium">Premium</span></h4>
+                    <p>Get a comprehensive, unified score out of 100 based on active packet loss ratios, DNS responsiveness, ping latencies, jitter rates, and signal strengths. Understand your network health instantly with a single clear score.</p>
+                </div>
+            </div>
+            
+            <div class="feature-box">
+                <div class="feature-box-content">
+                    <h4>🩺 One-Tap Diagnostics</h4>
+                    <p>Initiate a full diagnostics check with one tap. Sweeps your smartphone's DNS caching layers, route paths, network configuration files, and active connections to diagnose, identify, and fix major network issues instantly.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECTION 2: DATA MANAGER CATEGORY -->
+    <div class="category-section">
+        <h3 class="category-heading">📊 Smart Data Saving & Management (19 Features)</h3>
+        <p style="margin-bottom: 25px; color: var(--text-muted);">Monitor and analyze app data usage patterns. Define strict bandwidth limits, track daily consumptions, detect silent background data leaks, and save massive amounts of MBs.</p>
+        
+        <div class="features">
+            <div class="feature-box">
+                <div class="feature-box-content">
+                    <h4>📊 Smart Data Usage Monitor</h4>
+                    <p>Log and differentiate cellular mobile data and Wi-Fi data usage today, weekly, and monthly. This helps you build complete awareness of your browsing habits, showing you precisely how many gigabytes you consume over different periods.</p>
+                </div>
+            </div>
+            
+            <div class="feature-box">
+                <div class="feature-box-content">
+                    <h4>🏆 App Data Consumption</h4>
+                    <p>Inspect detailed, per-app historical data usage. Rank applications from highest to lowest consumer, pinpointing high-bandwidth drains like social media, and find out which apps are consuming your data without your consent.</p>
+                </div>
+            </div>
+            
+            <div class="feature-box">
+                <div class="feature-box-content">
+                    <h4>💡 AI Data Saver Advisor</h4>
+                    <p>An intelligent engine that analyzes your application usage patterns and provides tailored data saving recommendations. It flags unused apps consuming background MBs and advises the most effective firewall configurations.</p>
+                </div>
+            </div>
+            
+            <div class="feature-box">
+                <div class="feature-box-content">
+                    <h4>⏰ Daily Data Budget Plan</h4>
+                    <p>Define custom data limits and allocate daily MB quotas. The tool calculates recommended usage rates to keep you within your billing cycle limits, preventing sudden, expensive, and unexpected plan overages.</p>
+                </div>
+            </div>
+            
+            <div class="feature-box">
+                <div class="feature-box-content">
+                    <h4>🔮 Data Usage Prediction</h4>
+                    <p>Use advanced prediction algorithms to estimate future monthly data usage based on your current active habits. It alerts you if you are on track to exceed your data cap before the billing cycle ends.</p>
+                </div>
+            </div>
+            
+            <div class="feature-box">
+                <div class="feature-box-content">
+                    <h4>🚰 Data Leak Detector</h4>
+                    <p>Scan your phone for silent data leaks caused by poorly optimized or rogue applications that sync heavy files, send heavy analytics logs, or auto-refresh data behind your back even when the screen is locked.</p>
+                </div>
+            </div>
+            
+            <div class="feature-box">
+                <div class="feature-box-content">
+                    <h4>👤 Background Data Monitor</h4>
+                    <p>Monitor real-time background data transfers from inactive apps. Highlights apps consuming data without being actively opened, giving you a list of apps that need immediate background data restriction.</p>
+                </div>
+            </div>
+            
+            <div class="feature-box">
+                <div class="feature-box-content">
+                    <h4>⚠️ Data Usage Alerts</h4>
+                    <p>Set up custom notifications that trigger when you hit specific data usage thresholds (such as 50%, 80%, or 95% of your plan). Helps you make timely changes to your usage habits and avoid extra charges.</p>
+                </div>
+            </div>
+            
+            <div class="feature-box">
+                <div class="feature-box-content">
+                    <h4>✈️ Roaming Warning Rules</h4>
+                    <p>Avoid massive roaming fees with automated rules. Automatically blocks background data syncing, heavy updates, and cloud transfers the moment your phone switches to international cellular networks.</p>
+                </div>
+            </div>
+            
+            <div class="feature-box">
+                <div class="feature-box-content">
+                    <h4>🏡 Wi-Fi Auto Reminder</h4>
+                    <p>Receive notifications to connect to trusted, secure, and saved Wi-Fi networks when you are nearby, helping you reduce mobile cellular data consumption and save your limited cellular MBs for when you are truly mobile.</p>
+                </div>
+            </div>
+            
+            <div class="feature-box">
+                <div class="feature-box-content">
+                    <h4>📥 Large Download Warning</h4>
+                    <p>Detect and intercept background app updates or files exceeding your defined file-size limits when on cellular data. It prompts you for confirmation before starting large downloads, saving your data package.</p>
+                </div>
+            </div>
+            
+            <div class="feature-box">
+                <div class="feature-box-content">
+                    <h4>🎥 Streaming Advisor</h4>
+                    <p>Analyze streaming speeds and recommend optimal video resolutions (like 480p or 720p) to preserve your data plans. Helps you stream your favorite content while saving up to 60% of your data.</p>
+                </div>
+            </div>
+            
+            <div class="feature-box">
+                <div class="feature-box-content">
+                    <h4>📈 Data History Graphs</h4>
+                    <p>Visualize your data consumption habits with interactive graphs and charts. Track historical data usage curves and identify peak usage hours, days, and weeks for smarter data management.</p>
+                </div>
+            </div>
+            
+            <div class="feature-box">
+                <div class="feature-box-content">
+                    <h4>⏳ Bundle Countdown</h4>
+                    <p>Input your data package details and track exact expiration dates. Calculates your remaining days, remaining data, and suggests maximum daily usage allocations to keep you within budget.</p>
+                </div>
+            </div>
+            
+            <div class="feature-box">
+                <div class="feature-box-content">
+                    <h4>💎 Data Saving Tips <span class="badge-premium">Premium</span></h4>
+                    <p>Access professional tips and tutorials curated by network engineers. Learn advanced tricks to configure apps, optimize system configurations, and reduce data usage by up to 50% without affecting performance.</p>
+                </div>
+            </div>
+            
+            <div class="feature-box">
+                <div class="feature-box-content">
+                    <h4>🖥️ Internet Activity Dashboard</h4>
+                    <p>View active upload and download streams in real-time. Highlights exactly which apps are actively transmitting packets at any given moment, and see live connection details with ease.</p>
+                </div>
+            </div>
+            
+            <div class="feature-box">
+                <div class="feature-box-content">
+                    <h4>🔍 Suspicious Data Detector</h4>
+                    <p>Scans connection patterns to detect abnormal, unexpected data transfers. It flags possible malware, spyware, or background services transmitting unauthorized data, protecting your privacy and security.</p>
+                </div>
+            </div>
+            
+            <div class="feature-box">
+                <div class="feature-box-content">
+                    <h4>📴 Offline Mode Reminder</h4>
+                    <p>Intelligently reminds you to switch to offline-cached modes or pre-downloaded resources when you have an unstable connection, saving you from wasting data on repeated failed loads.</p>
+                </div>
+            </div>
+            
+            <div class="feature-box">
+                <div class="feature-box-content">
+                    <h4>⚡ Battery & Network Analyzer</h4>
+                    <p>Identifies apps that consume high amounts of network bandwidth and battery power simultaneously. Helps you find background services draining your battery and data, so you can disable them.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECTION 3: HOTSPOT CATEGORY -->
+    <div class="category-section">
+        <h3 class="category-heading">🔥 Hotspot & Tethering Control (18 Features)</h3>
+        <p style="margin-bottom: 25px; color: var(--text-muted);">Manage shared hotspot connections with ease. Track data usage per connected device, block unknown clients, schedule auto-shutdowns, and prevent unauthorized bandwidth usage.</p>
+        
+        <div class="features">
+            <div class="feature-box">
+                <div class="feature-box-content">
+                    <h4>🔥 Hotspot Dashboard</h4>
+                    <p>Manage shared internet connections from a single panel. View real-time shared data counters, active timers, battery levels, and the total number of connected clients at a single glance.</p>
+                </div>
+            </div>
+            
+            <div class="feature-box">
+                <div class="feature-box-content">
+                    <h4>👥 Connected Device List</h4>
+                    <p>See a detailed list of all devices connected to your mobile hotspot. View device names, local IP addresses, MAC addresses, and manufacturer details to identify authorized and unauthorized users.</p>
+                </div>
+            </div>
+            
+            <div class="feature-box">
+                <div class="feature-box-content">
+                    <h4>🚨 Unknown Device Alert <span class="badge-premium">Premium</span></h4>
+                    <p>Get instant push notifications when an unknown device connects to your mobile hotspot. Allows you to take immediate action, block intruders, change passwords, and protect your data package.</p>
+                </div>
+            </div>
+            
+            <div class="feature-box">
+                <div class="feature-box-content">
+                    <h4>📜 Hotspot Device History</h4>
+                    <p>Access historical connection logs of all devices that have connected to your hotspot. Track total connection durations, session frequencies, and overall data consumed by each device over time.</p>
+                </div>
+            </div>
+            
+            <div class="feature-box">
+                <div class="feature-box-content">
+                    <h4>🔢 Data Shared Counter</h4>
+                    <p>Track the total amount of gigabytes shared over your mobile hotspot. Monitor real-time upload and download counts, and set alerts to prevent clients from draining your mobile data package.</p>
+                </div>
+            </div>
+            
+            <div class="feature-box">
+                <div class="feature-box-content">
+                    <h4>💻 Per-Device Data Usage</h4>
+                    <p>Monitor precise, real-time data consumption for each connected client. See which device is downloading massive updates or streaming high-definition video, and manage bandwidth allocations easily.</p>
+                </div>
+            </div>
+            
+            <div class="feature-box">
+                <div class="feature-box-content">
+                    <h4>⏱️ Hotspot Timer Limit</h4>
+                    <p>Set automated countdown timers to turn off your mobile hotspot after a specific duration (such as 30 minutes, 1 hour, or 2 hours). Prevents battery drain and unnecessary data sharing when inactive.</p>
+                </div>
+            </div>
+            
+            <div class="feature-box">
+                <div class="feature-box-content">
+                    <h4>🔋 Battery Protection</h4>
+                    <p>Automatically disables your hotspot when your smartphone's battery drops below a set percentage (such as 15% or 20%). Keeps your phone running for essential calls and protects battery health.</p>
+                </div>
+            </div>
+            
+            <div class="feature-box">
+                <div class="feature-box-content">
+                    <h4>🛡️ Hotspot Security Checker</h4>
+                    <p>Scan your hotspot's security configuration, check password strength, and identify weak encryption types (like WPA or WEP) that are vulnerable to hacking, helping you secure your connection.</p>
+                </div>
+            </div>
+            
+            <div class="feature-box">
+                <div class="feature-box-content">
+                    <h4>🔲 QR Wi-Fi Generator</h4>
+                    <p>Create custom, secure QR codes for your mobile hotspot. Guests can scan the QR code to join your network instantly without typing complex, secure passwords, keeping your credentials safe.</p>
+                </div>
+            </div>
+            
+            <div class="feature-box">
+                <div class="feature-box-content">
+                    <h4>🔑 Password Generator</h4>
+                    <p>Generate highly secure, randomized passwords for your mobile hotspot. Creates strong passwords with combinations of letters, numbers, and symbols to prevent password cracking and data theft.</p>
+                </div>
+            </div>
+            
+            <div class="feature-box">
+                <div class="feature-box-content">
+                    <h4>🏎️ Hotspot Speed Monitor</h4>
+                    <p>Track live download and upload speeds consumed by connected clients. Monitor overall bandwidth allocations and ensure that hotspot sharing does not affect your local device's internet speeds.</p>
+                </div>
+            </div>
+            
+            <div class="feature-box">
+                <div class="feature-box-content">
+                    <h4>📊 Signal Quality Meter</h4>
+                    <p>Analyze cellular signal quality and tower distance to estimate hotspot coverage, helping you place your smartphone in the best position for high-speed, stable internet sharing.</p>
+                </div>
+            </div>
+            
+            <div class="feature-box">
+                <div class="feature-box-content">
+                    <h4>🕒 Auto Hotspot Reminder</h4>
+                    <p>Triggers helpful reminders when your mobile hotspot remains enabled for long periods without any active clients, preventing battery consumption and unauthorized access.</p>
+                </div>
+            </div>
+            
+            <div class="feature-box">
+                <div class="feature-box-content">
+                    <h4>💬 Connection Notifications</h4>
+                    <p>Receive real-time notifications on your screen whenever a device joins or leaves your mobile hotspot. Stay updated with client connections instantly without checking the settings page.</p>
+                </div>
+            </div>
+            
+            <div class="feature-box">
+                <div class="feature-box-content">
+                    <h4>📋 Hotspot Usage Reports <span class="badge-premium">Premium</span></h4>
+                    <p>Generate detailed historical data reports on your mobile hotspot usage. Export visual charts, consumption percentages, and usage patterns to Excel or PDF files for complete transparency.</p>
+                </div>
+            </div>
+            
+            <div class="feature-box">
+                <div class="feature-box-content">
+                    <h4>🤖 AI Hotspot Assistant</h4>
+                    <p>Diagnose network slowdowns, high congestion, or client disconnects with an intelligent assistant, and get actionable recommendations to improve performance.</p>
+                </div>
+            </div>
+            
+            <div class="feature-box">
+                <div class="feature-box-content">
+                    <h4>💡 Hotspot Tips <span class="badge-premium">Premium</span></h4>
+                    <p>Access pro-tips on how to optimize hotspot range, reduce power consumption, manage multiple devices, and secure mobile data transfers from expert network administrators.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECTION 4: SECURITY & SMART CATEGORY -->
+    <div class="category-section">
+        <h3 class="category-heading">🛡️ Cybersecurity, Firewall & Smart Rules (23 Features)</h3>
+        <p style="margin-bottom: 25px; color: var(--text-muted);">Secure your device with a rootless VPN firewall. Block malicious domains, restrict ad-trackers, set up per-app access rules, block background data, and protect your privacy.</p>
+        
+        <div class="features">
+            <div class="feature-box">
+                <div class="feature-box-content">
+                    <h4>📡 Universal Network Mode</h4>
+                    <p>Detect and display your active connection mode: Satellite, Mobile Cellular, Wi-Fi, Fiber Optic, or fixed wireless networks. Shows real-time network parameters and latency statistics instantly.</p>
+                </div>
+            </div>
+            
+            <div class="feature-box">
+                <div class="feature-box-content">
+                    <h4>🧱 Smart Firewall <span class="badge-premium">Premium</span></h4>
+                    <p>A rootless, high-efficiency VPN firewall that blocks apps from using background mobile data (MBs) and Wi-Fi networks, preventing silent background transfers, cloud syncing, and data leakage.</p>
+                </div>
+            </div>
+            
+            <div class="feature-box">
+                <div class="feature-box-content">
+                    <h4>📅 App Internet Scheduler <span class="badge-premium">Premium</span></h4>
+                    <p>Schedule internet access hours for specific apps. Set rules to block distracting social media apps during study or work hours, and allow access only during designated free periods.</p>
+                </div>
+            </div>
+            
+            <div class="feature-box">
+                <div class="feature-box-content">
+                    <h4>🌎 Roaming Rules Filter</h4>
+                    <p>Set custom rules to block high-bandwidth applications, auto-syncing profiles, and heavy background updates the moment your device connects to international cellular networks, saving you from massive bills.</p>
+                </div>
+            </div>
+            
+            <div class="feature-box">
+                <div class="feature-box-content">
+                    <h4>🔄 Wi-Fi vs Mobile Rules</h4>
+                    <p>Configure apps to connect only on Wi-Fi or cellular networks. Set high-consuming apps like YouTube and Instagram to use only Wi-Fi networks, and completely block them on cellular data to save MBs.</p>
+                </div>
+            </div>
+            
+            <div class="feature-box">
+                <div class="feature-box-content">
+                    <h4>⏱️ App Internet History</h4>
+                    <p>Track a complete timeline of when each application has accessed your network. Identify background apps that connect frequently to remote servers, helping you make smart firewall rules.</p>
+                </div>
+            </div>
+            
+            <div class="feature-box">
+                <div class="feature-box-content">
+                    <h4>💡 AI Firewall Configurator <span class="badge-premium">Premium</span></h4>
+                    <p>An intelligent assistant that analyzes your application habits and recommends optimal firewall rules, blocking background data consumption automatically with a single tap.</p>
+                </div>
+            </div>
+            
+            <div class="feature-box">
+                <div class="feature-box-content">
+                    <h4>💻 Live Network Monitor</h4>
+                    <p>Enable floating, real-time speed bubbles that overlay on top of other apps, displaying active download and upload speeds. Helps you monitor network activities and spot sudden spikes instantly.</p>
+                </div>
+            </div>
+            
+            <div class="feature-box">
+                <div class="feature-box-content">
+                    <h4>🛑 Malware Domain Shield</h4>
+                    <p>An integrated security shield that blocks connections to known malware, phishing, and tracking domains, protecting your personal data, credentials, and device security.</p>
+                </div>
+            </div>
+            
+            <div class="feature-box">
+                <div class="feature-box-content">
+                    <h4>🚩 Country-Based Blocking</h4>
+                    <p>Block network traffic originating from or directing to specific geolocations. An excellent tool for corporate devices and security-conscious users to prevent unauthorized server connections.</p>
+                </div>
+            </div>
+            
+            <div class="feature-box">
+                <div class="feature-box-content">
+                    <h4>🕸️ Domain Blocking</h4>
+                    <p>Set custom domain blocklists. Add specific domains to your personal blocklist to prevent apps from connecting to them, helping you customize your device's security and data usage.</p>
+                </div>
+            </div>
+            
+            <div class="feature-box">
+                <div class="feature-box-content">
+                    <h4>🚫 Ad & Tracker Blocking <span class="badge-premium">Premium</span></h4>
+                    <p>Filter out advertising scripts, telemetry SDKs, and data-mining trackers embedded in apps and web pages, saving up to 40% of your data bandwidth and improving page load speeds.</p>
+                </div>
+            </div>
+            
+            <div class="feature-box">
+                <div class="feature-box-content">
+                    <h4>🎖️ Privacy Score</h4>
+                    <p>Audit your apps and get an aggregate privacy score based on network requests, tracking domains, and background data habits, helping you spot untrustworthy apps easily.</p>
+                </div>
+            </div>
+            
+            <div class="feature-box">
+                <div class="feature-box-content">
+                    <h4>🧭 Speed Overlay Bubble</h4>
+                    <p>Customize a small, non-intrusive floating bubble displaying real-time upload and download speeds, letting you monitor active network usage continuously while using other apps.</p>
+                </div>
+            </div>
+            
+            <div class="feature-box">
+                <div class="feature-box-content">
+                    <h4>🕵️ VPN & Leak Detection</h4>
+                    <p>Perform deep scans to check if your VPN is leaking DNS requests or exposing your public IP address. Ensures your connection is secure, anonymous, and encrypted.</p>
+                </div>
+            </div>
+            
+            <div class="feature-box">
+                <div class="feature-box-content">
+                    <h4>🔒 Network Security Check</h4>
+                    <p>Audit active Wi-Fi connections, verify encryption standards (like WPA3 or WPA2), scan router certificates, and detect man-in-the-middle attacks, protecting you on public networks.</p>
+                </div>
+            </div>
+            
+            <div class="feature-box">
+                <div class="feature-box-content">
+                    <h4>🤖 AI Network Assistant</h4>
+                    <p>Describe network connection errors, high data drain, or hotspot issues in plain language, and get instant, step-by-step troubleshooting solutions from our intelligent system.</p>
+                </div>
+            </div>
+            
+            <div class="feature-box">
+                <div class="feature-box-content">
+                    <h4>🔔 Notifications</h4>
+                    <p>Get real-time alerts when network modes switch, when background data leaks are detected, when hotspot limits are reached, or when security vulnerabilities are spotted on your connection.</p>
+                </div>
+            </div>
+            
+            <div class="feature-box">
+                <div class="feature-box-content">
+                    <h4>💼 Technician Mode Panel <span class="badge-premium">Premium</span></h4>
+                    <p>A professional utility for field engineers to record network repairs, track customer service tickets, run deep diagnostic tests, and export certified PDF reports for clients.</p>
+                </div>
+            </div>
+            
+            <div class="feature-box">
+                <div class="feature-box-content">
+                    <h4>🎓 Educational Section <span class="badge-premium">Premium</span></h4>
+                    <p>Access high-quality networking tutorials, interactive quizzes, routing diagrams, and get certified networking certificates to improve your professional technical knowledge.</p>
+                </div>
+            </div>
+            
+            <div class="feature-box">
+                <div class="feature-box-content">
+                    <h4>🔒 Secure DNS Options</h4>
+                    <p>Enable secure DNS-over-HTTPS (DoH) or DNS-over-TLS (DoT) routing from top-tier providers, preventing ISP tracking, man-in-the-middle exploits, and improving loading speeds.</p>
+                </div>
+            </div>
+            
+            <div class="feature-box">
+                <div class="feature-box-content">
+                    <h4>👤 Multiple Profiles Setting</h4>
+                    <p>Create and customize network profile presets (such as Home, Office, Travel, and Gaming), and activate specific firewall rules and notifications with a single tap.</p>
+                </div>
+            </div>
+            
+            <div class="feature-box">
+                <div class="feature-box-content">
+                    <h4>💾 Backup & Restore</h4>
+                    <p>Export all firewall rules, network profiles, and custom blocklists to a local backup file, and restore your custom configuration on any device with a single tap.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TUTORIAL & GUIDE SECTION -->
+    <section class="guide-section">
+        <h2>Step-by-Step Guide: How to Solve Data & Wi-Fi Consumption Using IGT Network</h2>
+        <p>If you are struggling with fast data plan exhaustion, follow this simple step-by-step guide to configure the IGT Network App and reduce your internet consumption (MBs) by up to 80%:</p>
+        
+        <div class="step-list">
+            <div class="step-item" data-step="1">
+                <h4>Download and Install the App</h4>
+                <p>Go to the Google Play Store, search for <strong>IGT Network</strong>, and download and install the official app. Open the app to access the setup wizard.</p>
+            </div>
+            
+            <div class="step-item" data-step="2">
+                <h4>Enable the Local VPN Firewall</h4>
+                <p>Grant permission to establish a local, rootless VPN connection when prompted. Note: This local VPN does NOT route your traffic to any external server, keeping your data private and secure.</p>
+            </div>
+            
+            <div class="step-item" data-step="3">
+                <h4>Analyze Per-App Data Usage</h4>
+                <p>Go to the <strong>Smart Data Usage Monitor</strong> and <strong>App Data Consumption</strong> sections to see which apps are consuming the most background data.</p>
+            </div>
+            
+            <div class="step-item" data-step="4">
+                <h4>Configure Network Restrictions</h4>
+                <p>Go to <strong>Wi-Fi vs Mobile Rules</strong> and select restrictions for each high-consuming app. Enable block rules to restrict them to Wi-Fi only, or block them entirely from using background data.</p>
+            </div>
+            
+            <div class="step-item" data-step="5">
+                <h4>Enable Malware & Ad Shields</h4>
+                <p>Turn on the <strong>Malware Domain Shield</strong> and <strong>Ad & Tracker Blocking</strong> features. This blocks connections to ad-servers and trackers, saving data and improving loading speeds.</p>
+            </div>
+            
+            <div class="step-item" data-step="6">
+                <h4>Enjoy Maximum Data Savings</h4>
+                <p>Track your data savings over days and weeks with the <strong>Data History Graphs</strong>. Watch your data plans last longer than ever before!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- INFORMATION SECTIONS -->
+    <div class="seo-intro" style="margin-top: 60px;">
+        <h3>Why Internet Data Gets Consumed Quickly</h3>
+        <p>Many smartphone users notice that their mobile data finishes faster than expected. This happens because many apps run background services that continuously access the internet.</p>
+        <p>Some applications automatically update content, download advertisements, and connect to remote servers even when you are not actively using them.</p>
+        <p>Without proper control, these activities can consume large amounts of mobile data.</p>
+
+        <h3>What is IGT Network?</h3>
+        <p>IGT Network is a powerful Android application designed to give users full control over internet access on their devices. Instead of allowing every installed application to freely use your internet connection, IGT Network allows you to decide which apps should be allowed and which ones should be blocked.</p>
+        <p>This helps users manage mobile data effectively and stop unnecessary internet consumption.</p>
+
+        <h3>Who Should Use This App?</h3>
+        <p>This app is useful for people with limited data plans, users who want to stop apps from secretly using the internet, and anyone who wants better control over network permissions on their smartphone.</p>
+
+        <h3>How It Works</h3>
+        <p>IGT Network monitors applications that attempt to access the internet. When an app tries to connect, the system checks whether it has permission. If the app is blocked, the connection is immediately stopped.</p>
+        <p>This ensures that only trusted apps can access your internet connection.</p>
+    </div>
+</div>
+
+<footer>
+    <p>© 2026 IGT Network. All Rights Reserved. Empowered by <a href="https://www.igttechcollege.com">IGT Tech College</a>.</p>
+    <p><a href="privacy.html">Privacy Policy</a> | <a href="https://www.igttechcollege.com/contact.html">Contact Us</a></p>
+</footer>
+
+</body>
+</html>
