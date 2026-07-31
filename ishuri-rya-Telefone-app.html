@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="rw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ishuri rya Telefone - Phone Maintenance & Cyber Security</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-green: #15803d;
+            --primary-green-light: #22c55e;
+            --secondary-green: #166534;
+            --accent-gold: #d97706;
+            --accent-yellow: #ca8a04;
+            --accent-yellow-light: #fef08a;
+            --light-bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --border-light: #e2e8f0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background-color: var(--light-bg);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navbar / Header */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 2px solid #e2e8f0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+            padding: 15px 0;
+        }
+
+        .nav-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        /* Navigation Links Bar */
+        nav {
+            margin-top: 14px;
+            width: 100%;
+        }
+
+        nav ul {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            list-style: none;
+            justify-content: center;
+            align-items: center;
+            padding: 12px 0 0;
+            border-top: 1px solid var(--border-light);
+        }
+
+        nav ul li a {
+            color: #1e293b;
+            text-decoration: none;
+            font-size: 0.88rem;
+            font-weight: 700;
+            padding: 6px 14px;
+            border-radius: 8px;
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            transition: all 0.2s ease;
+            display: inline-block;
+        }
+
+        nav ul li a:hover {
+            color: #854d0e;
+            background: #fef9c3;
+            border-color: #fef08a;
+            transform: translateY(-1px);
+        }
+
+        .logo-box {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--text-main);
+        }
+
+        .logo-box img {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+            border-radius: 8px;
+            background: #ffffff;
+            padding: 2px;
+            border: 1px solid #cbd5e1;
+            box-shadow: 0 2px 8px rgba(21, 128, 61, 0.15);
+        }
+
+        .logo-text {
+            font-size: 1.3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #15803d, #b45309);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 60px 0 45px;
+            text-align: center;
+            background: linear-gradient(180deg, #f0fdf4 0%, #fefce8 100%);
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .hero img.hero-logo {
+            width: 120px;
+            height: 120px;
+            object-fit: contain;
+            border-radius: 20px;
+            background: #ffffff;
+            padding: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 25px rgba(21, 128, 61, 0.15);
+            border: 3px solid #bbf7d0;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
+            color: #14532d;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 750px;
+            margin: 0 auto 28px;
+        }
+
+        .btn-download {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: linear-gradient(135deg, #16a34a, #ca8a04);
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 1.1rem;
+            padding: 14px 32px;
+            border-radius: 50px;
+            text-decoration: none;
+            box-shadow: 0 8px 20px rgba(22, 163, 74, 0.3);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .btn-download:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(202, 138, 4, 0.4);
+        }
+
+        /* Badge Pills */
+        .badges {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 28px;
+        }
+
+        .badge {
+            background: #ffffff;
+            border: 1px solid #ca8a04;
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            color: #15803d;
+            font-weight: 700;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+        }
+
+        /* Main Section Title */
+        .section-title {
+            text-align: center;
+            margin: 50px 0 30px;
+        }
+
+        .section-title h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #166534;
+        }
+
+        .section-title p {
+            color: var(--text-muted);
+            font-size: 1rem;
+            margin-top: 6px;
+        }
+
+        /* Features Grid */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-light);
+            border-radius: 16px;
+            padding: 28px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+            transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: #22c55e;
+            box-shadow: 0 8px 25px rgba(34, 197, 94, 0.12);
+        }
+
+        .card-icon {
+            font-size: 2.2rem;
+            margin-bottom: 14px;
+            display: inline-block;
+        }
+
+        .card h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #15803d;
+        }
+
+        .card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Benefits / Value Section */
+        .benefits-section {
+            background: linear-gradient(135deg, #f0fdf4 0%, #fefce8 100%);
+            border-radius: 24px;
+            padding: 40px;
+            margin: 50px 0;
+            border: 2px solid #bbf7d0;
+            box-shadow: 0 4px 20px rgba(21, 128, 61, 0.05);
+        }
+
+        .benefit-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+            margin-top: 24px;
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .benefit-item .check {
+            background: #16a34a;
+            color: #ffffff;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+            box-shadow: 0 2px 6px rgba(22, 163, 74, 0.3);
+        }
+
+        .benefit-item div h4 {
+            font-size: 1.05rem;
+            color: #14532d;
+            margin-bottom: 4px;
+        }
+
+        .benefit-item div p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* Certificate Highlights */
+        .cert-box {
+            background: #fefce8;
+            border: 2px dashed #ca8a04;
+            border-radius: 20px;
+            padding: 35px;
+            text-align: center;
+            margin: 40px 0;
+            box-shadow: 0 4px 15px rgba(202, 138, 4, 0.08);
+        }
+
+        .cert-box h3 {
+            color: #a16207;
+            font-size: 1.6rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .cert-box p {
+            color: #334155;
+            max-width: 700px;
+            margin: 0 auto 20px;
+            font-weight: 500;
+        }
+
+        /* Footer */
+        footer {
+            background: #ffffff;
+            border-top: 1px solid var(--border-light);
+            padding: 30px 0;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer p {
+            margin-bottom: 8px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.1rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+            .benefits-section {
+                padding: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header>
+        <div class="container">
+            <div class="nav-content">
+                <a href="#" class="logo-box">
+                    <img src="./images/ishurilogo.png" alt="IGT & Tech College Logo" id="app-logo">
+                    <span class="logo-text">Ishuri rya Telefone</span>
+                </a>
+                <a href="https://play.google.com/store/apps/details?id=com.ishuri.tekinologi" class="badge" style="text-decoration: none; background: #15803d; color: #ffffff; border: none;">Google Play Store</a>
+            </div>
+
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="register.html">Register</a></li>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="software.html">Software</a></li>
+                    <li><a href="drivers.html">Drivers</a></li>
+                    <li><a href="swahili.html">Swahili</a></li>
+                    <li><a href="english.html">English</a></li>
+                    <li><a href="ikinyarwanda.html">Ikinyarwanda</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="about-us.html">About Us</a></li>
+                    <li><a href="posts.html">Posts</a></li>
+                    <li><a href="books.html">Books</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <img src="./images/ishurilogo.png" alt="Ishuri rya Telefone Logo" class="hero-logo">
+            <h1>Ishuri rya Telefone & Cyber Security</h1>
+            <p>
+                Aplikasiyo ya mbere irambuye mu Rwanda yigisha uburyo bwo gukora no gukorera telefone (Hardware & Software Maintenance) hamwe n'Umutekano wo muri Koridoro z'Ikoranabuhanga (Cyber Security) mu rurimi rw'Ikinyarwanda.
+            </p>
+            <a href="https://play.google.com/store/apps/details?id=com.ishuri.tekinologi" target="_blank" class="btn-download">
+                <span>📲 Pakurura iyi Apps kuri Play Store</span>
+            </a>
+
+            <div class="badges">
+                <span class="badge">🎓 Impamyabumenyi (Certificate)</span>
+                <span class="badge">🛠️ Hardware & Software</span>
+                <span class="badge">🔐 Cyber Security Protection</span>
+                <span class="badge">🇷🇼 mu Kinyarwanda</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Features Section -->
+    <section class="container">
+        <div class="section-title">
+            <h2>Ibyo Uzasanga Muri Iyi Aplikasiyo</h2>
+            <p>Ibirimo n'Ubusobanuro bwose bukenewe ku muntu ushaka kwiga no kwikorera</p>
+        </div>
+
+        <div class="grid">
+            <!-- Feature 1 -->
+            <div class="card">
+                <div class="card-icon">🛠️</div>
+                <h3>Gukora Hardware ya Telefone</h3>
+                <p>Amasomo arambuye ku gusanura no gusimbura za Ekran (LCD/OLED), Amasohokero ya Bateri (Charging Ports), Bateri, Speakers, na Micro-Soldering ku Bwubako Bwa Motherboard.</p>
+            </div>
+
+            <!-- Feature 2 -->
+            <div class="card">
+                <div class="card-icon">💻</div>
+                <h3>Software & Operating Systems</h3>
+                <p>Kwiga gukora Flashing, Unlocking, Kukuraho FRP Lock, Gukora System Recovery, n'Ibyerekeye icyitwa Firmware update mu buryo bwizewe kandi butagira ingaruka kuri telefone.</p>
+            </div>
+
+            <!-- Feature 3 -->
+            <div class="card">
+                <div class="card-icon">🔐</div>
+                <h3>Cyber Security & Umutekano</h3>
+                <p>Uburyo bwo kurinda telefone n'amakuru yawe kwinjirirwa (Anti-Hacking), Kurinda WhatsApp, Social Media, Kumenya Phishing Links, no Gucunga Passwords neza.</p>
+            </div>
+
+            <!-- Feature 4 -->
+            <div class="card">
+                <div class="card-icon">🎓</div>
+                <h3>Ibizamini & Impamyabumenyi</h3>
+                <p>Ibizamini 2 by'Ingirakamaro (Cyber Security Exam & Technician Exam). Iyo ugeze ku ntego ya 50%+, uhabwa Impamyabumenyi muri PDF ushobora gucapa (Print) ukayikoresha.</p>
+            </div>
+
+            <!-- Feature 5 -->
+            <div class="card">
+                <div class="card-icon">❓</div>
+                <h3>Troubleshooting & FAQs Engine</h3>
+                <p>Igikoresho cy'Ibibazo n'Ibisubizo bya buri munsi bifasha Abatekenisiye kumenya vuba ibikoresho n'amasomo akemura ikibazo runaka cya telefone kije.</p>
+            </div>
+
+            <!-- Feature 6 -->
+            <div class="card">
+                <div class="card-icon">📺</div>
+                <h3>Video Tutorials n'Amashusho</h3>
+                <p>Amavidewo y'Ingirakamaro ava kuri YouTube channel ya Ishuri rikuru rya IGT Ikwereka intambwe ku yindi uko batunganya ikibazo nyakuri mu buryo bweruye.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certificate Section Highlight -->
+    <section class="container">
+        <div class="cert-box">
+            <h3>🎓 Impamyabumenyi</h3>
+            <p>
+                Iyo urenze 50% mu bizamini by'Aplikasiyo, uruhushya rwo gusohora Impamyabumenyi yawe rugana kuri PDF nziza cane yanditseho izina ryawe, amanota, hamwe n'ikimenyetso giteye ishema cya IGT & Tech College.
+            </p>
+        </div>
+    </section>
+
+    <!-- Benefits / Why Users Love It -->
+    <section class="container">
+        <div class="benefits-section">
+            <h2 style="text-align: center; margin-bottom: 12px; color: #14532d;">Akamaro n'Inyungu Ku Muntu Wese</h2>
+            <p style="text-align: center; color: var(--text-muted); margin-bottom: 24px;">Kuba ufite "Ishuri rya Telefone" mu ntoki zawe ku gihe cyose</p>
+
+            <div class="benefit-list">
+                <div class="benefit-item">
+                    <div class="check">✓</div>
+                    <div>
+                        <h4>Wiga mu Kinyarwanda</h4>
+                        <p>Ibisobanuro byose byanditse mu ururimi rwawe ku buryo byoroshye kumva.</p>
+                    </div>
+                </div>
+
+                <div class="benefit-item">
+                    <div class="check">✓</div>
+                    <div>
+                        <h4>Kwikorera Umwuga (Self-Employment)</h4>
+                        <p>Biguha ubumenyi bwagufasha gufungura iduka ry gukora telefone no kubona amafaranga.</p>
+                    </div>
+                </div>
+
+                <div class="benefit-item">
+                    <div class="check">✓</div>
+                    <div>
+                        <h4>Kurinda Umutekano Wanjye</h4>
+                        <p>Bikugcina unogewe mu kurinda amakuru yawe, banki, na telefone zawe kutinjirirwa.</p>
+                    </div>
+                </div>
+
+                <div class="benefit-item">
+                    <div class="check">✓</div>
+                    <div>
+                        <h4>Nta Ntambwe Uyobera</h4>
+                        <p>Amasomo n'ibizamini bijyana n'ingero zifatika n'amavidewo asobanutse.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p><strong>Ishuri rya Telefone &copy; 2026 - IGT & TECH COLLEGE</strong></p>
+            <p>Developed by Seth Iradukunda | Powered by IGT & Tech College| <a href="https://www.igttechcollege.com" style="color: #16a34a; text-decoration: none; font-weight: 700;">www.igttechcollege.com</a></p>
+        </div>
+    </footer>
+
+</body>
+</html>
+
