@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="rw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="./images/igt-security-icon.png">
+    <title>Gukoresha app ya IGT Security for Smart Phone</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: #f8fafc;
+            color: #0f172a;
+        }
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+            border-radius: 0.75rem;
+            background-color: #0f172a;
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #0d9488;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased bg-slate-50 text-slate-900">
+
+    <!-- HEADER / NAVIGATION (LIGHT THEME) -->
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+                
+                <!-- Logo & Main Title -->
+                <div class="flex items-center gap-3.5">
+                    <div class="relative group shrink-0">
+                        <div class="absolute -inset-0.5 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-2xl blur opacity-40 group-hover:opacity-80 transition"></div>
+                        <div class="relative w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-white p-1.5 flex items-center justify-center border border-slate-200 shadow-sm">
+                            <img src="./images/igt-security-icon.png" alt="IGT Security Logo" class="w-full h-full object-contain rounded-xl" onerror="this.src='https://api.iconify.design/lucide:shield-check.svg?color=%230d9488'">
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <span class="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-teal-50 text-teal-700 border border-teal-200">
+                                🛡️ Official Smart Phone Guide
+                            </span>
+                            <span class="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-cyan-50 text-cyan-700 border border-cyan-200">
+                                🎥 Video 12 Zuzuye
+                            </span>
+                        </div>
+                        <h1 class="text-xl sm:text-2xl lg:text-3xl font-extrabold text-slate-900 mt-1 tracking-tight">
+                            Gukoresha app ya <span class="text-teal-700 font-black">IGT Security for Smart Phone</span>
+                        </h1>
+                    </div>
+                </div>
+
+                <!-- Progress Tracker Card -->
+                <div class="bg-slate-100/80 border border-slate-200 rounded-2xl p-3 sm:p-4 min-w-[260px] shadow-sm">
+                    <div class="flex items-center justify-between text-xs font-semibold text-slate-700 mb-1.5">
+                        <span>Amasomo Yarasomwe: <strong id="progress-text" class="text-slate-900 font-bold">0/12</strong></span>
+                        <span id="progress-percent" class="text-teal-700 font-extrabold">0%</span>
+                    </div>
+                    <div class="w-full bg-slate-200 rounded-full h-2.5 overflow-hidden p-0.5 border border-slate-300">
+                        <div id="progress-bar" class="bg-teal-600 h-full rounded-full transition-all duration-500" style="width: 0%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Search & Filter Buttons -->
+            <div class="mt-4 pt-3 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-3">
+                <div class="relative w-full sm:max-w-md">
+                    <input type="text" id="search-input" onkeyup="filterVideos()" placeholder="🔎 Shaka isomo cyangwa ijambo ry'ibanga..." class="w-full bg-slate-100 border border-slate-300 text-slate-900 placeholder-slate-500 text-xs sm:text-sm rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-teal-500/50 focus:border-teal-600 bg-white">
+                </div>
+                <div class="flex items-center gap-2 text-xs text-slate-600 w-full sm:w-auto overflow-x-auto pb-1 sm:pb-0">
+                    <span class="font-bold whitespace-nowrap text-slate-700">Hitamo Category:</span>
+                    <button onclick="setCategory('All')" class="category-btn active px-3 py-1.5 rounded-lg bg-teal-600 text-white font-bold shadow-sm">Yose (12)</button>
+                    <button onclick="setCategory('Setup')" class="category-btn px-3 py-1.5 rounded-lg bg-slate-200 text-slate-700 hover:bg-slate-300 font-medium">Setup</button>
+                    <button onclick="setCategory('Security')" class="category-btn px-3 py-1.5 rounded-lg bg-slate-200 text-slate-700 hover:bg-slate-300 font-medium">Security</button>
+                    <button onclick="setCategory('Tools')" class="category-btn px-3 py-1.5 rounded-lg bg-slate-200 text-slate-700 hover:bg-slate-300 font-medium">Tools</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO INTRO BANNER (LIGHT THEME) -->
+    <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="bg-gradient-to-r from-teal-50 via-cyan-50 to-white border border-teal-200 rounded-3xl p-6 sm:p-8 mb-8 shadow-sm relative overflow-hidden">
+            <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+                <div class="space-y-2 max-w-2xl">
+                    <span class="text-xs font-bold px-3 py-1 rounded-full bg-teal-600 text-white inline-block shadow-sm">
+                        ✨ Amasomo Y'Amashusho 12
+                    </span>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+                        Umutekano Wuzuye wa Smart Phone na IGT Security
+                    </h2>
+                    <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                        Iyi page ikubiyemo amashusho 12 yose y'uburyo bwo gukoresha app ya IGT Security for Smart Phone. Buri video ifite umutwe wanditse hejuru mu HTML, uburyo bwo kuyagura (Zoom / Full Screen), kurebera kuri YouTube imbona-nkubone, no kumenya amasomo yarangiye.
+                    </p>
+                </div>
+
+                <!-- Quick Jump Navigation Grid -->
+                <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm w-full md:w-auto">
+                    <span class="text-[11px] font-bold text-slate-700 uppercase tracking-wider block mb-2">
+                        Kanda hano ku isomo wifuza (1-12):
+                    </span>
+                    <div class="grid grid-cols-6 gap-2">
+                        <script>
+                            for(let i=1; i<=12; i++) {
+                                document.write(`<a href="#video-${i}" class="w-8 h-8 rounded-lg bg-slate-100 hover:bg-teal-600 hover:text-white text-slate-800 font-bold text-xs flex items-center justify-center border border-slate-200 transition shadow-xs">${i}</a>`);
+                            }
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 12 VIDEOS GRID CONTAINER (LIGHT THEME) -->
+        <div id="video-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-6 sm:gap-8">
+
+            <!-- VIDEO 1 -->
+            <div id="video-1" data-category="Setup" class="video-card bg-white border border-slate-200 hover:border-teal-500 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+                <div class="p-4 border-b border-slate-100 bg-slate-50/80">
+                    <div class="flex items-center justify-between gap-2 mb-2">
+                        <span class="w-7 h-7 rounded-lg bg-teal-600 text-white font-bold text-xs flex items-center justify-center shadow-xs">#1</span>
+                        <span class="text-[10px] uppercase font-bold px-2 py-0.5 rounded-full bg-slate-200 text-slate-700">Setup</span>
+                        <button onclick="toggleWatched(1)" id="watch-btn-1" class="text-xs px-2.5 py-1 rounded-lg bg-white text-slate-700 border border-slate-300 font-medium hover:bg-slate-100 transition cursor-pointer">◯ Mark Watched</button>
+                    </div>
+                    <!-- HTML Title explicitly rendered above video frame -->
+                    <h3 class="text-base font-bold text-slate-900 leading-snug">1. Kwandikisha no Gushyira IGT Security kuri Smart Phone (Installation & Permissions)</h3>
+                </div>
+                <div class="p-2 bg-slate-900">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/8h_FWJ7bOWY" title="1. Kwandikisha no Gushyira IGT Security kuri Smart Phone" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    </div>
+                </div>
+                <div class="p-4 space-y-3 bg-white">
+                    <p class="text-xs text-slate-600 leading-relaxed">Amabwiriza y'ibanze n'uburyo bwo kwinjiza IGT Security App no gutanga uburenganzira (permissions) kuri Smart Phone.</p>
+                    <div class="flex items-center gap-2 pt-1">
+                        <button onclick="openZoomModal('https://www.youtube.com/embed/8h_FWJ7bOWY', '1. Kwandikisha no Gushyira IGT Security kuri Smart Phone')" class="flex-1 py-2 bg-teal-50 hover:bg-teal-100 text-teal-800 border border-teal-200 font-bold text-xs rounded-xl transition flex items-center justify-center gap-1 cursor-pointer">
+                            🔍 Zoom Video
+                        </button>
+                        <a href="https://www.youtube.com/watch?v=8h_FWJ7bOWY" target="_blank" rel="noopener noreferrer" class="px-3 py-2 bg-red-600 hover:bg-red-700 text-white font-bold text-xs rounded-xl transition flex items-center justify-center gap-1 shadow-xs">
+                            ▶ YouTube ↗
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- VIDEO 2 -->
+            <div id="video-2" data-category="Setup" class="video-card bg-white border border-slate-200 hover:border-teal-500 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+                <div class="p-4 border-b border-slate-100 bg-slate-50/80">
+                    <div class="flex items-center justify-between gap-2 mb-2">
+                        <span class="w-7 h-7 rounded-lg bg-teal-600 text-white font-bold text-xs flex items-center justify-center shadow-xs">#2</span>
+                        <span class="text-[10px] uppercase font-bold px-2 py-0.5 rounded-full bg-slate-200 text-slate-700">Setup</span>
+                        <button onclick="toggleWatched(2)" id="watch-btn-2" class="text-xs px-2.5 py-1 rounded-lg bg-white text-slate-700 border border-slate-300 font-medium hover:bg-slate-100 transition cursor-pointer">◯ Mark Watched</button>
+                    </div>
+                    <h3 class="text-base font-bold text-slate-900 leading-snug">2. Konfigirasiyo y'Umutekano w'Ibanze n'Ufurunguzo (PIN & Password Configuration)</h3>
+                </div>
+                <div class="p-2 bg-slate-900">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/nmDeE8Y4jOs" title="2. Konfigirasiyo y'Umutekano w'Ibanze n'Ufurunguzo" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    </div>
+                </div>
+                <div class="p-4 space-y-3 bg-white">
+                    <p class="text-xs text-slate-600 leading-relaxed">Uburyo bwo guhuza nomorode terefone, gukora PIN ikomeye no gushyiraho Fingerprint cyangwa Face Unlock.</p>
+                    <div class="flex items-center gap-2 pt-1">
+                        <button onclick="openZoomModal('https://www.youtube.com/embed/nmDeE8Y4jOs', '2. Konfigirasiyo y\'Umutekano w\'Ibanze n\'Ufurunguzo')" class="flex-1 py-2 bg-teal-50 hover:bg-teal-100 text-teal-800 border border-teal-200 font-bold text-xs rounded-xl transition flex items-center justify-center gap-1 cursor-pointer">
+                            🔍 Zoom Video
+                        </button>
+                        <a href="https://www.youtube.com/watch?v=nmDeE8Y4jOs" target="_blank" rel="noopener noreferrer" class="px-3 py-2 bg-red-600 hover:bg-red-700 text-white font-bold text-xs rounded-xl transition flex items-center justify-center gap-1 shadow-xs">
+                            ▶ YouTube ↗
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- VIDEO 3 -->
+            <div id="video-3" data-category="Security" class="video-card bg-white border border-slate-200 hover:border-teal-500 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+                <div class="p-4 border-b border-slate-100 bg-slate-50/80">
+                    <div class="flex items-center justify-between gap-2 mb-2">
+                        <span class="w-7 h-7 rounded-lg bg-teal-600 text-white font-bold text-xs flex items-center justify-center shadow-xs">#3</span>
+                        <span class="text-[10px] uppercase font-bold px-2 py-0.5 rounded-full bg-slate-200 text-slate-700">Security</span>
+                        <button onclick="toggleWatched(3)" id="watch-btn-3" class="text-xs px-2.5 py-1 rounded-lg bg-white text-slate-700 border border-slate-300 font-medium hover:bg-slate-100 transition cursor-pointer">◯ Mark Watched</button>
+                    </div>
+                    <h3 class="text-base font-bold text-slate-900 leading-snug">3. Kurinda no Gukurikirana Terefone Mu gihe Yayobye (GPS Live Location Tracking)</h3>
+                </div>
+                <div class="p-2 bg-slate-900">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/csWlsfxVJII" title="3. Kurinda no Gukurikirana Terefone Mu gihe Yayobye" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    </div>
+                </div>
+                <div class="p-4 space-y-3 bg-white">
+                    <p class="text-xs text-slate-600 leading-relaxed">Uburyo bwo gukoresha GPS Location Tracking no kumenya icyerekezo n'aho terefone iherereye mu gihe yaburiye.</p>
+                    <div class="flex items-center gap-2 pt-1">
+                        <button onclick="openZoomModal('https://www.youtube.com/embed/csWlsfxVJII', '3. Kurinda no Gukurikirana Terefone Mu gihe Yayobye')" class="flex-1 py-2 bg-teal-50 hover:bg-teal-100 text-teal-800 border border-teal-200 font-bold text-xs rounded-xl transition flex items-center justify-center gap-1 cursor-pointer">
+                            🔍 Zoom Video
+                        </button>
+                        <a href="https://www.youtube.com/watch?v=csWlsfxVJII" target="_blank" rel="noopener noreferrer" class="px-3 py-2 bg-red-600 hover:bg-red-700 text-white font-bold text-xs rounded-xl transition flex items-center justify-center gap-1 shadow-xs">
+                            ▶ YouTube ↗
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- VIDEO 4 -->
+            <div id="video-4" data-category="Security" class="video-card bg-white border border-slate-200 hover:border-teal-500 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+                <div class="p-4 border-b border-slate-100 bg-slate-50/80">
+                    <div class="flex items-center justify-between gap-2 mb-2">
+                        <span class="w-7 h-7 rounded-lg bg-teal-600 text-white font-bold text-xs flex items-center justify-center shadow-xs">#4</span>
+                        <span class="text-[10px] uppercase font-bold px-2 py-0.5 rounded-full bg-slate-200 text-slate-700">Security</span>
+                        <button onclick="toggleWatched(4)" id="watch-btn-4" class="text-xs px-2.5 py-1 rounded-lg bg-white text-slate-700 border border-slate-300 font-medium hover:bg-slate-100 transition cursor-pointer">◯ Mark Watched</button>
+                    </div>
+                    <h3 class="text-base font-bold text-slate-900 leading-snug">4. Gufunga za App no Kurinda Amakuru y'Ibwite (App Lock & Vault)</h3>
+                </div>
+                <div class="p-2 bg-slate-900">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/YrG_FDXwP-I" title="4. Gufunga za App no Kurinda Amakuru y'Ibwite" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    </div>
+                </div>
+                <div class="p-4 space-y-3 bg-white">
+                    <p class="text-xs text-slate-600 leading-relaxed">Koresha App Lock yo gufunga WhatsApp, Gallery, Mobile Money n'izindi app z'ingenzi kugira ngo hataza ubyinjiramo.</p>
+                    <div class="flex items-center gap-2 pt-1">
+                        <button onclick="openZoomModal('https://www.youtube.com/embed/YrG_FDXwP-I', '4. Gufunga za App no Kurinda Amakuru y\'Ibwite')" class="flex-1 py-2 bg-teal-50 hover:bg-teal-100 text-teal-800 border border-teal-200 font-bold text-xs rounded-xl transition flex items-center justify-center gap-1 cursor-pointer">
+                            🔍 Zoom Video
+                        </button>
+                        <a href="https://www.youtube.com/watch?v=YrG_FDXwP-I" target="_blank" rel="noopener noreferrer" class="px-3 py-2 bg-red-600 hover:bg-red-700 text-white font-bold text-xs rounded-xl transition flex items-center justify-center gap-1 shadow-xs">
+                            ▶ YouTube ↗
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- VIDEO 5 -->
+            <div id="video-5" data-category="Security" class="video-card bg-white border border-slate-200 hover:border-teal-500 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+                <div class="p-4 border-b border-slate-100 bg-slate-50/80">
+                    <div class="flex items-center justify-between gap-2 mb-2">
+                        <span class="w-7 h-7 rounded-lg bg-teal-600 text-white font-bold text-xs flex items-center justify-center shadow-xs">#5</span>
+                        <span class="text-[10px] uppercase font-bold px-2 py-0.5 rounded-full bg-slate-200 text-slate-700">Security</span>
+                        <button onclick="toggleWatched(5)" id="watch-btn-5" class="text-xs px-2.5 py-1 rounded-lg bg-white text-slate-700 border border-slate-300 font-medium hover:bg-slate-100 transition cursor-pointer">◯ Mark Watched</button>
+                    </div>
+                    <h3 class="text-base font-bold text-slate-900 leading-snug">5. Gukumira Virusi n'Ibitero bya Intaneti (Anti-Malware & Antivirus Scan)</h3>
+                </div>
+                <div class="p-2 bg-slate-900">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/Yi-DFqsDytk" title="5. Gukumira Virusi n'Ibitero bya Intaneti" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    </div>
+                </div>
+                <div class="p-4 space-y-3 bg-white">
+                    <p class="text-xs text-slate-600 leading-relaxed">Uburyo bwo gukora Full Malware Scan kuri Smart Phone yawe no gukuraho amafayilo arimo uburiganya.</p>
+                    <div class="flex items-center gap-2 pt-1">
+                        <button onclick="openZoomModal('https://www.youtube.com/embed/Yi-DFqsDytk', '5. Gukumira Virusi n\'Ibitero bya Intaneti')" class="flex-1 py-2 bg-teal-50 hover:bg-teal-100 text-teal-800 border border-teal-200 font-bold text-xs rounded-xl transition flex items-center justify-center gap-1 cursor-pointer">
+                            🔍 Zoom Video
+                        </button>
+                        <a href="https://www.youtube.com/watch?v=Yi-DFqsDytk" target="_blank" rel="noopener noreferrer" class="px-3 py-2 bg-red-600 hover:bg-red-700 text-white font-bold text-xs rounded-xl transition flex items-center justify-center gap-1 shadow-xs">
+                            ▶ YouTube ↗
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- VIDEO 6 -->
+            <div id="video-6" data-category="Security" class="video-card bg-white border border-slate-200 hover:border-teal-500 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+                <div class="p-4 border-b border-slate-100 bg-slate-50/80">
+                    <div class="flex items-center justify-between gap-2 mb-2">
+                        <span class="w-7 h-7 rounded-lg bg-teal-600 text-white font-bold text-xs flex items-center justify-center shadow-xs">#6</span>
+                        <span class="text-[10px] uppercase font-bold px-2 py-0.5 rounded-full bg-slate-200 text-slate-700">Security</span>
+                        <button onclick="toggleWatched(6)" id="watch-btn-6" class="text-xs px-2.5 py-1 rounded-lg bg-white text-slate-700 border border-slate-300 font-medium hover:bg-slate-100 transition cursor-pointer">◯ Mark Watched</button>
+                    </div>
+                    <h3 class="text-base font-bold text-slate-900 leading-snug">6. Gukoresha Alert & Anti-Theft Alarm System (Inzogera y'Umutekano)</h3>
+                </div>
+                <div class="p-2 bg-slate-900">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/krUYc4aQ0-g" title="6. Gukoresha Alert & Anti-Theft Alarm System" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    </div>
+                </div>
+                <div class="p-4 space-y-3 bg-white">
+                    <p class="text-xs text-slate-600 leading-relaxed">Gusettinga inzogera (alarm) mu gihe umuntu agerageza gukuramo SIM card cyangwa gukura charger utabizi.</p>
+                    <div class="flex items-center gap-2 pt-1">
+                        <button onclick="openZoomModal('https://www.youtube.com/embed/krUYc4aQ0-g', '6. Gukoresha Alert & Anti-Theft Alarm System')" class="flex-1 py-2 bg-teal-50 hover:bg-teal-100 text-teal-800 border border-teal-200 font-bold text-xs rounded-xl transition flex items-center justify-center gap-1 cursor-pointer">
+                            🔍 Zoom Video
+                        </button>
+                        <a href="https://www.youtube.com/watch?v=krUYc4aQ0-g" target="_blank" rel="noopener noreferrer" class="px-3 py-2 bg-red-600 hover:bg-red-700 text-white font-bold text-xs rounded-xl transition flex items-center justify-center gap-1 shadow-xs">
+                            ▶ YouTube ↗
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- VIDEO 7 -->
+            <div id="video-7" data-category="Tools" class="video-card bg-white border border-slate-200 hover:border-teal-500 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+                <div class="p-4 border-b border-slate-100 bg-slate-50/80">
+                    <div class="flex items-center justify-between gap-2 mb-2">
+                        <span class="w-7 h-7 rounded-lg bg-teal-600 text-white font-bold text-xs flex items-center justify-center shadow-xs">#7</span>
+                        <span class="text-[10px] uppercase font-bold px-2 py-0.5 rounded-full bg-slate-200 text-slate-700">Tools</span>
+                        <button onclick="toggleWatched(7)" id="watch-btn-7" class="text-xs px-2.5 py-1 rounded-lg bg-white text-slate-700 border border-slate-300 font-medium hover:bg-slate-100 transition cursor-pointer">◯ Mark Watched</button>
+                    </div>
+                    <h3 class="text-base font-bold text-slate-900 leading-snug">7. Backup no Kubika Amakuru Kuri Cloud (Secure Cloud Data Sync)</h3>
+                </div>
+                <div class="p-2 bg-slate-900">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/MZSpTzr2xZ8" title="7. Backup no Kubika Amakuru Kuri Cloud" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    </div>
+                </div>
+                <div class="p-4 space-y-3 bg-white">
+                    <p class="text-xs text-slate-600 leading-relaxed">Kurinda amafoto, video na contact kugira ngo utazakora loss ku makuru yawe mu gihe phone yangiritse.</p>
+                    <div class="flex items-center gap-2 pt-1">
+                        <button onclick="openZoomModal('https://www.youtube.com/embed/MZSpTzr2xZ8', '7. Backup no Kubika Amakuru Kuri Cloud')" class="flex-1 py-2 bg-teal-50 hover:bg-teal-100 text-teal-800 border border-teal-200 font-bold text-xs rounded-xl transition flex items-center justify-center gap-1 cursor-pointer">
+                            🔍 Zoom Video
+                        </button>
+                        <a href="https://www.youtube.com/watch?v=MZSpTzr2xZ8" target="_blank" rel="noopener noreferrer" class="px-3 py-2 bg-red-600 hover:bg-red-700 text-white font-bold text-xs rounded-xl transition flex items-center justify-center gap-1 shadow-xs">
+                            ▶ YouTube ↗
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- VIDEO 8 -->
+            <div id="video-8" data-category="Security" class="video-card bg-white border border-slate-200 hover:border-teal-500 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+                <div class="p-4 border-b border-slate-100 bg-slate-50/80">
+                    <div class="flex items-center justify-between gap-2 mb-2">
+                        <span class="w-7 h-7 rounded-lg bg-teal-600 text-white font-bold text-xs flex items-center justify-center shadow-xs">#8</span>
+                        <span class="text-[10px] uppercase font-bold px-2 py-0.5 rounded-full bg-slate-200 text-slate-700">Security</span>
+                        <button onclick="toggleWatched(8)" id="watch-btn-8" class="text-xs px-2.5 py-1 rounded-lg bg-white text-slate-700 border border-slate-300 font-medium hover:bg-slate-100 transition cursor-pointer">◯ Mark Watched</button>
+                    </div>
+                    <h3 class="text-base font-bold text-slate-900 leading-snug">8. Kurinda Wi-Fi n'Imiyoboro ya Intaneti (Wi-Fi Security Guard)</h3>
+                </div>
+                <div class="p-2 bg-slate-900">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/nihw60eOe7s" title="8. Kurinda Wi-Fi n'Imiyoboro ya Intaneti" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    </div>
+                </div>
+                <div class="p-4 space-y-3 bg-white">
+                    <p class="text-xs text-slate-600 leading-relaxed">Uburyo IGT Security igenzura imiyoboro ya Wi-Fi rusange (Public Wi-Fi) mu gukumira ubujura bw'amakuru.</p>
+                    <div class="flex items-center gap-2 pt-1">
+                        <button onclick="openZoomModal('https://www.youtube.com/embed/nihw60eOe7s', '8. Kurinda Wi-Fi n\'Imiyoboro ya Intaneti')" class="flex-1 py-2 bg-teal-50 hover:bg-teal-100 text-teal-800 border border-teal-200 font-bold text-xs rounded-xl transition flex items-center justify-center gap-1 cursor-pointer">
+                            🔍 Zoom Video
+                        </button>
+                        <a href="https://www.youtube.com/watch?v=nihw60eOe7s" target="_blank" rel="noopener noreferrer" class="px-3 py-2 bg-red-600 hover:bg-red-700 text-white font-bold text-xs rounded-xl transition flex items-center justify-center gap-1 shadow-xs">
+                            ▶ YouTube ↗
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- VIDEO 9 -->
+            <div id="video-9" data-category="Tools" class="video-card bg-white border border-slate-200 hover:border-teal-500 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+                <div class="p-4 border-b border-slate-100 bg-slate-50/80">
+                    <div class="flex items-center justify-between gap-2 mb-2">
+                        <span class="w-7 h-7 rounded-lg bg-teal-600 text-white font-bold text-xs flex items-center justify-center shadow-xs">#9</span>
+                        <span class="text-[10px] uppercase font-bold px-2 py-0.5 rounded-full bg-slate-200 text-slate-700">Tools</span>
+                        <button onclick="toggleWatched(9)" id="watch-btn-9" class="text-xs px-2.5 py-1 rounded-lg bg-white text-slate-700 border border-slate-300 font-medium hover:bg-slate-100 transition cursor-pointer">◯ Mark Watched</button>
+                    </div>
+                    <h3 class="text-base font-bold text-slate-900 leading-snug">9. Gukoresha SOS & Emergency Alert Button (Ubutumwa bw'Umutabazi)</h3>
+                </div>
+                <div class="p-2 bg-slate-900">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/8JiuN83OIkU" title="9. Gukoresha SOS & Emergency Alert Button" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    </div>
+                </div>
+                <div class="p-4 space-y-3 bg-white">
+                    <p class="text-xs text-slate-600 leading-relaxed">Uburyo bwo koherereza ubutumwa bw'ihuta na GPS location inshuti n'abafamiye mu gihe ugeze mu kaga.</p>
+                    <div class="flex items-center gap-2 pt-1">
+                        <button onclick="openZoomModal('https://www.youtube.com/embed/8JiuN83OIkU', '9. Gukoresha SOS & Emergency Alert Button')" class="flex-1 py-2 bg-teal-50 hover:bg-teal-100 text-teal-800 border border-teal-200 font-bold text-xs rounded-xl transition flex items-center justify-center gap-1 cursor-pointer">
+                            🔍 Zoom Video
+                        </button>
+                        <a href="https://www.youtube.com/watch?v=8JiuN83OIkU" target="_blank" rel="noopener noreferrer" class="px-3 py-2 bg-red-600 hover:bg-red-700 text-white font-bold text-xs rounded-xl transition flex items-center justify-center gap-1 shadow-xs">
+                            ▶ YouTube ↗
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- VIDEO 10 -->
+            <div id="video-10" data-category="Security" class="video-card bg-white border border-slate-200 hover:border-teal-500 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+                <div class="p-4 border-b border-slate-100 bg-slate-50/80">
+                    <div class="flex items-center justify-between gap-2 mb-2">
+                        <span class="w-7 h-7 rounded-lg bg-teal-600 text-white font-bold text-xs flex items-center justify-center shadow-xs">#10</span>
+                        <span class="text-[10px] uppercase font-bold px-2 py-0.5 rounded-full bg-slate-200 text-slate-700">Security</span>
+                        <button onclick="toggleWatched(10)" id="watch-btn-10" class="text-xs px-2.5 py-1 rounded-lg bg-white text-slate-700 border border-slate-300 font-medium hover:bg-slate-100 transition cursor-pointer">◯ Mark Watched</button>
+                    </div>
+                    <h3 class="text-base font-bold text-slate-900 leading-snug">10. Gukoresha Intruder Selfie (Gufata Ifoto Y'umujura n'Ushaka Kwinjira)</h3>
+                </div>
+                <div class="p-2 bg-slate-900">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/UJ86w0FeUJU" title="10. Gukoresha Intruder Selfie" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    </div>
+                </div>
+                <div class="p-4 space-y-3 bg-white">
+                    <p class="text-xs text-slate-600 leading-relaxed">Uburyo App ifata ifoto mu ibanga y'umuntu ushyizemo PIN cyangwa Pattern itari yo, ikayoherereza kuri Email yawe.</p>
+                    <div class="flex items-center gap-2 pt-1">
+                        <button onclick="openZoomModal('https://www.youtube.com/embed/UJ86w0FeUJU', '10. Gukoresha Intruder Selfie')" class="flex-1 py-2 bg-teal-50 hover:bg-teal-100 text-teal-800 border border-teal-200 font-bold text-xs rounded-xl transition flex items-center justify-center gap-1 cursor-pointer">
+                            🔍 Zoom Video
+                        </button>
+                        <a href="https://www.youtube.com/watch?v=UJ86w0FeUJU" target="_blank" rel="noopener noreferrer" class="px-3 py-2 bg-red-600 hover:bg-red-700 text-white font-bold text-xs rounded-xl transition flex items-center justify-center gap-1 shadow-xs">
+                            ▶ YouTube ↗
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- VIDEO 11 -->
+            <div id="video-11" data-category="Tools" class="video-card bg-white border border-slate-200 hover:border-teal-500 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+                <div class="p-4 border-b border-slate-100 bg-slate-50/80">
+                    <div class="flex items-center justify-between gap-2 mb-2">
+                        <span class="w-7 h-7 rounded-lg bg-teal-600 text-white font-bold text-xs flex items-center justify-center shadow-xs">#11</span>
+                        <span class="text-[10px] uppercase font-bold px-2 py-0.5 rounded-full bg-slate-200 text-slate-700">Tools</span>
+                        <button onclick="toggleWatched(11)" id="watch-btn-11" class="text-xs px-2.5 py-1 rounded-lg bg-white text-slate-700 border border-slate-300 font-medium hover:bg-slate-100 transition cursor-pointer">◯ Mark Watched</button>
+                    </div>
+                    <h3 class="text-base font-bold text-slate-900 leading-snug">11. Kumenya no Koroshya Imikorere ya Battery & RAM (System Optimizer)</h3>
+                </div>
+                <div class="p-2 bg-slate-900">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/FGr0dbhnVeY" title="11. Kumenya no Koroshya Imikorere ya Battery & RAM" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    </div>
+                </div>
+                <div class="p-4 space-y-3 bg-white">
+                    <p class="text-xs text-slate-600 leading-relaxed">Gukuraho RAM waste, gucunga umuriro wa batiri no koroshya imikorere ya smart phone mu gihe IGT Security ikora.</p>
+                    <div class="flex items-center gap-2 pt-1">
+                        <button onclick="openZoomModal('https://www.youtube.com/embed/FGr0dbhnVeY', '11. Kumenya no Koroshya Imikorere ya Battery & RAM')" class="flex-1 py-2 bg-teal-50 hover:bg-teal-100 text-teal-800 border border-teal-200 font-bold text-xs rounded-xl transition flex items-center justify-center gap-1 cursor-pointer">
+                            🔍 Zoom Video
+                        </button>
+                        <a href="https://www.youtube.com/watch?v=FGr0dbhnVeY" target="_blank" rel="noopener noreferrer" class="px-3 py-2 bg-red-600 hover:bg-red-700 text-white font-bold text-xs rounded-xl transition flex items-center justify-center gap-1 shadow-xs">
+                            ▶ YouTube ↗
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- VIDEO 12 -->
+            <div id="video-12" data-category="Tools" class="video-card bg-white border border-slate-200 hover:border-teal-500 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+                <div class="p-4 border-b border-slate-100 bg-slate-50/80">
+                    <div class="flex items-center justify-between gap-2 mb-2">
+                        <span class="w-7 h-7 rounded-lg bg-teal-600 text-white font-bold text-xs flex items-center justify-center shadow-xs">#12</span>
+                        <span class="text-[10px] uppercase font-bold px-2 py-0.5 rounded-full bg-slate-200 text-slate-700">Tools</span>
+                        <button onclick="toggleWatched(12)" id="watch-btn-12" class="text-xs px-2.5 py-1 rounded-lg bg-white text-slate-700 border border-slate-300 font-medium hover:bg-slate-100 transition cursor-pointer">◯ Mark Watched</button>
+                    </div>
+                    <h3 class="text-base font-bold text-slate-900 leading-snug">12. Umwanzuro, Inshingano Z'umukoresha & Kugana Support (Help Center)</h3>
+                </div>
+                <div class="p-2 bg-slate-900">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/H2SAcUSDpdM" title="12. Umwanzuro, Inshingano Z'umukoresha & Kugana Support" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    </div>
+                </div>
+                <div class="p-4 space-y-3 bg-white">
+                    <p class="text-xs text-slate-600 leading-relaxed">Inama z'ingenzi ku mutekano w'amakuru kuri smartphone n'uburyo bwo kuvugana na Support ya IGT Security.</p>
+                    <div class="flex items-center gap-2 pt-1">
+                        <button onclick="openZoomModal('https://www.youtube.com/embed/H2SAcUSDpdM', '12. Umwanzuro, Inshingano Z\'umukoresha & Kugana Support')" class="flex-1 py-2 bg-teal-50 hover:bg-teal-100 text-teal-800 border border-teal-200 font-bold text-xs rounded-xl transition flex items-center justify-center gap-1 cursor-pointer">
+                            🔍 Zoom Video
+                        </button>
+                        <a href="https://www.youtube.com/watch?v=H2SAcUSDpdM" target="_blank" rel="noopener noreferrer" class="px-3 py-2 bg-red-600 hover:bg-red-700 text-white font-bold text-xs rounded-xl transition flex items-center justify-center gap-1 shadow-xs">
+                            ▶ YouTube ↗
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- FULLSCREEN ZOOM THEATER MODAL -->
+    <div id="zoom-modal" class="fixed inset-0 z-50 hidden bg-slate-900/80 backdrop-blur-md flex flex-col items-center justify-center p-2 sm:p-6">
+        <div class="w-full max-w-5xl bg-white border border-slate-300 rounded-3xl overflow-hidden shadow-2xl flex flex-col">
+            <div class="p-4 bg-slate-100 border-b border-slate-200 flex items-center justify-between">
+                <h3 id="modal-title" class="text-sm sm:text-base font-bold text-slate-900 truncate pr-2">Zoom Theater View</h3>
+                <button onclick="closeZoomModal()" class="px-3 py-1 bg-slate-200 hover:bg-red-600 hover:text-white text-slate-800 text-xs font-bold rounded-xl transition">✕ Funga Modal</button>
+            </div>
+            <div class="p-2 sm:p-4 bg-slate-950 flex items-center justify-center">
+                <div class="w-full aspect-video">
+                    <iframe id="modal-iframe" class="w-full h-full rounded-xl" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="mt-16 bg-white border-t border-slate-200 py-8 text-center text-xs text-slate-600">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-2">
+                <img src="./images/igt-security-icon.png" alt="Logo" class="w-6 h-6 object-contain">
+                <span class="text-slate-900 font-bold">IGT Security App for Smart Phone</span>
+            </div>
+            <p>© 2026 IGT Security Guide. Standalone HTML Light Theme.</p>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE JAVASCRIPT -->
+    <script>
+        let watchedList = JSON.parse(localStorage.getItem('igt_standalone_watched') || '[]');
+
+        function updateProgressUI() {
+            const count = watchedList.length;
+            const percent = Math.round((count / 12) * 100);
+            document.getElementById('progress-text').innerText = `${count}/12`;
+            document.getElementById('progress-percent').innerText = `${percent}%`;
+            document.getElementById('progress-bar').style.width = `${percent}%`;
+
+            for(let i=1; i<=12; i++) {
+                const btn = document.getElementById(`watch-btn-${i}`);
+                if (btn) {
+                    if (watchedList.includes(i)) {
+                        btn.className = "text-xs px-2.5 py-1 rounded-lg bg-teal-100 text-teal-800 border border-teal-300 font-bold";
+                        btn.innerText = "✓ Yarasomwe";
+                    } else {
+                        btn.className = "text-xs px-2.5 py-1 rounded-lg bg-white text-slate-700 border border-slate-300 font-medium hover:bg-slate-100 transition cursor-pointer";
+                        btn.innerText = "◯ Mark Watched";
+                    }
+                }
+            }
+        }
+
+        function toggleWatched(id) {
+            if (watchedList.includes(id)) {
+                watchedList = watchedList.filter(x => x !== id);
+            } else {
+                watchedList.push(id);
+            }
+            localStorage.setItem('igt_standalone_watched', JSON.stringify(watchedList));
+            updateProgressUI();
+        }
+
+        function filterVideos() {
+            const query = document.getElementById('search-input').value.toLowerCase();
+            const cards = document.querySelectorAll('.video-card');
+            cards.forEach(card => {
+                const text = card.innerText.toLowerCase();
+                if (text.includes(query)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        function setCategory(cat) {
+            const buttons = document.querySelectorAll('.category-btn');
+            buttons.forEach(btn => {
+                if (btn.innerText.includes(cat) || (cat==='All' && btn.innerText.includes('Yose'))) {
+                    btn.className = 'category-btn active px-3 py-1.5 rounded-lg bg-teal-600 text-white font-bold shadow-sm';
+                } else {
+                    btn.className = 'category-btn px-3 py-1.5 rounded-lg bg-slate-200 text-slate-700 hover:bg-slate-300 font-medium';
+                }
+            });
+
+            const cards = document.querySelectorAll('.video-card');
+            cards.forEach(card => {
+                const cardCat = card.getAttribute('data-category');
+                if (cat === 'All' || cardCat === cat) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        function openZoomModal(embedUrl, title) {
+            document.getElementById('modal-iframe').src = embedUrl;
+            document.getElementById('modal-title').innerText = title;
+            document.getElementById('zoom-modal').classList.remove('hidden');
+        }
+
+        function closeZoomModal() {
+            document.getElementById('modal-iframe').src = '';
+            document.getElementById('zoom-modal').classList.add('hidden');
+        }
+
+        // Initialize progress state on page load
+        updateProgressUI();
+    </script>
+</body>
+</html>
