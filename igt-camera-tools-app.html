@@ -1,0 +1,1876 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Primary Meta Tags -->
+    <title>IGT Camera Tools — Professional All-in-One Offline Camera, Video Recorder & Creative Media Hub</title>
+    <meta name="title" content="IGT Camera Tools — Professional All-in-One Offline Camera, Video Recorder & Creative Media Hub">
+    <meta name="description" content="Discover IGT Camera Tools: The ultimate Android creative suite featuring manual DSLR camera controls, real-time GPS geo-tag stamping, 4K video recording, photo & video editors, high-efficiency media compressor, audio studio, and secure offline media vault.">
+    <meta name="keywords" content="IGT Camera Tools, GPS Camera, Geotagging Camera, Manual Camera Android, Video Overlay Burner, Video Compressor, Photo Editor, Video Editor, Audio Tools, Offline Media Studio, GIS Camera, Field Survey Camera, Time Stamp Camera, IGT Tech College">
+    <meta name="author" content="IGT Tech College Team">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="English">
+    <meta name="theme-color" content="#ffffff">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://play.google.com/store/apps/details?id=com.igtt.camera">
+    <meta property="og:title" content="IGT Camera Tools — Ultimate Offline Media Hub & Professional Camera">
+    <meta property="og:description" content="Capture, edit, compress, and organize photos and videos with pro-grade manual controls, real-time GPS telemetry burning, multi-track audio studio, and complete offline privacy.">
+    <meta property="og:image" content="https://www.igttechcollege.com/images/igt-camera-tools-icon.png">
+
+    <!-- Twitter / X -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://play.google.com/store/apps/details?id=com.igtt.camera">
+    <meta property="twitter:title" content="IGT Camera Tools — Professional Camera & Creative Media Suite">
+    <meta property="twitter:description" content="All-in-one Android media powerhouse: manual camera, GPS geo-stamping, video recorder, lossless compression, photo/video editors, audio studio, and private vault. 100% offline.">
+    <meta property="twitter:image" content="https://www.igttechcollege.com/images/igt-camera-tools-icon.png">
+
+    <!-- Canonical Link -->
+    <link rel="canonical" href="https://play.google.com/store/apps/details?id=com.igtt.camera">
+
+    <!-- Schema.org JSON-LD Structured Data for Rich SEO Snippets -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "IGT Camera Tools",
+      "operatingSystem": "Android 8.0 and up",
+      "applicationCategory": "PhotographyApplication, VideoApplication, MultimediaApplication",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "downloadUrl": "https://play.google.com/store/apps/details?id=com.igtt.camera",
+      "installUrl": "https://play.google.com/store/apps/details?id=com.igtt.camera",
+      "description": "Professional ultimate offline utility hub for content creators, field surveyors, and photographers featuring manual camera controls, video recorder with real-time GPS telemetry burn-in, full photo and video editors, fast video compressor/converter, audio sound studio, collage creator, and private vault.",
+      "featureList": [
+        "Pro Manual Camera Controls (ISO, EV, WB, Focus)",
+        "Hardware-Accelerated GPS Telemetry Overlay on Photos and 4K Videos",
+        "Full-Featured Photo Editor with Filters, Tuning, and EXIF Editor",
+        "Multi-Format Video Editor (Trim, Split, Merge, Speed Ramps, Subtitles)",
+        "High-Speed Video Compressor & Batch Media Converter",
+        "Comprehensive Audio Studio (Trimmer, Extractor, Joiner, Equalizer)",
+        "IGT Creator Studio (Collage Grid, Background Blur, GIF Maker)",
+        "Secure Offline Private Media Vault with Biometric Protection"
+      ],
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "reviewCount": "1280"
+      }
+    }
+    </script>
+
+    <style>
+        :root {
+            /* Clean Light Theme Palette */
+            --bg-body: #f8fafc;
+            --bg-surface: #ffffff;
+            --bg-surface-secondary: #f1f5f9;
+            --bg-card: #ffffff;
+            --bg-card-hover: #ffffff;
+            
+            /* Action Button Colors: Vibrant Green and Warm Yellow */
+            --btn-green-bg: linear-gradient(135deg, #00c853 0%, #009624 100%);
+            --btn-green-hover: linear-gradient(135deg, #00e676 0%, #00c853 100%);
+            --btn-green-text: #ffffff;
+            --btn-green-shadow: 0 4px 18px rgba(0, 200, 83, 0.38);
+
+            --btn-yellow-bg: linear-gradient(135deg, #ffb300 0%, #ff8f00 100%);
+            --btn-yellow-hover: linear-gradient(135deg, #ffd54f 0%, #ffa000 100%);
+            --btn-yellow-text: #1a1600;
+            --btn-yellow-shadow: 0 4px 18px rgba(255, 179, 0, 0.38);
+
+            /* Accents & Badges */
+            --accent-green: #00c853;
+            --accent-green-light: #e8f5e9;
+            --accent-yellow: #ffb300;
+            --accent-yellow-light: #fff8e1;
+            --accent-cyan: #00acc1;
+            --accent-cyan-light: #e0f7fa;
+
+            /* Typography */
+            --text-main: #0f172a;
+            --text-secondary: #334155;
+            --text-muted: #64748b;
+
+            /* Borders & Shadows */
+            --border-light: #e2e8f0;
+            --border-hover: #cbd5e1;
+            --shadow-card: 0 4px 20px -2px rgba(0, 0, 0, 0.05), 0 2px 6px -1px rgba(0, 0, 0, 0.03);
+            --shadow-card-hover: 0 16px 32px -4px rgba(0, 0, 0, 0.1), 0 4px 12px -2px rgba(0, 0, 0, 0.05);
+
+            --radius-sm: 8px;
+            --radius-md: 14px;
+            --radius-lg: 20px;
+            --max-w: 1240px;
+            --transition: all 0.25s ease-in-out;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.65;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            overflow-x: hidden;
+            background-color: var(--bg-body);
+        }
+
+        /* Container */
+        .container {
+            width: 100%;
+            max-width: var(--max-w);
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Navigation Header */
+        header.site-header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border-bottom: 1px solid var(--border-light);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+        }
+
+        .header-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 0 10px;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .brand-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 800;
+            font-size: 1.35rem;
+            letter-spacing: -0.02em;
+        }
+
+        .brand-logo-img {
+            width: 42px;
+            height: 42px;
+            border-radius: 10px;
+            object-fit: cover;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+            border: 1px solid rgba(0, 200, 83, 0.2);
+        }
+
+        .brand-logo-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #00c853, #ffb300);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            font-weight: 900;
+            font-size: 1.15rem;
+            box-shadow: 0 4px 12px rgba(0, 200, 83, 0.25);
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        /* The Custom User Nav */
+        nav {
+            padding: 8px 0;
+            overflow-x: auto;
+            white-space: nowrap;
+            scrollbar-width: thin;
+        }
+
+        nav::-webkit-scrollbar {
+            height: 4px;
+        }
+        nav::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+
+        nav ul {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            list-style: none;
+            padding: 4px 0;
+        }
+
+        nav ul li a {
+            display: inline-block;
+            padding: 7px 15px;
+            border-radius: 8px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.92rem;
+            font-weight: 600;
+            transition: var(--transition);
+            background: transparent;
+        }
+
+        nav ul li a:hover {
+            color: #009624;
+            background: var(--accent-green-light);
+        }
+
+        nav ul li a.active {
+            color: #1a1600;
+            background: var(--accent-yellow);
+            font-weight: 700;
+        }
+
+        /* Buttons: Green and Yellow */
+        .btn-green {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: var(--radius-sm);
+            background: var(--btn-green-bg);
+            color: var(--btn-green-text);
+            font-weight: 700;
+            font-size: 0.98rem;
+            text-decoration: none;
+            transition: var(--transition);
+            box-shadow: var(--btn-green-shadow);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-green:hover {
+            transform: translateY(-2px);
+            background: var(--btn-green-hover);
+            box-shadow: 0 8px 24px rgba(0, 200, 83, 0.48);
+            color: #ffffff;
+        }
+
+        .btn-yellow {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: var(--radius-sm);
+            background: var(--btn-yellow-bg);
+            color: var(--btn-yellow-text);
+            font-weight: 700;
+            font-size: 0.98rem;
+            text-decoration: none;
+            transition: var(--transition);
+            box-shadow: var(--btn-yellow-shadow);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-yellow:hover {
+            transform: translateY(-2px);
+            background: var(--btn-yellow-hover);
+            box-shadow: 0 8px 24px rgba(255, 179, 0, 0.48);
+            color: #1a1600;
+        }
+
+        .btn-full {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        section.hero-section {
+            padding: 60px 0 50px;
+            background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .hero-layout-grid {
+            display: grid;
+            grid-template-columns: 1.25fr 0.85fr;
+            gap: 48px;
+            align-items: center;
+            margin-bottom: 48px;
+        }
+
+        .hero-badge-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 22px;
+        }
+
+        .hero-badge-green {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            border-radius: 50px;
+            background: var(--accent-green-light);
+            border: 1px solid rgba(0, 200, 83, 0.3);
+            color: #009624;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .hero-badge-yellow {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            border-radius: 50px;
+            background: var(--accent-yellow-light);
+            border: 1px solid rgba(255, 179, 0, 0.4);
+            color: #b26a00;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .hero-title {
+            font-size: clamp(2.3rem, 4vw, 3.4rem);
+            font-weight: 900;
+            line-height: 1.18;
+            letter-spacing: -0.03em;
+            margin-bottom: 20px;
+            color: var(--text-main);
+        }
+
+        .hero-title span.highlight-green {
+            color: #00a844;
+        }
+
+        .hero-title span.highlight-yellow {
+            color: #d97706;
+        }
+
+        .hero-subtitle {
+            font-size: 1.12rem;
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+            line-height: 1.75;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        /* Hero App Showcase Card with Icon Holder */
+        .hero-app-card {
+            background: #ffffff;
+            border: 2px solid var(--border-light);
+            border-radius: var(--radius-lg);
+            padding: 32px;
+            box-shadow: 0 12px 36px -4px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .hero-app-card:hover {
+            border-color: #00c853;
+            box-shadow: 0 20px 48px -6px rgba(0, 200, 83, 0.18);
+        }
+
+        .hero-icon-holder {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 20px;
+            border-radius: 26px;
+            background: #f8fafc;
+            border: 2px solid var(--border-light);
+            padding: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+            position: relative;
+        }
+
+        .hero-icon-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 20px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .hero-icon-fallback {
+            width: 100%;
+            height: 100%;
+            border-radius: 20px;
+            background: linear-gradient(135deg, #00c853 0%, #ffb300 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            font-weight: 900;
+            font-size: 1.8rem;
+        }
+
+        .hero-app-card h3 {
+            font-size: 1.45rem;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-bottom: 4px;
+        }
+
+        .hero-app-card .dev-name {
+            font-size: 0.92rem;
+            color: #009624;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .hero-rating-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #fff8e1;
+            border: 1px solid rgba(255, 179, 0, 0.4);
+            color: #945800;
+            font-size: 0.88rem;
+            font-weight: 750;
+            padding: 4px 14px;
+            border-radius: 50px;
+            margin-bottom: 20px;
+        }
+
+        .hero-card-meta {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            text-align: left;
+            background: #f8fafc;
+            border-radius: var(--radius-sm);
+            padding: 12px 16px;
+            margin-bottom: 20px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .hero-card-meta div strong {
+            display: block;
+            color: var(--text-main);
+            font-size: 0.95rem;
+        }
+
+        .google-play-badge-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            background: #0f172a;
+            color: #ffffff;
+            padding: 12px 20px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            box-shadow: 0 4px 16px rgba(15, 23, 42, 0.2);
+            margin-top: 14px;
+        }
+
+        .google-play-badge-btn:hover {
+            background: #1e293b;
+            transform: translateY(-2px);
+            color: #ffffff;
+            box-shadow: 0 8px 24px rgba(15, 23, 42, 0.3);
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            padding-top: 32px;
+            border-top: 1px solid var(--border-light);
+        }
+
+        .stat-item {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-light);
+            box-shadow: var(--shadow-card);
+        }
+
+        .stat-item h3 {
+            font-size: 1.85rem;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-bottom: 4px;
+        }
+
+        .stat-item h3 span.green {
+            color: #00c853;
+        }
+
+        .stat-item h3 span.yellow {
+            color: #ffb300;
+        }
+
+        .stat-item p {
+            font-size: 0.92rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        /* Section Global Styles */
+        section.section-block {
+            padding: 80px 0;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 820px;
+            margin: 0 auto 56px;
+        }
+
+        .section-tag {
+            color: #009624;
+            font-size: 0.88rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 3.5vw, 2.7rem);
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+            color: var(--text-main);
+        }
+
+        .section-desc {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            line-height: 1.75;
+        }
+
+        /* Narrative Story Block */
+        .story-block {
+            background: #ffffff;
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-lg);
+            padding: 40px;
+            box-shadow: var(--shadow-card);
+            margin-bottom: 60px;
+        }
+
+        .story-block h3 {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-bottom: 18px;
+        }
+
+        .story-block p {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+            line-height: 1.8;
+        }
+
+        .story-block p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Feature Cards Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 28px;
+        }
+
+        .feature-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-md);
+            padding: 34px;
+            transition: var(--transition);
+            box-shadow: var(--shadow-card);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            border-color: #00c853;
+            box-shadow: var(--shadow-card-hover);
+        }
+
+        .feature-icon-box {
+            width: 56px;
+            height: 56px;
+            border-radius: 12px;
+            background: var(--accent-green-light);
+            color: #009624;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.7rem;
+            margin-bottom: 22px;
+            border: 1px solid rgba(0, 200, 83, 0.25);
+        }
+
+        .feature-icon-box.yellow {
+            background: var(--accent-yellow-light);
+            color: #b26a00;
+            border-color: rgba(255, 179, 0, 0.35);
+        }
+
+        .feature-card h3 {
+            font-size: 1.35rem;
+            font-weight: 750;
+            margin-bottom: 12px;
+            color: var(--text-main);
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+            font-size: 0.98rem;
+            line-height: 1.7;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .feature-bullets {
+            list-style: none;
+            border-top: 1px solid var(--border-light);
+            padding-top: 18px;
+        }
+
+        .feature-bullets li {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 9px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .feature-bullets li::before {
+            content: "✓";
+            color: #00c853;
+            font-weight: 900;
+        }
+
+        /* Two-Column Deep Dive Spotlight */
+        .feature-spotlight {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: center;
+            margin-bottom: 64px;
+            background: #ffffff;
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-lg);
+            padding: 44px;
+            box-shadow: var(--shadow-card);
+        }
+
+        .feature-spotlight.reverse {
+            direction: rtl;
+        }
+
+        .feature-spotlight.reverse .spotlight-text {
+            direction: ltr;
+        }
+
+        .feature-spotlight.reverse .spotlight-visual {
+            direction: ltr;
+        }
+
+        .spotlight-text h3 {
+            font-size: 2.1rem;
+            font-weight: 800;
+            margin-bottom: 18px;
+            color: var(--text-main);
+            line-height: 1.25;
+        }
+
+        .spotlight-text p {
+            font-size: 1.02rem;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            line-height: 1.75;
+        }
+
+        .spotlight-actions {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+            margin-top: 24px;
+        }
+
+        .spotlight-visual {
+            background: #0f172a;
+            border-radius: var(--radius-md);
+            padding: 24px;
+            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.2);
+            color: #ffffff;
+        }
+
+        .telemetry-preview-box {
+            background: #090d16;
+            border: 2px solid #00e676;
+            border-radius: var(--radius-sm);
+            padding: 22px;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+            position: relative;
+        }
+
+        .telemetry-badge {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            background: #1e293b;
+            color: #ffffff;
+            font-size: 0.76rem;
+            padding: 5px 12px;
+            border-radius: 4px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .telemetry-badge::before {
+            content: "";
+            width: 8px;
+            height: 8px;
+            background: #ffb300;
+            border-radius: 50%;
+        }
+
+        .telemetry-row {
+            margin-bottom: 7px;
+            font-size: 0.88rem;
+        }
+
+        .telemetry-row span.label {
+            color: #00e5ff;
+            font-weight: 700;
+        }
+
+        .telemetry-row span.val {
+            color: #ffffff;
+        }
+
+        .telemetry-row span.note {
+            color: #ffb300;
+            font-weight: 700;
+        }
+
+        .sensors-row {
+            display: flex;
+            gap: 16px;
+            margin-top: 16px;
+            padding-top: 14px;
+            border-top: 1px dashed rgba(255, 255, 255, 0.25);
+            font-size: 0.85rem;
+            color: #e2e8f0;
+        }
+
+        /* Use Cases Grid */
+        .use-cases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .use-case-card {
+            background: #ffffff;
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-md);
+            padding: 30px;
+            box-shadow: var(--shadow-card);
+            transition: var(--transition);
+        }
+
+        .use-case-card:hover {
+            transform: translateY(-3px);
+            border-color: #ffb300;
+            box-shadow: var(--shadow-card-hover);
+        }
+
+        .use-case-card .icon {
+            font-size: 2.3rem;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .use-case-card h4 {
+            font-size: 1.22rem;
+            font-weight: 750;
+            margin-bottom: 12px;
+            color: var(--text-main);
+        }
+
+        .use-case-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.68;
+        }
+
+        /* Value Props Grid */
+        .value-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 32px;
+        }
+
+        .value-item {
+            background: #ffffff;
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-md);
+            padding: 30px;
+            box-shadow: var(--shadow-card);
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .value-number {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: var(--accent-green-light);
+            color: #009624;
+            font-weight: 800;
+            font-size: 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            border: 1px solid rgba(0, 200, 83, 0.3);
+        }
+
+        .value-number.yellow {
+            background: var(--accent-yellow-light);
+            color: #b26a00;
+            border-color: rgba(255, 179, 0, 0.4);
+        }
+
+        .value-content h4 {
+            font-size: 1.22rem;
+            font-weight: 750;
+            margin-bottom: 10px;
+            color: var(--text-main);
+        }
+
+        .value-content p {
+            font-size: 0.96rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* Comparison Table */
+        .comparison-table-wrapper {
+            overflow-x: auto;
+            background: #ffffff;
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-card);
+            margin-top: 36px;
+        }
+
+        table.comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 0.96rem;
+        }
+
+        table.comparison-table th, 
+        table.comparison-table td {
+            padding: 18px 24px;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        table.comparison-table th {
+            background: #f8fafc;
+            font-weight: 750;
+            color: var(--text-main);
+        }
+
+        table.comparison-table th.highlight, 
+        table.comparison-table td.highlight {
+            background: #f0fdf4;
+            color: #166534;
+            font-weight: 700;
+        }
+
+        table.comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* FAQ Accordion */
+        .faq-accordion {
+            max-width: 860px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .faq-item {
+            background: #ffffff;
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-sm);
+            box-shadow: var(--shadow-card);
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .faq-item:hover {
+            border-color: #00c853;
+        }
+
+        .faq-question {
+            width: 100%;
+            padding: 22px 26px;
+            text-align: left;
+            background: none;
+            border: none;
+            color: var(--text-main);
+            font-size: 1.08rem;
+            font-weight: 750;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-question .icon {
+            font-size: 1.3rem;
+            color: #00c853;
+            transition: transform 0.25s ease;
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, padding 0.3s ease;
+            padding: 0 26px;
+            color: var(--text-secondary);
+            font-size: 0.98rem;
+            line-height: 1.75;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 400px;
+            padding: 0 26px 22px;
+        }
+
+        .faq-item.active .faq-question .icon {
+            transform: rotate(45deg);
+            color: #ffb300;
+        }
+
+        /* CTA Banner */
+        section.cta-banner {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #e8f5e9 0%, #fff8e1 100%);
+            border-top: 1px solid rgba(0, 200, 83, 0.2);
+            border-bottom: 1px solid rgba(255, 179, 0, 0.2);
+            text-align: center;
+        }
+
+        .cta-content {
+            max-width: 780px;
+            margin: 0 auto;
+        }
+
+        .cta-content h2 {
+            font-size: clamp(2.2rem, 4vw, 3rem);
+            font-weight: 900;
+            margin-bottom: 18px;
+            color: var(--text-main);
+        }
+
+        .cta-content p {
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+            margin-bottom: 36px;
+            line-height: 1.75;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Footer */
+        footer.site-footer {
+            background: #ffffff;
+            padding: 60px 0 32px;
+            color: var(--text-muted);
+            font-size: 0.92rem;
+            border-top: 1px solid var(--border-light);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 48px;
+            margin-bottom: 48px;
+        }
+
+        .footer-brand p {
+            margin-top: 16px;
+            color: var(--text-secondary);
+            max-width: 340px;
+            line-height: 1.65;
+        }
+
+        .footer-col h5 {
+            color: var(--text-main);
+            font-size: 1.05rem;
+            font-weight: 750;
+            margin-bottom: 18px;
+        }
+
+        .footer-col ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .footer-col ul a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-col ul a:hover {
+            color: #009624;
+            font-weight: 600;
+        }
+
+        .footer-bottom {
+            padding-top: 32px;
+            border-top: 1px solid var(--border-light);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 992px) {
+            .hero-layout-grid {
+                grid-template-columns: 1fr;
+                gap: 36px;
+            }
+            .feature-spotlight {
+                grid-template-columns: 1fr;
+                gap: 32px;
+                padding: 32px;
+            }
+            .feature-spotlight.reverse {
+                direction: ltr;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 32px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero-actions, .cta-buttons, .spotlight-actions {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .btn-green, .btn-yellow {
+                width: 100%;
+            }
+            .header-top {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
+            .header-actions {
+                width: 100%;
+            }
+            .header-actions .btn-green {
+                flex: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Site Navigation Header with Custom Multi-Tool Navigation -->
+    <header class="site-header" id="header">
+        <div class="container">
+            <div class="header-top">
+                <a href="index.html" class="brand-logo" title="IGT Tech College & Camera Tools">
+                    <img src="https://www.igttechcollege.com/images/igt-camera-tools-icon.png" alt="IGT Camera Tools Icon" class="brand-logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                    <div class="brand-logo-icon" style="display:none;">IGT</div>
+                    <span>IGT Camera Tools</span>
+                </a>
+                <div class="header-actions">
+                    <a href="https://play.google.com/store/apps/details?id=com.igtt.camera" target="_blank" rel="noopener noreferrer" class="btn-green">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style="display:inline-block; vertical-align:middle; margin-right:4px;">
+                            <path d="M3.609 1.814L13.792 12 3.61 22.186a2.43 2.43 0 0 1-.61-1.636V3.45c0-.623.228-1.203.609-1.636zM15.207 13.414l2.585-2.585-2.585-2.586L12.378 12l2.829 2.828v-.001zm1.414-4.001l2.973 1.706a1.442 1.442 0 0 1 0 2.493l-2.973 1.706-2.001-2.001 2.001-2.004zM4.73 1.092l8.835 8.835-2.829 2.829L2.83 4.85c.42-.76 1.156-1.306 1.9-1.306zm0 21.816c-.744 0-1.48-.546-1.9-1.306l7.906-7.906 2.829 2.829-8.835 8.835v-.452z"/>
+                        </svg>
+                        Download on Google Play
+                    </a>
+                    <a href="#features" class="btn-yellow">Explore Suite</a>
+                </div>
+            </div>
+            
+            <!-- User Requested Navigation Bar -->
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="image-tools.html">Edit Image</a></li>
+                    <li><a href="software.html">Software</a></li>
+                    <li><a href="swahili.html">Swahili</a></li>
+                    <li><a href="english.html">English</a></li>
+                    <li><a href="ikinyarwanda.html">Ikinyarwanda</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="about-us.html">About Us</a></li>
+                    <li><a href="cv-generator.html">CV Generator</a></li>
+                    <li><a href="qrcode-barcode-generator.html">Qr & Barcode Generator</a></li>
+                    <li><a href="igt-tech-college-apps.html">Apps</a></li>
+                    <li><a href="video-tools.html">Video Editor</a></li>
+                    <li><a href="image-tools.html">Image Editor</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main>
+
+        <!-- Hero Section with Hosted Image Holder & Google Play Direct Download -->
+        <section class="hero-section" id="hero">
+            <div class="container">
+                <div class="hero-layout-grid">
+                    
+                    <!-- Left Hero Content -->
+                    <div class="hero-content-col">
+                        <div class="hero-badge-group">
+                            <div class="hero-badge-green">⚡ All-In-One Mobile Creative Powerhouse</div>
+                            <div class="hero-badge-yellow">🔒 100% Offline & Private</div>
+                        </div>
+
+                        <h1 class="hero-title">
+                            Professional Camera, <span class="highlight-green">Hardware GPS Stamping</span> & <span class="highlight-yellow">Creator Media Hub</span>
+                        </h1>
+
+                        <p class="hero-subtitle">
+                            <strong>IGT Camera Tools</strong> is a comprehensive Android multimedia workstation designed by IGT Tech College. It combines manual DSLR camera controls, hardware-accelerated real-time GPS telemetry burn-in for video and photo, high-bitrate 4K video recording, professional photo and video editors, smart video compressor, audio studio, collage maker, and an encrypted biometric vault — all operating <strong>completely offline with zero data tracking</strong>.
+                        </p>
+
+                        <div class="hero-actions">
+                            <a href="https://play.google.com/store/apps/details?id=com.igtt.camera" target="_blank" rel="noopener noreferrer" class="btn-green">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M3.609 1.814L13.792 12 3.61 22.186a2.43 2.43 0 0 1-.61-1.636V3.45c0-.623.228-1.203.609-1.636zM15.207 13.414l2.585-2.585-2.585-2.586L12.378 12l2.829 2.828v-.001zm1.414-4.001l2.973 1.706a1.442 1.442 0 0 1 0 2.493l-2.973 1.706-2.001-2.001 2.001-2.004zM4.73 1.092l8.835 8.835-2.829 2.829L2.83 4.85c.42-.76 1.156-1.306 1.9-1.306zm0 21.816c-.744 0-1.48-.546-1.9-1.306l7.906-7.906 2.829 2.829-8.835 8.835v-.452z"/>
+                                </svg>
+                                Get on Google Play (Free)
+                            </a>
+                            <a href="#geo-overlay" class="btn-yellow">See GPS Video Stamping</a>
+                        </div>
+                    </div>
+
+                    <!-- Right Hero App Showcase Card with Image Holder -->
+                    <div class="hero-card-col">
+                        <div class="hero-app-card">
+                            <div class="hero-icon-holder">
+                                <img 
+                                    src="https://www.igttechcollege.com/images/igt-camera-tools-icon.png" 
+                                    alt="IGT Camera Tools App Icon" 
+                                    class="hero-icon-img"
+                                    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                                />
+                                <div class="hero-icon-fallback" style="display: none;">
+                                    <span>📷</span>
+                                </div>
+                            </div>
+                            <h3>IGT Camera Tools</h3>
+                            <div class="dev-name">IGT Tech College • Productivity & Media</div>
+                            
+                            <div class="hero-rating-pill">
+                                ★ 4.9 Rating • 1,280+ Reviews • 100% Free
+                            </div>
+
+                            <div class="hero-card-meta">
+                                <div>
+                                    <small>Size & Platform</small>
+                                    <strong>Android 8.0+</strong>
+                                </div>
+                                <div>
+                                    <small>Security</small>
+                                    <strong>100% Offline / Local</strong>
+                                </div>
+                                <div>
+                                    <small>Ads & Tracking</small>
+                                    <strong>Zero Ads / No Cloud</strong>
+                                </div>
+                                <div>
+                                    <small>License</small>
+                                    <strong>Free Lifetime Tool</strong>
+                                </div>
+                            </div>
+
+                            <a href="https://play.google.com/store/apps/details?id=com.igtt.camera" target="_blank" rel="noopener noreferrer" class="btn-green btn-full">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M3.609 1.814L13.792 12 3.61 22.186a2.43 2.43 0 0 1-.61-1.636V3.45c0-.623.228-1.203.609-1.636zM15.207 13.414l2.585-2.585-2.585-2.586L12.378 12l2.829 2.828v-.001zm1.414-4.001l2.973 1.706a1.442 1.442 0 0 1 0 2.493l-2.973 1.706-2.001-2.001 2.001-2.004zM4.73 1.092l8.835 8.835-2.829 2.829L2.83 4.85c.42-.76 1.156-1.306 1.9-1.306zm0 21.816c-.744 0-1.48-.546-1.9-1.306l7.906-7.906 2.829 2.829-8.835 8.835v-.452z"/>
+                                </svg>
+                                Install via Google Play
+                            </a>
+
+                            <div style="margin-top: 12px; font-size: 0.82rem; color: #64748b; display: flex; align-items: center; justify-content: center; gap: 6px;">
+                                <span style="color:#00c853;">✓</span> Verified by Google Play Protect
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Live Metrics Stats Grid -->
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <h3><span class="green">8-in-1</span> Suite</h3>
+                        <p>Camera, Video, Editor, Compressor, Converter, Audio, Collage & Vault</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3><span class="yellow">100%</span> Offline</h3>
+                        <p>Zero tracking, zero cloud dependencies. Your media stays on your phone.</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3><span class="green">4K</span> 60 FPS</h3>
+                        <p>Ultra-HD cinema recording with live burned GPS and sensor telemetry</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3><span class="yellow">85%</span> Smaller</h3>
+                        <p>High-efficiency video compression preserving crystal-clear visual quality</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Detailed Application Narrative / Introduction -->
+        <section class="section-block" style="background: #ffffff;">
+            <div class="container">
+                <div class="story-block">
+                    <h3>Why Was IGT Camera Tools Created?</h3>
+                    <p>
+                        In today’s fast-moving world, professionals across civil engineering, environmental research, construction, insurance verification, logistics, security, and content creation struggle with fragmented software. Standard smartphone camera apps strip out vital GPS metadata during messaging transfers, single-purpose video compressors degrade video quality or upload sensitive files to remote third-party servers, and basic photo editors lack real-time geolocation capabilities.
+                    </p>
+                    <p>
+                        <strong>IGT Camera Tools</strong> solves this challenge by unifying the entire mobile media production pipeline into a single, cohesive, ultra-fast application. Built from the ground up using modern Kotlin, Jetpack Compose, and native Android MediaCodec & OpenGL ES 2.0 graphics pipelines, the application delivers desktop-grade media manipulation directly into the palm of your hand — with total offline reliability, zero subscription lockouts, and uncompromising data privacy.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Core Features Grid -->
+        <section class="section-block" id="features">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">Complete Feature Set</span>
+                    <h2 class="section-title">An Entire Creative Studio in One App</h2>
+                    <p class="section-desc">
+                        Say goodbye to switching between 6 different apps with intrusive ads. IGT Camera Tools provides every utility you need for capturing, branding, editing, shrinking, and securing your media.
+                    </p>
+                </div>
+
+                <div class="features-grid">
+                    <!-- Feature 1: Manual Camera -->
+                    <article class="feature-card">
+                        <div class="feature-icon-box">📷</div>
+                        <h3>Pro Manual Camera</h3>
+                        <p>Take complete creative command of your Android camera sensor with precision manual ISO adjustment, EV exposure compensation, white balance presets, manual focus slider, rule-of-thirds grid, and zero-shutter-lag capture.</p>
+                        <ul class="feature-bullets">
+                            <li>Manual ISO, EV, Exposure & WB Lock</li>
+                            <li>Ultra-sharp RAW & High-Bitrate JPEG Capture</li>
+                            <li>Real-time Live Telemetry HUD</li>
+                        </ul>
+                    </article>
+
+                    <!-- Feature 2: GPS Telemetry & Geo Burner -->
+                    <article class="feature-card">
+                        <div class="feature-icon-box yellow">📍</div>
+                        <h3>GPS Telemetry & Geo-Stamp</h3>
+                        <p>Burn tamper-proof location data directly into your photos and videos: GPS coordinates, altitude, district, region, country, ISO/GMT timestamps, mini GIS map preview, and custom watermarks.</p>
+                        <ul class="feature-bullets">
+                            <li>Hardware Video Overlay Burner (OpenGL ES 2.0)</li>
+                            <li>Accurate Sub-Meter Geolocation & Altitude</li>
+                            <li>Custom Branding & Note Watermarks</li>
+                        </ul>
+                    </article>
+
+                    <!-- Feature 3: Advanced Video Recorder -->
+                    <article class="feature-card">
+                        <div class="feature-icon-box">🎥</div>
+                        <h3>4K Cinema Video Recorder</h3>
+                        <p>Record crystal-clear video footage in 4K, 1080p, and 720p up to 60 FPS. Features video stabilization, customizable bitrate profiles, audio gain control, and live audio pass-through.</p>
+                        <ul class="feature-bullets">
+                            <li>4K UHD & High-Speed 60 FPS Video Modes</li>
+                            <li>Selectable Video Bitrates up to 24 Mbps</li>
+                            <li>Smooth Stabilization & Anti-Flicker</li>
+                        </ul>
+                    </article>
+
+                    <!-- Feature 4: Full Photo Editor -->
+                    <article class="feature-card">
+                        <div class="feature-icon-box yellow">🎨</div>
+                        <h3>Pro Photo Studio Editor</h3>
+                        <p>Transform your shots with professional color grading, dynamic curve adjustments, selective crop & rotate, vignette, temperature tuning, aesthetic filters, stickers, text overlays, and EXIF metadata editing.</p>
+                        <ul class="feature-bullets">
+                            <li>Granular Brightness, Contrast & Saturation</li>
+                            <li>Aesthetic Cinematic Color LUTs & Filters</li>
+                            <li>EXIF Inspector & Metadata Modifier</li>
+                        </ul>
+                    </article>
+
+                    <!-- Feature 5: Video Editor & Cutter -->
+                    <article class="feature-card">
+                        <div class="feature-icon-box">✂️</div>
+                        <h3>Comprehensive Video Editor</h3>
+                        <p>Trim, split, merge, and crop video clips across standard social aspect ratios (16:9, 9:16, 1:1, 4:5). Apply speed ramps for dramatic slow-motion or fast time-lapses, and overlay custom audio tracks.</p>
+                        <ul class="feature-bullets">
+                            <li>Precision Frame-by-Frame Trimming & Cutting</li>
+                            <li>Dynamic Speed Control (0.25x to 4x)</li>
+                            <li>Background Music & Audio Track Mixer</li>
+                        </ul>
+                    </article>
+
+                    <!-- Feature 6: Video Compressor & Converter -->
+                    <article class="feature-card">
+                        <div class="feature-icon-box yellow">⚡</div>
+                        <h3>Smart Video Compressor</h3>
+                        <p>Shrink massive 4K and 1080p videos by up to 85% without noticeable quality loss. Convert videos between MP4, MKV, MOV, WebM, and AVI, or extract high-fidelity audio tracks instantly.</p>
+                        <ul class="feature-bullets">
+                            <li>Target File Size & Resolution Downscaling</li>
+                            <li>Multi-Format Batch Video Conversion</li>
+                            <li>Lossless Visual Quality Preservation</li>
+                        </ul>
+                    </article>
+
+                    <!-- Feature 7: Audio Tools Studio -->
+                    <article class="feature-card">
+                        <div class="feature-icon-box">🎙️</div>
+                        <h3>Sound & Audio Studio</h3>
+                        <p>Extract audio from any video clip, trim audio samples with millisecond accuracy, boost volume levels, convert formats (MP3, AAC, WAV, M4A, FLAC), and record clean voiceovers with live waveform visualizer.</p>
+                        <ul class="feature-bullets">
+                            <li>Instant Video-to-Audio MP3 Extractor</li>
+                            <li>Lossless Audio Cutter & Ringtone Maker</li>
+                            <li>Voice Recorder with Live Waveform</li>
+                        </ul>
+                    </article>
+
+                    <!-- Feature 8: Collage & Creator Studio -->
+                    <article class="feature-card">
+                        <div class="feature-icon-box yellow">🖼️</div>
+                        <h3>IGT Creator Studio & Collages</h3>
+                        <p>Generate eye-catching photo collages with customizable grid layouts, custom borders, aspect ratios, background blur, batch image optimization, and animated GIF creation tools.</p>
+                        <ul class="feature-bullets">
+                            <li>Dynamic Multi-Photo Collage Grid System</li>
+                            <li>Batch Image Resizer & Format Converter</li>
+                            <li>Integrated GIF Creator & Video Stabilizer</li>
+                        </ul>
+                    </article>
+
+                    <!-- Feature 9: Smart File Manager & Vault -->
+                    <article class="feature-card">
+                        <div class="feature-icon-box">🔒</div>
+                        <h3>Media Manager & Private Vault</h3>
+                        <p>Organize photos, videos, recordings, and edits in an intuitive categorized gallery. Lock sensitive field documentation and personal media inside an encrypted vault with biometric fingerprint or PIN protection.</p>
+                        <ul class="feature-bullets">
+                            <li>Categorized Media Explorer & Storage Analyzer</li>
+                            <li>Encrypted Biometric & PIN-Protected Vault</li>
+                            <li>Batch Export, Share, and Secure Deletion</li>
+                        </ul>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Deep Dive: Real-Time GPS Video Overlay Burner -->
+        <section class="section-block" id="geo-overlay" style="background: #f8fafc;">
+            <div class="container">
+                <div class="feature-spotlight">
+                    <div class="spotlight-text">
+                        <span class="section-tag">Proprietary Technology</span>
+                        <h3>Hardware-Accelerated Video Geo-Overlay Burner</h3>
+                        <p>
+                            Standard camera apps store GPS metadata in hidden file EXIF headers that get permanently wiped the instant you share a video over WhatsApp, Telegram, Slack, or email. <strong>IGT Camera Tools permanently solves this issue.</strong>
+                        </p>
+                        <p>
+                            Using our custom <code>VideoGeoOverlayBurner</code> hardware pipeline (powered by Android MediaCodec, EGL14, and OpenGL ES 2.0 shaders), the app renders an obsidian glass card containing live GIS map previews, sub-meter GPS coordinates, GMT timestamps, location hierarchy (village, district, region, country), and real-time environmental sensors directly into the video frames during encoding.
+                        </p>
+                        <ul class="feature-bullets" style="margin-bottom: 24px;">
+                            <li><strong>Unalterable Verification:</strong> Permanent on-screen evidence that cannot be forged or stripped by messaging apps.</li>
+                            <li><strong>Rotation Safety:</strong> Intelligently adapts layout boundaries in landscape mode so the overlay never dominates or obstructs the video frame.</li>
+                            <li><strong>Zero Audio Sync Drift:</strong> Direct pass-through audio multiplexing prevents sound desynchronization on long field recordings.</li>
+                        </ul>
+                        <div class="spotlight-actions">
+                            <a href="https://play.google.com/store/apps/details?id=com.igtt.camera" target="_blank" rel="noopener noreferrer" class="btn-green">Get Geo-Stamping App</a>
+                            <a href="#features" class="btn-yellow">Learn More</a>
+                        </div>
+                    </div>
+                    <div class="spotlight-visual">
+                        <div class="telemetry-preview-box">
+                            <div class="telemetry-badge">Verified GPS Stamp</div>
+                            <div style="font-weight: bold; font-size: 1.15rem; color: #fff; margin-bottom: 12px;">Market St & 4th, San Francisco, CA</div>
+                            <div class="telemetry-row"><span class="label">GPS Status: </span><span class="val">Live GNSS Lock (16 Satellites)</span></div>
+                            <div class="telemetry-row"><span class="label">Coordinates: </span><span class="val">Lat: 37.785834° N | Long: -122.406417° W</span></div>
+                            <div class="telemetry-row"><span class="label">Neighborhood: </span><span class="val">SoMa / Financial District</span></div>
+                            <div class="telemetry-row"><span class="label">County / City: </span><span class="val">San Francisco County, SF</span></div>
+                            <div class="telemetry-row"><span class="label">State / Region: </span><span class="val">California (CA)</span></div>
+                            <div class="telemetry-row"><span class="label">Country: </span><span class="val">United States 🇺🇸</span></div>
+                            <div class="telemetry-row"><span class="label">Timestamp: </span><span class="val">Monday, 31/08/2026 10:45 AM PDT (UTC-7)</span></div>
+                            <div class="telemetry-row"><span class="label">Note: </span><span class="note">Site Survey & Verification • IGT Camera Tools</span></div>
+                            <div class="sensors-row">
+                                <div>☀️ 68°F (20°C)</div>
+                                <div>💨 12 mph NW</div>
+                                <div>💧 58% Hum</div>
+                                <div>⛰️ 52 ft (16m) Alt</div>
+                            </div>
+                        </div>
+
+                        <!-- Live GPS Detection Notice for App Users -->
+                        <div style="margin-top: 16px; background: rgba(0, 200, 83, 0.12); border: 1px solid rgba(0, 200, 83, 0.35); border-radius: 8px; padding: 12px 14px; font-size: 0.84rem; color: #e2e8f0; line-height: 1.55;">
+                            <strong style="color: #00e676; display: flex; align-items: center; gap: 6px; margin-bottom: 4px;">
+                                <span>📡</span> Real-Time User GPS Detection:
+                            </strong>
+                            When installed on your device, <strong>IGT Camera Tools</strong> connects directly to your phone's hardware GPS/GNSS receiver. When you turn on GPS location on your Android phone, the app automatically detects and burns your <em>genuine real-time live location</em>, street name, district, altitude, and timestamps into your media. The sample shown above is an illustrative American location preview.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Deep Dive: Studio & Compression Suite -->
+        <section class="section-block" id="video-studio">
+            <div class="container">
+                <div class="feature-spotlight reverse">
+                    <div class="spotlight-text">
+                        <span class="section-tag">Production Quality</span>
+                        <h3>High-Speed Video Compressor & Creator Studio</h3>
+                        <p>
+                            Modern 4K video files consume gigabytes of storage and take forever to transfer across cellular networks. IGT Camera Tools features a state-of-the-art compression engine built with hardware-level MediaCodec optimization.
+                        </p>
+                        <p>
+                            Compress massive videos down to lightweight files with customizable presets (Small, Medium, High Quality, or specific target megabytes) while preserving crisp text, vibrant colors, and smooth frame rates.
+                        </p>
+                        <ul class="feature-bullets" style="margin-bottom: 24px;">
+                            <li><strong>Multi-Format Converter:</strong> Switch between MP4, MKV, MOV, WebM, and AVI without third-party converters.</li>
+                            <li><strong>Lossless Audio Extraction:</strong> Pull high-bitrate MP3 or AAC tracks from any video in seconds.</li>
+                            <li><strong>Batch Processing:</strong> Compress multiple videos and photos concurrently without freezing your phone.</li>
+                        </ul>
+                        <div class="spotlight-actions">
+                            <a href="https://play.google.com/store/apps/details?id=com.igtt.camera" target="_blank" rel="noopener noreferrer" class="btn-green">Try Video Compressor</a>
+                            <a href="#features" class="btn-yellow">Explore Sound Studio</a>
+                        </div>
+                    </div>
+                    <div class="spotlight-visual" style="background:#ffffff; border:1px solid #e2e8f0; color:#0f172a; padding: 28px;">
+                        <div style="text-align: center; margin-bottom: 24px;">
+                            <span style="font-size: 3rem;">⚡</span>
+                            <h4 style="font-size: 1.3rem; font-weight: 800; margin-top: 8px;">Compression Benchmark</h4>
+                            <p style="color: #64748b; font-size: 0.9rem;">Real-world 4K 60FPS video sample on Android</p>
+                        </div>
+                        <div style="background: #f1f5f9; padding: 16px; border-radius: 10px; margin-bottom: 14px; display: flex; justify-content: space-between; align-items: center;">
+                            <div>
+                                <span style="font-size: 0.85rem; color: #64748b; display: block;">Original 4K Clip</span>
+                                <strong style="font-size: 1.1rem; color: #e11d48;">420 MB</strong>
+                            </div>
+                            <div style="font-size: 1.4rem; color: #94a3b8;">➔</div>
+                            <div>
+                                <span style="font-size: 0.85rem; color: #64748b; display: block;">Compressed MP4</span>
+                                <strong style="font-size: 1.1rem; color: #00c853;">68 MB (-84%)</strong>
+                            </div>
+                        </div>
+                        <div style="font-size: 0.85rem; color: #009624; font-weight: 600; text-align: center; background: #e8f5e9; padding: 8px; border-radius: 6px;">
+                            ✓ Visual quality score: 98.4% SSIM retention
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Industry & Professional Use Cases -->
+        <section class="section-block" id="use-cases" style="background: #ffffff;">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">Versatile Applications</span>
+                    <h2 class="section-title">Built for Professionals and Creators</h2>
+                    <p class="section-desc">
+                        From remote construction inspections to high-engagement social media content creation, IGT Camera Tools empowers teams and individuals worldwide.
+                    </p>
+                </div>
+
+                <div class="use-cases-grid">
+                    <div class="use-case-card">
+                        <span class="icon">🏗️</span>
+                        <h4>Civil & Structural Engineering</h4>
+                        <p>Capture site progress inspections with verified GPS coordinates, project site notes, and altitude stamps embedded permanently for compliance auditing.</p>
+                    </div>
+
+                    <div class="use-case-card">
+                        <span class="icon">🛡️</span>
+                        <h4>Insurance & Claim Verification</h4>
+                        <p>Provide undisputable photographic and video evidence with hardware timestamp and sub-meter location stamping that cannot be altered.</p>
+                    </div>
+
+                    <div class="use-case-card">
+                        <span class="icon">🌿</span>
+                        <h4>Environmental Field Surveys</h4>
+                        <p>Document wildlife tracking, forestry research, and agricultural field observations with integrated GPS coordinates and live compass bearings.</p>
+                    </div>
+
+                    <div class="use-case-card">
+                        <span class="icon">🎬</span>
+                        <h4>Filmmakers & Social Creators</h4>
+                        <p>Shoot 4K cinema footage with manual controls, create speed ramps, trim clips, apply aesthetic LUTs, and export lightweight clips optimized for social apps.</p>
+                    </div>
+
+                    <div class="use-case-card">
+                        <span class="icon">🚚</span>
+                        <h4>Logistics & Delivery Audits</h4>
+                        <p>Record tamper-proof proof-of-delivery photos and loading inspection videos with automatic address, village, district, and time-stamped overlays.</p>
+                    </div>
+
+                    <div class="use-case-card">
+                        <span class="icon">🎓</span>
+                        <h4>Field Education & Research</h4>
+                        <p>Equip students, researchers, and field agents with a 100% offline, privacy-safe media toolkit that operates in remote areas without cellular coverage.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Core Value Proposition & Comparison -->
+        <section class="section-block" id="comparison" style="background: #f8fafc;">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">Why Choose IGT</span>
+                    <h2 class="section-title">The Unmatched Value of IGT Camera Tools</h2>
+                    <p class="section-desc">
+                        See how IGT Camera Tools compares against standard stock camera apps and fragmented third-party utilities.
+                    </p>
+                </div>
+
+                <div class="value-grid">
+                    <div class="value-item">
+                        <div class="value-number">1</div>
+                        <div class="value-content">
+                            <h4>Zero Cloud Dependency & 100% Privacy</h4>
+                            <p>All processing — from video rendering to compression, audio extraction, and biometric vault storage — happens entirely on your device without sending any data to remote servers.</p>
+                        </div>
+                    </div>
+
+                    <div class="value-item">
+                        <div class="value-number yellow">2</div>
+                        <div class="value-content">
+                            <h4>8 Professional Tools in a Single 15MB App</h4>
+                            <p>Replace standalone camera apps, GPS watermarkers, photo editors, video cutters, video compressors, audio extractors, collage makers, and gallery lockers with one unified tool.</p>
+                        </div>
+                    </div>
+
+                    <div class="value-item">
+                        <div class="value-number">3</div>
+                        <div class="value-content">
+                            <h4>Hardware-Accelerated Speed</h4>
+                            <p>Direct OpenGL ES 2.0 shader pipelines and MediaCodec encoders ensure zero frame drops, instantaneous video stamping, and ultra-fast media conversions.</p>
+                        </div>
+                    </div>
+
+                    <div class="value-item">
+                        <div class="value-number yellow">4</div>
+                        <div class="value-content">
+                            <h4>Tamper-Proof Proof of Presence</h4>
+                            <p>Unlike metadata tags that get stripped by WhatsApp or social networks, IGT’s burned video overlay becomes a permanent, non-strippable element of the video stream for official verification.</p>
+                        </div>
+                    </div>
+
+                    <div class="value-item">
+                        <div class="value-number">5</div>
+                        <div class="value-content">
+                            <h4>Massive Bandwidth & Storage Savings</h4>
+                            <p>Reduce video file sizes by up to 85% before uploading or archiving, saving mobile data plans and device storage while keeping videos crisp and readable.</p>
+                        </div>
+                    </div>
+
+                    <div class="value-item">
+                        <div class="value-number yellow">6</div>
+                        <div class="value-content">
+                            <h4>Biometric Privacy Vault</h4>
+                            <p>Protect confidential work files and personal recordings behind biometric fingerprint or PIN encryption directly within the app, away from standard gallery apps.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Comparison Table -->
+                <div class="comparison-table-wrapper">
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Feature Capability</th>
+                                <th class="highlight">IGT Camera Tools</th>
+                                <th>Standard System Camera</th>
+                                <th>Generic GPS Stamping Apps</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Manual DSLR Controls (ISO, EV, WB, Focus)</strong></td>
+                                <td class="highlight">✓ Full Manual Control</td>
+                                <td>Limited / Auto Only</td>
+                                <td>✗ None</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Hardware Video Geo Overlay (OpenGL ES 2.0)</strong></td>
+                                <td class="highlight">✓ Real-time Burned In</td>
+                                <td>✗ Strippable EXIF Only</td>
+                                <td>Software Lag / Desync</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Live GIS Map & Environmental Sensors</strong></td>
+                                <td class="highlight">✓ Embedded Live</td>
+                                <td>✗ None</td>
+                                <td>Static / Inaccurate</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Integrated High-Speed Video Compressor</strong></td>
+                                <td class="highlight">✓ Up to 85% Lossless</td>
+                                <td>✗ Requires 3rd Party App</td>
+                                <td>✗ None</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Full Photo & Video Editors + Audio Studio</strong></td>
+                                <td class="highlight">✓ Built-In Suite</td>
+                                <td>Basic Crop Only</td>
+                                <td>✗ None</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Encrypted Biometric Private Vault</strong></td>
+                                <td class="highlight">✓ Built-In Fingerprint/PIN</td>
+                                <td>✗ Open Gallery</td>
+                                <td>✗ None</td>
+                            </tr>
+                            <tr>
+                                <td><strong>100% Offline & Zero Telemetry Tracking</strong></td>
+                                <td class="highlight">✓ 100% Local & Private</td>
+                                <td>Cloud Syncing</td>
+                                <td>Aggressive Ads & Tracking</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="section-block" id="faq">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">Frequently Asked Questions</span>
+                    <h2 class="section-title">Got Questions? We Have Answers.</h2>
+                    <p class="section-desc">
+                        Everything you need to know about using IGT Camera Tools for your personal and professional workflows.
+                    </p>
+                </div>
+
+                <div class="faq-accordion">
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            Does IGT Camera Tools require an active internet connection?
+                            <span class="icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            No. IGT Camera Tools is engineered to work 100% offline. GPS coordinates, altitude, orientation sensors, camera capture, video recording, video compression, photo editing, and vault storage all run locally on your device without communicating with any external servers.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            Will the GPS watermark stay on the video when sent over WhatsApp or Telegram?
+                            <span class="icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            Yes! Unlike standard metadata (which messaging apps wipe to protect privacy), IGT Camera Tools burns the telemetry overlay directly into the visual video pixels during OpenGL hardware encoding. The coordinates, timestamp, map thumbnail, and note watermark remain intact anywhere you send the video.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            How does the video compressor reduce file sizes without ruining quality?
+                            <span class="icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            IGT Camera Tools utilizes modern H.264/AVC and H.265/HEVC hardware encoding codecs on your Android device. It intelligently optimizes macroblock bit allocation and strips redundant stream metadata, drastically reducing the bitrate while preserving crisp edges, color depth, and sharpness.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            Can I customize the watermark text and project notes on the GPS stamp?
+                            <span class="icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            Yes. You can customize the project note line (e.g., project name, inspector name, site ID, or company brand) directly in the camera settings, and it will be rendered cleanly in golden highlight on the final stamp.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            How does the app detect my real location when GPS is enabled?
+                            <span class="icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            When you turn on GPS location on your Android phone and launch IGT Camera Tools, the app queries the device's native hardware GPS/GNSS receiver directly. It locks onto live positioning satellites to calculate your exact latitude, longitude, altitude, speed, and reverse-geocodes your address, district, and region in real time. All calculation is done locally on your device with sub-meter precision.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            What video and audio formats are supported for conversion?
+                            <span class="icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            The app supports video conversions across MP4, MKV, MOV, WebM, and AVI formats. The audio studio can extract and convert audio to MP3, AAC, WAV, M4A, and FLAC formats with custom sample rates and bitrates.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final Call to Action -->
+        <section class="cta-banner" id="download">
+            <div class="container">
+                <div class="cta-content">
+                    <h2>Upgrade Your Mobile Workflow Today</h2>
+                    <p>
+                        Join thousands of field professionals, engineers, surveyors, and creative filmmakers who trust <strong>IGT Camera Tools</strong> for verified accuracy, cinema video recording, and seamless offline media editing.
+                    </p>
+                    <div class="cta-buttons">
+                        <a href="https://play.google.com/store/apps/details?id=com.igtt.camera" target="_blank" rel="noopener noreferrer" class="btn-green">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M3.609 1.814L13.792 12 3.61 22.186a2.43 2.43 0 0 1-.61-1.636V3.45c0-.623.228-1.203.609-1.636zM15.207 13.414l2.585-2.585-2.585-2.586L12.378 12l2.829 2.828v-.001zm1.414-4.001l2.973 1.706a1.442 1.442 0 0 1 0 2.493l-2.973 1.706-2.001-2.001 2.001-2.004zM4.73 1.092l8.835 8.835-2.829 2.829L2.83 4.85c.42-.76 1.156-1.306 1.9-1.306zm0 21.816c-.744 0-1.48-.546-1.9-1.306l7.906-7.906 2.829 2.829-8.835 8.835v-.452z"/>
+                            </svg>
+                            Download on Google Play Store
+                        </a>
+                        <a href="software.html" class="btn-yellow">Browse All IGT Software</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Site Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="brand-logo">
+                        <img src="https://www.igttechcollege.com/images/igt-camera-tools-icon.png" alt="IGT Camera Tools Icon" class="brand-logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                        <div class="brand-logo-icon" style="display:none;">IGT</div>
+                        <span>IGT Tech College</span>
+                    </a>
+                    <p>
+                        Empowering creators, engineers, and digital innovators with professional-grade, privacy-first mobile software and educational tools.
+                    </p>
+                </div>
+
+                <div class="footer-col">
+                    <h5>IGT Tools</h5>
+                    <ul>
+                        <li><a href="https://play.google.com/store/apps/details?id=com.igtt.camera" target="_blank" rel="noopener noreferrer">IGT Camera Tools App</a></li>
+                        <li><a href="image-tools.html">Image Editor</a></li>
+                        <li><a href="video-tools.html">Video Editor</a></li>
+                        <li><a href="cv-generator.html">CV Generator</a></li>
+                        <li><a href="qrcode-barcode-generator.html">QR & Barcode</a></li>
+                        <li><a href="software.html">All Software</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h5>Languages</h5>
+                    <ul>
+                        <li><a href="english.html">English</a></li>
+                        <li><a href="swahili.html">Kiswahili</a></li>
+                        <li><a href="ikinyarwanda.html">Ikinyarwanda</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h5>Company</h5>
+                    <ul>
+                        <li><a href="about-us.html">About Us</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                        <li><a href="guidance.html">User Guidance</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div>&copy; 2026 IGT Tech College & IGT Camera Tools. All rights reserved.</div>
+                <div>Designed for high performance, verified geolocation, and total offline privacy.</div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive Scripts for Accordion -->
+    <script>
+        document.querySelectorAll('.faq-question').forEach(button => {
+            button.addEventListener('click', () => {
+                const item = button.parentElement;
+                const isActive = item.classList.contains('active');
+                document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+                if (!isActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
