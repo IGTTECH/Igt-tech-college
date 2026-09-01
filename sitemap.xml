@@ -210,5 +210,20 @@
     <lastmod>2026-08-07T22:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>   
-  </url>     
+  </url> 
+    <loc>https://www.igttechcollege.com/igt-docs-tools-app.html</loc>
+    <lastmod>2026-09-01T04:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>   
+  </url>
+    <loc>https://www.igttechcollege.com/igt-scanner-tools-app</loc>
+    <lastmod>2026-09-01T04:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>   
+  </url>
+    <loc>https://www.igttechcollege.com/igt-camera-tools-app.html</loc>
+    <lastmod>2026-09-01T04:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>   
+  </url> 
 </urlset>
