@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mwongozo Kamili wa Programu ya Chuo cha Simu - IGT TECH COLLEGE</title>
+    <meta name="description" content="Mwongozo wa hatua kwa hatua unaofundisha jinsi ya kutumia vipengele vyote vya programu ya Chuo cha Simu, kuanzia masomo ya ufundi, usalama, zana za kisasa, mitihani, na kupakua cheti.">
+    <style>
+        :root {
+            --primary-navy: #0A1128;
+            --secondary-blue: #001F54;
+            --accent-cyan: #0284C7;
+            --gold-amber: #F59E0B;
+            --dark-text: #0F172A;
+            --body-text: #334155;
+            --bg-canvas: #F8FAFC;
+            --card-surface: #FFFFFF;
+            --border-light: #E2E8F0;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+        body {
+            background-color: var(--bg-canvas);
+            color: var(--body-text);
+            line-height: 1.75;
+            padding-bottom: 70px;
+        }
+        header {
+            background: linear-gradient(135deg, #0A1128 0%, #001F54 50%, #034078 100%);
+            color: #FFFFFF;
+            padding: 55px 20px;
+            text-align: center;
+            border-bottom: 4px solid var(--gold-amber);
+        }
+        .header-box {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .badge {
+            display: inline-block;
+            background: rgba(245, 158, 11, 0.2);
+            color: var(--gold-amber);
+            border: 1px solid var(--gold-amber);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        header h1 {
+            font-size: 2.4rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+        }
+        header p {
+            color: #94A3B8;
+            font-size: 1.1rem;
+            max-width: 720px;
+            margin: 0 auto;
+        }
+        .main-wrapper {
+            max-width: 960px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        .hero-banner {
+            background: linear-gradient(to right, #0284C7, #0369A1);
+            color: #FFFFFF;
+            border-radius: 18px;
+            padding: 30px;
+            margin-bottom: 35px;
+            box-shadow: 0 10px 25px -5px rgba(2, 132, 199, 0.3);
+        }
+        .hero-banner h3 {
+            font-size: 1.35rem;
+            margin-bottom: 10px;
+            font-weight: 800;
+        }
+        .hero-banner p {
+            font-size: 1rem;
+            opacity: 0.96;
+            margin-bottom: 0;
+            line-height: 1.7;
+        }
+        .guide-card {
+            background: var(--card-surface);
+            border: 1px solid var(--border-light);
+            border-radius: 18px;
+            padding: 34px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.03);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .guide-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+        }
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 22px;
+            padding-bottom: 16px;
+            border-bottom: 2px solid #F1F5F9;
+        }
+        .icon-box {
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
+            background: #E0F2FE;
+            color: var(--accent-cyan);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-right: 18px;
+            flex-shrink: 0;
+        }
+        .icon-box.gold {
+            background: #FEF3C7;
+            color: #D97706;
+        }
+        .icon-box.green {
+            background: #DCFCE7;
+            color: #15803D;
+        }
+        .card-header h2 {
+            font-size: 1.4rem;
+            color: var(--dark-text);
+            font-weight: 800;
+        }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 18px;
+            margin: 20px 0;
+        }
+        .feature-item {
+            background: #F8FAFC;
+            border: 1px solid #E2E8F0;
+            border-radius: 14px;
+            padding: 20px;
+        }
+        .feature-item h4 {
+            color: var(--accent-cyan);
+            font-size: 1.05rem;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 700;
+        }
+        .feature-item p {
+            font-size: 0.92rem;
+            color: #475569;
+            margin-bottom: 0;
+        }
+        ol, ul {
+            margin: 16px 0 20px 24px;
+        }
+        li {
+            margin-bottom: 12px;
+            font-size: 1rem;
+        }
+        li strong {
+            color: var(--dark-text);
+        }
+        .tip-box {
+            background: #FFFBEB;
+            border-left: 4px solid var(--gold-amber);
+            padding: 18px 22px;
+            border-radius: 0 12px 12px 0;
+            margin: 22px 0;
+        }
+        .tip-box p {
+            color: #92400E;
+            font-size: 0.96rem;
+            margin: 0;
+            font-weight: 500;
+        }
+        .step-pill {
+            display: inline-block;
+            background: #0284C7;
+            color: #FFFFFF;
+            font-size: 0.75rem;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-weight: bold;
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+        .btn-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--accent-cyan);
+            color: #FFFFFF;
+            text-decoration: none;
+            padding: 13px 26px;
+            border-radius: 10px;
+            font-weight: bold;
+            margin-top: 14px;
+            transition: all 0.2s ease;
+        }
+        .btn-link:hover {
+            background: #026aa2;
+            transform: translateY(-2px);
+        }
+        footer {
+            text-align: center;
+            color: #64748B;
+            font-size: 0.92rem;
+            margin-top: 50px;
+            padding-top: 25px;
+            border-top: 1px solid var(--border-light);
+        }
+        footer a {
+            color: var(--accent-cyan);
+            text-decoration: none;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-box">
+            <span class="badge">Mwongozo Kamili wa Mafunzo</span>
+            <h1>Mwongozo wa Programu ya Chuo cha Simu</h1>
+            <p>Jifunze hatua kwa hatua jinsi ya kutumia kila kipengele cha programu kuanzia masomo, zana, mitihani, na kupakua Shahada ya Umahiri</p>
+        </div>
+    </header>
+
+    <div class="main-wrapper">
+
+        <!-- UTANGULIZI -->
+        <div class="hero-banner">
+            <h3>🎓 Karibu Chuo cha Simu (IGT TECH COLLEGE)</h3>
+            <p>
+                Programu hii imeandaliwa na Mhandisi <strong>Seth Iradukunda</strong> ili kukupa mafunzo kamili ya kisasa ya ufundi simu za mkononi (Hardware & Software), usalama wa mitandao (Cybersecurity), na mbinu za kiufundi kwa lugha yetu adhimu ya <strong>Kiswahili</strong>. Fuata mwongozo huu kufahamu namna ya kutumia kila sehemu ya programu.
+            </p>
+        </div>
+
+        <!-- SEHEMU 1: VICHUPO 5 VYA CHINI -->
+        <div class="guide-card">
+            <div class="card-header">
+                <div class="icon-box">🧭</div>
+                <h2>1. Sehemu Kuu 5 za Programu (Vichupo vya Menyu ya Chini)</h2>
+            </div>
+            <p>Programu imegawanywa katika kurasa kuu tano (5) zinazoonekana chini ya simu yako kila wakati:</p>
+            
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <h4>📚 Masomo (Lessons)</h4>
+                    <p>Mtaala wa kina wa ufundi kuanzia kutambua vifaa, usomaji wa michoro ya bodi (Schematics), hadi kufanya ukarabati wa IC na mfumo (Software/Firmware).</p>
+                </div>
+                <div class="feature-item">
+                    <h4>🛡️ Usalama (Cybersecurity)</h4>
+                    <p>Mafunzo ya ulinzi wa taarifa binafsi, kubaini programu haramu za spyware, kuzuia udanganyifu wa fedha (Phishing), na kuimarisha usalama wa simu.</p>
+                </div>
+                <div class="feature-item">
+                    <h4>🔧 Mafundi (Technicians)</h4>
+                    <p>Masomo ya ngazi ya juu ya kiufundi: Jinsi ya kutumia Multimeter kupima mkondo, joto la mashine ya upepo (Hot Air), soldering, na kutatua hitilafu za bodi.</p>
+                </div>
+                <div class="feature-item">
+                    <h4>🧰 Zana (Tools)</h4>
+                    <p>Zana za vitendo: Kikokotoo cha kiufundi (Ohm's Law, Resistor, Battery Health), siri za Secret Codes za Android/iPhone, na orodha ya usuluhishi (Troubleshooting).</p>
+                </div>
+                <div class="feature-item">
+                    <h4>📑 Yote (Hub & Settings)</h4>
+                    <p>Kituo kikuu chenye Mtihani wa Shahada, Programu Nyingine za IGT, Mipangilio ya Mwonekano (Dark/Light Mode), na viungo vya msaada wa chuo.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SEHEMU 2: JINSI YA KUSOMA MASOMO NA KUFUATILIA MAENDELEO -->
+        <div class="guide-card">
+            <div class="card-header">
+                <div class="icon-box">📖</div>
+                <h2>2. Jinsi ya Kusoma Masomo na Kufuatilia Maendeleo Yako</h2>
+            </div>
+            <p>Ili kufaulu na kuwa fundi mahiri, fuata mpangilio huu wa masomo:</p>
+            <ol>
+                <li><span class="step-pill">Hatua 1</span><strong>Chagua Somo:</strong> Fungua kichupo cha <em>Masomo</em> au <em>Mafundi</em>. Masomo yamepangwa kwa ngazi (Mwanzo, Kati, na Bingwa). Bofya kadi ya somo lolote ili kulifungua.</li>
+                <li><span class="step-pill">Hatua 2</span><strong>Soma Nadharia na Hatua za Vitendo:</strong> Kila somo lina sehemu ya maelekezo ya kinadharia, vifaa vinavyohitajika (Tools), hatua kwa hatua za kazi, na tahadhari muhimu za kiusalama.</li>
+                <li><span class="step-pill">Hatua 3</span><strong>Weka Alama ya "Nimekamilisha Somo":</strong> Chini kabisa ya kila somo, kuna kitufe cha kuthibitisha kuwa umesoma. Ukikibofya, mfumo wa programu utahifadhi maendeleo yako kwenye simu yako na kuongeza asilimia ya maendeleo yako kuelekea cheti.</li>
+                <li><span class="step-pill">Hatua 4</span><strong>Kusoma Bila Mtandao (Offline-First):</strong> Masomo yote yamehifadhiwa ndani ya programu, hivyo unaweza kusoma mahali popote bila kuhitaji bando la intaneti.</li>
+            </ol>
+        </div>
+
+        <!-- SEHEMU 3: ZANA ZA MAFUNDI (TOOLS) -->
+        <div class="guide-card">
+            <div class="card-header">
+                <div class="icon-box green">🧰</div>
+                <h2>3. Namna ya Kutumia Zana za Kiufundi (Tools Section)</h2>
+            </div>
+            <p>Kichupo cha <strong>Zana (Tools)</strong> kinakusaidia katika kazi za kila siku za ufundi:</p>
+            <ul>
+                <li><strong>Kikokotoo cha Kiufundi (Electronics Calculator):</strong>
+                    <ul>
+                        <li><em>Ohm's Law:</em> Piga hesabu ya Volti (V), Ampea (I), na Upinzani (R) kwa kuingiza namba tu.</li>
+                        <li><em>Upinzani wa Resistor (Color Codes):</em> Tambua thamani ya resistors kwa kuchagua rangi za mikanda.</li>
+                        <li><em>Afya ya Betri (Battery Health):</em> Kokotoa uwezo halisi wa betri kulingana na mzunguko wa kuchaji (charge cycles).</li>
+                    </ul>
+                </li>
+                <li><strong>Nambari za Siri (Secret Diagnostic Codes):</strong> Orodha kamili ya kodi za kupima skrini, spika, sensa, na kamera kwa simu zote za Samsung, Xiaomi, Infinix, Tecno, na iPhone.</li>
+                <li><strong>Mwongozo wa Utatuzi wa Haraka (Troubleshooting Tree):</strong> Chagua hitilafu ya simu (mfano: <em>Simu haichaji, Skrini haina mwanga, Simu inazima ghafla</em>) na upate hatua za kufuata mara moja.</li>
+            </ul>
+        </div>
+
+        <!-- SEHEMU 4: MTIHANI WA SHAHADA NA VYETI -->
+        <div class="guide-card">
+            <div class="card-header">
+                <div class="icon-box gold">🏆</div>
+                <h2>4. Mtihani wa Shahada ya Umahiri (Certificate Exam)</h2>
+            </div>
+            <p>IGT TECH COLLEGE inatambua ujuzi wako kwa kukupatia <strong>Shahada Rasmi ya Umahiri (Certificate of Completion)</strong> yenye Muhuri wa Dhahabu na Saini Rasmi ya Chuo:</p>
+            
+            <div class="tip-box">
+                <p>⭐ <strong>Kiwango cha Kufaulu:</strong> Mtihani una maswali 25. Unatakiwa kupata angalau alama <strong>70% (maswali 18 au zaidi sahihi)</strong> ili kufuzu kupokea Shahada.</p>
+            </div>
+
+            <ol>
+                <li><strong>Jinsi ya Kuanza Mtihani:</strong>
+                    <ul>
+                        <li>Nenda kwenye kichupo cha <strong>Yote</strong> kisha bofya <strong>"Fanya Mtihani wa Shahada"</strong> (au bofya kitufe cha Shahada kwenye menyu).</li>
+                        <li>Soma maelekezo kisha bofya "Anza Mtihani". Kuna kipima muda (timer) kitakachokuongoza.</li>
+                    </ul>
+                </li>
+                <li><strong>Kujibu Maswali:</strong> Chagua jibu sahihi kati ya chaguzi zilizopo kwa kila swali. Unaweza kubadili jibu lako kabla ya kumaliza.</li>
+                <li><strong>Kuangalia Matokeo:</strong> Mara baada ya kumaliza, alama zako zitahesabiwa papo hapo na kuonyeshwa kwa rangi (Kijani = Umefaulu, Nyekundu = Jaribu Tena).</li>
+                <li><strong>Kutengeneza na Kupakua Shahada yako (PDF):</strong>
+                    <ul>
+                        <li>Kama umefaulu kwa 70% au zaidi, fungua ukurasa wa <strong>Shahada (Certificate)</strong>.</li>
+                        <li>Ingiza <strong>Jina lako kamili</strong> (litaandikwa kwa herufi nzuri za heshima kwenye cheti).</li>
+                        <li>Bofya sehemu ya picha kuweka picha yako ya wasifu (Passport size).</li>
+                        <li>Bofya kitufe cha <strong>"Pakua Cheti Kama PDF"</strong>. Cheti kitahifadhiwa kwenye simu yako na unaweza kukichapa (Print) au kukiambatanisha kwenye wasifu wako wa kazi!</li>
+                    </ul>
+                </li>
+            </ol>
+        </div>
+
+        <!-- SEHEMU 5: PROGRAMU NYINGINE ZA IGT TECH COLLEGE -->
+        <div class="guide-card">
+            <div class="card-header">
+                <div class="icon-box">🌐</div>
+                <h2>5. Programu Nyingine za Chuo cha IGT (Other Apps)</h2>
+            </div>
+            <p>Kwenye kichupo cha <strong>Yote ➔ Programu Nyingine</strong>, unaweza kupata programu 6 za ziada zilizotengenezwa na IGT kwa ajili ya kuongeza ufanisi wako:</p>
+            <ul>
+                <li><strong>IGT Network:</strong> Kupima kasi ya intaneti, WiFi, na kutatua matatizo ya anwani za IP.</li>
+                <li><strong>IGT Security for Smart Phones:</strong> Kulinda simu dhidi ya virusi, programu za kijasusi (spyware), na wizi wa data.</li>
+                <li><strong>IGT Camera Tools:</strong> Kamera maalum yenye vipimo na zoom ya hali ya juu kwa ajili ya kuchunguza mikwaruzo na bodi za simu.</li>
+                <li><strong>IGT Docs Tools:</strong> Kusoma na kurekebisha michoro ya PDF na majarida ya kiufundi.</li>
+                <li><strong>IGT Scanner Tools:</strong> Kusoma QR Code na Barcode za vifaa vya simu, vioo, na betri.</li>
+                <li><strong>Ishuri rya Telefone:</strong> Toleo rasmi la mafunzo ya ufundi wa simu lililoandaliwa kwa lugha ya Kinyarwanda.</li>
+            </ul>
+        </div>
+
+        <!-- SEHEMU 6: MIPANGILIO, USAIDIZI NA MAWASILIANO -->
+        <div class="guide-card">
+            <div class="card-header">
+                <div class="icon-box">⚙️</div>
+                <h2>6. Mipangilio, Msaada na Mawasiliano ya Moja kwa Moja</h2>
+            </div>
+            <ul>
+                <li><strong>Hali ya Usiku na Mchana (Dark / Light Theme):</strong> Badilisha muundo wa mwanga kupitia ukurasa wa <em>Usaidizi & Kuhusu</em> ili kulinda macho yako unapofanya kazi usiku.</li>
+                <li><strong>Toleo la PRO:</strong> Ondoa matangazo yote, pata alama maalum ya PRO kwenye cheti chako, na upate msaada wa kipaumbele kutoka kwa waalimu wetu.</li>
+                <li><strong>Wasiliana Nasi Moja kwa Moja:</strong>
+                    <ul>
+                        <li><strong>Tovuti Rasmi:</strong> <a href="https://www.igttechcollege.com" target="_blank" rel="noopener">www.igttechcollege.com</a></li>
+                        <li><strong>Mawasiliano ya Chuo:</strong> <a href="https://igttechcollege.com/contact" target="_blank" rel="noopener">igttechcollege.com/contact</a></li>
+                        <li><strong>Email ya Wahandisi:</strong> <a href="mailto:techcollegehackerteam@gmail.com">techcollegehackerteam@gmail.com</a></li>
+                        <li><strong>YouTube Rasmi:</strong> <a href="https://youtube.com/@chuoigt" target="_blank" rel="noopener">@chuoigt (Chuo cha IGT)</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <div style="text-align: center; margin-top: 25px;">
+                <a href="https://igttechcollege.com/contact" class="btn-link" target="_blank" rel="noopener">
+                    Wasiliana na Chuo cha IGT
+                </a>
+            </div>
+        </div>
+
+        <footer>
+            <p>&copy; 2026 IGT TECH COLLEGE. Haki Zote Zimehifadhiwa.</p>
+            <p><a href="https://www.igttechcollege.com" target="_blank">www.igttechcollege.com</a> &nbsp;|&nbsp; Chuo cha Simu App</p>
+        </footer>
+
+    </div>
+
+</body>
+</html>
