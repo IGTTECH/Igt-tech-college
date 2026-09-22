@@ -1,0 +1,4 @@
+Contact: mailto:info.igttech@gmail.com
+Expires: 2050-09-22T00:00:00Z
+Preferred-Languages: en, sw, rw
+Canonical: https://www.igttechcollege.com/.well-known/security.txt
