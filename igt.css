@@ -1,87 +1,70 @@
-/* =========================================================
-   IGT & TECH COLLEGE
-   Professional Responsive Styles
-   Existing color palette preserved
-   ========================================================= */
-
-/* ---------- Global Styles ---------- */
-
-* {
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
+/* Global Styles */
 body {
-  font-family: 'Roboto', Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  line-height: 1.6;
-  color: #333;
-  background-color: #ffffff;
-  overflow-x: hidden;
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    color: #333;
+  }
+/* Featured Programs */
+.featured-programs {
+  padding: 40px 0;
 }
 
-img {
-  max-width: 100%;
-  height: auto;
-}
-
-a {
-  text-decoration: none;
-  color: #007bff;
-  transition: color 0.2s ease, opacity 0.2s ease;
-}
-
-a:hover {
-  opacity: 0.9;
-}
-
-button,
-.button {
-  font-family: inherit;
-  cursor: pointer;
-}
-
-/* ---------- Container ---------- */
-
-.container {
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
-}
-
-/* ---------- Header ---------- */
-
-header {
-  background-color: green;
-  border-bottom: 1px solid #eee;
-  padding: 1rem 0;
-  position: relative;
-  z-index: 100;
-}
-
-header .container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-header h3 {
-  margin: 0 0 16px;
+.featured-programs h3 {
   text-align: center;
-  color: darkorange;
-  font-size: 1.15rem;
-  line-height: 1.5;
+  margin-bottom: 30px;
+} .program-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
 }
 
-/* ---------- Navigation ---------- */
+.program {
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
 
-.btn-nav {
-  width: 100%;
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  a {
+    text-decoration: none;
+    color: #007bff;
+  }
+  
+  .button {
+    background-color: #008000;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    display: inline-block;
+  }
+  
+  /* Header */
+  header {
+    background-color: green;
+    border-bottom: 1px solid #eee;
+    padding: 1rem 0;
+  }
+  
+  header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  header .logo h1 {
+    margin: 0;
+    color: darkorange;
+  }
+  
+ .btn-nav {
   background: green;
   padding: 14px 10px;
 }
@@ -95,560 +78,101 @@ header h3 {
   padding: 0;
 }
 
-.btn-nav ul li {
-  margin: 0;
-  padding: 0;
-}
-
 .btn-nav ul li a {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 44px;
-  padding: 8px 10px;
-
-  background: linear-gradient(
-    145deg,
-    #ff00aa,
-    #0072ff,
-    #eeff00
-  );
-
+  height: 44px;
+  padding: 0 10px;
+  background: linear-gradient(145deg, #ff00aa, #0072ff ,#eeff00);
   color: #ffffff;
   border-radius: 10px;
   text-decoration: none;
   font-weight: 700;
   font-size: 14px;
-  text-align: center;
-
-  box-shadow:
-    0 4px 0 #005fcc,
-    0 6px 12px rgba(0, 0, 0, 0.35);
-
-  transition:
-    transform 0.15s ease,
-    box-shadow 0.15s ease,
-    background 0.2s ease;
-}
-
-.btn-nav ul li a:focus-visible {
-  outline: 3px solid #ffffff;
-  outline-offset: 3px;
+  box-shadow: 0 4px 0 #005fcc, 0 6px 12px rgba(0,0,0,0.35);
+  transition: all 0.15s ease;
 }
 
 .btn-nav ul li a:active {
   transform: translateY(3px);
-
-  box-shadow:
-    0 1px 0 #005fcc,
-    0 2px 6px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 1px 0 #005fcc, 0 2px 6px rgba(0,0,0,0.35);
 }
 
 @media (hover: hover) {
   .btn-nav ul li a:hover {
-    background: linear-gradient(
-      145deg,
-      #f71aff,
-      #00ff22
-    );
-
-    transform: translateY(-2px);
-
-    box-shadow:
-      0 6px 0 #005fcc,
-      0 9px 16px rgba(0, 0, 0, 0.35);
-  }
-}
-/* ---------- Hero Section ---------- */
-
-.hero {
-  position: relative;
-
-  background-image: url('background.png');
-  background-size: cover;
-  background-position: center;
-
-  color: white;
-  text-align: center;
-
-  padding: 100px 20px;
-
-  min-height: 420px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/*
-   Overlay improves text readability while keeping
-   your original background image and colors.
-*/
-.hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-
-  background: rgba(0, 0, 0, 0.25);
-
-  pointer-events: none;
-}
-
-.hero .container {
-  position: relative;
-  z-index: 1;
-}
-
-.hero h2 {
-  font-size: clamp(2rem, 5vw, 2.8rem);
-  line-height: 1.2;
-  margin: 0 auto 20px;
-  max-width: 900px;
-
-  text-shadow:
-    0 2px 5px rgba(0, 0, 0, 0.45);
-}
-
-.hero h3 {
-  font-size: clamp(1.1rem, 3vw, 1.5rem);
-  margin: 0 0 15px;
-
-  text-shadow:
-    0 2px 4px rgba(0, 0, 0, 0.4);
-}
-
-.hero p {
-  font-size: 1.2rem;
-  margin: 0 auto 30px;
-  max-width: 700px;
-
-  text-shadow:
-    0 2px 4px rgba(0, 0, 0, 0.4);
-}
-
-/* ---------- Main Buttons ---------- */
-
-.button {
-  background-color: #008000;
-  color: white;
-
-  padding: 11px 20px;
-  margin: 5px;
-
-  border-radius: 5px;
-
-  display: inline-block;
-
-  font-weight: 700;
-
-  box-shadow:
-    0 3px 7px rgba(0, 0, 0, 0.2);
-
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease,
-    opacity 0.2s ease;
-}
-
-.button:hover {
-  color: white;
-  transform: translateY(-2px);
-
-  box-shadow:
-    0 6px 12px rgba(0, 0, 0, 0.25);
-}
-
-.button:active {
-  transform: translateY(1px);
-}
-
-/* ---------- Site Introduction ---------- */
-
-.site-intro {
-  position: relative;
-
-  margin: 30px auto !important;
-
-  border: 1px solid #eee;
-
-  transition:
-    box-shadow 0.25s ease,
-    transform 0.25s ease;
-}
-
-.site-intro h2 {
-  margin-top: 0;
-  color: green;
-  font-size: clamp(1.5rem, 3vw, 2rem);
-}
-
-.site-intro p {
-  margin-bottom: 15px;
-}
-
-.site-intro ul {
-  padding-left: 25px;
-}
-
-.site-intro li {
-  margin-bottom: 7px;
-}
-
-/* ---------- Featured Programs ---------- */
-
-.featured-programs {
-  padding: 40px 0;
-}
-
-.featured-programs h3 {
-  text-align: center;
-  margin-bottom: 30px;
-}
-
-.program-grid {
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-
-  padding: 30px 20px;
-
-  display: grid;
-  grid-template-columns: repeat(
-    auto-fit,
-    minmax(250px, 1fr)
-  );
-
-  gap: 25px;
-}
-
-/* ---------- Program Cards ---------- */
-
-.program {
-  background-color: #f8f9fa;
-
-  padding: 25px;
-
-  border-radius: 8px;
-
-  border: 1px solid #eee;
-
-  box-shadow:
-    0 2px 4px rgba(0, 0, 0, 0.1);
-
-  transition:
-    transform 0.25s ease,
-    box-shadow 0.25s ease;
-}
-
-.program h4 {
-  margin-top: 0;
-  margin-bottom: 15px;
-
-  font-size: 1.3rem;
-  color: green;
-}
-
-.program p {
-  margin-bottom: 15px;
-}
-
-.program button {
-  border: none;
-  border-radius: 5px;
-
-  padding: 0;
-
-  box-shadow:
-    0 3px 7px rgba(0, 0, 0, 0.18);
-
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
-}
-
-.program button a {
-  display: block;
-
-  padding: 10px 18px;
-
-  color: #333;
-  font-weight: 700;
-}
-
-.program button:hover {
-  transform: translateY(-2px);
-
-  box-shadow:
-    0 6px 12px rgba(0, 0, 0, 0.22);
-}
-
-@media (hover: hover) {
-  .program:hover {
-    transform: translateY(-4px);
-
-    box-shadow:
-      0 8px 20px rgba(0, 0, 0, 0.12);
+    background: linear-gradient(145deg, #f71aff, #00ff22);
   }
 }
 
-/* ---------- Student Count ---------- */
-
-#studentCount {
-  display: inline-block;
-
-  font-size: 2em;
-  font-weight: bold;
-  color: #007bff;
-
-  margin: 0 4px;
-}
-
-/* ---------- WhatsApp Button ---------- */
-
-.whatsapp-button {
-  position: fixed;
-
-  bottom: 10px;
-  right: 10px;
-
-  background-color: #25D366;
-  color: white;
-
-  padding: 8px 12px;
-
-  border-radius: 15px;
-
-  text-decoration: none;
-
-  display: flex;
-  align-items: center;
-  gap: 6px;
-
-  box-shadow:
-    2px 2px 8px rgba(0, 0, 0, 0.3);
-
-  z-index: 1000;
-
-  font-weight: 700;
-
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
-}
-
-.whatsapp-button img {
-  height: 18px;
-  width: 18px;
-  object-fit: contain;
-  margin: 0;
-}
-
-.whatsapp-button:hover {
-  color: white;
-
-  transform: translateY(-3px);
-
-  box-shadow:
-    2px 5px 12px rgba(0, 0, 0, 0.35);
-}
-
-/* ---------- Footer ---------- */
-
-footer {
-  background-color: #333;
-  color: white;
-
-  text-align: center;
-
-  padding: 30px 0;
-
-  margin-top: 30px;
-}
-
-footer p {
-  margin: 0 0 15px;
-
-  line-height: 1.6;
-}
-
-footer a {
-  color: #007bff;
-
-  display: inline-block;
-
-  margin: 3px 2px;
-
-  transition:
-    color 0.2s ease,
-    opacity 0.2s ease;
-}
-
-footer a:hover {
-  color: white;
-}
-
-/* ---------- Focus Accessibility ---------- */
-
-a:focus-visible,
-button:focus-visible {
-  outline: 3px solid #007bff;
-  outline-offset: 3px;
-}
-
-/* ---------- Tablet ---------- */
-
-@media (max-width: 768px) {
-
-  .container {
-    padding-left: 15px;
-    padding-right: 15px;
-  }
-
-  header {
-    padding: 15px 0;
-  }
-
-  header h3 {
-    font-size: 1rem;
-    padding: 0 10px;
-  }
-
-  .btn-nav {
-    padding: 10px 8px;
-  }
-
-  .btn-nav ul {
-    grid-template-columns:
-      repeat(2, minmax(0, 1fr));
-
-    gap: 8px;
-  }
-
-  .btn-nav ul li a {
-    min-height: 44px;
-    font-size: 13px;
-  }
-
+  /* Hero Section */
   .hero {
-    padding: 80px 15px;
-    min-height: 380px;
-  }
-
-  .hero p {
-    font-size: 1.05rem;
-  }
-
-  .program-grid {
-    padding: 20px 15px;
-    gap: 18px;
-  }
-
-  .program {
-    padding: 20px;
-  }
-
-  footer {
-    padding: 25px 15px;
-  }
-}
-
-/* ---------- Mobile ---------- */
-
-@media (max-width: 480px) {
-
-  body {
-    font-size: 15px;
-  }
-
-  header h3 {
-    font-size: 0.9rem;
-    line-height: 1.4;
-  }
-
-  .btn-nav ul {
-    grid-template-columns: 1fr;
-  }
-
-  .btn-nav ul li a {
-    width: 100%;
-    min-height: 46px;
-    font-size: 14px;
-  }
-
-  .hero {
-    padding: 65px 12px;
-    min-height: 350px;
-  }
-
-  .hero h2 {
-    font-size: 1.8rem;
-  }
-
-  .hero h3 {
-    font-size: 1.1rem;
-  }
-
-  .hero p {
-    font-size: 1rem;
-  }
-
-  .button {
-    display: block;
-    width: calc(100% - 20px);
-    max-width: 320px;
-    margin: 8px auto;
+    background-image: url('background.png');
+    background-size: cover;
+    background-position: center;
+    color: white;
     text-align: center;
+    padding: 100px 0;
   }
-
-  .site-intro {
-    margin: 20px 12px !important;
-    padding: 18px !important;
+  
+  .hero h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
   }
-
-  .site-intro h2 {
-    font-size: 1.45rem;
+  
+  .hero p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
   }
-
-  .program-grid {
-    grid-template-columns: 1fr;
-    padding: 15px 12px;
+  
+  /* Footer */
+  footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
   }
-
-  .program {
-    padding: 18px;
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    header .container {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    nav ul {
+      flex-direction: column;
+      align-items: flex-start;
+      margin-top: 10px;
+    }
+  
+    nav ul li {
+      margin: 5px 0;
+    }
   }
 
   .whatsapp-button {
+    position: fixed;
     bottom: 8px;
     right: 8px;
-
+    background-color: #25D366;
+    color: white;
     padding: 7px 10px;
-
-    font-size: 14px;
+    border-radius: 15px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    z-index: 1000; /* Ensure it's on top of other elements */
   }
 
-  footer {
-    font-size: 14px;
+  .whatsapp-button img {
+    height: 15px;
+    margin-right: 5px;
   }
+  #studentCount {
+    font-size: 2em;
+    font-weight: bold;
+    color: #007bff; 
 
-  footer a {
-    margin: 4px 2px;
   }
-}
-
-/* ---------- Reduced Motion ---------- */
-
-@media (prefers-reduced-motion: reduce) {
-
-  html {
-    scroll-behavior: auto;
-  }
-
-  *,
-  *::before,
-  *::after {
-    transition-duration: 0.01ms !important;
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-  }
-}
